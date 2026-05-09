@@ -1,0 +1,1283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>왕지인 · Corporate Development & Investment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Design Tokens ── */
+    :root {
+      --pink:       #FBCBD8;
+      --pink-dark:  #f0a3b8;
+      --pink-light: #fde8ef;
+      --bg:         #FAF9F7;
+      --bg2:        #F5F3EF;
+      --ink:        #1A1A1A;
+      --ink2:       #4A4A4A;
+      --ink3:       #7A7A7A;
+      --border:     #E8E4DD;
+      --white:      #FFFFFF;
+      --radius:     12px;
+      --radius-lg:  20px;
+      --shadow:     0 2px 16px rgba(0,0,0,0.08);
+      --shadow-lg:  0 8px 40px rgba(0,0,0,0.12);
+      --nav-w:      220px;
+      --transition: 0.2s ease;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+
+    /* ── Layout ── */
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar Nav ── */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: var(--nav-w);
+      height: 100vh;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 40px 24px;
+      z-index: 100;
+    }
+    .sidebar-logo {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 40px;
+    }
+    .sidebar-logo span {
+      display: block;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0;
+      text-transform: none;
+      margin-bottom: 2px;
+    }
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      display: block;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--ink2);
+      transition: background var(--transition), color var(--transition);
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: var(--pink-light);
+      color: var(--ink);
+    }
+    .nav-links a.active {
+      font-weight: 600;
+    }
+    .sidebar-contact {
+      margin-top: auto;
+      font-size: 12px;
+      color: var(--ink3);
+      line-height: 1.8;
+    }
+    .sidebar-contact a:hover { color: var(--ink); }
+
+    /* ── Main Content ── */
+    .main {
+      margin-left: var(--nav-w);
+      flex: 1;
+      min-width: 0;
+    }
+
+    /* ── Sections ── */
+    section {
+      padding: 80px 60px;
+      max-width: 900px;
+    }
+    section:nth-child(even) {
+      background: var(--bg2);
+      max-width: 100%;
+    }
+    section:nth-child(even) > .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 60px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 32px;
+    }
+
+    /* ── Hero ── */
+    #hero {
+      padding: 100px 60px 80px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      max-width: 100%;
+    }
+    .hero-inner {
+      max-width: 900px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--pink);
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .hero-name {
+      font-size: clamp(36px, 5vw, 52px);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--ink2);
+      font-weight: 400;
+      margin-bottom: 28px;
+    }
+    .hero-desc {
+      font-size: 15px;
+      color: var(--ink2);
+      max-width: 580px;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .hero-tag {
+      font-size: 12px;
+      padding: 4px 12px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--ink2);
+    }
+
+    /* ── About ── */
+    #about {
+      background: var(--bg2);
+      max-width: 100%;
+    }
+    .about-text {
+      font-size: 15px;
+      color: var(--ink2);
+      line-height: 1.85;
+      max-width: 700px;
+    }
+    .about-text p + p { margin-top: 16px; }
+
+    /* ── Projects ── */
+    #projects {
+      background: var(--white);
+      max-width: 100%;
+    }
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+    }
+    .project-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+    }
+    .project-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--pink-dark);
+    }
+    .project-card:focus-visible {
+      outline: 2px solid var(--pink-dark);
+      outline-offset: 2px;
+    }
+    .card-thumb {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      background: var(--bg2);
+    }
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .project-card:hover .card-thumb img {
+      transform: scale(1.03);
+    }
+    .card-thumb-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink3);
+      font-size: 24px;
+    }
+    .card-body {
+      padding: 20px;
+    }
+    .card-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--ink3);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .card-title {
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .card-org {
+      font-size: 12px;
+      color: var(--ink3);
+      margin-bottom: 12px;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .card-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      background: var(--pink-light);
+      border-radius: 100px;
+      color: var(--ink2);
+    }
+
+    /* ── How I Think ── */
+    #thinking {
+      background: var(--bg2);
+      max-width: 100%;
+    }
+    .thinking-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 20px;
+      max-width: 900px;
+    }
+    .thinking-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      border: 1px solid var(--border);
+    }
+    .thinking-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      background: var(--pink);
+      border-radius: 50%;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .thinking-title {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .thinking-desc {
+      font-size: 13px;
+      color: var(--ink2);
+      line-height: 1.75;
+    }
+
+    /* ── Career Timeline ── */
+    #career {
+      background: var(--white);
+      max-width: 100%;
+    }
+    .timeline {
+      max-width: 760px;
+      position: relative;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 6px; bottom: 0;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 24px;
+      padding: 0 0 36px 20px;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -5px;
+      top: 6px;
+      width: 12px; height: 12px;
+      background: var(--pink);
+      border-radius: 50%;
+      border: 2px solid var(--white);
+      box-shadow: 0 0 0 2px var(--pink-dark);
+    }
+    .timeline-period {
+      font-size: 12px;
+      color: var(--ink3);
+      padding-top: 2px;
+      line-height: 1.5;
+    }
+    .timeline-role {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .timeline-company {
+      font-size: 13px;
+      color: var(--ink2);
+      margin-bottom: 6px;
+    }
+    .timeline-desc {
+      font-size: 13px;
+      color: var(--ink3);
+      line-height: 1.65;
+    }
+
+    /* ── Skills ── */
+    #skills {
+      background: var(--bg2);
+      max-width: 100%;
+    }
+    .skills-table {
+      width: 100%;
+      max-width: 800px;
+      border-collapse: collapse;
+    }
+    .skills-table tr {
+      border-bottom: 1px solid var(--border);
+    }
+    .skills-table tr:last-child { border-bottom: none; }
+    .skills-table td {
+      padding: 14px 0;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    .skills-table td:first-child {
+      width: 140px;
+      font-weight: 600;
+      color: var(--ink2);
+      padding-right: 24px;
+      white-space: nowrap;
+    }
+    .skills-table td:last-child {
+      color: var(--ink2);
+      line-height: 1.65;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--ink);
+      color: var(--bg);
+      padding: 48px 60px;
+      font-size: 13px;
+    }
+    .footer-inner {
+      max-width: 900px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-name {
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--white);
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      color: var(--ink3);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--white); }
+
+    /* ── Project Modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      overflow-y: auto;
+      padding: 40px 20px;
+    }
+    .modal-overlay.open { display: flex; align-items: flex-start; justify-content: center; }
+    .modal {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      width: 100%;
+      max-width: 760px;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      animation: modalIn 0.22s ease;
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .modal-header {
+      padding: 32px 36px 24px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      z-index: 2;
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      background: var(--bg2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+      color: var(--ink2);
+      transition: background var(--transition);
+    }
+    .modal-close:hover { background: var(--border); }
+    .modal-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      color: var(--ink3);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .modal-title {
+      font-size: 22px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .modal-meta {
+      font-size: 13px;
+      color: var(--ink3);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .modal-body {
+      padding: 28px 36px;
+    }
+    .modal-desc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 28px;
+    }
+    .modal-desc-table tr { border-bottom: 1px solid var(--border); }
+    .modal-desc-table tr:last-child { border-bottom: none; }
+    .modal-desc-table td {
+      padding: 12px 0;
+      font-size: 14px;
+      vertical-align: top;
+    }
+    .modal-desc-table td:first-child {
+      width: 90px;
+      font-weight: 600;
+      color: var(--ink3);
+      padding-right: 16px;
+    }
+    .modal-desc-table td:last-child { color: var(--ink2); line-height: 1.7; }
+    .modal-slides-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink3);
+      margin-bottom: 12px;
+    }
+    .modal-slides {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+    }
+    .slide-thumb {
+      aspect-ratio: 16/9;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      background: var(--bg2);
+    }
+    .slide-thumb:hover { border-color: var(--pink-dark); box-shadow: var(--shadow); }
+    .slide-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-img-wrap {
+      max-width: 90vw;
+      max-height: 90vh;
+      position: relative;
+    }
+    .lightbox-img-wrap img {
+      max-width: 90vw;
+      max-height: 90vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .lightbox-close {
+      position: fixed;
+      top: 20px; right: 20px;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      font-size: 20px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition);
+    }
+    .lightbox-close:hover { background: rgba(255,255,255,0.24); }
+    .lightbox-btn {
+      position: fixed;
+      top: 50%; transform: translateY(-50%);
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+      color: var(--white);
+      font-size: 20px;
+      display: flex; align-items: center; justify-content: center;
+      transition: background var(--transition);
+    }
+    .lightbox-btn:hover { background: rgba(255,255,255,0.28); }
+    .lightbox-btn.prev { left: 20px; }
+    .lightbox-btn.next { right: 20px; }
+    .lightbox-counter {
+      position: fixed;
+      bottom: 24px; left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+    }
+
+    /* ── Mobile Nav Toggle ── */
+    .nav-toggle {
+      display: none;
+      position: fixed;
+      top: 16px; left: 16px;
+      z-index: 200;
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      align-items: center; justify-content: center;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 18px; height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      :root { --nav-w: 0px; }
+      .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.24s ease;
+        width: 240px;
+      }
+      .sidebar.open { transform: translateX(0); }
+      .nav-toggle { display: flex; }
+      .main { margin-left: 0; }
+      section { padding: 60px 24px; }
+      section:nth-child(even) > .section-inner { padding: 0 24px; }
+      #hero { padding: 72px 24px 56px; }
+      .hero-name { font-size: 32px; }
+      .project-grid { grid-template-columns: 1fr; }
+      .thinking-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 4px; }
+      .timeline-period { padding-top: 0; }
+      .modal { max-height: 95vh; }
+      .modal-header { padding: 24px 20px 18px; }
+      .modal-body { padding: 20px; }
+      footer { padding: 36px 24px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .lightbox-btn.prev { left: 8px; }
+      .lightbox-btn.next { right: 8px; }
+    }
+
+    @media (max-width: 375px) {
+      .hero-name { font-size: 28px; }
+      .section-title { font-size: 22px; }
+    }
+
+    /* ── Utilities ── */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Mobile Nav Toggle -->
+<button class="nav-toggle" id="navToggle" aria-label="메뉴 열기">
+  <span></span><span></span><span></span>
+</button>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar" aria-label="사이트 내비게이션">
+    <div class="sidebar-logo">
+      <span>왕지인</span>
+      Jee In Wang
+    </div>
+    <ul class="nav-links" role="list">
+      <li><a href="#about">🗂 About</a></li>
+      <li><a href="#projects">📂 Selected Projects</a></li>
+      <li><a href="#thinking">💡 How I Think</a></li>
+      <li><a href="#career">📅 Career Timeline</a></li>
+      <li><a href="#skills">🛠 Skills</a></li>
+    </ul>
+    <div class="sidebar-contact">
+      <a href="mailto:jeein.wang@gmail.com">jeein.wang@gmail.com</a><br>
+      +82 10-9509-1179<br>
+      Seoul, Korea<br>
+      CFA Lv.3 Candidate
+    </div>
+  </nav>
+
+  <!-- Main -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section id="hero">
+      <div class="hero-inner">
+        <div class="hero-badge">Corporate Development & Investment</div>
+        <h1 class="hero-name">왕지인<br>Jee In Wang</h1>
+        <p class="hero-sub">Investment Analysis & Corporate Strategy Professional</p>
+        <p class="hero-desc">
+          금융(AIA생명), 플랫폼(NHN), 컨설팅을 거치며 투자 전략 수립과 실행을 모두 경험했습니다.
+          기존의 투자 의사결정 근거를 만드는 사람에서, 직접 판단하고 실행하는 사람으로 전환 중입니다.
+        </p>
+        <div class="hero-tags">
+          <span class="hero-tag">M&A · 기업투자</span>
+          <span class="hero-tag">재무 모델링</span>
+          <span class="hero-tag">사업 타당성 분석</span>
+          <span class="hero-tag">핀테크 · 결제</span>
+          <span class="hero-tag">금융 IT 전략</span>
+          <span class="hero-tag">CFA Lv.3 Candidate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="section-inner">
+        <p class="section-label">About</p>
+        <h2 class="section-title">투자 판단의 프론트엔드를<br>직접 실행하는 단계로</h2>
+        <div class="about-text">
+          <p>
+            NHN 전략기획에서 PE 딜 스크리닝, M&A 후보 타당성 검토, 재무 시뮬레이션을 반복하며 투자 판단의 프론트엔드를 경험했습니다.
+            엔마스터·싸이더스·페이히어·메타넷 등 이종 산업에 걸쳐 BM 분석 → 비용 구조 해체 → BEP 시뮬레이션 → 시너지 산출까지
+            일관된 프레임으로 투자 타당성을 정량화했고, 경영진의 투자·매각·제휴 결정을 직접 지원했습니다.
+          </p>
+          <p>
+            AIA생명에서는 IT 자회사 설립 타당성 검토(NOI 프로젝션, 자본 소요 분석)에 참여하며 이사회 보고 수준의 재무 분석을 수행했습니다.
+            현재 CFA Level 3(Private Market Pathway, 2026.08 응시)를 준비 중이며, 투자 이론과 실무의 접점을 지속적으로 확장하고 있습니다.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Projects -->
+    <section id="projects">
+      <div class="section-inner">
+        <p class="section-label">Selected Projects</p>
+        <h2 class="section-title">프로젝트</h2>
+        <div class="project-grid">
+
+          <!-- Card 01 -->
+          <article class="project-card" role="button" tabindex="0"
+            data-project="0" aria-label="01 M&A 프로젝트 상세 보기">
+            <div class="card-thumb">
+              <img src="images/ma-01-enmaster-jv.png" alt="투자·제휴·인수 타당성 검토 슬라이드"
+                loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>📊</div>'" />
+            </div>
+            <div class="card-body">
+              <div class="card-num">01 · M&A</div>
+              <h3 class="card-title">투자·제휴·인수<br>타당성 검토</h3>
+              <p class="card-org">NHN 전략기획팀 · 2022–2025</p>
+              <div class="card-tags">
+                <span class="card-tag">M&A 스크리닝</span>
+                <span class="card-tag">재무 시뮬레이션</span>
+                <span class="card-tag">BEP 분석</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 02 -->
+          <article class="project-card" role="button" tabindex="0"
+            data-project="1" aria-label="02 핀테크 프로젝트 상세 보기">
+            <div class="card-thumb">
+              <img src="images/mr-01-inapp.png" alt="핀테크 시장 기회 발굴 슬라이드"
+                loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>💳</div>'" />
+            </div>
+            <div class="card-body">
+              <div class="card-num">02 · 핀테크</div>
+              <h3 class="card-title">핀테크·신성장 영역<br>시장 기회 발굴</h3>
+              <p class="card-org">NHN 전략기획팀 · 2022–2025</p>
+              <div class="card-tags">
+                <span class="card-tag">시장분석</span>
+                <span class="card-tag">규제 리서치</span>
+                <span class="card-tag">신사업 탐색</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 03 -->
+          <article class="project-card" role="button" tabindex="0"
+            data-project="2" aria-label="03 사업성과 프로젝트 상세 보기">
+            <div class="card-thumb">
+              <img src="images/pl-01-travel-1.png" alt="사업 성과 분석 슬라이드"
+                loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>📈</div>'" />
+            </div>
+            <div class="card-body">
+              <div class="card-num">03 · 사업성과</div>
+              <h3 class="card-title">사업 성과 분석 및<br>전략 커뮤니케이션</h3>
+              <p class="card-org">NHN 전략기획팀 · 2022–2025</p>
+              <div class="card-tags">
+                <span class="card-tag">경영진단</span>
+                <span class="card-tag">실적보고</span>
+                <span class="card-tag">전략보고</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 04 -->
+          <article class="project-card" role="button" tabindex="0"
+            data-project="3" aria-label="04 IT전략 프로젝트 상세 보기">
+            <div class="card-thumb">
+              <img src="images/it-01-strategy-1.png" alt="금융사 IT 전략 슬라이드"
+                loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>💻</div>'" />
+            </div>
+            <div class="card-body">
+              <div class="card-num">04 · IT전략</div>
+              <h3 class="card-title">금융사 IT 중장기<br>전략 수립</h3>
+              <p class="card-org">AIA생명 테크기획팀 · 2025.06–10</p>
+              <div class="card-tags">
+                <span class="card-tag">IT전략</span>
+                <span class="card-tag">예산관리</span>
+                <span class="card-tag">금융IT기획</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 05 -->
+          <article class="project-card" role="button" tabindex="0"
+            data-project="4" aria-label="05 Market Intel 프로젝트 상세 보기">
+            <div class="card-thumb">
+              <img src="images/mi-01-ai-maturity.png" alt="Market Intelligence 슬라이드"
+                loading="lazy" onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>🔍</div>'" />
+            </div>
+            <div class="card-body">
+              <div class="card-num">05 · Market Intel</div>
+              <h3 class="card-title">Market Intelligence<br>체계 구축 및 경영진 보고</h3>
+              <p class="card-org">AIA생명 테크기획팀 · 2025.04–현재</p>
+              <div class="card-tags">
+                <span class="card-tag">경쟁사분석</span>
+                <span class="card-tag">AI 성숙도분석</span>
+                <span class="card-tag">보험IT</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- How I Think -->
+    <section id="thinking">
+      <div class="section-inner">
+        <p class="section-label">How I Think</p>
+        <h2 class="section-title">사고 방식</h2>
+        <div class="thinking-grid">
+          <div class="thinking-card">
+            <div class="thinking-num">①</div>
+            <h3 class="thinking-title">사업 구조를 빠르게 해체한다</h3>
+            <p class="thinking-desc">
+              어떤 산업이든 수익원 → 비용 구조 → BEP 순으로 분해하면 "해볼 만한가"가 보입니다.
+              재무제표·거래액·사용자 수를 Bottom-up으로 수치화해 감이 아닌 구조로 투자 판단 근거를 만듭니다.
+            </p>
+          </div>
+          <div class="thinking-card">
+            <div class="thinking-num">②</div>
+            <h3 class="thinking-title">시나리오로 리스크를 먼저 본다</h3>
+            <p class="thinking-desc">
+              낙관적 전망보다 "이 딜이 왜 안 될 수 있는가"를 먼저 정리합니다.
+              BEP 달성 조건, 비용 구조의 취약점, 규제 리스크를 시나리오별로 시뮬레이션해 의사결정의 범위를 좁힙니다.
+            </p>
+          </div>
+          <div class="thinking-card">
+            <div class="thinking-num">③</div>
+            <h3 class="thinking-title">판단 근거는 실행 언어로 마무리한다</h3>
+            <p class="thinking-desc">
+              분석이 투자 결정으로, 검토가 계약 조건으로 연결될 때 비로소 완성됩니다.
+              경영진이 무엇을 궁금해할지 먼저 그리고, 판단에 필요한 것만 남기는 방식으로 자료를 구성합니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Career Timeline -->
+    <section id="career">
+      <div class="section-inner">
+        <p class="section-label">Career Timeline</p>
+        <h2 class="section-title">커리어</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-period">2025.04 – 현재</div>
+            <div>
+              <div class="timeline-role">AIA생명 · 대리</div>
+              <div class="timeline-company">테크기획팀 (1년 1개월)</div>
+              <div class="timeline-desc">Market Intelligence · IT 중장기 전략 · C-level 보고 · 금융 IT 기획 전반</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2021.12 – 2025.03</div>
+            <div>
+              <div class="timeline-role">NHN · 전임</div>
+              <div class="timeline-company">전략기획팀 (3년 4개월)</div>
+              <div class="timeline-desc">시장 기회 발굴 · M&A·사업 제휴 타당성 검토 · 그룹사 경영진단 및 실적 트래킹 · 전략 커뮤니케이션</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2020.08 – 2021.12</div>
+            <div>
+              <div class="timeline-role">롯데이노베이트 · 선임</div>
+              <div class="timeline-company">ERP컨설팅팀 PI담당 (1년 4개월)</div>
+              <div class="timeline-desc">프로세스 혁신 컨설팅 · DT 전략 · 롯데제과 S&OP DT 추진안 · 롯데면세점 물류 PI 설계</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-period">2014.03 – 2020.02</div>
+            <div>
+              <div class="timeline-role">서강대학교</div>
+              <div class="timeline-company"></div>
+              <div class="timeline-desc">미국문화 / 경영학 복수전공 · 프랑스 교환학생 7개월</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="section-inner">
+        <p class="section-label">Skills & Certifications</p>
+        <h2 class="section-title">역량</h2>
+        <table class="skills-table" aria-label="스킬 및 자격증 목록">
+          <tbody>
+            <tr>
+              <td>전략 & 분석</td>
+              <td>기업가치평가 · M&A 스크리닝 · 재무모델링 (BEP·NOI·시나리오 시뮬레이션) · Bottom-up Market Sizing · 사업 타당성 분석 · P&L 구조 분석 및 비용 최적화 · 투자·제휴·매각 검토 지원</td>
+            </tr>
+            <tr>
+              <td>데이터 & 자동화</td>
+              <td>Python (pandas · BeautifulSoup · selenium) · SQL · Excel (XLOOKUP · SUMIFS · Power Query · 대시보드 시각화) · Tableau</td>
+            </tr>
+            <tr>
+              <td>AI 툴</td>
+              <td>Claude · ChatGPT · Gemini 기반 업무 자동화 실무 경험</td>
+            </tr>
+            <tr>
+              <td>도메인</td>
+              <td>M&A · 기업투자 · 핀테크·결제 · 대체투자·조각투자 · AI·SaaS · 금융IT · 보험·금융 규제</td>
+            </tr>
+            <tr>
+              <td>자격증</td>
+              <td>CFA Level 2 Passed (2025) · SQLD · ADsP · 빅데이터분석기사(필기)</td>
+            </tr>
+            <tr>
+              <td>수상</td>
+              <td>2025 AIA 테크본부 해커톤 금상 (2위) · 2024·2023 NHN 우수사원 포상</td>
+            </tr>
+            <tr>
+              <td>어학</td>
+              <td>영어: OPIc AL / TOEIC 990 · 한국어: Native · 일본어: Basic</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="footer-inner">
+        <div>
+          <div class="footer-name">왕지인 · Jee In Wang</div>
+          <div style="color:#666;margin-top:4px">Corporate Development & Investment Professional</div>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:jeein.wang@gmail.com">Email</a>
+          <a href="https://github.com/jeeinw" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</div>
+
+<!-- Project Modal -->
+<div class="modal-overlay" id="modalOverlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <button class="modal-close" id="modalClose" aria-label="닫기">✕</button>
+      <div class="modal-num" id="modalNum"></div>
+      <h2 class="modal-title" id="modalTitle"></h2>
+      <div class="modal-meta" id="modalMeta"></div>
+    </div>
+    <div class="modal-body">
+      <table class="modal-desc-table" id="modalDescTable"></table>
+      <div class="modal-slides-label">Work Samples</div>
+      <div class="modal-slides" id="modalSlides"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="이미지 라이트박스">
+  <button class="lightbox-close" id="lbClose" aria-label="닫기">✕</button>
+  <button class="lightbox-btn prev" id="lbPrev" aria-label="이전 이미지">‹</button>
+  <div class="lightbox-img-wrap">
+    <img id="lbImg" src="" alt="슬라이드 확대 보기" />
+  </div>
+  <button class="lightbox-btn next" id="lbNext" aria-label="다음 이미지">›</button>
+  <div class="lightbox-counter" id="lbCounter"></div>
+</div>
+
+<script>
+(function () {
+  /* ── Project Data ── */
+  const projects = [
+    {
+      num: '01 · M&A',
+      title: '투자·제휴·인수 타당성 검토',
+      org: 'NHN 전략기획팀',
+      period: '2022–2025',
+      tags: ['M&A 스크리닝', '투자스크리닝', '제휴분석'],
+      rows: [
+        ['Problem', '투자·제휴 기회가 생길 때마다 산업도, 사업 구조도 다른 기업을 빠르게 판단해야 했고, "해볼 만한가"를 감이 아닌 수치로 설명해야 했습니다.'],
+        ['Approach', '수익원·BM → 비용 구조·경쟁 구도 → BEP 순으로 사업 구조를 빠르게 해체하고, 시나리오별 재무 시뮬레이션으로 투자 타당성을 정량화했습니다.'],
+        ['Key Works', '엔마스터(아파트 ERP) JV 구조 분석 및 BEP 시뮬레이션 · 채널코퍼레이션(채널톡) ARR·NRR 중심 밸류에이션 · 보나캠프·블루시스 투자·인수 시너지 분석 · 페이히어 POS 수익 구조 검토 등'],
+        ['Impact', '이종 산업 대상 경영진 투자·매각·제휴 결정 지원 · 재무 시뮬레이션으로 의사결정 정량화 · 사업 구조 중심 투자 검토 경험 축적'],
+      ],
+      images: [
+        { src: 'images/ma-01-enmaster-jv.png', alt: '엔마스터 JV 매출구조 수립' },
+        { src: 'images/ma-02-channel-corp-1.png', alt: '채널코퍼레이션 기업분석 1' },
+        { src: 'images/ma-02-channel-corp-2.png', alt: '채널코퍼레이션 기업분석 2' },
+        { src: 'images/ma-02-channel-corp-3.png', alt: '채널코퍼레이션 기업분석 3' },
+        { src: 'images/ma-03-bona-camp-1.png', alt: '보나캠프 투자 검토 1' },
+        { src: 'images/ma-03-bona-camp-2.png', alt: '보나캠프 투자 검토 2' },
+        { src: 'images/ma-03-bona-camp-3.png', alt: '보나캠프 투자 검토 3' },
+      ]
+    },
+    {
+      num: '02 · 핀테크',
+      title: '핀테크·신성장 영역 시장 기회 발굴',
+      org: 'NHN 전략기획팀',
+      period: '2022–2025',
+      tags: ['시장분석', '규제 리서치', '신사업 탐색'],
+      rows: [
+        ['Problem', '신규 사업 기회를 선제 발굴하기 위해 경영진이 "들어갈 만한 시장인가"를 판단할 수 있는 구조화된 근거가 필요했습니다.'],
+        ['Approach', '산업별로 시장 규모 → BM → 수익 구조 → 규제 리스크 순으로 분석하고, Python 크롤링으로 데이터 수집을 자동화해 분석 속도를 높였습니다.'],
+        ['Key Works', '콘텐츠 인앱결제 현황 분석 · 휴대폰 소액결제 PG 수익 구조 분석 · VAN·PG사 DART 크롤링 자동화 · 온투업·조각투자·PLCC 카드 BM 비교 · 네이버페이·카카오페이 시장점유율 트래킹 등'],
+        ['Impact', '산업별 시장 규모 및 수익 구조 데이터베이스 축적 · 데이터 기반 사업성 검토 프레임워크 구축'],
+      ],
+      images: [
+        { src: 'images/mr-01-inapp.png', alt: '콘텐츠 인앱결제 분석' },
+        { src: 'images/mr-02-mobile-pg-1.png', alt: '휴대폰 소액결제 PG 1' },
+        { src: 'images/mr-02-mobile-pg-2.png', alt: '휴대폰 소액결제 PG 2' },
+      ]
+    },
+    {
+      num: '03 · 사업성과',
+      title: '사업 성과 분석 및 전략 커뮤니케이션',
+      org: 'NHN 전략기획팀',
+      period: '2022–2025',
+      tags: ['경영진단', '실적보고', '전략보고'],
+      rows: [
+        ['Problem', '실적 수치는 있었지만 "이 사업이 지금 어디에 있고, 왜 이렇게 됐고, 무엇을 해야 하는지"까지 연결되는 자료가 없었습니다.'],
+        ['Approach', '단순 실적 보고가 아니라 시장 환경·비용 구조·사업 구조를 함께 분석해 원인 진단과 개선 방향까지 포함한 자료를 만들었습니다.'],
+        ['Key Works', '여행박사 실적보고 및 흑자 전환 시나리오 검토 · Payco 결제액 분석 및 업종별 교차 분석 · 그룹사 IT 솔루션 크로스세일즈 운영안 · 그룹사 Teaser & 투자유치 홍보자료 제작 등'],
+        ['Impact', '경영진 사업 포트폴리오 관리 및 의사결정 지원 · 투자유치 및 사업 매각 검토 자료로 활용'],
+      ],
+      images: [
+        { src: 'images/pl-01-travel-1.png', alt: '여행박사 실적보고 1' },
+        { src: 'images/pl-01-travel-2.png', alt: '여행박사 실적보고 2' },
+        { src: 'images/pl-02-payco.png', alt: 'Payco 결제액 분석' },
+        { src: 'images/pl-03-cross-sales.png', alt: '그룹사 크로스세일즈 운영안' },
+      ]
+    },
+    {
+      num: '04 · IT전략',
+      title: '금융사 IT 중장기 전략 수립',
+      org: 'AIA생명 테크기획팀',
+      period: '2025.06–2025.10',
+      tags: ['IT전략', '예산관리', '금융IT기획'],
+      rows: [
+        ['Problem', '전략 방향은 있었지만 CEO 보고와 전사 실행으로 연결될 수 있는 구체적인 자료가 3년 전 컨설팅 자료 이후 없었습니다.'],
+        ['Approach', 'CTO의 방향성을 논리 구조와 데이터를 갖춘 보고 자료로 구체화하는 역할을 맡았습니다. 시스템·조직·운영·예산 4개 축으로 As-Is를 진단하고, 타 보험사 벤치마크를 통해 To-Be 구조를 설계했습니다.'],
+        ['Key Works', 'IT 중장기 전략 보고서 구조화 · As-Is 진단 및 To-Be 설계 · 타 생보사 IT 예산·인력 벤치마크 · CapEx/Opex 분석 · IT 자회사 설립 타당성 검토 (NOI 프로젝션, 자본 소요 분석)'],
+        ['Impact', '아이디어 수준의 전략을 논리 구조와 데이터를 갖춘 보고 자료로 구체화 — CEO 보고 및 전사 커뮤니케이션 자료로 활용 · 금융 IT 전략 및 거버넌스 경험 확보'],
+      ],
+      images: [
+        { src: 'images/it-01-strategy-1.png', alt: 'IT 중장기 계획 자료 1' },
+        { src: 'images/it-01-strategy-2.png', alt: 'IT 중장기 계획 자료 2' },
+        { src: 'images/it-01-strategy-3.png', alt: 'IT 중장기 계획 자료 3' },
+        { src: 'images/it-02-group-report.png', alt: '그룹 전략 보고' },
+      ]
+    },
+    {
+      num: '05 · Market Intel',
+      title: 'Market Intelligence 체계 구축 및 경영진 보고',
+      org: 'AIA생명 테크기획팀',
+      period: '2025.04–현재',
+      tags: ['경쟁사분석', 'AI성숙도분석', '보험IT'],
+      rows: [
+        ['Problem', '업계 동향은 각자 그때그때 필요한 대로 알아서 찾는 구조였고, 경영진이 의사결정에 활용할 수 있는 형태로 정리된 자료가 없었습니다.'],
+        ['Approach', '"이게 우리에게 왜 중요한가"를 함께 정리하는 방식으로 보고 체계를 설계했습니다. 경영진이 궁금해 할 질문을 미리 상정하고 시사점과 실행 과제를 선제 정리했습니다.'],
+        ['Key Works', '생보사 11개사 AI 도입 수준 진단 Maturity Matrix 설계 · CTO 대상 주간 Executive Report 작성 및 보고 · Market Intelligence 아카이빙 체계 구축 · AI Role Play PoC 과제 발굴'],
+        ['Impact', 'Market Intelligence·경쟁사 모니터링 체계 정착 · 경영진 전략 의사결정 지원 · 리서치 결과 기반 신규 PoC 착수'],
+      ],
+      images: [
+        { src: 'images/mi-01-ai-maturity.png', alt: 'AI Maturity Analysis' },
+        { src: 'images/mi-02-ai-roleplay-1.png', alt: 'AI Role Play 1' },
+        { src: 'images/mi-02-ai-roleplay-2.png', alt: 'AI Role Play 2' },
+      ]
+    },
+  ];
+
+  /* ── Nav active tracking ── */
+  const navLinks = document.querySelectorAll('.nav-links a');
+  const sections = document.querySelectorAll('section[id], footer[id]');
+
+  function updateActiveNav() {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+
+  /* ── Mobile nav ── */
+  const navToggle = document.getElementById('navToggle');
+  const sidebar = document.getElementById('sidebar');
+  navToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+  });
+  document.addEventListener('click', e => {
+    if (!sidebar.contains(e.target) && !navToggle.contains(e.target)) {
+      sidebar.classList.remove('open');
+    }
+  });
+
+  /* ── Modal ── */
+  const overlay = document.getElementById('modalOverlay');
+  const modalNum = document.getElementById('modalNum');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalMeta = document.getElementById('modalMeta');
+  const modalDescTable = document.getElementById('modalDescTable');
+  const modalSlides = document.getElementById('modalSlides');
+  const modalClose = document.getElementById('modalClose');
+
+  let currentImages = [];
+
+  function openModal(idx) {
+    const p = projects[idx];
+    modalNum.textContent = p.num;
+    modalTitle.textContent = p.title;
+    modalMeta.innerHTML = `<span>${p.org}</span><span>${p.period}</span>`;
+
+    modalDescTable.innerHTML = p.rows.map(([k, v]) =>
+      `<tr><td>${k}</td><td>${v}</td></tr>`
+    ).join('');
+
+    currentImages = p.images;
+    modalSlides.innerHTML = p.images.map((img, i) =>
+      `<div class="slide-thumb" role="button" tabindex="0" aria-label="${img.alt} 확대 보기" data-lb="${i}">
+        <img src="${img.src}" alt="${img.alt}" loading="lazy"
+          onerror="this.style.display='none'" />
+      </div>`
+    ).join('');
+
+    modalSlides.querySelectorAll('.slide-thumb').forEach(el => {
+      el.addEventListener('click', () => openLightbox(+el.dataset.lb));
+      el.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(+el.dataset.lb); }
+      });
+    });
+
+    overlay.classList.add('open');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    modalClose.focus();
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('click', () => openModal(+card.dataset.project));
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(+card.dataset.project); }
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+
+  /* ── Lightbox ── */
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbCounter = document.getElementById('lbCounter');
+  let lbIdx = 0;
+
+  function openLightbox(idx) {
+    lbIdx = idx;
+    showLbImage();
+    lightbox.classList.add('open');
+    document.getElementById('lbClose').focus();
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+  }
+
+  function showLbImage() {
+    const img = currentImages[lbIdx];
+    lbImg.src = img.src;
+    lbImg.alt = img.alt;
+    lbCounter.textContent = `${lbIdx + 1} / ${currentImages.length}`;
+  }
+
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbPrev').addEventListener('click', () => {
+    lbIdx = (lbIdx - 1 + currentImages.length) % currentImages.length;
+    showLbImage();
+  });
+  document.getElementById('lbNext').addEventListener('click', () => {
+    lbIdx = (lbIdx + 1) % currentImages.length;
+    showLbImage();
+  });
+
+  lightbox.addEventListener('click', e => {
+    if (e.target === lightbox) closeLightbox();
+  });
+
+  /* ── Keyboard nav ── */
+  document.addEventListener('keydown', e => {
+    if (lightbox.classList.contains('open')) {
+      if (e.key === 'ArrowLeft') { lbIdx = (lbIdx - 1 + currentImages.length) % currentImages.length; showLbImage(); }
+      if (e.key === 'ArrowRight') { lbIdx = (lbIdx + 1) % currentImages.length; showLbImage(); }
+      if (e.key === 'Escape') closeLightbox();
+    } else if (overlay.classList.contains('open')) {
+      if (e.key === 'Escape') closeModal();
+    }
+  });
+
+  /* ── Touch swipe for lightbox ── */
+  let touchStartX = 0;
+  lightbox.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  lightbox.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) {
+      lbIdx = dx < 0
+        ? (lbIdx + 1) % currentImages.length
+        : (lbIdx - 1 + currentImages.length) % currentImages.length;
+      showLbImage();
+    }
+  });
+})();
+</script>
+</body>
+</html>
