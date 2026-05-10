@@ -608,8 +608,8 @@
 
   .slide-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
-  .slide-thumb--blurred img { filter: blur(3px); transition: filter 0.3s; }
-  .slide-thumb--blurred:hover img { filter: blur(1.5px); }
+  .slide-thumb--blurred img { filter: blur(2px); transition: filter 0.3s; }
+  .slide-thumb--blurred:hover img { filter: blur(1px); }
 
   /* ── LIGHTBOX ── */
   .lightbox {
@@ -1373,7 +1373,7 @@
     const img = currentImages[lbIdx];
     lbImg.src = img.src;
     lbImg.alt = img.alt;
-    lbImg.style.filter = img.blurred ? 'blur(4px)' : '';
+    lbImg.style.filter = img.blurred ? 'blur(2.5px)' : '';
     lbCounter.textContent = `${lbIdx + 1} / ${currentImages.length}`;
   }
 
