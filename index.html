@@ -608,6 +608,9 @@
 
   .slide-thumb img { width: 100%; height: 100%; object-fit: cover; }
 
+  .slide-thumb--blurred img { filter: blur(6px); transition: filter 0.3s; }
+  .slide-thumb--blurred:hover img { filter: blur(3px); }
+
   /* ── LIGHTBOX ── */
   .lightbox {
     display: none;
@@ -951,67 +954,11 @@
 
     <div class="projects-grid">
 
-      <!-- 01 M&A -->
+      <!-- 01 IT 중장기전략 -->
       <article class="project-card" tabindex="0" role="button"
-        data-project="0" aria-label="01 M&A 투자·제휴·인수 타당성 검토 상세 보기">
+        data-project="0" aria-label="01 금융사 IT 중장기 전략 수립 상세 보기">
         <div class="card-thumb">
-          <img src="images/ma-01-enmaster-jv.png" alt="M&A 투자 분석 슬라이드" loading="lazy"
-            onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>📊</div>'" />
-        </div>
-        <div class="card-body">
-          <span class="project-tag">M&A · Investment</span>
-          <div class="project-title">투자·제휴·인수 타당성 검토</div>
-          <div class="project-org">NHN 전략기획팀 · 2022–2025</div>
-          <div class="project-metrics">
-            <span class="metric metric-green">10+ 딜 스크리닝</span>
-            <span class="metric metric-amber">BEP Simulation</span>
-          </div>
-          <div class="card-hint">↗ 슬라이드 7장 보기</div>
-        </div>
-      </article>
-
-      <!-- 02 핀테크 -->
-      <article class="project-card" tabindex="0" role="button"
-        data-project="1" aria-label="02 핀테크 시장 기회 발굴 상세 보기">
-        <div class="card-thumb">
-          <img src="images/mr-01-inapp.png" alt="핀테크 시장 분석 슬라이드" loading="lazy"
-            onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>💳</div>'" />
-        </div>
-        <div class="card-body">
-          <span class="project-tag">Market Research</span>
-          <div class="project-title">핀테크·신성장 영역 시장 기회 발굴</div>
-          <div class="project-org">NHN 전략기획팀 · 2022–2025</div>
-          <div class="project-metrics">
-            <span class="metric metric-green">Bottom-up Sizing</span>
-            <span class="metric metric-amber">Python DART 자동화</span>
-          </div>
-          <div class="card-hint">↗ 슬라이드 3장 보기</div>
-        </div>
-      </article>
-
-      <!-- 03 사업성과 -->
-      <article class="project-card" tabindex="0" role="button"
-        data-project="2" aria-label="03 사업 성과 분석 상세 보기">
-        <div class="card-thumb">
-          <img src="images/pl-01-travel-1.png" alt="사업 성과 분석 슬라이드" loading="lazy"
-            onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>📈</div>'" />
-        </div>
-        <div class="card-body">
-          <span class="project-tag">P&L Management</span>
-          <div class="project-title">사업 성과 분석 및 전략 커뮤니케이션</div>
-          <div class="project-org">NHN 전략기획팀 · 2022–2025</div>
-          <div class="project-metrics">
-            <span class="metric metric-green">코미코 적자 YoY -57%</span>
-          </div>
-          <div class="card-hint">↗ 슬라이드 8장 보기</div>
-        </div>
-      </article>
-
-      <!-- 04 IT전략 -->
-      <article class="project-card" tabindex="0" role="button"
-        data-project="3" aria-label="04 금융사 IT 중장기 전략 수립 상세 보기">
-        <div class="card-thumb">
-          <img src="images/it-01-strategy-1.png" alt="IT 중장기 전략 슬라이드" loading="lazy"
+          <img src="images/it-03-benchmark.png" alt="IT 예산 벤치마크 슬라이드" loading="lazy"
             onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>💻</div>'" />
         </div>
         <div class="card-body">
@@ -1026,9 +973,9 @@
         </div>
       </article>
 
-      <!-- 05 Market Intel -->
+      <!-- 02 Market Intelligence -->
       <article class="project-card" tabindex="0" role="button"
-        data-project="4" aria-label="05 Market Intelligence 체계 구축 상세 보기">
+        data-project="1" aria-label="02 Market Intelligence 체계 구축 상세 보기">
         <div class="card-thumb">
           <img src="images/mi-01-ai-maturity.png" alt="AI Maturity 분석 슬라이드" loading="lazy"
             onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>🔍</div>'" />
@@ -1041,7 +988,63 @@
             <span class="metric metric-green">11개 생보사 분석</span>
             <span class="metric metric-amber">주간 Executive Report</span>
           </div>
-          <div class="card-hint">↗ 슬라이드 3장 보기</div>
+          <div class="card-hint">↗ 슬라이드 6장 보기</div>
+        </div>
+      </article>
+
+      <!-- 03 M&A -->
+      <article class="project-card" tabindex="0" role="button"
+        data-project="2" aria-label="03 투자·제휴·인수 타당성 검토 상세 보기">
+        <div class="card-thumb">
+          <img src="images/ma-03-bona-camp-1.png" alt="보나캠프 투자 검토" loading="lazy"
+            onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>📊</div>'" />
+        </div>
+        <div class="card-body">
+          <span class="project-tag">M&A · Investment</span>
+          <div class="project-title">투자·제휴·인수 타당성 검토</div>
+          <div class="project-org">NHN 전략기획팀 · 2022–2025</div>
+          <div class="project-metrics">
+            <span class="metric metric-green">10+ 딜 스크리닝</span>
+            <span class="metric metric-amber">BEP Simulation</span>
+          </div>
+          <div class="card-hint">↗ 슬라이드 8장 보기</div>
+        </div>
+      </article>
+
+      <!-- 04 핀테크 -->
+      <article class="project-card" tabindex="0" role="button"
+        data-project="3" aria-label="04 핀테크 시장 기회 발굴 상세 보기">
+        <div class="card-thumb">
+          <img src="images/mr-01-inapp.png" alt="핀테크 시장 분석 슬라이드" loading="lazy"
+            onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>💳</div>'" />
+        </div>
+        <div class="card-body">
+          <span class="project-tag">Market Research</span>
+          <div class="project-title">핀테크·신성장 영역 시장 기회 발굴</div>
+          <div class="project-org">NHN 전략기획팀 · 2022–2025</div>
+          <div class="project-metrics">
+            <span class="metric metric-green">Bottom-up Sizing</span>
+            <span class="metric metric-amber">Python DART 자동화</span>
+          </div>
+          <div class="card-hint">↗ 슬라이드 5장 보기</div>
+        </div>
+      </article>
+
+      <!-- 05 사업성과 -->
+      <article class="project-card" tabindex="0" role="button"
+        data-project="4" aria-label="05 사업 성과 분석 상세 보기">
+        <div class="card-thumb">
+          <img src="images/pl-01-travel-1.png" alt="사업 성과 분석 슬라이드" loading="lazy"
+            onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>📈</div>'" />
+        </div>
+        <div class="card-body">
+          <span class="project-tag">P&L Management</span>
+          <div class="project-title">사업 성과 분석 및 전략 커뮤니케이션</div>
+          <div class="project-org">NHN 전략기획팀 · 2022–2025</div>
+          <div class="project-metrics">
+            <span class="metric metric-green">코미코 적자 YoY -57%</span>
+          </div>
+          <div class="card-hint">↗ 슬라이드 12장 보기</div>
         </div>
       </article>
 
@@ -1174,66 +1177,7 @@
   /* ── 프로젝트 데이터 ── */
   const projects = [
     {
-      tag: '01 · M&A / Investment',
-      title: '투자·제휴·인수 타당성 검토',
-      meta: 'NHN 전략기획팀 · 2022–2025',
-      rows: [
-        ['Problem', '투자·제휴 기회가 생길 때마다 산업도, 사업 구조도 다른 기업을 빠르게 판단해야 했고, "해볼 만한가"를 감이 아닌 수치로 설명해야 했습니다.'],
-        ['Approach', '수익원·BM → 비용 구조·경쟁 구도 → BEP 순으로 사업 구조를 빠르게 해체하고, 시나리오별 재무 시뮬레이션으로 투자 타당성을 정량화했습니다.'],
-        ['Key Works', '엔마스터(아파트 ERP) JV 구조 분석 및 BEP 시뮬레이션 · 채널코퍼레이션(채널톡) ARR·NRR 중심 밸류에이션 · 보나캠프·블루시스 투자·인수 시너지 분석 · 페이히어 POS BEP 검토 · 메타넷 Build vs. Buy 시나리오'],
-        ['Impact', '이종 산업 대상 경영진 투자·매각·제휴 결정 지원 · 재무 시뮬레이션 기반 의사결정 정량화 · M&A 스크리닝 프레임워크 내재화'],
-      ],
-      images: [
-        { src: 'images/ma-01-enmaster-jv.png',    alt: '엔마스터 JV 매출구조 수립' },
-        { src: 'images/ma-02-channel-corp-1.png', alt: '채널코퍼레이션 기업분석 1' },
-        { src: 'images/ma-02-channel-corp-2.png', alt: '채널코퍼레이션 기업분석 2' },
-        { src: 'images/ma-02-channel-corp-3.png', alt: '채널코퍼레이션 기업분석 3' },
-        { src: 'images/ma-03-bona-camp-1.png',    alt: '보나캠프 투자 검토 1' },
-        { src: 'images/ma-03-bona-camp-2.png',    alt: '보나캠프 투자 검토 2' },
-        { src: 'images/ma-03-bona-camp-3.png',    alt: '보나캠프 투자 검토 3' },
-      ]
-    },
-    {
-      tag: '02 · Market Research',
-      title: '핀테크·신성장 영역 시장 기회 발굴',
-      meta: 'NHN 전략기획팀 · 2022–2025',
-      rows: [
-        ['Problem', '"들어갈 만한 시장인가"를 판단할 수 있는 구조화된 근거가 없었고, 산업마다 다른 리스크와 수익 구조를 일관된 기준으로 비교하기 어려웠습니다.'],
-        ['Approach', '시장 규모 → BM → 수익 구조 → 규제 리스크 순으로 분석하고, Python DART 크롤링으로 재무 데이터 수집을 자동화해 분석 속도를 높였습니다.'],
-        ['Key Works', '콘텐츠 인앱결제 현황 분석 · 휴대폰 소액결제 PG 선/후정산 수익 구조 분석 · VAN·PG사 DART 크롤링 자동화 · 온투업·조각투자·PLCC BM 비교 · 네이버페이·카카오페이 시장점유율 트래킹'],
-        ['Impact', '산업별 시장 규모 및 수익 구조 데이터베이스 축적 · Python 자동화로 분석 속도 10배 향상 · 데이터 기반 신사업 검토 프레임워크 구축'],
-      ],
-      images: [
-        { src: 'images/mr-01-inapp.png',      alt: '콘텐츠 인앱결제 분석' },
-        { src: 'images/mr-02-mobile-pg-1.png', alt: '휴대폰 소액결제 PG 1' },
-        { src: 'images/mr-02-mobile-pg-2.png', alt: '휴대폰 소액결제 PG 2' },
-      ]
-    },
-    {
-      tag: '03 · P&L Management',
-      title: '사업 성과 분석 및 전략 커뮤니케이션',
-      meta: 'NHN 전략기획팀 · 2022–2025',
-      rows: [
-        ['Problem', '실적 수치는 있었지만 "이 사업이 지금 어디에 있고, 왜 이렇게 됐고, 무엇을 해야 하는지"까지 연결되는 자료가 없었습니다.'],
-        ['Approach', '단순 실적 보고가 아닌 시장 환경·비용 구조·사업 구조를 함께 분석해 원인 진단과 개선 방향을 포함한 자료를 구성했습니다.'],
-        ['Key Works', '여행박사 실적보고 및 흑자전환 시나리오 · Payco 결제액 경기지표 교차 분석 · 그룹사 IT 솔루션 크로스세일즈 운영안 · 코미코·두레이·티켓링크 월별 P&L 분석 · 투자유치용 Teaser 직접 제작'],
-        ['Impact', '코미코 적자폭 YoY 57% 감소 · 두레이 IT 비용률 30%p 절감 · 경영진 포트폴리오 의사결정 지원'],
-      ],
-      images: [
-        { src: 'images/pl-01-travel-1.png',       alt: '여행박사 실적보고 1' },
-        { src: 'images/pl-01-travel-2.png',       alt: '여행박사 실적보고 2' },
-        { src: 'images/pl-02-payco.png',          alt: 'Payco 결제액 분석' },
-        { src: 'images/pl-02-payco-2.png',        alt: 'Payco 분석 2' },
-        { src: 'images/pl-02-payco-3.png',        alt: 'Payco 분석 3' },
-        { src: 'images/pl-02-payco-4.png',        alt: 'Payco 분석 4' },
-        { src: 'images/pl-03-cross-sales.png',    alt: '크로스세일즈 운영안 1' },
-        { src: 'images/pl-03-cross-sales-2.png',  alt: '크로스세일즈 운영안 2' },
-        { src: 'images/pl-03-cross-sales-3.png',  alt: '크로스세일즈 운영안 3' },
-        { src: 'images/pl-03-cross-sales-4.png',  alt: '크로스세일즈 운영안 4' },
-      ]
-    },
-    {
-      tag: '04 · IT Strategy',
+      tag: '01 · IT Strategy',
       title: '금융사 IT 중장기 전략 수립',
       meta: 'AIA생명 테크기획팀 · 2025.06–10',
       rows: [
@@ -1247,11 +1191,11 @@
         { src: 'images/it-01-strategy-2.png', alt: 'IT 중장기 계획 자료 2' },
         { src: 'images/it-01-strategy-3.png', alt: 'IT 중장기 계획 자료 3' },
         { src: 'images/it-02-group-report.png', alt: '그룹 전략 보고' },
-        { src: 'images/it-03-benchmark.png',  alt: '벤치마크 분석' },
+        { src: 'images/it-03-benchmark.png',  alt: '생보사 IT 예산 벤치마크' },
       ]
     },
     {
-      tag: '05 · Competitive Intel',
+      tag: '02 · Competitive Intel',
       title: 'Market Intelligence 체계 구축',
       meta: 'AIA생명 테크기획팀 · 2025.04–현재',
       rows: [
@@ -1261,9 +1205,76 @@
         ['Impact', 'Market Intelligence 모니터링 체계 정착 · 경영진 전략 의사결정 지원 · 리서치 기반 신규 PoC 착수'],
       ],
       images: [
-        { src: 'images/mi-01-ai-maturity.png',   alt: 'AI Maturity Analysis' },
-        { src: 'images/mi-02-ai-roleplay-1.png', alt: 'AI Role Play 1' },
-        { src: 'images/mi-02-ai-roleplay-2.png', alt: 'AI Role Play 2' },
+        { src: 'images/mi-01-ai-maturity.png',        alt: 'AI Maturity Analysis' },
+        { src: 'images/mi-02-ai-roleplay-1.png',      alt: 'AI Role Play 1' },
+        { src: 'images/mi-02-ai-roleplay-2.png',      alt: 'AI Role Play 2' },
+        { src: 'images/mi-03-p2p-institutions.png',   alt: 'P2P 금융기관 구조', blurred: true },
+        { src: 'images/mi-04-p2p-law.png',            alt: 'P2P 온투법 세부', blurred: true },
+        { src: 'images/mi-05-p2p-market.png',         alt: 'P2P 시장 현황', blurred: true },
+      ]
+    },
+    {
+      tag: '03 · M&A / Investment',
+      title: '투자·제휴·인수 타당성 검토',
+      meta: 'NHN 전략기획팀 · 2022–2025',
+      rows: [
+        ['Problem', '투자·제휴 기회가 생길 때마다 산업도, 사업 구조도 다른 기업을 빠르게 판단해야 했고, "해볼 만한가"를 감이 아닌 수치로 설명해야 했습니다.'],
+        ['Approach', '수익원·BM → 비용 구조·경쟁 구도 → BEP 순으로 사업 구조를 빠르게 해체하고, 시나리오별 재무 시뮬레이션으로 투자 타당성을 정량화했습니다.'],
+        ['Key Works', '엔마스터(아파트 ERP) JV 구조 분석 및 BEP 시뮬레이션 · 채널코퍼레이션(채널톡) ARR·NRR 중심 밸류에이션 · 보나캠프·블루시스 투자·인수 시너지 분석 · 페이히어 POS BEP 검토 · 메타넷 Build vs. Buy 시나리오'],
+        ['Impact', '이종 산업 대상 경영진 투자·매각·제휴 결정 지원 · 재무 시뮬레이션 기반 의사결정 정량화 · M&A 스크리닝 프레임워크 내재화'],
+      ],
+      images: [
+        { src: 'images/ma-03-bona-camp-1.png',      alt: '보나캠프 투자 검토 1' },
+        { src: 'images/ma-03-bona-camp-2.png',      alt: '보나캠프 투자 검토 2' },
+        { src: 'images/ma-03-bona-camp-3.png',      alt: '보나캠프 투자 검토 3' },
+        { src: 'images/ma-01-enmaster-jv.png',      alt: '엔마스터 JV 매출구조 수립' },
+        { src: 'images/ma-02-channel-corp-1.png',   alt: '채널코퍼레이션 기업분석 1' },
+        { src: 'images/ma-02-channel-corp-2.png',   alt: '채널코퍼레이션 기업분석 2' },
+        { src: 'images/ma-02-channel-corp-3.png',   alt: '채널코퍼레이션 기업분석 3' },
+        { src: 'images/ma-05-alianize-profile.png', alt: 'Alianize 회사 개요', blurred: true },
+      ]
+    },
+    {
+      tag: '04 · Market Research',
+      title: '핀테크·신성장 영역 시장 기회 발굴',
+      meta: 'NHN 전략기획팀 · 2022–2025',
+      rows: [
+        ['Problem', '"들어갈 만한 시장인가"를 판단할 수 있는 구조화된 근거가 없었고, 산업마다 다른 리스크와 수익 구조를 일관된 기준으로 비교하기 어려웠습니다.'],
+        ['Approach', '시장 규모 → BM → 수익 구조 → 규제 리스크 순으로 분석하고, Python DART 크롤링으로 재무 데이터 수집을 자동화해 분석 속도를 높였습니다.'],
+        ['Key Works', '콘텐츠 인앱결제 현황 분석 · 휴대폰 소액결제 PG 선/후정산 수익 구조 분석 · VAN·PG사 DART 크롤링 자동화 · 온투업·조각투자·PLCC BM 비교 · 아멕스·신한 PLCC 혜택 구조 분석 · 네이버페이·카카오페이 시장점유율 트래킹'],
+        ['Impact', '산업별 시장 규모 및 수익 구조 데이터베이스 축적 · Python 자동화로 분석 속도 10배 향상 · 데이터 기반 신사업 검토 프레임워크 구축'],
+      ],
+      images: [
+        { src: 'images/mr-01-inapp.png',            alt: '콘텐츠 인앱결제 분석' },
+        { src: 'images/mr-02-mobile-pg-1.png',      alt: '휴대폰 소액결제 PG 1' },
+        { src: 'images/mr-02-mobile-pg-2.png',      alt: '휴대폰 소액결제 PG 2' },
+        { src: 'images/mr-03-amex-offers.png',      alt: 'AMEX 카드 혜택 구조 분석' },
+        { src: 'images/mr-04-mobile-pg-perf.jpg',   alt: '휴대폰 결제 PG사 실적 추이' },
+      ]
+    },
+    {
+      tag: '05 · P&L Management',
+      title: '사업 성과 분석 및 전략 커뮤니케이션',
+      meta: 'NHN 전략기획팀 · 2022–2025',
+      rows: [
+        ['Problem', '실적 수치는 있었지만 "이 사업이 지금 어디에 있고, 왜 이렇게 됐고, 무엇을 해야 하는지"까지 연결되는 자료가 없었습니다.'],
+        ['Approach', '단순 실적 보고가 아닌 시장 환경·비용 구조·사업 구조를 함께 분석해 원인 진단과 개선 방향을 포함한 자료를 구성했습니다.'],
+        ['Key Works', '여행박사 실적보고 및 흑자전환 시나리오 · Payco 결제액 경기지표 교차 분석 · 그룹사 IT 솔루션 크로스세일즈 운영안 · 코미코·두레이·티켓링크 월별 P&L 분석 · 투자유치용 Teaser 직접 제작'],
+        ['Impact', '코미코 적자폭 YoY 57% 감소 · 두레이 IT 비용률 30%p 절감 · 경영진 포트폴리오 의사결정 지원'],
+      ],
+      images: [
+        { src: 'images/pl-01-travel-1.png',       alt: '여행박사 실적보고 1' },
+        { src: 'images/pl-01-travel-2.png',       alt: '여행박사 실적보고 2' },
+        { src: 'images/pl-01-travel-3.png',       alt: '여행박사 유통정책 분석' },
+        { src: 'images/pl-01-travel-4.png',       alt: '여행박사 운영사업 수입' },
+        { src: 'images/pl-02-payco.png',          alt: 'Payco 결제액 분석' },
+        { src: 'images/pl-02-payco-2.png',        alt: 'Payco 분석 2' },
+        { src: 'images/pl-02-payco-3.png',        alt: 'Payco 분석 3' },
+        { src: 'images/pl-02-payco-4.png',        alt: 'Payco 분석 4' },
+        { src: 'images/pl-03-cross-sales.png',    alt: '크로스세일즈 운영안 1' },
+        { src: 'images/pl-03-cross-sales-2.png',  alt: '크로스세일즈 운영안 2' },
+        { src: 'images/pl-03-cross-sales-3.png',  alt: '크로스세일즈 운영안 3' },
+        { src: 'images/pl-03-cross-sales-4.png',  alt: '크로스세일즈 운영안 4' },
       ]
     },
   ];
@@ -1306,7 +1317,7 @@
 
     currentImages = p.images;
     modalSlides.innerHTML = p.images.map((img, i) =>
-      `<div class="slide-thumb" role="button" tabindex="0" aria-label="${img.alt} 확대" data-lb="${i}">
+      `<div class="slide-thumb${img.blurred ? ' slide-thumb--blurred' : ''}" role="button" tabindex="0" aria-label="${img.alt} 확대" data-lb="${i}">
         <img src="${img.src}" alt="${img.alt}" loading="lazy"
           onerror="this.style.display='none'" />
       </div>`
@@ -1358,6 +1369,7 @@
     const img = currentImages[lbIdx];
     lbImg.src = img.src;
     lbImg.alt = img.alt;
+    lbImg.style.filter = img.blurred ? 'blur(8px)' : '';
     lbCounter.textContent = `${lbIdx + 1} / ${currentImages.length}`;
   }
 
