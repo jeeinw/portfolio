@@ -243,6 +243,8 @@
   .card-thumb { aspect-ratio:16/9; overflow:hidden; background:var(--surface2); position:relative; flex-shrink:0; }
   .card-thumb img { width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease; }
   .project-card:hover .card-thumb img { transform:scale(1.04); }
+  .card-thumb--blurred img { filter:blur(2px); }
+  .project-card:hover .card-thumb--blurred img { filter:blur(1px); }
   .card-thumb-placeholder {
     width:100%; height:100%;
     display:flex; align-items:center; justify-content:center;
@@ -581,13 +583,13 @@
             <span class="metric metric-green" data-i18n="p1.m1">11개 생보사 분석</span>
             <span class="metric metric-amber" data-i18n="p1.m2">주간 Executive Report</span>
           </div>
-          <div class="card-hint" data-i18n="p1.hint">↗ 슬라이드 6장 보기</div>
+          <div class="card-hint" data-i18n="p1.hint">↗ 슬라이드 3장 보기</div>
         </div>
       </article>
 
       <!-- 03 M&A -->
       <article class="project-card" tabindex="0" role="button" data-project="2">
-        <div class="card-thumb">
+        <div class="card-thumb card-thumb--blurred">
           <img src="images/ma-04-bona-synergy.png" alt="Bona Camp Synergy Analysis" loading="lazy"
             onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>📊</div>'" />
         </div>
@@ -605,8 +607,8 @@
 
       <!-- 04 Fintech -->
       <article class="project-card" tabindex="0" role="button" data-project="3">
-        <div class="card-thumb">
-          <img src="images/mr-01-inapp.png" alt="Fintech Market Analysis" loading="lazy"
+        <div class="card-thumb card-thumb--blurred">
+          <img src="images/mi-05-p2p-market.png" alt="P2P Market Research" loading="lazy"
             onerror="this.parentNode.innerHTML='<div class=\'card-thumb-placeholder\'>💳</div>'" />
         </div>
         <div class="card-body">
@@ -617,7 +619,7 @@
             <span class="metric metric-green">Bottom-up Sizing</span>
             <span class="metric metric-amber" data-i18n="p3.m2">Python DART 자동화</span>
           </div>
-          <div class="card-hint" data-i18n="p3.hint">↗ 슬라이드 5장 보기</div>
+          <div class="card-hint" data-i18n="p3.hint">↗ 슬라이드 7장 보기</div>
         </div>
       </article>
 
@@ -813,7 +815,7 @@
       'p1.org': 'AIA생명 테크기획팀 · 2025.04–현재',
       'p1.m1': '11개 생보사 분석',
       'p1.m2': '주간 Executive Report',
-      'p1.hint': '↗ 슬라이드 6장 보기',
+      'p1.hint': '↗ 슬라이드 3장 보기',
       'p2.title': '투자·제휴·인수 타당성 검토',
       'p2.org': 'NHN 전략기획팀 · 2022–2025',
       'p2.m1': '10+ 딜 스크리닝',
@@ -821,7 +823,7 @@
       'p3.title': '핀테크·신성장 영역 시장 기회 발굴',
       'p3.org': 'NHN 전략기획팀 · 2022–2025',
       'p3.m2': 'Python DART 자동화',
-      'p3.hint': '↗ 슬라이드 5장 보기',
+      'p3.hint': '↗ 슬라이드 7장 보기',
       'p4.title': '사업 성과 분석 및 전략 커뮤니케이션',
       'p4.org': 'NHN 전략기획팀 · 2022–2025',
       'p4.m1': '코미코 적자 YoY -57%',
@@ -898,7 +900,7 @@
       'p1.org': 'AIA Life Insurance, Tech Strategy · Apr 2025–Present',
       'p1.m1': '11 Life Insurers Analyzed',
       'p1.m2': 'Weekly Executive Report',
-      'p1.hint': '↗ View 6 Slides',
+      'p1.hint': '↗ View 3 Slides',
       'p2.title': 'M&A & Investment Feasibility Analysis',
       'p2.org': 'NHN Strategy Planning · 2022–2025',
       'p2.m1': '10+ Deals Screened',
@@ -906,7 +908,7 @@
       'p3.title': 'Fintech & New Growth Market Opportunities',
       'p3.org': 'NHN Strategy Planning · 2022–2025',
       'p3.m2': 'Python DART Automation',
-      'p3.hint': '↗ View 5 Slides',
+      'p3.hint': '↗ View 7 Slides',
       'p4.title': 'Business Performance Analysis & Strategic Communication',
       'p4.org': 'NHN Strategy Planning · 2022–2025',
       'p4.m1': 'Comico Deficit YoY –57%',
@@ -995,9 +997,6 @@
           { src: 'images/mi-01-ai-maturity.png', alt: 'AI Maturity Analysis' },
           { src: 'images/mi-02-ai-roleplay-1.png', alt: 'AI Role Play 1' },
           { src: 'images/mi-02-ai-roleplay-2.png', alt: 'AI Role Play 2' },
-          { src: 'images/mi-03-p2p-institutions.png', alt: 'P2P 금융기관 구조', blurred: true },
-          { src: 'images/mi-04-p2p-law.png', alt: 'P2P 온투법 세부', blurred: true },
-          { src: 'images/mi-05-p2p-market.png', alt: 'P2P 시장 현황', blurred: true },
         ]
       },
       {
@@ -1036,11 +1035,13 @@
           ['Impact', '산업별 시장 규모 및 수익 구조 데이터베이스 축적 · Python 자동화로 분석 속도 10배 향상 · 데이터 기반 신사업 검토 프레임워크 구축'],
         ],
         images: [
-          { src: 'images/mr-01-inapp.png', alt: '콘텐츠 인앱결제 분석' },
+          { src: 'images/mi-03-p2p-institutions.png', alt: '온투업 금융기관 구조', blurred: true },
+          { src: 'images/mi-04-p2p-law.png', alt: '온투법 세부 분석', blurred: true },
+          { src: 'images/mi-05-p2p-market.png', alt: '조각투자·P2P 시장 현황', blurred: true },
           { src: 'images/mr-02-mobile-pg-1.png', alt: '휴대폰 소액결제 PG 1' },
           { src: 'images/mr-02-mobile-pg-2.png', alt: '휴대폰 소액결제 PG 2' },
-          { src: 'images/mr-03-amex-offers.png', alt: 'AMEX 카드 혜택 구조 분석' },
-          { src: 'images/mr-04-mobile-pg-perf.jpg', alt: '휴대폰 결제 PG사 실적 추이' },
+          { src: 'images/mr-03-amex-offers.png', alt: 'AMEX 카드 혜택 구조 분석', blurred: true },
+          { src: 'images/mr-04-mobile-pg-perf.jpg', alt: '휴대폰 결제 PG사 실적 추이', blurred: true },
         ]
       },
       {
@@ -1102,9 +1103,6 @@
           { src: 'images/mi-01-ai-maturity.png', alt: 'AI Maturity Analysis' },
           { src: 'images/mi-02-ai-roleplay-1.png', alt: 'AI Role Play 1' },
           { src: 'images/mi-02-ai-roleplay-2.png', alt: 'AI Role Play 2' },
-          { src: 'images/mi-03-p2p-institutions.png', alt: 'P2P Institution Structure', blurred: true },
-          { src: 'images/mi-04-p2p-law.png', alt: 'P2P Regulatory Detail', blurred: true },
-          { src: 'images/mi-05-p2p-market.png', alt: 'P2P Market Overview', blurred: true },
         ]
       },
       {
@@ -1143,11 +1141,13 @@
           ['Impact', 'Built industry market size and revenue structure database · 10x faster analysis via Python automation · Established data-driven new business evaluation framework'],
         ],
         images: [
-          { src: 'images/mr-01-inapp.png', alt: 'In-App Payment Analysis' },
+          { src: 'images/mi-03-p2p-institutions.png', alt: 'Online Lending Institution Structure', blurred: true },
+          { src: 'images/mi-04-p2p-law.png', alt: 'Online Lending Regulatory Analysis', blurred: true },
+          { src: 'images/mi-05-p2p-market.png', alt: 'Fractional Investment & P2P Market', blurred: true },
           { src: 'images/mr-02-mobile-pg-1.png', alt: 'Mobile Micropayment PG 1' },
           { src: 'images/mr-02-mobile-pg-2.png', alt: 'Mobile Micropayment PG 2' },
-          { src: 'images/mr-03-amex-offers.png', alt: 'AMEX Card Benefit Structure' },
-          { src: 'images/mr-04-mobile-pg-perf.jpg', alt: 'Mobile PG Performance Trend' },
+          { src: 'images/mr-03-amex-offers.png', alt: 'AMEX Card Benefit Structure', blurred: true },
+          { src: 'images/mr-04-mobile-pg-perf.jpg', alt: 'Mobile PG Performance Trend', blurred: true },
         ]
       },
       {
