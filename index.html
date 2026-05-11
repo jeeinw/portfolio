@@ -371,12 +371,27 @@
   .cfa-sub { font-size:12px; color:rgba(255,255,255,0.6); }
   .cfa-status { font-size:11px; color:var(--bcg-dark); background:var(--bcg-bright); border-radius:20px; padding:4px 12px; white-space:nowrap; font-weight:600; letter-spacing:0.04em; }
 
-  /* ── MANIFESTO ── */
-  .manifesto-block { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:36px; position:relative; overflow:hidden; }
-  .manifesto-block::before { content:'"'; position:absolute; top:-20px; left:24px; font-family:'Cormorant Garamond',serif; font-size:120px; color:rgba(3,83,50,0.06); line-height:1; pointer-events:none; }
-  .manifesto-text { font-family:'Cormorant Garamond',serif; font-size:18px; line-height:1.7; color:var(--text); font-style:italic; position:relative; z-index:1; margin-bottom:20px; }
-  .manifesto-sig { font-size:12px; color:var(--text-muted); border-top:1px solid var(--border); padding-top:16px; margin-top:4px; display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
-  .manifesto-name { font-weight:500; color:var(--text); }
+  /* ── HOW I THINK ── */
+  .think-block {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px; line-height: 1.75; font-style: italic;
+    color: var(--text-muted);
+    border-left: 3px solid var(--bcg-bright);
+    padding-left: 20px;
+    margin-bottom: 36px;
+    max-width: 680px;
+  }
+  /* ── SKILLS TABLE ── */
+  .skills-table { width:100%; border-collapse:collapse; }
+  .skills-table tr { border-bottom:1px solid var(--border); }
+  .skills-table tr:last-child { border-bottom:none; }
+  .skills-table td { padding:13px 0; font-size:13px; vertical-align:top; line-height:1.65; }
+  .skills-table td:first-child {
+    width:130px; font-weight:700; font-size:11px;
+    letter-spacing:0.06em; text-transform:uppercase;
+    color:var(--bcg-dark); padding-right:20px; padding-top:16px; white-space:nowrap;
+  }
+  .skills-table td:last-child { color:var(--text-muted); }
 
   /* ── RESPONSIVE ── */
   @media (max-width:900px) {
@@ -423,7 +438,7 @@
   <a href="#career"    class="nav-item"><span class="nav-dot"></span><span data-i18n="nav.career">Career</span></a>
   <a href="#projects"  class="nav-item"><span class="nav-dot"></span><span data-i18n="nav.projects">Selected Projects</span></a>
   <a href="#skills"    class="nav-item"><span class="nav-dot"></span><span data-i18n="nav.skills">Skills &amp; Credentials</span></a>
-  <a href="#manifesto" class="nav-item"><span class="nav-dot"></span><span data-i18n="nav.why">Why BCG</span></a>
+  <a href="#manifesto" class="nav-item"><span class="nav-dot"></span><span data-i18n="nav.why">Skills &amp; Cert.</span></a>
 
   <div class="sidebar-section-label" style="margin-top:32px;"><span data-i18n="nav.exp">Experience</span></div>
   <div style="font-size:12px;color:rgba(255,255,255,0.5);padding:4px 8px;" data-i18n="sidebar.exp1">5년 9개월 정규직</div>
@@ -716,22 +731,45 @@
     </div>
   </section>
 
-  <!-- WHY BCG -->
+  <!-- SKILLS & CERTIFICATION -->
   <section id="manifesto" class="page-section">
-    <div class="section-label">Why BCG</div>
-    <h2 class="section-title" data-i18n="why.title">성장 선언</h2>
-    <div class="manifesto-block">
-      <p class="manifesto-text" data-i18n-html="why.text">
-        제 커리어의 모든 선택 기준은 하나였습니다 — 더 가파른 성장 곡선.<br><br>
-        컨설팅에서 IT 대기업으로, 다시 외국계 금융사로. 안정적인 다음 스텝보다 낯선 도메인과 더 높은 밀도를 의도적으로 골랐습니다. NHN에서 M&amp;A 스크리닝을 하며 새벽에 코드를 짜고 주말에 CFA 교재를 펼치는 게, 저에게는 희생이 아니라 기본값이었습니다.<br><br>
-        BCG가 요구하는 강도는, 제가 스스로 설정해 온 기준선과 같습니다. 그래서 trade-off가 없습니다.
-      </p>
-      <div class="manifesto-sig">
-        <span class="manifesto-name">왕지인 / Jee In Wang</span>
-        <span style="color:var(--text-muted);" data-i18n="why.sig">AIA생명 테크기획팀 대리 · CFA Level 3 Candidate</span>
-        <span style="color:var(--text-dim);margin-left:auto;">2026</span>
-      </div>
-    </div>
+    <div class="section-label">Skills &amp; Certification</div>
+    <h2 class="section-title" data-i18n="why.title">역량 &amp; 자격</h2>
+
+    <p class="think-block" data-i18n="why.think">저는 언제나 더 가파른 곡선을 선택해왔습니다. 문제를 마주하면 사업 구조를 해체하고, 가정을 수치로 검증한 뒤, 가장 단순한 논리로 답을 제시합니다. 빠르게 적응하되 깊이 파고들어 집요하게 — 이것이 제가 일하는 방식입니다.</p>
+
+    <div class="section-label" style="margin-bottom:16px;" data-i18n="why.thinktitle">How I Think</div>
+
+    <table class="skills-table">
+      <tr>
+        <td data-i18n="sk2.strategy">전략 &amp; 분석</td>
+        <td data-i18n="sk2.strategy.v">기업가치평가 · M&amp;A 스크리닝 · 재무모델링 (BEP·NOI·시나리오 시뮬레이션) · Bottom-up Market Sizing · 사업 타당성 분석 · P&amp;L 구조 분석 및 비용 최적화 · 투자·제휴·매각 검토 지원</td>
+      </tr>
+      <tr>
+        <td data-i18n="sk2.data">데이터 &amp; 자동화</td>
+        <td>Python (pandas · BeautifulSoup · selenium) · SQL · Excel (XLOOKUP · SUMIFS · Power Query · 대시보드 시각화) · Tableau</td>
+      </tr>
+      <tr>
+        <td data-i18n="sk2.ai">AI 툴</td>
+        <td data-i18n="sk2.ai.v">Claude · ChatGPT · Gemini 기반 업무 자동화 실무 경험</td>
+      </tr>
+      <tr>
+        <td data-i18n="sk2.domain">도메인</td>
+        <td data-i18n="sk2.domain.v">M&amp;A · 기업투자 · 핀테크·결제 · 대체투자·조각투자 · AI·SaaS · 금융IT · 보험·금융 규제</td>
+      </tr>
+      <tr>
+        <td data-i18n="sk2.cert">자격증</td>
+        <td data-i18n="sk2.cert.v">CFA Level 2 Passed (2025) · SQLD · ADsP · 빅데이터분석기사 (필기)</td>
+      </tr>
+      <tr>
+        <td data-i18n="sk2.awards">수상</td>
+        <td data-i18n="sk2.awards.v">2025 AIA 테크본부 해커톤 금상 (2위) · 2024 · 2023 NHN 우수사원 포상</td>
+      </tr>
+      <tr>
+        <td data-i18n="sk2.lang">어학</td>
+        <td data-i18n="sk2.lang.v">영어: OPIc AL / TOEIC 990 · 한국어: Native · 일본어: Basic</td>
+      </tr>
+    </table>
   </section>
 
 </div>
@@ -772,7 +810,7 @@
       'nav.career': 'Career',
       'nav.projects': 'Selected Projects',
       'nav.skills': 'Skills & Credentials',
-      'nav.why': 'Why BCG',
+      'nav.why': 'Skills & Cert.',
       'nav.exp': 'Experience',
       'sidebar.exp1': '5년 9개월 정규직',
       'hero.tag.exp': '5년 9개월 경력',
@@ -847,9 +885,22 @@
       'sk.hackathon': 'AIA 해커톤 금상 (2025)',
       'sk.nhn': 'NHN 우수사원 (2023, 2024)',
       'sk.bigdata': '빅데이터분석기사 (필기)',
-      'why.title': '성장 선언',
-      'why.text': '제 커리어의 모든 선택 기준은 하나였습니다 — 더 가파른 성장 곡선.<br><br>컨설팅에서 IT 대기업으로, 다시 외국계 금융사로. 안정적인 다음 스텝보다 낯선 도메인과 더 높은 밀도를 의도적으로 골랐습니다. NHN에서 M&A 스크리닝을 하며 새벽에 코드를 짜고 주말에 CFA 교재를 펼치는 게, 저에게는 희생이 아니라 기본값이었습니다.<br><br>BCG가 요구하는 강도는, 제가 스스로 설정해 온 기준선과 같습니다. 그래서 trade-off가 없습니다.',
-      'why.sig': 'AIA생명 테크기획팀 대리 · CFA Level 3 Candidate',
+      'why.title': '역량 & 자격',
+      'why.thinktitle': 'How I Think',
+      'why.think': '저는 언제나 더 가파른 곡선을 선택해왔습니다. 문제를 마주하면 사업 구조를 해체하고, 가정을 수치로 검증한 뒤, 가장 단순한 논리로 답을 제시합니다. 빠르게 적응하되 깊이 파고들어 집요하게 — 이것이 제가 일하는 방식입니다.',
+      'sk2.strategy': '전략 & 분석',
+      'sk2.strategy.v': '기업가치평가 · M&A 스크리닝 · 재무모델링 (BEP·NOI·시나리오 시뮬레이션) · Bottom-up Market Sizing · 사업 타당성 분석 · P&L 구조 분석 및 비용 최적화 · 투자·제휴·매각 검토 지원',
+      'sk2.data': '데이터 & 자동화',
+      'sk2.ai': 'AI 툴',
+      'sk2.ai.v': 'Claude · ChatGPT · Gemini 기반 업무 자동화 실무 경험',
+      'sk2.domain': '도메인',
+      'sk2.domain.v': 'M&A · 기업투자 · 핀테크·결제 · 대체투자·조각투자 · AI·SaaS · 금융IT · 보험·금융 규제',
+      'sk2.cert': '자격증',
+      'sk2.cert.v': 'CFA Level 2 Passed (2025) · SQLD · ADsP · 빅데이터분석기사 (필기)',
+      'sk2.awards': '수상',
+      'sk2.awards.v': '2025 AIA 테크본부 해커톤 금상 (2위) · 2024 · 2023 NHN 우수사원 포상',
+      'sk2.lang': '어학',
+      'sk2.lang.v': '영어: OPIc AL / TOEIC 990 · 한국어: Native · 일본어: Basic',
       'modal.samples': 'Work Samples',
     },
     en: {
@@ -857,7 +908,7 @@
       'nav.career': 'Career',
       'nav.projects': 'Selected Projects',
       'nav.skills': 'Skills & Credentials',
-      'nav.why': 'Why BCG',
+      'nav.why': 'Skills & Cert.',
       'nav.exp': 'Experience',
       'sidebar.exp1': 'Full-Time · 5+ Years',
       'hero.tag.exp': "5+ Years' Experience",
@@ -932,9 +983,22 @@
       'sk.hackathon': 'AIA Hackathon Gold Award (2025)',
       'sk.nhn': 'NHN Employee of the Year (2023, 2024)',
       'sk.bigdata': 'Big Data Analyst Certification',
-      'why.title': 'Growth Manifesto',
-      'why.text': 'Every career decision I have made was guided by one criterion — a steeper growth curve.<br><br>From consulting to a major tech conglomerate, then to a foreign insurance group. I deliberately chose unfamiliar domains and higher-intensity environments over comfortable next steps. Staying up late to write code while doing M&A screening at NHN, and studying CFA on weekends — for me, that was never a sacrifice. It was the default.<br><br>The intensity BCG demands is the same standard I have set for myself. There is no trade-off.',
-      'why.sig': 'AIA Life Insurance, Tech Strategy · CFA Level 3 Candidate',
+      'why.title': 'Skills & Credentials',
+      'why.thinktitle': 'How I Think',
+      'why.think': 'I consistently move toward steeper curves — every step has been a deliberate choice to grow faster, in harder conditions. When a problem arrives, I decompose the business logic, stress-test assumptions with numbers, and surface the answer in its simplest, most defensible structure. I adapt quickly and dig deep with tenacity — that is how I work.',
+      'sk2.strategy': 'Strategy & Analysis',
+      'sk2.strategy.v': 'Business Valuation · M&A Screening · Financial Modeling (BEP · NOI · Scenario Simulation) · Bottom-up Market Sizing · Business Feasibility Analysis · P&L Structure Analysis & Cost Optimization · Investment, Partnership & Divestiture Support',
+      'sk2.data': 'Data & Automation',
+      'sk2.ai': 'AI Tools',
+      'sk2.ai.v': 'Hands-on experience automating workflows with Claude, ChatGPT, and Gemini',
+      'sk2.domain': 'Domain',
+      'sk2.domain.v': 'M&A · Corporate Investment · Fintech & Payments · Alternative Investment · Fractional Investment · AI · SaaS · Financial IT · Insurance & Financial Regulation',
+      'sk2.cert': 'Certifications',
+      'sk2.cert.v': 'CFA Level 2 Passed (2025) · SQLD · ADsP · Big Data Analyst (Written)',
+      'sk2.awards': 'Awards',
+      'sk2.awards.v': '2025 AIA Tech Division Hackathon Gold Award (2nd) · NHN Employee of the Year 2024 & 2023',
+      'sk2.lang': 'Languages',
+      'sk2.lang.v': 'English: OPIc AL / TOEIC 990 · Korean: Native · Japanese: Basic',
       'modal.samples': 'Work Samples',
     }
   };
