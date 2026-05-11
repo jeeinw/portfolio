@@ -154,10 +154,26 @@
   }
   .hero-statement {
     font-family: 'Playfair Display', Georgia, serif;
-    font-size: 18px; line-height: 1.6; color: var(--text);
+    font-size: 17px; line-height: 1.7; color: var(--text-muted);
     font-style: italic; border-left: 3px solid var(--bcg-bright);
-    padding-left: 20px; max-width: 600px;
+    padding-left: 20px; max-width: 660px;
   }
+
+  /* ── CAREER STRIP ── */
+  .career-strip {
+    max-width: 820px; margin: 0 auto;
+    padding: 14px 48px 16px;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 11.5px;
+  }
+  .career-strip-item { display: flex; align-items: center; gap: 5px; }
+  .strip-company { color: var(--text-muted); font-weight: 600; letter-spacing: 0.01em; }
+  .strip-role { color: var(--text-dim); font-weight: 400; }
+  .strip-role::before { content: ' · '; }
+  .strip-sep { color: var(--border); font-size: 13px; line-height: 1; }
+  .strip-cfa .strip-company { color: var(--bcg-dark); }
+  .strip-cfa .strip-role { color: var(--bcg-dark); opacity: 0.7; }
 
   /* ── SECTION HEADERS ── */
   .section-label {
@@ -466,8 +482,19 @@
       <span class="tag">OPIc AL / TOEIC 990</span>
       <span class="tag">10+ Industries Analyzed</span>
     </div>
-    <p class="hero-statement" data-i18n="hero.statement">"모든 커리어 선택의 기준은 단 하나였습니다. 더 가파른 성장 곡선을 향한 의도적 이동."</p>
+    <p class="hero-statement" data-i18n="hero.statement">더 큰 성장을 위해 이동해 온 5년, 회사라는 주어진 환경을 레버리지하여 실질적인 결과를 만드는 전략가로 성장했습니다. 전략기획의 틀 위에 재무 분석력을 더해 입체적인 통찰을 기른 지금, 성장의 지향점인 McKinsey에서 제 모든 역량을 총동원하여 새로운 임팩트를 창출하고자 합니다.</p>
   </section>
+
+  <!-- CAREER STRIP -->
+  <div class="career-strip">
+    <div class="career-strip-item"><span class="strip-company" data-i18n="strip.aia">AIA Life</span><span class="strip-role" data-i18n="strip.aia.role">Tech Planning</span></div>
+    <span class="strip-sep">·</span>
+    <div class="career-strip-item"><span class="strip-company">NHN</span><span class="strip-role" data-i18n="strip.nhn.role">Strategic Planning</span></div>
+    <span class="strip-sep">·</span>
+    <div class="career-strip-item"><span class="strip-company" data-i18n="strip.lotte">Lotte Innovate</span><span class="strip-role" data-i18n="strip.lotte.role">PI Consulting</span></div>
+    <span class="strip-sep">·</span>
+    <div class="career-strip-item strip-cfa"><span class="strip-company">CFA</span><span class="strip-role">Lv.3 Candidate</span></div>
+  </div>
 
   <!-- GROWTH THESIS -->
   <section id="growth" class="page-section">
@@ -814,7 +841,12 @@
       'nav.exp': 'Experience',
       'sidebar.exp1': '5년 9개월 정규직',
       'hero.tag.exp': '5년 9개월 경력',
-      'hero.statement': '"모든 커리어 선택의 기준은 단 하나였습니다. 더 가파른 성장 곡선을 향한 의도적 이동."',
+      'hero.statement': '더 큰 성장을 위해 이동해 온 5년, 회사라는 주어진 환경을 레버리지하여 실질적인 결과를 만드는 전략가로 성장했습니다. 전략기획의 틀 위에 재무 분석력을 더해 입체적인 통찰을 기른 지금, 성장의 지향점인 McKinsey에서 제 모든 역량을 총동원하여 새로운 임팩트를 창출하고자 합니다.',
+      'strip.aia': 'AIA생명',
+      'strip.aia.role': '테크기획',
+      'strip.nhn.role': '전략기획',
+      'strip.lotte': '롯데이노베이트',
+      'strip.lotte.role': 'PI 컨설팅',
       'growth.para': '지난 5년 9개월의 커리어는 단 하나의 기준으로 설계되었습니다 — <strong style="color:var(--text);">성장</strong>. 안정보다 가파른 성장 곡선을, 워라밸보다 밀도 높은 환경을 선택해왔습니다. 다양한 리서치/프로젝트 경험과 CFA 병행 통한 꾸준한 역량개발이 이를 증명합니다.',
       'thesis.drive': '워라밸보다 압도적인 성장을 선택해 온 5년의 궤적. 풀타임 실무 + CFA Lv.3 수험 병행으로 증명된 체력과 집요함. 어떤 극한의 프로젝트에서도 타당한 결과물을 도출합니다.',
       'thesis.hypothesis': '낯선 산업도 핵심 드라이버 · 경쟁 구도 · 규제 환경 중심으로 빠르게 구조화. 단순 리서치가 아닌, 날카로운 가설을 세우고 데이터로 검증하는 방식.',
@@ -913,7 +945,12 @@
       'nav.exp': 'Experience',
       'sidebar.exp1': 'Full-Time · 5+ Years',
       'hero.tag.exp': "5+ Years' Experience",
-      'hero.statement': '"Every career decision was guided by a single criterion — a deliberate move toward a steeper growth curve."',
+      'hero.statement': 'Five years of deliberate moves toward greater growth — I have become a strategist who leverages every environment to deliver real results. With a foundation in strategic planning sharpened by financial analytical rigor, I am now ready to bring the full breadth of my capabilities to McKinsey and create new impact.',
+      'strip.aia': 'AIA Life',
+      'strip.aia.role': 'Tech Planning',
+      'strip.nhn.role': 'Strategic Planning',
+      'strip.lotte': 'Lotte Innovate',
+      'strip.lotte.role': 'PI Consulting',
       'growth.para': 'Every step of my 5-year, 9-month career has been shaped by one criterion — <strong style="color:var(--text);">growth</strong>. I have consistently chosen steeper learning curves over stability, and high-intensity environments over work-life balance. A diverse track record across industries and ongoing CFA preparation alongside full-time work reflect this commitment.',
       'thesis.drive': 'Five years of consistently choosing growth over balance. Stamina and tenacity proven by pursuing CFA Level 3 alongside full-time work. Delivers sound results even under extreme project conditions.',
       'thesis.hypothesis': 'Even in unfamiliar industries, rapidly frames the problem around key drivers, competitive dynamics, and regulatory context — then validates hypotheses with data rather than stopping at research.',
