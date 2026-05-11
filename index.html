@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>왕지인 | Strategy Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bcg-dark:   #035332;
-    --bcg-bright: #7DF474;
-    --bg: #F7F8F5;
+    --bcg-dark:   #152238;
+    --bcg-bright: #23395D;
+    --bg: #FAFBFC;
     --surface: #FFFFFF;
-    --surface2: #F0F4F0;
-    --border: #D8E4DC;
+    --surface2: #F2F4F7;
+    --border: #DDE3EB;
     --accent: var(--bcg-dark);
-    --accent2: #0A6B42;
-    --text: #0D1F17;
-    --text-muted: #3D5A4A;
-    --text-dim: #8AAA97;
+    --accent2: #1E3A5F;
+    --text: #152238;
+    --text-muted: #708090;
+    --text-dim: #A2AAAD;
     --red: #C85C4A;
     --green: var(--bcg-dark);
     --lime: var(--bcg-bright);
@@ -29,7 +29,7 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: 'Figtree', 'Apple SD Gothic Neo', sans-serif;
+    font-family: 'Source Serif 4', 'Apple SD Gothic Neo', Georgia, serif;
     font-size: 15px;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
@@ -50,7 +50,7 @@
     color: var(--bcg-dark);
     cursor: pointer;
     transition: all 0.15s;
-    font-family: 'Figtree', sans-serif;
+    font-family: 'Source Serif 4', Georgia, serif;
   }
   #langBtn:hover { background: var(--bcg-dark); color: #fff; border-color: var(--bcg-dark); }
 
@@ -71,13 +71,13 @@
     background: var(--bcg-bright);
     border-radius: 6px;
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Figtree', sans-serif;
+    font-family: 'Source Serif 4', Georgia, serif;
     font-weight: 700; font-size: 18px;
-    color: var(--bcg-dark);
+    color: #FFFFFF;
     margin-bottom: 16px; flex-shrink: 0;
   }
   .sidebar-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 20px; color: #FFFFFF;
     line-height: 1.3; margin-bottom: 4px;
     font-weight: 300; letter-spacing: 0.01em;
@@ -87,7 +87,7 @@
     letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 32px;
   }
   .sidebar-section-label {
-    font-size: 9px; color: rgba(125,244,116,0.7);
+    font-size: 9px; color: rgba(162,170,173,0.8);
     letter-spacing: 0.14em; text-transform: uppercase;
     margin-bottom: 8px; margin-top: 24px;
   }
@@ -99,13 +99,13 @@
     text-decoration: none; margin-bottom: 2px;
   }
   .nav-item:hover, .nav-item.active {
-    background: rgba(125,244,116,0.12); color: #FFFFFF;
+    background: rgba(35,57,93,0.12); color: #FFFFFF;
   }
   .nav-dot {
     width: 5px; height: 5px; border-radius: 50%;
     background: rgba(255,255,255,0.25); flex-shrink: 0;
   }
-  .nav-item.active .nav-dot { background: var(--bcg-bright); }
+  .nav-item.active .nav-dot { background: #A2AAAD; }
   .sidebar-contact {
     margin-top: auto; padding-top: 24px;
     border-top: 1px solid rgba(255,255,255,0.12);
@@ -136,7 +136,7 @@
   }
   .hero-eyebrow::after { content:''; flex:1; height:1px; background:var(--bcg-bright); max-width:60px; }
   .hero-name {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: clamp(42px,5vw,68px); line-height: 1.0;
     color: var(--text); margin-bottom: 8px;
     font-weight: 300; letter-spacing: -0.01em;
@@ -153,7 +153,7 @@
     color: #FFFFFF; font-weight: 500;
   }
   .hero-statement {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 18px; line-height: 1.6; color: var(--text);
     font-style: italic; border-left: 3px solid var(--bcg-bright);
     padding-left: 20px; max-width: 600px;
@@ -167,7 +167,7 @@
   }
   .section-label::after { content:''; flex:1; height:2px; background:var(--bcg-bright); max-width:80px; }
   .section-title {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 32px; color: var(--text);
     margin-bottom: 32px; line-height: 1.15;
     font-weight: 300; letter-spacing: -0.01em;
@@ -206,7 +206,7 @@
   .timeline-item:hover .timeline-dot { border-color: var(--bcg-dark); }
   .timeline-item.current .timeline-dot {
     background: var(--bcg-bright); border-color: var(--bcg-dark);
-    box-shadow: 0 0 0 4px rgba(125,244,116,0.15);
+    box-shadow: 0 0 0 4px rgba(35,57,93,0.2);
   }
   .timeline-meta { display: flex; align-items: baseline; gap: 10px; margin-bottom: 4px; }
   .timeline-date { font-size:11px; color:var(--text-dim); letter-spacing:0.06em; font-variant-numeric:tabular-nums; }
@@ -223,7 +223,7 @@
   }
   .highlight-stat {
     display:inline-block;
-    background:rgba(3,83,50,0.07); border:1px solid rgba(3,83,50,0.2);
+    background:rgba(21,34,56,0.06); border:1px solid rgba(21,34,56,0.2);
     border-radius:3px; padding:1px 6px;
     color:var(--bcg-dark); font-size:12px; font-weight:600; font-variant-numeric:tabular-nums;
   }
@@ -237,7 +237,7 @@
   }
   .project-card:hover {
     border-color:var(--bcg-dark); transform:translateY(-2px);
-    box-shadow:0 4px 20px rgba(3,83,50,0.1);
+    box-shadow:0 4px 20px rgba(21,34,56,0.1);
   }
   .project-card:focus-visible { outline:2px solid var(--bcg-dark); outline-offset:2px; }
   .card-thumb { aspect-ratio:16/9; overflow:hidden; background:var(--surface2); position:relative; flex-shrink:0; }
@@ -260,14 +260,14 @@
   .project-org { font-size:12px; color:var(--text-dim); margin-bottom:12px; }
   .project-metrics { display:flex; flex-wrap:wrap; gap:6px; margin-top:auto; }
   .metric { font-size:11px; padding:2px 8px; border-radius:4px; font-weight:500; }
-  .metric-green { background:rgba(3,83,50,0.07); color:var(--bcg-dark); border:1px solid rgba(3,83,50,0.18); }
-  .metric-amber { background:rgba(125,244,116,0.12); color:#024C2D; border:1px solid rgba(125,244,116,0.4); }
+  .metric-green { background:rgba(21,34,56,0.06); color:var(--bcg-dark); border:1px solid rgba(21,34,56,0.18); }
+  .metric-amber { background:rgba(35,57,93,0.08); color:#1E3A5F; border:1px solid rgba(35,57,93,0.25); }
   .card-hint { font-size:11px; color:var(--text-dim); margin-top:12px; display:flex; align-items:center; gap:4px; }
 
   /* ── MODAL ── */
   .modal-overlay {
     display:none; position:fixed; inset:0;
-    background:rgba(2,30,18,0.7); z-index:200;
+    background:rgba(21,34,56,0.75); z-index:200;
     overflow-y:auto; padding:40px 20px;
   }
   .modal-overlay.open { display:flex; align-items:flex-start; justify-content:center; }
@@ -316,7 +316,7 @@
     cursor:pointer; border:2px solid transparent;
     transition:border-color 0.15s,box-shadow 0.15s; background:var(--surface2);
   }
-  .slide-thumb:hover { border-color:var(--bcg-dark); box-shadow:0 2px 12px rgba(3,83,50,0.15); }
+  .slide-thumb:hover { border-color:var(--bcg-dark); box-shadow:0 2px 12px rgba(21,34,56,0.15); }
   .slide-thumb img { width:100%; height:100%; object-fit:cover; }
   .slide-thumb--blurred img { filter:blur(2px); transition:filter 0.3s; }
   .slide-thumb--blurred:hover img { filter:blur(1px); }
@@ -324,7 +324,7 @@
   /* ── LIGHTBOX ── */
   .lightbox {
     display:none; position:fixed; inset:0;
-    background:rgba(2,20,12,0.95); z-index:300;
+    background:rgba(10,15,35,0.95); z-index:300;
     align-items:center; justify-content:center;
   }
   .lightbox.open { display:flex; }
@@ -365,15 +365,15 @@
 
   /* ── CFA ── */
   .cfa-banner { background:var(--bcg-dark); border-radius:10px; padding:20px 24px; display:flex; align-items:center; gap:20px; margin-top:24px; }
-  .cfa-badge { width:52px; height:52px; background:var(--bcg-bright); border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:var(--bcg-dark); text-align:center; line-height:1.2; flex-shrink:0; }
+  .cfa-badge { width:52px; height:52px; background:rgba(255,255,255,0.15); border-radius:8px; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:13px; color:#FFFFFF; text-align:center; line-height:1.2; flex-shrink:0; border:1px solid rgba(255,255,255,0.25); }
   .cfa-text { flex:1; }
   .cfa-title { font-weight:600; font-size:14px; color:#FFF; margin-bottom:2px; }
   .cfa-sub { font-size:12px; color:rgba(255,255,255,0.6); }
-  .cfa-status { font-size:11px; color:var(--bcg-dark); background:var(--bcg-bright); border-radius:20px; padding:4px 12px; white-space:nowrap; font-weight:600; letter-spacing:0.04em; }
+  .cfa-status { font-size:11px; color:#FFFFFF; background:rgba(255,255,255,0.18); border:1px solid rgba(255,255,255,0.3); border-radius:20px; padding:4px 12px; white-space:nowrap; font-weight:600; letter-spacing:0.04em; }
 
   /* ── HOW I THINK ── */
   .think-block {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', Georgia, serif;
     font-size: 17px; line-height: 1.75; font-style: italic;
     color: var(--text-muted);
     border-left: 3px solid var(--bcg-bright);
@@ -460,7 +460,7 @@
     <h1 class="hero-name">왕지인 <span>Jee In Wang</span></h1>
     <p class="hero-subtitle">Corporate Strategy · Financial Modeling · Market Intelligence</p>
     <div class="hero-tags">
-      <span class="tag tag-accent">BCG Application 2026</span>
+      <span class="tag tag-accent">McKinsey Application 2026</span>
       <span class="tag" data-i18n="hero.tag.exp">5년 9개월 경력</span>
       <span class="tag">CFA L3 Candidate</span>
       <span class="tag">OPIc AL / TOEIC 990</span>
