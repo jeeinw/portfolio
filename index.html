@@ -9,29 +9,26 @@
 <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Hanwha CI palette */
-    --hw-orange: #F37321;
+    --hw-orange:      #F37321;
     --hw-orange-deep: #D85A0F;
-    --hw-orange-light: #FFF4E6;
-    --hw-orange-mid: #FFE0C2;
-    --hw-black: #0F1419;
-    --hw-charcoal: #1F2937;
-    --hw-navy: #2A3142;
-    /* Neutrals */
-    --text: #111827;
-    --text-muted: #6B7280;
-    --text-light: #9CA3AF;
-    --border: #E5E7EB;
-    --border-light: #F3F4F6;
-    --bg: #FAFAFA;
-    --bg-card: #FFFFFF;
-    --bg-section: #F9FAFB;
-    /* Status */
-    --success: #047857;
-    --warn: #B45309;
-    --info: #1D4ED8;
+    --hw-orange-light:#FFF4E6;
+    --hw-orange-mid:  #FFE0C2;
+    --hw-black:       #0F1419;
+    --hw-charcoal:    #1F2937;
+    --hw-navy:        #2A3142;
+    --text:           #111827;
+    --text-muted:     #6B7280;
+    --text-light:     #9CA3AF;
+    --border:         #E5E7EB;
+    --border-light:   #F3F4F6;
+    --bg:             #FAFAFA;
+    --bg-card:        #FFFFFF;
+    --bg-section:     #F9FAFB;
+    --success:        #047857;
+    --warn:           #B45309;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
     font-family: 'Pretendard', -apple-system, 'Apple SD Gothic Neo', 'Segoe UI', sans-serif;
     background: var(--bg);
@@ -39,518 +36,349 @@
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
   }
-  .container { max-width: 880px; margin: 0 auto; padding: 0 24px 80px; }
 
-  /* ── Top bar ── */
-  .topbar {
+  /* ── SIDEBAR ── */
+  .sidebar {
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: 260px;
     background: var(--hw-black);
-    color: #fff;
-    padding: 14px 0;
-    border-bottom: 3px solid var(--hw-orange);
-  }
-  .topbar-inner {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 0 24px;
+    padding: 40px 24px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    flex-direction: column;
+    z-index: 100;
+    overflow-y: auto;
   }
-  .topbar-brand { display: flex; align-items: center; gap: 10px; }
-  .topbar-logo {
-    width: 28px; height: 28px;
+  .sidebar-avatar {
+    width: 48px; height: 48px;
     background: var(--hw-orange);
-    border-radius: 4px;
+    border-radius: 6px;
     display: flex; align-items: center; justify-content: center;
-    font-weight: 800; font-size: 14px; color: #fff;
+    font-weight: 800; font-size: 18px;
+    color: #fff;
+    margin-bottom: 16px; flex-shrink: 0;
+    overflow: hidden; padding: 0;
   }
-  .topbar-label {
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    color: #D1D5DB;
-    text-transform: uppercase;
-  }
-  .topbar-target {
-    font-size: 12px;
-    color: var(--hw-orange);
-    font-weight: 600;
-  }
-
-  /* ── Hero ── */
-  .hero { padding: 56px 0 44px; border-bottom: 1px solid var(--border); margin-bottom: 48px; }
-  .hero-name {
-    font-size: 38px;
-    font-weight: 800;
-    color: var(--hw-black);
-    letter-spacing: -0.8px;
-  }
-  .hero-name-en {
-    font-weight: 400;
-    color: var(--text-muted);
-    font-size: 24px;
-    margin-left: 12px;
-  }
-  .hero-title {
-    font-size: 15px;
-    color: var(--hw-orange-deep);
-    font-weight: 600;
-    margin: 10px 0 24px;
-    letter-spacing: 0.3px;
-  }
-  .hero-meta {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    font-size: 13px;
-    color: var(--text-muted);
-    margin-bottom: 24px;
-  }
-  .hero-meta span::before {
-    content: "·";
-    margin-right: 6px;
-    color: var(--hw-orange);
+  .sidebar-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+  .sidebar-name {
+    font-size: 18px; color: #FFFFFF;
+    line-height: 1.3; margin-bottom: 4px;
     font-weight: 700;
   }
-  .hero-meta span:first-child::before { content: ""; margin: 0; }
+  .sidebar-title {
+    font-size: 10px; color: rgba(255,255,255,0.5);
+    letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 32px;
+  }
+  .sidebar-section-label {
+    font-size: 9px; color: rgba(243,115,33,0.7);
+    letter-spacing: 0.14em; text-transform: uppercase;
+    margin-bottom: 8px; margin-top: 24px;
+  }
+  .nav-item {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 8px; border-radius: 4px;
+    color: rgba(255,255,255,0.6); font-size: 13px;
+    cursor: pointer; transition: all 0.15s;
+    text-decoration: none; margin-bottom: 2px;
+  }
+  .nav-item:hover, .nav-item.active {
+    background: rgba(243,115,33,0.12); color: #FFFFFF;
+  }
+  .nav-dot {
+    width: 5px; height: 5px; border-radius: 50%;
+    background: rgba(255,255,255,0.25); flex-shrink: 0;
+  }
+  .nav-item.active .nav-dot { background: var(--hw-orange); }
+  .sidebar-target {
+    font-size: 12px; color: var(--hw-orange);
+    font-weight: 600; padding: 4px 8px;
+    line-height: 1.5;
+  }
+  .sidebar-contact {
+    margin-top: auto; padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .contact-item {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11.5px; color: rgba(255,255,255,0.45); margin-bottom: 5px;
+  }
+  .contact-icon { font-size: 12px; width: 16px; text-align: center; }
+
+  /* ── MAIN ── */
+  .main { margin-left: 260px; }
+  .page-section {
+    max-width: 820px; margin: 0 auto;
+    padding: 64px 48px; border-bottom: 1px solid var(--border);
+  }
+  .page-section:last-child { border-bottom: none; }
+
+  /* ── HERO ── */
+  .hero {
+    max-width: 820px; margin: 0 auto;
+    padding: 72px 48px 56px; border-bottom: 1px solid var(--border);
+  }
+  .hero-eyebrow {
+    font-size: 10px; color: var(--hw-orange-deep);
+    letter-spacing: 0.16em; text-transform: uppercase;
+    margin-bottom: 20px; display: flex; align-items: center; gap: 12px; font-weight: 700;
+  }
+  .hero-eyebrow::after { content:''; flex:1; height:1px; background:var(--hw-orange); max-width:60px; }
+  .hero-name {
+    font-size: clamp(38px,5vw,60px); line-height: 1.05;
+    color: var(--hw-black); margin-bottom: 6px;
+    font-weight: 800; letter-spacing: -0.8px;
+  }
+  .hero-name span { color: var(--text-muted); font-weight: 400; font-size: 70%; margin-left: 10px; }
+  .hero-title {
+    font-size: 15px; color: var(--hw-orange-deep); font-weight: 600;
+    margin: 10px 0 24px; letter-spacing: 0.3px;
+  }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 14px;
+    font-size: 13px; color: var(--text-muted); margin-bottom: 24px;
+  }
+  .hero-meta span::before { content:"·"; margin-right:6px; color:var(--hw-orange); font-weight:700; }
+  .hero-meta span:first-child::before { content:""; margin:0; }
   .hero-summary {
-    margin-top: 24px;
-    font-size: 14.5px;
-    color: #1F2937;
-    line-height: 1.85;
+    font-size: 14.5px; color: var(--hw-charcoal); line-height: 1.85;
     background: var(--hw-orange-light);
     border-left: 4px solid var(--hw-orange);
-    padding: 18px 22px;
-    border-radius: 0 8px 8px 0;
+    padding: 18px 22px; border-radius: 0 8px 8px 0;
+    max-width: 680px;
   }
   .hero-summary strong { color: var(--hw-orange-deep); }
 
-  /* ── Section ── */
-  .section { margin-bottom: 56px; }
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-size: 9px; color: var(--hw-orange-deep);
+    letter-spacing: 0.18em; text-transform: uppercase;
+    margin-bottom: 24px; display: flex; align-items: center; gap: 12px; font-weight: 700;
+  }
+  .section-label::after { content:''; flex:1; height:2px; background:var(--hw-orange); max-width:80px; }
   .section-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--hw-orange-deep);
-    margin-bottom: 24px;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--hw-orange);
-    display: inline-block;
+    font-size: 28px; color: var(--hw-black);
+    margin-bottom: 28px; line-height: 1.2;
+    font-weight: 800; letter-spacing: -0.4px;
   }
 
-  /* ── JD Fit summary ── */
+  /* ── JD FIT ── */
   .fit-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    margin-bottom: 32px;
+    display: grid; grid-template-columns: repeat(2,1fr); gap: 12px;
   }
   .fit-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
+    background: var(--bg-card); border: 1px solid var(--border);
     border-left: 3px solid var(--hw-orange);
-    border-radius: 6px;
-    padding: 14px 16px;
+    border-radius: 6px; padding: 14px 16px;
   }
   .fit-card-label {
-    font-size: 10.5px;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    margin-bottom: 6px;
+    font-size: 10.5px; font-weight: 700; color: var(--text-muted);
+    text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 6px;
   }
-  .fit-card-value {
-    font-size: 13.5px;
-    color: var(--text);
-    font-weight: 500;
-    line-height: 1.5;
-  }
+  .fit-card-value { font-size: 13px; color: var(--text); font-weight: 500; line-height: 1.5; }
 
-  /* ── Project card ── */
+  /* ── PROJECT CARD ── */
   .project-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px 28px 24px;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px 28px 0;
     margin-bottom: 18px;
     transition: box-shadow 0.2s, border-color 0.2s;
+    overflow: hidden;
   }
   .project-card:hover {
-    box-shadow: 0 4px 24px rgba(243, 115, 33, 0.10);
+    box-shadow: 0 4px 24px rgba(243,115,33,0.1);
     border-color: var(--hw-orange-mid);
-  }
-  .project-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 14px;
   }
   .project-tag {
-    display: inline-block;
-    background: var(--hw-orange-light);
-    color: var(--hw-orange-deep);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 11px;
-    border-radius: 20px;
-    border: 1px solid var(--hw-orange-mid);
-    white-space: nowrap;
-    letter-spacing: 0.3px;
+    display: inline-block; background: var(--hw-orange-light);
+    color: var(--hw-orange-deep); font-size: 11px; font-weight: 700;
+    padding: 4px 11px; border-radius: 20px; border: 1px solid var(--hw-orange-mid);
+    letter-spacing: 0.3px; margin-bottom: 10px;
   }
-  .project-title {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--hw-black);
-    margin: 10px 0 4px;
-    line-height: 1.4;
-  }
-  .project-company {
-    font-size: 13px;
-    color: var(--text-muted);
-  }
+  .project-title { font-size: 17px; font-weight: 700; color: var(--hw-black); margin-bottom: 4px; line-height: 1.35; }
+  .project-company { font-size: 12.5px; color: var(--text-muted); margin-bottom: 16px; }
 
-  /* ── Work / Role / Impact rows ── */
+  /* ── WRI TABLE ── */
   .wri-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
-    margin-top: 16px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    overflow: hidden;
+    margin-top: 4px; border: 1px solid var(--border);
+    border-radius: 8px; overflow: hidden;
   }
-  .wri-row { display: grid; grid-template-columns: 120px 1fr; }
+  .wri-row { display: grid; grid-template-columns: 110px 1fr; }
   .wri-row + .wri-row { border-top: 1px solid var(--border); }
   .wri-label {
-    background: var(--bg-section);
-    padding: 14px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--hw-charcoal);
-    text-transform: uppercase;
-    letter-spacing: 0.6px;
-    display: flex;
-    align-items: flex-start;
+    background: var(--bg-section); padding: 14px;
+    font-size: 10.5px; font-weight: 700; color: var(--hw-charcoal);
+    text-transform: uppercase; letter-spacing: 0.6px;
+    display: flex; align-items: flex-start;
   }
-  .wri-content {
-    padding: 14px 18px;
-    font-size: 13.5px;
-    color: #374151;
-  }
-  .wri-content ul { list-style: none; padding: 0; }
-  .wri-content ul li {
-    padding: 3px 0 3px 14px;
-    position: relative;
-    line-height: 1.65;
-  }
+  .wri-content { padding: 14px 18px; font-size: 13px; color: #374151; }
+  .wri-content ul { list-style: none; }
+  .wri-content ul li { padding: 3px 0 3px 14px; position: relative; line-height: 1.65; }
   .wri-content ul li::before {
-    content: "·";
-    position: absolute;
-    left: 2px;
-    color: var(--hw-orange);
-    font-weight: 700;
+    content:"·"; position:absolute; left:2px;
+    color:var(--hw-orange); font-weight:700;
   }
 
-  /* ── Impact badges ── */
-  .impact-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding: 14px 18px;
-  }
+  /* ── BADGES ── */
+  .impact-badges { display:flex; flex-wrap:wrap; gap:8px; padding:14px 18px; }
   .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 12.5px;
-    font-weight: 600;
+    display:inline-flex; align-items:center; gap:6px;
+    padding:6px 12px; border-radius:6px; font-size:12px; font-weight:600;
   }
-  .badge-orange { background: var(--hw-orange-light); color: var(--hw-orange-deep); border: 1px solid var(--hw-orange-mid); }
-  .badge-green  { background: #ECFDF5; color: var(--success); border: 1px solid #A7F3D0; }
-  .badge-amber  { background: #FFFBEB; color: var(--warn); border: 1px solid #FDE68A; }
-  .badge::before { content: "→"; font-size: 11px; }
+  .badge::before { content:"→"; font-size:10px; }
+  .badge-orange { background:var(--hw-orange-light); color:var(--hw-orange-deep); border:1px solid var(--hw-orange-mid); }
+  .badge-green  { background:#ECFDF5; color:var(--success); border:1px solid #A7F3D0; }
+  .badge-amber  { background:#FFFBEB; color:var(--warn); border:1px solid #FDE68A; }
 
-  /* ── How I Think (insight boxes) ── */
-  .insight-box {
-    background: var(--hw-black);
-    color: #fff;
-    border-radius: 12px;
-    padding: 28px 32px;
-    margin-bottom: 12px;
-    border-left: 4px solid var(--hw-orange);
-  }
-  .insight-box h3 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--hw-orange);
-  }
-  .insight-box p {
-    font-size: 14px;
-    line-height: 1.85;
-    color: #E5E7EB;
-  }
-  .insight-box.style-2 { background: #1A1F2B; }
-  .insight-box.style-3 { background: #161B26; }
-
-  /* ── Timeline ── */
-  .timeline-item {
-    display: grid;
-    grid-template-columns: 140px 1fr;
-    gap: 0;
-    margin-bottom: 4px;
-  }
-  .timeline-period {
-    font-size: 12px;
-    color: var(--text-muted);
-    padding-top: 3px;
-  }
-  .timeline-content {
-    border-left: 2px solid var(--hw-orange-mid);
-    padding: 2px 0 22px 22px;
-    position: relative;
-  }
-  .timeline-content::before {
-    content: "";
-    position: absolute;
-    left: -5px;
-    top: 8px;
-    width: 8px;
-    height: 8px;
-    background: var(--hw-orange);
-    border-radius: 50%;
-  }
-  .timeline-role {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--hw-black);
-  }
-  .timeline-company {
-    font-size: 13px;
-    color: var(--hw-orange-deep);
-    margin: 2px 0 6px;
-    font-weight: 500;
-  }
-  .timeline-desc {
-    font-size: 13px;
-    color: var(--text-muted);
-  }
-
-  /* ── Skills ── */
-  .skill-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
-  }
-  .skill-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 18px;
-  }
-  .skill-card-title {
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--hw-orange-deep);
-    text-transform: uppercase;
-    letter-spacing: 1.2px;
-    margin-bottom: 10px;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .skill-tag {
-    background: var(--bg-section);
-    color: #374151;
-    font-size: 12px;
-    padding: 4px 9px;
-    border-radius: 4px;
-    border: 1px solid var(--border-light);
-  }
-  .skill-tag.highlight {
-    background: var(--hw-orange-light);
-    color: var(--hw-orange-deep);
-    border-color: var(--hw-orange-mid);
-    font-weight: 600;
-  }
-
-  /* ── Project gallery ── */
+  /* ── GALLERY ── */
   .gallery {
-    padding: 14px 18px 18px;
-    border-top: 1px solid var(--border);
-    background: var(--bg-section);
+    padding: 14px 18px 18px; border-top: 1px solid var(--border);
+    background: var(--bg-section); margin-top: 0;
   }
   .gallery-label {
-    font-size: 10.5px;
-    font-weight: 700;
-    color: var(--hw-charcoal);
-    text-transform: uppercase;
-    letter-spacing: 0.8px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 10px; font-weight: 700; color: var(--hw-charcoal);
+    text-transform: uppercase; letter-spacing: 0.8px;
+    margin-bottom: 10px; display: flex; align-items: center; gap: 8px;
   }
   .gallery-label::after {
-    content: "보안상 일부 흐림 처리";
-    background: var(--border);
-    color: var(--text-muted);
-    font-size: 10px;
-    font-weight: 500;
-    padding: 2px 8px;
-    border-radius: 10px;
-    text-transform: none;
-    letter-spacing: 0;
+    content:"보안상 일부 흐림 처리";
+    background:var(--border); color:var(--text-muted);
+    font-size:10px; font-weight:500; padding:2px 8px; border-radius:10px;
+    text-transform:none; letter-spacing:0;
   }
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
+  .gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; }
   .gallery-item {
-    position: relative;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: #fff;
-    cursor: zoom-in;
-    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+    position:relative; aspect-ratio:4/3; overflow:hidden;
+    border-radius:6px; border:1px solid var(--border); background:#fff;
+    cursor:zoom-in; transition:transform 0.18s, box-shadow 0.18s, border-color 0.18s;
   }
-  .gallery-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(243, 115, 33, 0.18);
-    border-color: var(--hw-orange-mid);
-  }
-  .gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-  }
+  .gallery-item:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(243,115,33,0.18); border-color:var(--hw-orange-mid); }
+  .gallery-item img { width:100%; height:100%; object-fit:cover; object-position:top center; display:block; }
   .gallery-caption {
-    position: absolute;
-    bottom: 0; left: 0; right: 0;
-    background: linear-gradient(0deg, rgba(15,20,25,0.78) 0%, rgba(15,20,25,0) 100%);
-    color: #fff;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 18px 10px 8px;
-    line-height: 1.3;
+    position:absolute; bottom:0; left:0; right:0;
+    background:linear-gradient(0deg,rgba(15,20,25,0.78) 0%,rgba(15,20,25,0) 100%);
+    color:#fff; font-size:11px; font-weight:600; padding:18px 10px 8px; line-height:1.3;
   }
 
-  /* ── Lightbox ── */
+  /* ── HOW I THINK ── */
+  .insight-box {
+    background: var(--hw-black); color:#fff; border-radius:12px;
+    padding:28px 32px; margin-bottom:12px;
+    border-left:4px solid var(--hw-orange);
+  }
+  .insight-box h3 { font-size:15px; font-weight:700; margin-bottom:12px; color:var(--hw-orange); }
+  .insight-box p { font-size:13.5px; line-height:1.85; color:#E5E7EB; }
+  .insight-box.style-2 { background:#1A1F2B; }
+  .insight-box.style-3 { background:#161B26; }
+
+  /* ── TIMELINE ── */
+  .timeline { position:relative; }
+  .timeline::before {
+    content:''; position:absolute; left:16px; top:8px; bottom:8px;
+    width:1px; background:var(--border);
+  }
+  .timeline-item { position:relative; padding-left:52px; margin-bottom:36px; }
+  .timeline-dot {
+    position:absolute; left:9px; top:6px;
+    width:15px; height:15px; border-radius:50%;
+    background:var(--bg-card); border:2px solid var(--border); transition:border-color 0.2s;
+  }
+  .timeline-item:hover .timeline-dot { border-color:var(--hw-orange); }
+  .timeline-item.current .timeline-dot {
+    background:var(--hw-orange); border-color:var(--hw-orange-deep);
+    box-shadow:0 0 0 4px rgba(243,115,33,0.15);
+  }
+  .timeline-period { font-size:11px; color:var(--text-light); letter-spacing:0.06em; margin-bottom:4px; }
+  .timeline-role { font-size:15px; font-weight:700; color:var(--hw-black); }
+  .timeline-company { font-size:13px; color:var(--hw-orange-deep); margin:2px 0 6px; font-weight:600; }
+  .timeline-desc { font-size:13px; color:var(--text-muted); line-height:1.6; }
+
+  /* ── SKILLS ── */
+  .skill-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:12px; }
+  .skill-card { background:var(--bg-card); border:1px solid var(--border); border-radius:8px; padding:18px; }
+  .skill-card-title { font-size:11px; font-weight:700; color:var(--hw-orange-deep); text-transform:uppercase; letter-spacing:1.2px; margin-bottom:10px; }
+  .skill-tags { display:flex; flex-wrap:wrap; gap:6px; }
+  .skill-tag { background:var(--bg-section); color:#374151; font-size:12px; padding:4px 9px; border-radius:4px; border:1px solid var(--border-light); }
+  .skill-tag.highlight { background:var(--hw-orange-light); color:var(--hw-orange-deep); border-color:var(--hw-orange-mid); font-weight:600; }
+
+  /* ── LIGHTBOX ── */
   .lightbox {
-    position: fixed;
-    inset: 0;
-    background: rgba(15, 20, 25, 0.92);
-    z-index: 1000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 40px;
+    position:fixed; inset:0; background:rgba(10,15,30,0.95); z-index:300;
+    display:none; align-items:center; justify-content:center; padding:40px;
   }
-  .lightbox.active { display: flex; }
-  .lightbox-img {
-    max-width: 90vw;
-    max-height: 85vh;
-    object-fit: contain;
-    border-radius: 6px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-  }
+  .lightbox.active { display:flex; }
+  .lightbox-img { max-width:90vw; max-height:85vh; object-fit:contain; border-radius:6px; box-shadow:0 20px 60px rgba(0,0,0,0.5); }
   .lightbox-caption {
-    position: absolute;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #E5E7EB;
-    font-size: 13px;
-    background: rgba(0,0,0,0.5);
-    padding: 6px 14px;
-    border-radius: 16px;
+    position:absolute; bottom:24px; left:50%; transform:translateX(-50%);
+    color:#E5E7EB; font-size:13px; background:rgba(0,0,0,0.5);
+    padding:6px 14px; border-radius:16px;
   }
-  .lightbox-close,
-  .lightbox-nav {
-    position: absolute;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.18);
-    color: #fff;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    font-size: 20px;
-    transition: background 0.15s;
-    user-select: none;
+  .lightbox-counter { position:absolute; top:28px; left:28px; color:#9CA3AF; font-size:12px; letter-spacing:1px; }
+  .lightbox-close, .lightbox-nav {
+    position:absolute; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+    color:#fff; width:44px; height:44px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    cursor:pointer; font-size:20px; transition:background 0.15s; user-select:none;
   }
-  .lightbox-close:hover,
-  .lightbox-nav:hover { background: var(--hw-orange); border-color: var(--hw-orange); }
-  .lightbox-close { top: 24px; right: 24px; }
-  .lightbox-prev  { left: 24px;  top: 50%; transform: translateY(-50%); }
-  .lightbox-next  { right: 24px; top: 50%; transform: translateY(-50%); }
-  .lightbox-counter {
-    position: absolute;
-    top: 28px;
-    left: 28px;
-    color: #9CA3AF;
-    font-size: 12px;
-    letter-spacing: 1px;
-  }
+  .lightbox-close:hover, .lightbox-nav:hover { background:var(--hw-orange); border-color:var(--hw-orange); }
+  .lightbox-close { top:24px; right:24px; }
+  .lightbox-prev { left:24px; top:50%; transform:translateY(-50%); }
+  .lightbox-next { right:24px; top:50%; transform:translateY(-50%); }
 
-  /* ── Footer ── */
-  .footer {
-    text-align: center;
-    font-size: 12px;
-    color: var(--text-muted);
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
-  }
-  .footer span { color: var(--hw-orange-deep); font-weight: 600; }
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width:4px; }
+  ::-webkit-scrollbar-track { background:var(--bg); }
+  ::-webkit-scrollbar-thumb { background:var(--hw-orange-mid); border-radius:2px; }
 
-  @media (max-width: 640px) {
-    .wri-row { grid-template-columns: 1fr; }
-    .timeline-item { grid-template-columns: 1fr; }
-    .project-header { flex-direction: column; }
-    .fit-grid { grid-template-columns: 1fr; }
-    .hero-name { font-size: 30px; }
-    .hero-name-en { display: block; margin-left: 0; font-size: 18px; margin-top: 4px; }
-    .gallery-grid { grid-template-columns: 1fr; }
-    .lightbox-prev, .lightbox-next { width: 38px; height: 38px; }
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .sidebar { display:none; }
+    .main { margin-left:0; }
+    .hero, .page-section { padding:40px 24px; }
+    .fit-grid { grid-template-columns:1fr; }
+    .gallery-grid { grid-template-columns:1fr; }
+    .wri-row { grid-template-columns:1fr; }
   }
 </style>
 </head>
 <body>
 
-<!-- Topbar -->
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="topbar-brand">
-      <div class="topbar-logo">JW</div>
-      <span class="topbar-label">Portfolio · Jee In Wang</span>
-    </div>
-    <span class="topbar-target">한화투자증권 · 미래전략실 전략팀</span>
+<!-- SIDEBAR -->
+<nav class="sidebar">
+  <div class="sidebar-avatar">
+    <img src="images/81694B70-E1BD-444F-B226-00B9192E45F3_4_5005_c.jpeg" alt="왕지인">
   </div>
-</div>
+  <div class="sidebar-name">왕지인</div>
+  <div class="sidebar-title">Digital Asset · Strategic Investment</div>
 
-<div class="container">
+  <div class="sidebar-section-label">Navigation</div>
+  <a href="#fit"      class="nav-item active"><span class="nav-dot"></span>Position Fit</a>
+  <a href="#projects" class="nav-item"><span class="nav-dot"></span>Selected Projects</a>
+  <a href="#think"    class="nav-item"><span class="nav-dot"></span>How I Think</a>
+  <a href="#timeline" class="nav-item"><span class="nav-dot"></span>Career Timeline</a>
+  <a href="#skills"   class="nav-item"><span class="nav-dot"></span>Skills</a>
 
-  <!-- ── Hero ── -->
-  <div class="hero">
-    <div class="hero-name">왕지인<span class="hero-name-en">Jee In Wang</span></div>
+  <div class="sidebar-section-label">Target</div>
+  <div class="sidebar-target">한화투자증권<br>미래전략실 전략팀</div>
+
+  <div class="sidebar-contact">
+    <div class="contact-item"><span class="contact-icon">✉</span>janewang@naver.com</div>
+    <div class="contact-item"><span class="contact-icon">☏</span>010-9509-1179</div>
+    <div class="contact-item"><span class="contact-icon">◎</span>Seoul, Korea</div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">Portfolio · 한화투자증권 지원 2026</div>
+    <h1 class="hero-name">왕지인<span>Jee In Wang</span></h1>
     <div class="hero-title">Digital Asset · Strategic Investment Professional</div>
     <div class="hero-meta">
-      <span>janewang@naver.com</span>
-      <span>+82 10-9509-1179</span>
-      <span>Seoul, Korea</span>
       <span>CFA Lv.2 Passed · Lv.3 Candidate (Private Markets Pathway)</span>
       <span>OPIc AL · TOEIC 990</span>
+      <span>5년 9개월 경력</span>
     </div>
     <div class="hero-summary">
       5년 9개월간 <strong>NHN(인하우스 전략 컨설팅)</strong>, <strong>AIA생명(외국계 보험·금융)</strong>, <strong>롯데이노베이트(ERP 컨설팅)</strong>를 거치며
@@ -560,11 +388,12 @@
       비교 분석한 경험을 보유하고 있습니다. CFA Level 3 Private Markets Pathway를 통해
       <strong>Digital Assets · Tokenization</strong> 영역을 체계적으로 학습 중이며, 글로벌 파트너십 검토에 필요한 영어 커뮤니케이션 역량을 갖추고 있습니다.
     </div>
-  </div>
+  </section>
 
-  <!-- ── JD Fit ── -->
-  <div class="section">
-    <div class="section-title">Position Fit · 미래전략실 전략팀</div>
+  <!-- POSITION FIT -->
+  <section id="fit" class="page-section">
+    <div class="section-label">Position Fit</div>
+    <h2 class="section-title">미래전략실 전략팀 적합성</h2>
     <div class="fit-grid">
       <div class="fit-card">
         <div class="fit-card-label">신사업 전략기획</div>
@@ -575,7 +404,7 @@
         <div class="fit-card-value">채널코퍼레이션, 엠클라우드브릿지 등 지분투자·제휴 검토</div>
       </div>
       <div class="fit-card">
-        <div class="fit-card-label">디지털 자산 / RWA · ST</div>
+        <div class="fit-card-label">디지털 자산 / RWA · STO</div>
         <div class="fit-card-value">조각투자(STO 한국형 실증) 4개 자산 클래스 심화 분석</div>
       </div>
       <div class="fit-card">
@@ -591,37 +420,31 @@
         <div class="fit-card-value">CFA Lv.2 Passed · Lv.3 Candidate · OPIc AL · TOEIC 990</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ── Selected Projects ── -->
-  <div class="section">
-    <div class="section-title">Selected Projects</div>
+  <!-- SELECTED PROJECTS -->
+  <section id="projects" class="page-section">
+    <div class="section-label">Selected Projects</div>
+    <h2 class="section-title">주요 프로젝트</h2>
 
-    <!-- PROJECT 1: 온투업 (P2P 온라인투자연계금융) 시장 리서치 -->
+    <!-- P1: 온투업 -->
     <div class="project-card">
-      <div class="project-header">
-        <div>
-          <span class="project-tag">디지털 금융 · 온투업 · 규제</span>
-          <div class="project-title">온라인투자연계금융업(P2P 온투업) 시장 구조 · 규제 · 업체별 대출잔액 리서치</div>
-          <div class="project-company">NHN 전략기획팀 · 2023.04 (v1.0)</div>
-        </div>
-      </div>
+      <span class="project-tag">디지털 금융 · 온투업 · 규제</span>
+      <div class="project-title">온라인투자연계금융업(P2P 온투업) 시장 구조 · 규제 · 업체별 대출잔액 리서치</div>
+      <div class="project-company">NHN 전략기획팀 · 2023.04 (v1.0)</div>
       <div class="wri-grid">
         <div class="wri-row">
           <div class="wri-label">Work Scope</div>
-          <div class="wri-content">
-            온라인투자연계금융업법('온투법', 2020.08.27 시행) 이후 제도권 진입한 P2P 온투업 시장의
-            업무 흐름 · 주요 기관 · 법규 · 시장 잔액 추이를 통합 분석하여, 디지털 대출 · 대체자산 신사업 검토에 활용
-          </div>
+          <div class="wri-content">온투법(2020.08.27 시행) 이후 제도권 진입한 P2P 온투업 시장의 업무 흐름 · 주요 기관 · 법규 · 시장 잔액 추이를 통합 분석하여, 디지털 대출 · 대체자산 신사업 검토에 활용</div>
         </div>
         <div class="wri-row">
           <div class="wri-label">My Role</div>
           <div class="wri-content">
             <ul>
-              <li><strong>업무 흐름 매핑:</strong> 투자자 → 예치기관 → 온투업자 → 중앙기록관리기관 → 차입자 자금 흐름 구조화, 수수료 산정(월 신규 대출금액의 0.24%) 분석</li>
-              <li><strong>온투법 세부 분석:</strong> 동일차입자 대출한도(채권 잔액 1천억 미만 시 7%/1천억 이상 70억) · 금리 규제(대부업법 27.9% 미만) · 투자한도(일반 5백만/소득적격 2천만/총 3천만 부동산 1천만)</li>
-              <li><strong>주체별 등록요건 정리:</strong> 예치기관·온투업자·중앙기록관리기관 6개 요건(자기자본 최소 5억 · 인력 · 물적설비 · 사업계획 · 임원 · 대주주)</li>
-              <li><strong>시장 트래킹:</strong> 누적 연계대출 15조 1,703억, 누적 상환 13조 9,223억, 23.04.05 잔액 1조 1,580억 — 월별 추이 변동 요인(제2금융권 금리 부담, 부동산 침체, 투자한도 규제) 진단</li>
+              <li><strong>업무 흐름 매핑:</strong> 투자자 → 예치기관 → 온투업자 → 중앙기록관리기관 → 차입자 자금 흐름 구조화, 수수료 분석</li>
+              <li><strong>온투법 세부 분석:</strong> 동일차입자 대출한도 · 금리 규제 · 투자한도(일반 5백만/소득적격 2천만) 정리</li>
+              <li><strong>주체별 등록요건:</strong> 예치기관·온투업자·중앙기록관리기관 6개 요건 정리</li>
+              <li><strong>시장 트래킹:</strong> 누적 연계대출 15조 1,703억 · 잔액 1조 1,580억 — 월별 추이 변동 요인 진단</li>
               <li>출처 통합 검증: P2P Center · 데일리펀딩 · 온투NOW 데이터 크로스체크</li>
             </ul>
           </div>
@@ -637,56 +460,40 @@
       <div class="gallery">
         <div class="gallery-label">Sample Outputs</div>
         <div class="gallery-grid">
-          <div class="gallery-item"
-               data-src="./images/aia_p2p_01_institutions_blurred.png"
-               data-caption="업무 흐름별 주요 기관 — 예치/온투업자/중앙기록관리기관">
-            <img src="./images/aia_p2p_01_institutions_blurred.png"
-                 alt="업무 흐름별 주요 기관" loading="lazy">
+          <div class="gallery-item" data-src="./images/aia_p2p_01_institutions_blurred.png" data-caption="업무 흐름별 주요 기관 — 예치/온투업자/중앙기록관리기관">
+            <img src="./images/aia_p2p_01_institutions_blurred.png" alt="업무 흐름별 주요 기관" loading="lazy">
             <div class="gallery-caption">업무 흐름별 주요 기관</div>
           </div>
-          <div class="gallery-item"
-               data-src="./images/aia_p2p_02_law_details_blurred.png"
-               data-caption="온투법 세부 및 유의사항 — 한도 · 금리 · 투자한도">
-            <img src="./images/aia_p2p_02_law_details_blurred.png"
-                 alt="온투법 세부 및 유의사항" loading="lazy">
+          <div class="gallery-item" data-src="./images/aia_p2p_02_law_details_blurred.png" data-caption="온투법 세부 및 유의사항 — 한도 · 금리 · 투자한도">
+            <img src="./images/aia_p2p_02_law_details_blurred.png" alt="온투법 세부 및 유의사항" loading="lazy">
             <div class="gallery-caption">온투법 세부 및 유의사항</div>
           </div>
-          <div class="gallery-item"
-               data-src="./images/aia_p2p_03_market_status_blurred.png"
-               data-caption="시장 현황 — 누적 연계대출잔액 · 월별 추이">
-            <img src="./images/aia_p2p_03_market_status_blurred.png"
-                 alt="시장 현황 - 주요 업체별 대출잔액" loading="lazy">
+          <div class="gallery-item" data-src="./images/aia_p2p_03_market_status_blurred.png" data-caption="시장 현황 — 누적 연계대출잔액 · 월별 추이">
+            <img src="./images/aia_p2p_03_market_status_blurred.png" alt="시장 현황" loading="lazy">
             <div class="gallery-caption">시장 현황 — 누적 잔액 · 월별 추이</div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- PROJECT 2: 조각투자 시장 리서치 (디지털자산 RWA 직결) -->
+    <!-- P2: 조각투자 RWA -->
     <div class="project-card">
-      <div class="project-header">
-        <div>
-          <span class="project-tag">조각투자 · STO · RWA</span>
-          <div class="project-title">조각투자 시장 심화 리서치 — 미술품 · 한우 · 명품 · 금 4개 자산 클래스 비교</div>
-          <div class="project-company">NHN 전략기획팀 · 2023.03 (v1.0)</div>
-        </div>
-      </div>
+      <span class="project-tag">조각투자 · STO · RWA</span>
+      <div class="project-title">조각투자 시장 심화 리서치 — 미술품 · 한우 · 명품 · 금 4개 자산 클래스 비교</div>
+      <div class="project-company">NHN 전략기획팀 · 2023.03 (v1.0)</div>
       <div class="wri-grid">
         <div class="wri-row">
           <div class="wri-label">Work Scope</div>
-          <div class="wri-content">
-            금융당국 조각투자 가이드라인(2022.04) · 토큰증권(ST) 발행·유통 규율 정비방안(2023.02) 시행을 앞두고
-            실물자산 기반 토큰화(RWA) 비즈니스 모델의 성장성 · 규제 리스크 · 유동성 구조를 비교 분석하여 그룹 신규 사업 기회 검토에 활용
-          </div>
+          <div class="wri-content">금융당국 조각투자 가이드라인(2022.04) · 토큰증권(ST) 발행·유통 규율 정비방안(2023.02) 시행을 앞두고 실물자산 기반 토큰화(RWA) 비즈니스 모델의 성장성 · 규제 리스크 · 유동성 구조를 비교 분석하여 그룹 신규 사업 기회 검토에 활용</div>
         </div>
         <div class="wri-row">
           <div class="wri-label">My Role</div>
           <div class="wri-content">
             <ul>
-              <li><strong>플랫폼별 비즈니스 모델 비교:</strong> 서울옥션(미술품 경매·상장사) · 뱅카우·소투(한우) · 트레져러(명품·금) — 수익증권 vs. 투자계약증권 구조, 수수료 모델, 거래소 연계 여부 분석</li>
-              <li><strong>유동성 메커니즘 진단:</strong> 발행 후 2차 유통 시장 형성 가능성, 환매 정책, KRX 디지털증권 시장 연계 시나리오</li>
-              <li><strong>규제 환경 모니터링:</strong> 금감원·금융위 조각투자 가이드라인, 자본시장법 개정 방향, 혁신금융서비스 지정 사례(뮤직카우 · 카사 · 펀블 등)</li>
-              <li><strong>투자자 행태 분석:</strong> MZ세대 대체자산 진입 패턴, 플랫폼별 DAU · 리텐션 추이 · 평균 투자 단가 비교</li>
+              <li><strong>플랫폼별 비즈니스 모델 비교:</strong> 서울옥션(미술품) · 뱅카우·소투(한우) · 트레져러(명품·금) — 수익증권 vs. 투자계약증권, 수수료 모델, 거래소 연계 여부</li>
+              <li><strong>유동성 메커니즘 진단:</strong> 발행 후 2차 유통 시장, 환매 정책, KRX 디지털증권 시장 연계 시나리오</li>
+              <li><strong>규제 환경 모니터링:</strong> 금감원·금융위 가이드라인, 자본시장법 개정 방향, 혁신금융서비스 지정 사례</li>
+              <li><strong>투자자 행태 분석:</strong> MZ세대 대체자산 진입 패턴, 플랫폼별 DAU · 리텐션 비교</li>
               <li>Build vs. Partnership vs. Invest 프레임으로 그룹 진입 옵션 시뮬레이션</li>
             </ul>
           </div>
@@ -701,21 +508,15 @@
       </div>
     </div>
 
-    <!-- PROJECT 2: 전략적 파트너십/M&A -->
+    <!-- P3: M&A -->
     <div class="project-card">
-      <div class="project-header">
-        <div>
-          <span class="project-tag">전략적 파트너십 · 투자 검토</span>
-          <div class="project-title">이종 산업 10+ 딜 타당성 분석 — 인하우스 전략 컨설팅</div>
-          <div class="project-company">NHN 전략기획팀 · 2022–2025</div>
-        </div>
-      </div>
+      <span class="project-tag">전략적 파트너십 · 투자 검토</span>
+      <div class="project-title">이종 산업 10+ 딜 타당성 분석 — 인하우스 전략 컨설팅</div>
+      <div class="project-company">NHN 전략기획팀 · 2022–2025</div>
       <div class="wri-grid">
         <div class="wri-row">
           <div class="wri-label">Work Scope</div>
-          <div class="wri-content">
-            Chairman 레벨 Ad-hoc 요청 기반, 잠재 투자·파트너십·인수 대상 기업에 대한 신속한 타당성 분석 및 전략적 적합성 판단 지원
-          </div>
+          <div class="wri-content">Chairman 레벨 Ad-hoc 요청 기반, 잠재 투자·파트너십·인수 대상 기업에 대한 신속한 타당성 분석 및 전략적 적합성 판단 지원</div>
         </div>
         <div class="wri-row">
           <div class="wri-label">My Role</div>
@@ -723,10 +524,10 @@
             <ul>
               <li><strong>채널코퍼레이션(채널톡) · 엠클라우드브릿지:</strong> B2B SaaS 지분투자 검토, ARR·NRR 중심 밸류에이션</li>
               <li><strong>루나소프트(現 블룸AI):</strong> AI · 마케팅테크 기업 성장성 · 기술 경쟁력 분석</li>
-              <li><strong>밀도베이커리(F&B):</strong> 공개 매출 데이터 기반 Bottom-up 잠재 성장 모델링, 지분구조 조사</li>
+              <li><strong>밀도베이커리(F&B):</strong> Bottom-up 잠재 성장 모델링, 지분구조 조사</li>
               <li><strong>싸이더스 · 해피문데이:</strong> 엔터 · 헬스케어 기업 밸류에이션 · 제휴 시너지 산출</li>
               <li><strong>메타넷 · ESS:</strong> 에너지 산업 시장 리서치 · 지분구조 분석</li>
-              <li>Build vs. Buy · Partnership 프레임 적용, 시나리오별 비용 · 수익 시뮬레이션</li>
+              <li>Build vs. Buy · Partnership 프레임, 시나리오별 비용 · 수익 시뮬레이션</li>
             </ul>
           </div>
         </div>
@@ -740,22 +541,15 @@
       </div>
     </div>
 
-    <!-- PROJECT 3: 결제·핀테크 시장 (금융투자업과 연결) -->
+    <!-- P4: 결제·핀테크 -->
     <div class="project-card">
-      <div class="project-header">
-        <div>
-          <span class="project-tag">핀테크 · 디지털 결제</span>
-          <div class="project-title">국내 결제 시장 Bottom-up 분석 및 빅테크 페이 모니터링 체계 구축</div>
-          <div class="project-company">NHN 전략기획팀 · 2022–2025</div>
-        </div>
-      </div>
+      <span class="project-tag">핀테크 · 디지털 결제</span>
+      <div class="project-title">국내 결제 시장 Bottom-up 분석 및 빅테크 페이 모니터링 체계 구축</div>
+      <div class="project-company">NHN 전략기획팀 · 2022–2025</div>
       <div class="wri-grid">
         <div class="wri-row">
           <div class="wri-label">Work Scope</div>
-          <div class="wri-content">
-            국내 결제 시장 규모를 공개 데이터로 Bottom-up 산출하고, 빅테크 페이의 성장 추이를 지속 모니터링하여
-            경영진 의사결정에 필요한 시장 인텔리전스를 정기 제공
-          </div>
+          <div class="wri-content">국내 결제 시장 규모를 공개 데이터로 Bottom-up 산출하고, 빅테크 페이의 성장 추이를 지속 모니터링하여 경영진 의사결정에 필요한 시장 인텔리전스를 정기 제공</div>
         </div>
         <div class="wri-row">
           <div class="wri-label">My Role</div>
@@ -763,7 +557,7 @@
             <ul>
               <li>VAN · PG사 재무제표 분석 → 업체별 처리액 역산, Bottom-up 결제시장 규모 모델 구축</li>
               <li>네이버페이 · 카카오페이 결제액 분기별 트래킹 체계 설계 · 운영</li>
-              <li>결제 생태계(오프라인 VAN, PG, 이커머스, 오더솔루션) 구조 분석 및 신규 진입 기회 도출</li>
+              <li>결제 생태계(오프라인 VAN, PG, 이커머스, 오더솔루션) 구조 분석</li>
               <li>Python DART 크롤링 자동화로 재무 데이터 수집 프로세스 구축</li>
             </ul>
           </div>
@@ -778,22 +572,15 @@
       </div>
     </div>
 
-    <!-- PROJECT 4: AIA Market Intelligence (규제 동향 + IT 전략) -->
+    <!-- P5: AIA Market Intelligence -->
     <div class="project-card">
-      <div class="project-header">
-        <div>
-          <span class="project-tag">Market Intelligence · 규제 분석</span>
-          <div class="project-title">금융업 Market Intelligence 체계 구축 및 경영진 보고</div>
-          <div class="project-company">AIA생명 테크기획팀 · 2025.04–현재</div>
-        </div>
-      </div>
+      <span class="project-tag">Market Intelligence · 규제 분석</span>
+      <div class="project-title">금융업 Market Intelligence 체계 구축 및 경영진 보고</div>
+      <div class="project-company">AIA생명 테크기획팀 · 2025.04–현재</div>
       <div class="wri-grid">
         <div class="wri-row">
           <div class="wri-label">Work Scope</div>
-          <div class="wri-content">
-            체계적 Market Intelligence 프레임워크가 부재한 상황에서, 금융업계 AI · 디지털 · 규제 동향을 정기 리서치하여
-            CTO · 경영진 의사결정에 활용 가능한 형태로 전달하는 체계를 직접 설계 · 운영
-          </div>
+          <div class="wri-content">체계적 Market Intelligence 프레임워크가 부재한 상황에서, 금융업계 AI · 디지털 · 규제 동향을 정기 리서치하여 CTO · 경영진 의사결정에 활용 가능한 형태로 전달하는 체계를 직접 설계 · 운영</div>
         </div>
         <div class="wri-row">
           <div class="wri-label">My Role</div>
@@ -817,22 +604,15 @@
       </div>
     </div>
 
-    <!-- PROJECT 5: 계열사 P&L (관리회계/실적관리) -->
+    <!-- P6: P&L -->
     <div class="project-card">
-      <div class="project-header">
-        <div>
-          <span class="project-tag">P&L 관리 · 손익 개선</span>
-          <div class="project-title">계열사 5개사 KPI 체계 구축 및 실적 개선</div>
-          <div class="project-company">NHN 전략기획팀 · 2022–2025</div>
-        </div>
-      </div>
+      <span class="project-tag">P&L 관리 · 손익 개선</span>
+      <div class="project-title">계열사 5개사 KPI 체계 구축 및 실적 개선</div>
+      <div class="project-company">NHN 전략기획팀 · 2022–2025</div>
       <div class="wri-grid">
         <div class="wri-row">
           <div class="wri-label">Work Scope</div>
-          <div class="wri-content">
-            수익성 관리 체계가 부재한 계열사(협업툴 · 웹툰 · 여행 · 교육 · 패션)의 비용 구조를 재진단하고,
-            KPI 프레임을 직접 설계 · 도입하여 실질적 손익 개선 주도
-          </div>
+          <div class="wri-content">수익성 관리 체계가 부재한 계열사(협업툴 · 웹툰 · 여행 · 교육 · 패션)의 비용 구조를 재진단하고, KPI 프레임을 직접 설계 · 도입하여 실질적 손익 개선 주도</div>
         </div>
         <div class="wri-row">
           <div class="wri-label">My Role</div>
@@ -856,85 +636,74 @@
       </div>
     </div>
 
-  </div>
+  </section>
 
-  <!-- ── How I Think ── -->
-  <div class="section">
-    <div class="section-title">How I Think</div>
+  <!-- HOW I THINK -->
+  <section id="think" class="page-section">
+    <div class="section-label">How I Think</div>
+    <h2 class="section-title">사고방식</h2>
 
     <div class="insight-box">
       <h3>① 사업 구조를 빠르게 해체한다</h3>
-      <p>
-        어떤 산업이든 수익원 → 비용 구조 → BEP 순으로 분해하면 "해볼 만한가"가 보입니다.
-        재무제표 · 거래액 · 사용자 수를 Bottom-up으로 수치화해 감이 아닌 구조로 투자 · 파트너십 판단 근거를 만듭니다.
-        RWA 4종 비교, VAN · PG사 처리액 역산이 이 방식의 결과물입니다.
-      </p>
+      <p>어떤 산업이든 수익원 → 비용 구조 → BEP 순으로 분해하면 "해볼 만한가"가 보입니다. 재무제표 · 거래액 · 사용자 수를 Bottom-up으로 수치화해 감이 아닌 구조로 투자 · 파트너십 판단 근거를 만듭니다. RWA 4종 비교, VAN · PG사 처리액 역산이 이 방식의 결과물입니다.</p>
     </div>
-
     <div class="insight-box style-2">
       <h3>② 규제 · 시나리오로 리스크를 먼저 본다</h3>
-      <p>
-        디지털 자산처럼 규제가 빠르게 형성되는 영역에서는 낙관적 전망보다 "이 딜이 왜 안 될 수 있는가"를 먼저 정리합니다.
-        BEP 달성 조건 · 비용 구조 취약점 · 규제 리스크를 시나리오별로 시뮬레이션해 의사결정의 범위를 좁힙니다.
-      </p>
+      <p>디지털 자산처럼 규제가 빠르게 형성되는 영역에서는 낙관적 전망보다 "이 딜이 왜 안 될 수 있는가"를 먼저 정리합니다. BEP 달성 조건 · 비용 구조 취약점 · 규제 리스크를 시나리오별로 시뮬레이션해 의사결정의 범위를 좁힙니다.</p>
     </div>
-
     <div class="insight-box style-3">
       <h3>③ 판단 근거는 실행 언어로 마무리한다</h3>
-      <p>
-        분석이 투자 결정으로, 검토가 계약 조건과 PMI 액션으로 연결될 때 비로소 완성됩니다.
-        경영진이 무엇을 궁금해할지 먼저 그리고, 판단에 필요한 것만 남기는 방식으로 자료를 구성합니다.
-      </p>
+      <p>분석이 투자 결정으로, 검토가 계약 조건과 PMI 액션으로 연결될 때 비로소 완성됩니다. 경영진이 무엇을 궁금해할지 먼저 그리고, 판단에 필요한 것만 남기는 방식으로 자료를 구성합니다.</p>
     </div>
-  </div>
+  </section>
 
-  <!-- ── Timeline ── -->
-  <div class="section">
-    <div class="section-title">Career Timeline</div>
-    <div class="timeline-item">
-      <div class="timeline-period">2025.04 – 현재</div>
-      <div class="timeline-content">
-        <div class="timeline-role">대리 (1년 1개월)</div>
+  <!-- CAREER TIMELINE -->
+  <section id="timeline" class="page-section">
+    <div class="section-label">Career</div>
+    <h2 class="section-title">경력 타임라인</h2>
+    <div class="timeline">
+      <div class="timeline-item current">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2025.04 – 현재</div>
+        <div class="timeline-role">대리 · 1년 1개월</div>
         <div class="timeline-company">AIA생명 · 테크기획팀</div>
         <div class="timeline-desc">Market Intelligence · IT 중장기 전략 · C-level 보고 · 금융 IT 기획 전반</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-period">2021.12 – 2025.03</div>
-      <div class="timeline-content">
-        <div class="timeline-role">전임 (3년 4개월)</div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2021.12 – 2025.03</div>
+        <div class="timeline-role">전임 · 3년 4개월</div>
         <div class="timeline-company">NHN · 전략기획팀</div>
         <div class="timeline-desc">신사업 기회 발굴 · M&A · 전략적 파트너십 검토 · 계열사 P&L · 핀테크 · RWA 리서치</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-period">2020.08 – 2021.12</div>
-      <div class="timeline-content">
-        <div class="timeline-role">선임 (1년 4개월)</div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2020.08 – 2021.12</div>
+        <div class="timeline-role">선임 · 1년 4개월</div>
         <div class="timeline-company">롯데이노베이트 · ERP컨설팅팀 PI담당</div>
         <div class="timeline-desc">프로세스 혁신 컨설팅 · DT 전략 · 롯데제과 S&OP · 롯데면세점 물류 PI</div>
       </div>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-period">2014 – 2020</div>
-      <div class="timeline-content">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-period">2014 – 2020</div>
         <div class="timeline-role">학사</div>
         <div class="timeline-company">서강대학교 · 경영학 / 미국문화 복수전공</div>
         <div class="timeline-desc">EM Strasbourg Business School 교환학생 (7개월)</div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ── Skills ── -->
-  <div class="section">
-    <div class="section-title">Skills & Certifications</div>
+  <!-- SKILLS -->
+  <section id="skills" class="page-section">
+    <div class="section-label">Skills &amp; Certifications</div>
+    <h2 class="section-title">역량 · 자격</h2>
     <div class="skill-grid">
       <div class="skill-card">
         <div class="skill-card-title">전략 · 분석</div>
         <div class="skill-tags">
           <span class="skill-tag highlight">신사업 타당성 분석</span>
           <span class="skill-tag highlight">전략적 파트너십 검토</span>
-          <span class="skill-tag">M&A 스크리닝</span>
+          <span class="skill-tag">M&amp;A 스크리닝</span>
           <span class="skill-tag">시나리오 시뮬레이션</span>
           <span class="skill-tag">Bottom-up 모델링</span>
           <span class="skill-tag">Build vs. Buy</span>
@@ -990,64 +759,61 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="footer">
-    왕지인 · janewang@naver.com · +82 10-9509-1179<br>
-    <span>Digital Asset · Strategic Investment Portfolio</span>
-  </div>
+</div><!-- /.main -->
 
-</div>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="이미지 확대 보기">
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
   <div class="lightbox-counter" id="lbCounter"></div>
-  <div class="lightbox-close" id="lbClose" aria-label="닫기">×</div>
-  <div class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="이전 이미지">‹</div>
+  <div class="lightbox-close" id="lbClose">×</div>
+  <div class="lightbox-nav lightbox-prev" id="lbPrev">‹</div>
   <img class="lightbox-img" id="lbImg" alt="">
-  <div class="lightbox-nav lightbox-next" id="lbNext" aria-label="다음 이미지">›</div>
+  <div class="lightbox-nav lightbox-next" id="lbNext">›</div>
   <div class="lightbox-caption" id="lbCaption"></div>
 </div>
 
 <script>
 (function() {
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lbImg');
-  const lbCaption = document.getElementById('lbCaption');
-  const lbCounter = document.getElementById('lbCounter');
-  const lbClose = document.getElementById('lbClose');
-  const lbPrev = document.getElementById('lbPrev');
-  const lbNext = document.getElementById('lbNext');
+  /* ── Active nav on scroll ── */
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('.nav-item[href^="#"]');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navItems.forEach(n => {
+          n.classList.toggle('active', n.getAttribute('href') === '#' + e.target.id);
+          n.querySelector('.nav-dot').style.background =
+            n.classList.contains('active') ? 'var(--hw-orange)' : 'rgba(255,255,255,0.25)';
+        });
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => observer.observe(s));
 
-  // group items by parent project card so prev/next cycles only within the same gallery
+  /* ── Lightbox ── */
+  const lb       = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lbImg');
+  const lbCaption= document.getElementById('lbCaption');
+  const lbCounter= document.getElementById('lbCounter');
+
   const galleries = Array.from(document.querySelectorAll('.gallery')).map(g =>
     Array.from(g.querySelectorAll('.gallery-item')).map(item => ({
-      src: item.dataset.src,
-      caption: item.dataset.caption || ''
+      src: item.dataset.src, caption: item.dataset.caption || ''
     }))
   );
-
-  // map every gallery-item DOM node back to its (galleryIdx, itemIdx)
-  let activeGallery = [];
-  let activeIdx = 0;
+  let activeGallery = [], activeIdx = 0;
 
   document.querySelectorAll('.gallery').forEach((g, gi) => {
     g.querySelectorAll('.gallery-item').forEach((item, ii) => {
-      item.addEventListener('click', () => openLB(gi, ii));
+      item.addEventListener('click', () => {
+        activeGallery = galleries[gi]; activeIdx = ii;
+        render(); lb.classList.add('active'); document.body.style.overflow = 'hidden';
+      });
     });
   });
 
-  function openLB(gi, ii) {
-    activeGallery = galleries[gi];
-    activeIdx = ii;
-    render();
-    lb.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeLB() {
-    lb.classList.remove('active');
-    document.body.style.overflow = '';
-  }
+  function closeLB() { lb.classList.remove('active'); document.body.style.overflow = ''; }
   function nav(d) {
     if (!activeGallery.length) return;
     activeIdx = (activeIdx + d + activeGallery.length) % activeGallery.length;
@@ -1055,17 +821,15 @@
   }
   function render() {
     const cur = activeGallery[activeIdx];
-    lbImg.src = cur.src;
-    lbImg.alt = cur.caption;
+    lbImg.src = cur.src; lbImg.alt = cur.caption;
     lbCaption.textContent = cur.caption;
     lbCounter.textContent = (activeIdx + 1) + ' / ' + activeGallery.length;
   }
 
-  lbClose.addEventListener('click', closeLB);
-  lbPrev.addEventListener('click', () => nav(-1));
-  lbNext.addEventListener('click', () => nav(1));
+  document.getElementById('lbClose').addEventListener('click', closeLB);
+  document.getElementById('lbPrev').addEventListener('click', () => nav(-1));
+  document.getElementById('lbNext').addEventListener('click', () => nav(1));
   lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
-
   document.addEventListener('keydown', e => {
     if (!lb.classList.contains('active')) return;
     if (e.key === 'Escape') closeLB();
@@ -1073,7 +837,6 @@
     else if (e.key === 'ArrowRight') nav(1);
   });
 
-  // mobile swipe
   let touchX = null;
   lb.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
   lb.addEventListener('touchend', e => {
