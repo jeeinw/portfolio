@@ -3,840 +3,746 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>왕지인 | Toss Strategic Finance</title>
-<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<title>왕지인 — Toss Central FP&A</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
 <style>
-  :root {
-    --toss-blue:      #3182F6;
-    --toss-blue-deep: #1B64DA;
-    --toss-blue-light:#EBF3FE;
-    --toss-blue-mid:  #C9DEFF;
-    --toss-dark:      #191F28;
-    --sidebar-bg:     #191F28;
-    --sidebar-text:   #E8EDF5;
-    --sidebar-muted:  #8B96A5;
-    --bg:             #F7F9FC;
-    --surface:        #FFFFFF;
-    --surface2:       #F0F4FA;
-    --border:         #D9E2EF;
-    --text:           #191F28;
-    --text-muted:     #4A5568;
-    --text-dim:       #8B96A5;
-    --accent:         var(--toss-blue);
-    --radius:         8px;
-  }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    font-size: 14px;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
-  }
+/* ── tokens ── */
+:root {
+  --blue:       #3182F6;
+  --blue-deep:  #1B64DA;
+  --blue-light: #EBF3FE;
+  --blue-mid:   #C9DEFF;
+  --dark:       #191F28;
+  --gray-800:   #2C3344;
+  --gray-600:   #4E5968;
+  --gray-400:   #8B95A1;
+  --gray-200:   #E5E8EB;
+  --gray-100:   #F2F4F6;
+  --bg:         #F7F9FC;
+  --surface:    #FFFFFF;
+  --sidebar-bg: #18212E;
+  --sd-low:  0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.07);
+  --sd-mid:  0 2px 8px rgba(0,0,0,0.05), 0 8px 28px rgba(0,0,0,0.09);
+  --r-sm:   10px;
+  --r-md:   16px;
+  --r-lg:   20px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--gray-800);
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
 
-  /* ─── SIDEBAR ─── */
-  .sidebar {
-    position: fixed;
-    top: 0; left: 0;
-    width: 260px;
-    height: 100vh;
-    background: var(--sidebar-bg);
-    display: flex;
-    flex-direction: column;
-    padding: 36px 24px 28px;
-    overflow-y: auto;
-    z-index: 100;
-  }
-  .sidebar-tag {
-    display: inline-block;
-    background: rgba(49,130,246,0.18);
-    color: var(--toss-blue);
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 3px;
-    margin-bottom: 20px;
-    border: 1px solid rgba(49,130,246,0.3);
-  }
-  .sidebar-avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 6px;
-    background: rgba(49,130,246,0.15);
-    margin-bottom: 14px;
-    overflow: hidden;
-    border: 2px solid rgba(49,130,246,0.25);
-  }
-  .sidebar-avatar img {
-    width: 100%; height: 100%; object-fit: cover; border-radius: 4px;
-  }
-  .sidebar-name {
-    font-size: 18px;
-    font-weight: 700;
-    color: #FFFFFF;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-  .sidebar-role {
-    font-size: 11px;
-    color: var(--sidebar-muted);
-    margin-top: 4px;
-    line-height: 1.5;
-  }
-  .sidebar-divider {
-    height: 1px;
-    background: rgba(255,255,255,0.08);
-    margin: 20px 0;
-  }
-  .sidebar-section-label {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(139,150,165,0.8);
-    margin-bottom: 8px;
-  }
-  nav ul { list-style: none; }
-  nav ul li { margin-bottom: 2px; }
-  nav ul li a {
-    display: block;
-    padding: 7px 10px;
-    border-radius: 5px;
-    color: var(--sidebar-muted);
-    text-decoration: none;
-    font-size: 12.5px;
-    font-weight: 500;
-    transition: all 0.15s;
-    border-left: 2px solid transparent;
-  }
-  nav ul li a:hover { color: var(--sidebar-text); background: rgba(255,255,255,0.06); }
-  nav ul li a.active {
-    color: #FFFFFF;
-    background: rgba(49,130,246,0.15);
-    border-left-color: var(--toss-blue);
-  }
-  .sidebar-contact {
-    margin-top: auto;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    font-size: 11px;
-    color: var(--sidebar-muted);
-    line-height: 1.8;
-  }
-  .sidebar-contact a { color: var(--toss-blue); text-decoration: none; }
-  .cfa-badge {
-    margin-top: 16px;
-    background: rgba(49,130,246,0.12);
-    border: 1px solid rgba(49,130,246,0.25);
-    border-radius: 6px;
-    padding: 10px 12px;
-  }
-  .cfa-badge-title {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.5);
-    margin-bottom: 4px;
-  }
-  .cfa-status {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--toss-blue);
-    background: rgba(49,130,246,0.15);
-    padding: 2px 7px;
-    border-radius: 3px;
-    display: inline-block;
-  }
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed; top: 0; left: 0;
+  width: 256px; height: 100vh;
+  background: var(--sidebar-bg);
+  display: flex; flex-direction: column;
+  padding: 32px 22px 26px;
+  overflow-y: auto;
+  z-index: 100;
+}
+.sidebar-tag {
+  display: inline-block;
+  font-size: 9.5px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--blue); background: rgba(49,130,246,0.15);
+  border-radius: 5px; padding: 3px 8px;
+  margin-bottom: 22px;
+  border: 1px solid rgba(49,130,246,0.25);
+}
+.avatar-wrap {
+  width: 68px; height: 68px;
+  border-radius: var(--r-sm); overflow: hidden;
+  margin-bottom: 14px;
+  border: 2px solid rgba(255,255,255,0.1);
+}
+.avatar-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.sb-name {
+  font-size: 17px; font-weight: 700; color: #FFFFFF;
+  letter-spacing: -0.02em; line-height: 1.25;
+}
+.sb-role {
+  font-size: 11px; color: rgba(255,255,255,0.45);
+  margin-top: 5px; line-height: 1.55;
+}
+.sb-div { height: 1px; background: rgba(255,255,255,0.08); margin: 20px 0; }
+.sb-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,0.25);
+  margin-bottom: 8px;
+}
+nav ul { list-style: none; }
+nav li { margin-bottom: 1px; }
+nav a {
+  display: block; padding: 7px 10px;
+  border-radius: 8px; color: rgba(255,255,255,0.45);
+  text-decoration: none; font-size: 12.5px; font-weight: 500;
+  transition: all 0.14s; border-left: 2px solid transparent;
+}
+nav a:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.06); }
+nav a.active { color: #FFF; background: rgba(49,130,246,0.18); border-left-color: var(--blue); }
+.sb-cfa {
+  margin-top: auto; padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+.sb-cfa-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.28);
+  margin-bottom: 5px;
+}
+.sb-cfa-val {
+  display: inline-block;
+  font-size: 11px; font-weight: 600; color: var(--blue);
+  background: rgba(49,130,246,0.14);
+  padding: 2px 8px; border-radius: 4px;
+}
+.sb-contact {
+  margin-top: 14px;
+  font-size: 10.5px; color: rgba(255,255,255,0.3);
+  line-height: 1.9;
+}
+.sb-contact a { color: var(--blue); text-decoration: none; }
 
-  /* ─── MAIN ─── */
-  .main { margin-left: 260px; }
+/* ── MAIN ── */
+.main { margin-left: 256px; }
 
-  /* ─── HERO ─── */
-  .hero {
-    padding: 56px 48px 36px;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-    max-width: 820px;
-  }
-  .hero-eyebrow {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--toss-blue);
-    margin-bottom: 14px;
-  }
-  .hero-name {
-    font-size: 36px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--toss-dark);
-    line-height: 1.1;
-    margin-bottom: 8px;
-  }
-  .hero-sub {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-muted);
-    margin-bottom: 22px;
-  }
-  .hero-statement {
-    font-size: 14.5px;
-    line-height: 1.85;
-    color: var(--text-muted);
-    max-width: 680px;
-    border-left: 3px solid var(--toss-blue);
-    padding-left: 18px;
-  }
+/* ── HERO ── */
+.hero {
+  background: var(--surface);
+  padding: 52px 48px 38px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  max-width: 860px;
+}
+.hero-eye {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 14px;
+}
+.hero-name {
+  font-size: 34px; font-weight: 800; letter-spacing: -0.03em;
+  color: var(--dark); line-height: 1.1; margin-bottom: 6px;
+}
+.hero-sub {
+  font-size: 13.5px; font-weight: 500; color: var(--gray-400);
+  margin-bottom: 22px;
+}
+.hero-stmt {
+  font-size: 14.5px; line-height: 1.85; color: var(--gray-600);
+  max-width: 680px;
+  padding-left: 18px;
+  border-left: 3px solid var(--blue);
+}
 
-  /* ─── CAREER STRIP ─── */
-  .career-strip {
-    max-width: 820px;
-    padding: 14px 48px 16px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 14px;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-    font-size: 11.5px;
-  }
-  .career-strip-item { display: flex; align-items: center; gap: 5px; }
-  .strip-company { color: var(--text-muted); font-weight: 600; letter-spacing: 0.01em; }
-  .strip-role { color: var(--text-dim); font-weight: 400; }
-  .strip-role::before { content: ' · '; }
-  .strip-sep { color: var(--border); font-size: 13px; line-height: 1; }
-  .strip-toss .strip-company { color: var(--toss-blue); }
-  .strip-toss .strip-role { color: var(--toss-blue); opacity: 0.7; }
+/* ── CAREER STRIP ── */
+.career-strip {
+  background: var(--surface);
+  max-width: 860px;
+  padding: 13px 48px 15px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px;
+  font-size: 11.5px;
+}
+.cs-item { display: flex; align-items: center; gap: 4px; }
+.cs-co { color: var(--gray-400); font-weight: 600; }
+.cs-ro { color: var(--gray-200); font-weight: 400; }
+.cs-ro::before { content: '·'; margin-right: 4px; color: var(--gray-200); }
+.cs-sep { color: var(--gray-200); }
+.cs-cfa .cs-co { color: var(--blue); }
+.cs-cfa .cs-ro { color: var(--blue); opacity: 0.6; }
 
-  /* ─── SECTIONS ─── */
-  section {
-    max-width: 820px;
-    padding: 48px 48px 40px;
-    border-bottom: 1px solid var(--border);
-    background: var(--surface);
-  }
-  section:last-child { border-bottom: none; }
+/* ── SECTIONS ── */
+section {
+  max-width: 860px;
+  padding: 48px 48px 44px;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  background: var(--bg);
+}
+section:last-child { border-bottom: none; }
+.sec-label {
+  font-size: 9.5px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 5px;
+}
+.sec-title {
+  font-size: 22px; font-weight: 700; letter-spacing: -0.02em;
+  color: var(--dark); margin-bottom: 28px; line-height: 1.25;
+}
 
-  .section-label {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--toss-blue);
-    margin-bottom: 6px;
-  }
-  .section-title {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--toss-dark);
-    margin-bottom: 28px;
-    line-height: 1.25;
-  }
+/* ── JD FIT CARDS ── (shadow, no border) */
+.fit-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+.fit-card {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  padding: 20px 22px;
+  box-shadow: var(--sd-low);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.fit-card:hover {
+  box-shadow: var(--sd-mid);
+  transform: translateY(-2px);
+}
+.fit-card-tag {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blue);
+  margin-bottom: 7px;
+}
+.fit-card-title {
+  font-size: 13px; font-weight: 700; color: var(--dark);
+  margin-bottom: 6px; line-height: 1.4;
+}
+.fit-card-body {
+  font-size: 12px; color: var(--gray-600); line-height: 1.68;
+}
 
-  /* ─── JD FIT CARDS ─── */
-  .fit-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-  .fit-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 18px 20px;
-    border-top: 3px solid var(--toss-blue);
-    transition: box-shadow 0.15s;
-  }
-  .fit-card:hover { box-shadow: 0 4px 16px rgba(49,130,246,0.10); }
-  .fit-card-label {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--toss-blue);
-    margin-bottom: 6px;
-  }
-  .fit-card-title {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--toss-dark);
-    margin-bottom: 6px;
-    line-height: 1.4;
-  }
-  .fit-card-body {
-    font-size: 12.5px;
-    color: var(--text-muted);
-    line-height: 1.65;
-  }
+/* ── PROJECT CARDS ── */
+.project {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  padding: 28px 30px 24px;
+  margin-bottom: 16px;
+  box-shadow: var(--sd-low);
+  transition: box-shadow 0.2s;
+}
+.project:last-child { margin-bottom: 0; }
+.project:hover { box-shadow: var(--sd-mid); }
+.proj-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 12px; margin-bottom: 4px;
+}
+.proj-title {
+  font-size: 15px; font-weight: 700; color: var(--dark);
+  letter-spacing: -0.01em; line-height: 1.3;
+}
+.proj-period {
+  font-size: 11px; color: var(--gray-400); white-space: nowrap;
+  font-weight: 500;
+  background: var(--gray-100); padding: 2px 9px; border-radius: 5px;
+}
+.proj-org {
+  font-size: 11.5px; font-weight: 600; color: var(--blue); margin-bottom: 14px;
+}
+.wri { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.wri tr { border-top: 1px solid var(--gray-200); }
+.wri tr:first-child { border-top: none; }
+.wri td { padding: 8px 8px; vertical-align: top; line-height: 1.65; }
+.wri-l {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blue);
+  white-space: nowrap; width: 52px; padding-right: 14px;
+}
+.wri-r { color: var(--gray-600); }
+.proj-gallery {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;
+  margin-top: 20px;
+}
+.proj-gallery img {
+  width: 100%; aspect-ratio: 16/10; object-fit: cover;
+  border-radius: var(--r-sm);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  cursor: pointer;
+  transition: transform 0.18s, box-shadow 0.18s;
+}
+.proj-gallery img:hover { transform: scale(1.02); box-shadow: var(--sd-mid); }
 
-  /* ─── PROJECT CARDS ─── */
-  .project-card {
-    background: var(--surface2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 24px 26px;
-    margin-bottom: 18px;
-    border-left: 4px solid var(--toss-blue);
-  }
-  .project-card:last-child { margin-bottom: 0; }
-  .project-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
-    gap: 12px;
-  }
-  .project-title {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--toss-dark);
-    letter-spacing: -0.01em;
-    line-height: 1.3;
-  }
-  .project-period {
-    font-size: 11px;
-    color: var(--text-dim);
-    white-space: nowrap;
-    font-weight: 500;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    padding: 2px 8px;
-    border-radius: 3px;
-  }
-  .project-org {
-    font-size: 11.5px;
-    color: var(--toss-blue);
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
-  .wri-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12.5px;
-    margin-top: 4px;
-  }
-  .wri-table tr { border-top: 1px solid var(--border); }
-  .wri-table tr:first-child { border-top: none; }
-  .wri-table td { padding: 8px 10px; vertical-align: top; line-height: 1.6; }
-  .wri-label {
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--toss-blue);
-    white-space: nowrap;
-    width: 58px;
-    padding-right: 14px;
-  }
-  .wri-body { color: var(--text-muted); }
+/* lightbox */
+.lb { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.82); z-index:999; align-items:center; justify-content:center; }
+.lb.open { display:flex; }
+.lb img { max-width:90vw; max-height:88vh; border-radius:var(--r-md); box-shadow:0 20px 60px rgba(0,0,0,0.5); }
+.lb-close { position:absolute; top:20px; right:24px; font-size:28px; color:#fff; cursor:pointer; line-height:1; opacity:0.7; }
+.lb-close:hover { opacity:1; }
 
-  /* ─── HOW I THINK ─── */
-  .think-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 14px;
-    margin-bottom: 24px;
-  }
-  .think-card {
-    background: var(--toss-blue-light);
-    border: 1px solid var(--toss-blue-mid);
-    border-radius: var(--radius);
-    padding: 18px;
-  }
-  .think-card-num {
-    font-size: 24px;
-    font-weight: 800;
-    color: var(--toss-blue);
-    opacity: 0.35;
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-  .think-card-title {
-    font-size: 12.5px;
-    font-weight: 700;
-    color: var(--toss-dark);
-    margin-bottom: 6px;
-  }
-  .think-card-body {
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.65;
-  }
-  .think-block {
-    background: var(--surface2);
-    border-left: 3px solid var(--toss-blue);
-    padding: 16px 20px;
-    border-radius: 0 var(--radius) var(--radius) 0;
-    font-size: 13.5px;
-    color: var(--text-muted);
-    line-height: 1.8;
-  }
+/* ── HOW I THINK ── */
+.think-grid {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 12px;
+  margin-bottom: 20px;
+}
+.think-card {
+  background: var(--blue-light);
+  border-radius: var(--r-md);
+  padding: 20px 18px;
+  box-shadow: 0 1px 4px rgba(49,130,246,0.08);
+}
+.think-num {
+  font-size: 26px; font-weight: 800; color: var(--blue);
+  opacity: 0.28; line-height: 1; margin-bottom: 8px;
+}
+.think-card-title {
+  font-size: 12.5px; font-weight: 700; color: var(--dark); margin-bottom: 6px;
+}
+.think-card-body { font-size: 12px; color: var(--gray-600); line-height: 1.7; }
+.think-stmt {
+  background: var(--surface);
+  border-radius: var(--r-md);
+  padding: 18px 22px;
+  box-shadow: var(--sd-low);
+  font-size: 13.5px; color: var(--gray-600); line-height: 1.85;
+  border-left: 3px solid var(--blue);
+  border-top-left-radius: 0; border-bottom-left-radius: 0;
+}
 
-  /* ─── CAREER TIMELINE ─── */
-  .timeline { position: relative; }
-  .timeline::before {
-    content: '';
-    position: absolute;
-    left: 7px; top: 6px; bottom: 6px;
-    width: 2px;
-    background: var(--border);
-  }
-  .timeline-item {
-    position: relative;
-    padding-left: 30px;
-    margin-bottom: 28px;
-  }
-  .timeline-item:last-child { margin-bottom: 0; }
-  .timeline-dot {
-    position: absolute;
-    left: 0; top: 5px;
-    width: 16px; height: 16px;
-    border-radius: 50%;
-    background: var(--surface);
-    border: 2px solid var(--border);
-  }
-  .timeline-item.active .timeline-dot {
-    border-color: var(--toss-blue);
-    background: var(--toss-blue);
-  }
-  .timeline-period {
-    font-size: 10.5px;
-    font-weight: 600;
-    color: var(--text-dim);
-    letter-spacing: 0.04em;
-    margin-bottom: 2px;
-  }
-  .timeline-company {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--toss-dark);
-    margin-bottom: 2px;
-  }
-  .timeline-role {
-    font-size: 12px;
-    color: var(--toss-blue);
-    font-weight: 600;
-    margin-bottom: 5px;
-  }
-  .timeline-desc {
-    font-size: 12.5px;
-    color: var(--text-muted);
-    line-height: 1.65;
-  }
+/* ── CAREER TIMELINE ── */
+.timeline { position: relative; }
+.timeline::before {
+  content: ''; position: absolute;
+  left: 7px; top: 6px; bottom: 6px;
+  width: 2px; background: var(--gray-200);
+}
+.tl-item { position: relative; padding-left: 30px; margin-bottom: 30px; }
+.tl-item:last-child { margin-bottom: 0; }
+.tl-dot {
+  position: absolute; left: 0; top: 5px;
+  width: 16px; height: 16px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--gray-200);
+}
+.tl-item.current .tl-dot { border-color: var(--blue); background: var(--blue); }
+.tl-period { font-size: 10.5px; font-weight: 600; color: var(--gray-400); margin-bottom: 2px; }
+.tl-co { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 2px; }
+.tl-role { font-size: 12px; color: var(--blue); font-weight: 600; margin-bottom: 5px; }
+.tl-desc { font-size: 12.5px; color: var(--gray-600); line-height: 1.65; }
 
-  /* ─── SKILLS ─── */
-  .skills-table { width: 100%; border-collapse: collapse; }
-  .skills-table tr { border-top: 1px solid var(--border); }
-  .skills-table tr:first-child { border-top: none; }
-  .skills-table td { padding: 12px 10px; vertical-align: top; }
-  .skill-cat {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--toss-blue);
-    width: 130px;
-    white-space: nowrap;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .skill-tag {
-    background: var(--toss-blue-light);
-    border: 1px solid var(--toss-blue-mid);
-    color: var(--toss-blue-deep);
-    font-size: 11.5px;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 4px;
-  }
-  .skill-tag.highlight {
-    background: var(--toss-blue);
-    border-color: var(--toss-blue);
-    color: #FFFFFF;
-    font-weight: 600;
-  }
+/* ── SKILLS ── */
+.skills-tbl { width: 100%; border-collapse: collapse; }
+.skills-tbl tr { border-top: 1px solid var(--gray-200); }
+.skills-tbl tr:first-child { border-top: none; }
+.skills-tbl td { padding: 13px 8px; vertical-align: top; }
+.sk-cat {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--blue); width: 130px; white-space: nowrap;
+}
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  background: var(--gray-100); color: var(--gray-600);
+  font-size: 11.5px; font-weight: 500;
+  padding: 3px 11px; border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.tag.hi {
+  background: var(--blue); color: #FFF; font-weight: 600;
+  box-shadow: 0 2px 8px rgba(49,130,246,0.25);
+}
 
-  /* ─── LANG TOGGLE ─── */
-  .lang-toggle {
-    position: fixed;
-    top: 16px; right: 20px;
-    z-index: 200;
-    display: flex;
-    gap: 4px;
-    background: rgba(255,255,255,0.92);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 3px;
-    backdrop-filter: blur(4px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
-  .lang-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 4px;
-    color: var(--text-dim);
-    font-family: inherit;
-    transition: all 0.15s;
-  }
-  .lang-btn.active { background: var(--toss-blue); color: #fff; }
+/* ── LANG TOGGLE ── */
+.lang-toggle {
+  position: fixed; top: 14px; right: 18px; z-index: 200;
+  display: flex; gap: 3px;
+  background: rgba(255,255,255,0.95);
+  border-radius: 10px; padding: 3px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  backdrop-filter: blur(8px);
+}
+.lang-btn {
+  background: none; border: none; cursor: pointer;
+  font-size: 11px; font-weight: 600; padding: 4px 11px;
+  border-radius: 7px; color: var(--gray-400);
+  font-family: inherit; transition: all 0.15s;
+}
+.lang-btn.active { background: var(--blue); color: #fff; }
 
-  @media (max-width: 768px) {
-    .sidebar { display: none; }
-    .main { margin-left: 0; }
-    .hero, section { padding: 32px 24px; }
-    .fit-grid, .think-grid { grid-template-columns: 1fr; }
-  }
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+  .main { margin-left: 0; }
+  .hero, section { padding: 32px 20px; }
+  .fit-grid, .think-grid { grid-template-columns: 1fr; }
+  .proj-gallery { grid-template-columns: repeat(2,1fr); }
+}
 </style>
 </head>
 <body>
 
-<!-- ─── SIDEBAR ─── -->
+<!-- SIDEBAR -->
 <aside class="sidebar">
   <div class="sidebar-tag">Toss Application 2026</div>
-  <div class="sidebar-avatar">
-    <img src="images/81694B70-E1BD-444F-B226-00B9192E45F3_4_5005_c.jpeg" alt="왕지인">
+  <div class="avatar-wrap">
+    <img src="images/profile.jpg" alt="왕지인">
   </div>
-  <div class="sidebar-name">왕지인</div>
-  <div class="sidebar-role">토스 · Central FP&A<br>Strategic Finance Manager</div>
-  <div class="sidebar-divider"></div>
-  <div class="sidebar-section-label">Navigation</div>
+  <div class="sb-name">왕지인</div>
+  <div class="sb-role">Central FP&amp;A<br>Strategic Finance Manager</div>
+  <div class="sb-div"></div>
+  <div class="sb-label">Navigation</div>
   <nav>
     <ul>
       <li><a href="#fit" class="active" data-i18n="nav.fit">JD Fit</a></li>
-      <li><a href="#projects" data-i18n="nav.projects">Selected Projects</a></li>
+      <li><a href="#work" data-i18n="nav.work">Selected Work</a></li>
       <li><a href="#think" data-i18n="nav.think">How I Think</a></li>
       <li><a href="#career" data-i18n="nav.career">Career</a></li>
       <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
     </ul>
   </nav>
-  <div class="cfa-badge">
-    <div class="cfa-badge-title">CFA Program</div>
-    <span class="cfa-status">Level 3 · 2026.08</span>
+  <div class="sb-cfa">
+    <div class="sb-cfa-label">CFA Program</div>
+    <span class="sb-cfa-val">Level 3 · 2026.08</span>
   </div>
-  <div class="sidebar-contact">
+  <div class="sb-contact">
     jeein.wang@gmail.com<br>
-    <a href="#">LinkedIn</a>
+    010-9509-1179<br>
+    OPIc AL · TOEIC 990
   </div>
 </aside>
 
-<!-- ─── LANG TOGGLE ─── -->
+<!-- LANG TOGGLE -->
 <div class="lang-toggle">
   <button class="lang-btn active" onclick="setLang('ko')">KO</button>
   <button class="lang-btn" onclick="setLang('en')">EN</button>
 </div>
 
-<!-- ─── MAIN ─── -->
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLb()">
+  <span class="lb-close">✕</span>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<!-- MAIN -->
 <div class="main">
 
   <!-- HERO -->
   <div class="hero">
-    <div class="hero-eyebrow" data-i18n="hero.eyebrow">Strategy × Finance × Automation</div>
+    <div class="hero-eye" data-i18n="hero.eye">Finance × Strategy × Automation</div>
     <div class="hero-name" data-i18n="hero.name">왕지인</div>
-    <div class="hero-sub" data-i18n="hero.sub">5년 9개월 · 전략기획 → 재무분석 → FP&A</div>
-    <div class="hero-statement" data-i18n="hero.statement">
-      숫자 뒤의 사업 구조를 읽고, 전사 재무계획을 사업 드라이버로 분해해 경영진이 의사결정할 수 있는 언어로 번역합니다. AIA생명에서 계열사 간 연결 P&L을 직접 관리하고, NHN에서 중장기 사업계획과 재무 모델링을 설계한 경험 위에, 데이터 자동화 역량까지 더해 토스의 Central FP&A에서 새로운 임팩트를 만들고자 합니다.
+    <div class="hero-sub" data-i18n="hero.sub">5년 9개월 · NHN 전략기획 → AIA생명 테크기획 · CFA L3</div>
+    <div class="hero-stmt" data-i18n="hero.stmt">
+      결제·PG·SaaS·보험·증권까지, 토스가 영위하는 사업 대부분에 실무 접점이 있습니다. NHN에서는 5개 계열사 연결 P&L을 계정 단위까지 분해해 드라이버를 찾았고, AIA에서는 자회사 설립 재무 모델을 처음부터 끝까지 혼자 만들었습니다. 숫자가 왜 틀어졌는지 설명하고, 그 다음 선택지를 시나리오로 제시하는 것 — 토스 Central FP&A에서 계속하고 싶은 일입니다.
     </div>
   </div>
 
   <!-- CAREER STRIP -->
   <div class="career-strip">
-    <div class="career-strip-item"><span class="strip-company" data-i18n="strip.aia">AIA생명</span><span class="strip-role" data-i18n="strip.aia.role">테크기획 · 재무기획 연계</span></div>
-    <span class="strip-sep">·</span>
-    <div class="career-strip-item"><span class="strip-company">NHN</span><span class="strip-role" data-i18n="strip.nhn.role">전략기획 · M&A · 중장기계획</span></div>
-    <span class="strip-sep">·</span>
-    <div class="career-strip-item"><span class="strip-company" data-i18n="strip.lotte">롯데이노베이트</span><span class="strip-role" data-i18n="strip.lotte.role">ERP · PI 컨설팅</span></div>
-    <span class="strip-sep">·</span>
-    <div class="career-strip-item strip-toss"><span class="strip-company">CFA</span><span class="strip-role">Lv.3 Candidate</span></div>
+    <div class="cs-item"><span class="cs-co" data-i18n="cs.aia">AIA생명</span><span class="cs-ro" data-i18n="cs.aia.r">테크기획 · 자회사설립 · IT중장기계획</span></div>
+    <span class="cs-sep">·</span>
+    <div class="cs-item"><span class="cs-co">NHN</span><span class="cs-ro" data-i18n="cs.nhn.r">전략기획 · 연결P&L · M&A</span></div>
+    <span class="cs-sep">·</span>
+    <div class="cs-item"><span class="cs-co" data-i18n="cs.lotte">롯데이노베이트</span><span class="cs-ro" data-i18n="cs.lotte.r">PI 컨설팅</span></div>
+    <span class="cs-sep">·</span>
+    <div class="cs-item cs-cfa"><span class="cs-co">CFA</span><span class="cs-ro">Lv.3 Candidate</span></div>
   </div>
 
   <!-- JD FIT -->
   <section id="fit">
-    <div class="section-label" data-i18n="label.fit">Position Fit</div>
-    <div class="section-title" data-i18n="title.fit">토스가 찾는 인재 · 제가 가진 역량</div>
+    <div class="sec-label" data-i18n="lab.fit">JD Fit</div>
+    <div class="sec-title" data-i18n="tit.fit">여섯 가지 교차점</div>
     <div class="fit-grid">
+
       <div class="fit-card">
-        <div class="fit-card-label">Business Partner</div>
-        <div class="fit-card-title" data-i18n="fit.bp.title">전사 P&L · Business Driver 분석</div>
-        <div class="fit-card-body" data-i18n="fit.bp.body">AIA생명 계열사(AIA생명·AIA손보·AIA투자증권) 연결 P&L 직접 관리. 사업 단위별 드라이버 분해 → 경영진 보고 경험.</div>
+        <div class="fit-card-tag">Business Driver Analysis</div>
+        <div class="fit-card-title" data-i18n="f1.t">숫자 차이의 원인까지 내려가기</div>
+        <div class="fit-card-body" data-i18n="f1.b">NHN에서 두레이 인프라비 과다, 코미코 원가 구조 이상, 여행박사 광고 ROI 저하 — 각각 계정·원장 단위로 파고들어 실질 드라이버를 재정의했습니다. 단순 집계가 아니라 원인 규명까지.</div>
       </div>
+
       <div class="fit-card">
-        <div class="fit-card-label">Financial Modeling</div>
-        <div class="fit-card-title" data-i18n="fit.fm.title">재무 모델링 · 중장기 사업계획</div>
-        <div class="fit-card-body" data-i18n="fit.fm.body">NHN 중장기 3개년 사업계획 모델 설계. 신규 자회사 설립 시 End-to-End 재무 모델 독립 구축. DCF · Comps 밸류에이션 실무 적용.</div>
+        <div class="fit-card-tag">Scenario Modeling</div>
+        <div class="fit-card-title" data-i18n="f2.t">가정이 없을 때 모델 만들기</div>
+        <div class="fit-card-body" data-i18n="f2.b">페이코 3개년·두레이 5개년 경영계획에서 손익·B/S·현금흐름을 연결한 통합 모델을 직접 설계했습니다. 정답이 없는 상황에서 가정과 한계를 명시하고 시나리오를 구성하는 방식입니다.</div>
       </div>
+
       <div class="fit-card">
-        <div class="fit-card-label">Automation & Efficiency</div>
-        <div class="fit-card-title" data-i18n="fit.auto.title">Python 자동화 · 보고 효율화</div>
-        <div class="fit-card-body" data-i18n="fit.auto.body">반복 데이터 수집·집계 프로세스 Python 자동화로 주간 리포트 준비 시간 단축. pandas · requests 기반 파이프라인 구축.</div>
+        <div class="fit-card-tag">Multi-entity Consolidation</div>
+        <div class="fit-card-title" data-i18n="f3.t">계열사 연결 실무</div>
+        <div class="fit-card-body" data-i18n="f3.b">내부거래 제거, 외화환산(B/S 기말·P&L 평균환율 분리), 외부투자자 풋옵션이 자본에 미치는 영향까지. NHN 5개 계열사, AIA 계열사 P&L 관리로 연결 실무를 반복했습니다.</div>
       </div>
+
       <div class="fit-card">
-        <div class="fit-card-label">Multi-entity Consolidation</div>
-        <div class="fit-card-title" data-i18n="fit.consol.title">연결 재무 · 계열사 관리</div>
-        <div class="fit-card-body" data-i18n="fit.consol.body">복수 법인 간 내부거래 제거 · 연결 조정 실무. 토스의 멀티-엔티티 구조(토스뱅크·토스증권·토스페이먼츠 등) 대응 가능.</div>
+        <div class="fit-card-tag">Long-range Planning</div>
+        <div class="fit-card-title" data-i18n="f4.t">HQ 차원 중장기계획 수립</div>
+        <div class="fit-card-body" data-i18n="f4.b">AIA에서 IT 중장기계획을 시스템·조직·운영효율·예산 4개 축으로 구조화하고 핵심과제별 이행방안을 설계했습니다. 전략 문서가 실행으로 이어지는 구조를 만드는 일.</div>
       </div>
+
       <div class="fit-card">
-        <div class="fit-card-label">Strategy × Finance</div>
-        <div class="fit-card-title" data-i18n="fit.sf.title">전략기획 × 재무 통합 시각</div>
-        <div class="fit-card-body" data-i18n="fit.sf.body">NHN M&A 스크리닝 3.5년 + CFA L3 Private Markets. 사업 전략의 재무적 타당성을 동시에 검토하는 복합 역량 보유.</div>
+        <div class="fit-card-tag">Automation & Tools</div>
+        <div class="fit-card-title" data-i18n="f5.t">반복 작업을 구조로 바꾸기</div>
+        <div class="fit-card-body" data-i18n="f5.b">Python DART 크롤링으로 8개사 10년치 재무 데이터 처리를 3일에서 30분으로 줄였습니다. Azure 비용 분류, PPT 자동 변환까지 — 절약한 시간을 분석에 씁니다.</div>
       </div>
+
       <div class="fit-card">
-        <div class="fit-card-label">Executive Communication</div>
-        <div class="fit-card-title" data-i18n="fit.exec.title">C-Level 보고 · 의사결정 지원</div>
-        <div class="fit-card-body" data-i18n="fit.exec.body">매주 CTO·개발부문장·BRM 대상 Market Intelligence 보고. 복잡한 데이터를 경영진 의사결정 언어로 압축 번역.</div>
+        <div class="fit-card-tag">Stakeholder & English</div>
+        <div class="fit-card-title" data-i18n="f6.t">다자간 조율과 영어 실무</div>
+        <div class="fit-card-body" data-i18n="f6.b">자회사 설립 프로젝트에서 재무·법무·테크·준법·외부 컨설팅사 6개 조직의 이견을 하나의 이사회 자료로 수렴시켰습니다. 홍콩 본사 영문 월간 보고·C레벨 즉답 대응 (OPIc AL).</div>
       </div>
-      <div class="fit-card">
-        <div class="fit-card-label">IT × Finance Linkage</div>
-        <div class="fit-card-title" data-i18n="fit.it.title">IT 투자 · 재무계획 연계</div>
-        <div class="fit-card-body" data-i18n="fit.it.body">IT 중장기 전략 수립 시 재무계획과 직접 연계. 기술 투자 ROI 모델링 및 예산 배분 논리 구성 경험.</div>
-      </div>
-      <div class="fit-card">
-        <div class="fit-card-label">Data Fluency</div>
-        <div class="fit-card-title" data-i18n="fit.data.title">데이터 기반 의사결정</div>
-        <div class="fit-card-body" data-i18n="fit.data.body">단순 집계를 넘어 사업 드라이버 관점으로 데이터를 해석. Python + SQL + 시각화로 셀프서비스 분석 환경 구축.</div>
-      </div>
+
     </div>
   </section>
 
-  <!-- SELECTED PROJECTS -->
-  <section id="projects">
-    <div class="section-label" data-i18n="label.projects">Selected Projects</div>
-    <div class="section-title" data-i18n="title.projects">FP&A 핵심 업무 경험</div>
+  <!-- SELECTED WORK -->
+  <section id="work">
+    <div class="sec-label" data-i18n="lab.work">Selected Work</div>
+    <div class="sec-title" data-i18n="tit.work">직접 만든 다섯 가지</div>
 
-    <div class="project-card">
-      <div class="project-header">
-        <div class="project-title" data-i18n="p1.title">계열사 연결 P&L · Business Driver 분석</div>
-        <span class="project-period">2023 – 현재</span>
+    <!-- P1: P&L Driver -->
+    <div class="project">
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p1.t">5개 계열사 P&L — 드라이버를 찾아서</div>
+        <span class="proj-period">2021 – 2025 · NHN</span>
       </div>
-      <div class="project-org" data-i18n="p1.org">AIA생명 · 테크기획팀</div>
-      <table class="wri-table">
+      <div class="proj-org">NHN 전략기획팀</div>
+      <table class="wri">
         <tr>
-          <td class="wri-label">Work</td>
-          <td class="wri-body" data-i18n="p1.work">AIA생명·AIA손보·AIA투자증권 3개 법인 연결 P&L 월별 집계 및 분석. 계열사별 내부거래 제거·연결 조정 포함.</td>
+          <td class="wri-l">상황</td>
+          <td class="wri-r" data-i18n="p1.s">두레이·코미코·여행박사·에듀·패션고 5개 계열사의 월별 P&L을 단순 집계하는 것이 전부였습니다. 숫자가 왜 나빠지는지 설명할 수 없었고, 경영진 보고는 결과 보고에 그쳤습니다.</td>
         </tr>
         <tr>
-          <td class="wri-label">Role</td>
-          <td class="wri-body" data-i18n="p1.role">사업 드라이버(채널별 신계약 APE, 유지율, 투자수익률) 분해 → CTO·개발부문장 주간 보고 자료 작성 주도.</td>
+          <td class="wri-l">접근</td>
+          <td class="wri-r" data-i18n="p1.a">계정·원장 단위까지 내려가 고정/변동비 구조를 재분류했습니다. 두레이는 인프라비 항목을 재정의해 비용률을 30%p 낮췄고, 코미코 일본 법인은 원가 구조 재설계 후 YoY 적자폭이 절반 이상 줄었습니다. 여행박사는 광고 ROI 추적 체계를 새로 만들어 -50%에서 +10%대로 돌아왔습니다.</td>
         </tr>
         <tr>
-          <td class="wri-label">Impact</td>
-          <td class="wri-body" data-i18n="p1.impact">경영진 보고 사이클 기존 대비 30% 단축. 드라이버 기반 분석으로 예실 차이 원인 즉시 설명 가능한 체계 구축.</td>
+          <td class="wri-l">결과</td>
+          <td class="wri-r" data-i18n="p1.r">드라이버 기반 보고 체계가 팀 표준이 됐습니다. 경영진 질의에 즉답이 가능해졌고, 내부거래 제거·외화환산 처리·풋옵션 자본 영향까지 연결 실무를 하나의 사이클로 반복했습니다.</td>
+        </tr>
+      </table>
+      <div class="proj-gallery">
+        <img src="images/aia_p2p_01_institutions_blurred.png" alt="분석 자료 예시" onclick="openLb(this.src)">
+        <img src="images/aia_p2p_02_law_details_blurred.png" alt="분석 자료 예시" onclick="openLb(this.src)">
+        <img src="images/aia_p2p_03_market_status_blurred.png" alt="분석 자료 예시" onclick="openLb(this.src)">
+      </div>
+    </div>
+
+    <!-- P2: Scenario Modeling -->
+    <div class="project">
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p2.t">페이코·두레이 중장기 경영계획 — 통합 재무 모델</div>
+        <span class="proj-period">2022 – 2025 · NHN</span>
+      </div>
+      <div class="proj-org">NHN 전략기획팀</div>
+      <table class="wri">
+        <tr>
+          <td class="wri-l">상황</td>
+          <td class="wri-r" data-i18n="p2.s">페이코 3개년·두레이 5개년 경영계획을 매년 새로 만들어야 했습니다. 각 사업의 매출 구조와 비용 드라이버가 다르고, 경영진은 "시나리오별로 어디까지 버틸 수 있냐"는 질문을 던졌습니다.</td>
+        </tr>
+        <tr>
+          <td class="wri-l">접근</td>
+          <td class="wri-r" data-i18n="p2.a">손익·재무상태표·현금흐름을 하나의 엑셀 모델에서 자동 연동했습니다. 사업 레버(결제량, 구독 ARR, 마케팅 투자 강도)별 민감도 분석을 기본 포함시켜, 경영진이 숫자 하나를 바꾸면 전체 그림이 바뀌는 구조를 만들었습니다.</td>
+        </tr>
+        <tr>
+          <td class="wri-l">결과</td>
+          <td class="wri-r" data-i18n="p2.r">이사회·경영진 Pre-review에서 즉답 가능. M&A 스크리닝 국면에서도 같은 모델 구조를 NHN Cloud·PG사·조각투자 등 10개+ 산업에 적용했습니다.</td>
+        </tr>
+      </table>
+      <div class="proj-gallery">
+        <img src="images/pl-02-payco-1.png" alt="경영계획 모델 예시" onclick="openLb(this.src)">
+        <img src="images/pl-02-payco-2.png" alt="경영계획 모델 예시" onclick="openLb(this.src)">
+        <img src="images/pl-02-payco-3.png" alt="경영계획 모델 예시" onclick="openLb(this.src)">
+      </div>
+    </div>
+
+    <!-- P3: Subsidiary Model -->
+    <div class="project">
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p3.t">자회사 설립 — 선례 없는 딜의 재무 모델</div>
+        <span class="proj-period">2025 – 현재 · AIA생명</span>
+      </div>
+      <div class="proj-org">AIA생명 테크기획팀</div>
+      <table class="wri">
+        <tr>
+          <td class="wri-l">상황</td>
+          <td class="wri-r" data-i18n="p3.s">국내에 선례가 없는 구조의 자회사를 설립하는 프로젝트. 재무·법무·세무·테크·준법·그룹사·외부 컨설팅사가 각각 다른 숫자와 가정을 들고 있었습니다.</td>
+        </tr>
+        <tr>
+          <td class="wri-l">접근</td>
+          <td class="wri-r" data-i18n="p3.a">매출 예측, 운영비 추정, 세후 NOI 프로젝션, IRR, 그룹 배당 시나리오를 하나의 모델로 통합했습니다. 현지 세무 리스크·배당 구조 이슈는 법무·세무 의견을 재무 수치로 번역해 모델에 반영했습니다. 이해관계자 간 이견이 생길 때마다 모델 위에서 수렴시켰습니다.</td>
+        </tr>
+        <tr>
+          <td class="wri-l">결과</td>
+          <td class="wri-r" data-i18n="p3.r">이사회 의결 자료 재무 섹션 단독 완결. 투자 회수기간·IRR·자본 소요 종합 분석이 경영진 최종 판단의 근거가 됐습니다.</td>
         </tr>
       </table>
     </div>
 
-    <div class="project-card">
-      <div class="project-header">
-        <div class="project-title" data-i18n="p2.title">중장기 재무 모델링 · 3개년 사업계획</div>
-        <span class="project-period">2020 – 2023</span>
+    <!-- P4: DART Automation -->
+    <div class="project">
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p4.t">DART 자동화 — 3일이 30분이 되기까지</div>
+        <span class="proj-period">2022 – 2025 · NHN</span>
       </div>
-      <div class="project-org" data-i18n="p2.org">NHN · 전략기획팀</div>
-      <table class="wri-table">
+      <div class="proj-org">NHN 전략기획팀</div>
+      <table class="wri">
         <tr>
-          <td class="wri-label">Work</td>
-          <td class="wri-body" data-i18n="p2.work">그룹 3개년 중장기 사업계획 재무 모델 설계. 사업부별 매출·비용 드라이버 가정 설정 → 통합 P&L·B/S·C/F 연동 모델.</td>
+          <td class="wri-l">상황</td>
+          <td class="wri-r" data-i18n="p4.s">VAN·PG사 결제 시장 분석을 위해 8개 기업의 10년치 공시 재무 데이터가 필요했습니다. 매번 DART에서 수작업으로 수집하면 3일이 걸렸습니다.</td>
         </tr>
         <tr>
-          <td class="wri-label">Role</td>
-          <td class="wri-body" data-i18n="p2.role">각 사업부 플래너와 협업하여 가정치 검증. 시나리오 분석(Base/Bull/Bear) 및 임원진 Pre-review 자료 독립 작성.</td>
+          <td class="wri-l">접근</td>
+          <td class="wri-r" data-i18n="p4.a">Python으로 DART Open API 크롤러를 구축했습니다. 기업·기간·계정 항목을 파라미터로 받아 재무제표를 자동 수집·정제·적재하는 파이프라인을 만들었습니다. AIA에서는 Azure 청구서 기반 VM별 비용 자동 분류 스크립트, PPT 자동 변환 파이프라인으로 이어졌습니다.</td>
         </tr>
         <tr>
-          <td class="wri-label">Impact</td>
-          <td class="wri-body" data-i18n="p2.impact">연간 계획 수립 리드타임 단축. 시나리오별 민감도 분석 자동화로 임원 질의 대응 시간 50% 절감.</td>
+          <td class="wri-l">결과</td>
+          <td class="wri-r" data-i18n="p4.r">처리 시간 3일 → 30분 (10배 단축). 결제 시장 월별 모니터링 체계의 기반이 됐고, 이후 M&A 스크리닝 속도가 크게 빨라졌습니다.</td>
+        </tr>
+      </table>
+      <div class="proj-gallery">
+        <img src="images/pl-03-cross-sales-1.png" alt="자동화 분석 예시" onclick="openLb(this.src)">
+        <img src="images/pl-03-cross-sales-2.png" alt="자동화 분석 예시" onclick="openLb(this.src)">
+        <img src="images/pl-03-cross-sales-3.png" alt="자동화 분석 예시" onclick="openLb(this.src)">
+      </div>
+    </div>
+
+    <!-- P5: IT LRP -->
+    <div class="project">
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p5.t">IT 중장기계획 — 전략을 실행으로 연결하기</div>
+        <span class="proj-period">2025 · AIA생명</span>
+      </div>
+      <div class="proj-org">AIA생명 테크기획팀</div>
+      <table class="wri">
+        <tr>
+          <td class="wri-l">상황</td>
+          <td class="wri-r" data-i18n="p5.s">3~5개년 IT 중장기 전략이 필요했지만, 기존 방식은 전략 방향 나열에 그쳤습니다. 재무계획과 연결되지 않아 예산 배분 근거가 약했습니다.</td>
+        </tr>
+        <tr>
+          <td class="wri-l">접근</td>
+          <td class="wri-r" data-i18n="p5.a">시스템·조직·운영효율·예산 4개 축으로 구조를 재편하고 핵심과제를 도출했습니다. 각 과제별 현황 분석과 이행방안을 설계했고, 경쟁사 IT 예산·인력 벤치마킹으로 투자 효율성 논리를 보강했습니다. 월별 Budget vs. Actual 분산 분석을 계획 수립 단계부터 설계에 포함시켰습니다.</td>
+        </tr>
+        <tr>
+          <td class="wri-l">결과</td>
+          <td class="wri-r" data-i18n="p5.r">CTO·개발부문장 경영진 보고 완결. CapEx/OpEx 배분 개선 방향이 실제 예산 운영에 반영됐습니다.</td>
         </tr>
       </table>
     </div>
 
-    <div class="project-card">
-      <div class="project-header">
-        <div class="project-title" data-i18n="p3.title">신규 자회사 설립 End-to-End 재무 모델</div>
-        <span class="project-period">2021</span>
-      </div>
-      <div class="project-org" data-i18n="p3.org">NHN · 전략기획팀</div>
-      <table class="wri-table">
-        <tr>
-          <td class="wri-label">Work</td>
-          <td class="wri-body" data-i18n="p3.work">신규 법인 설립을 위한 5개년 재무 모델 독립 구축. 초기 자본 소요량·운전자본·BEP 분석 포함.</td>
-        </tr>
-        <tr>
-          <td class="wri-label">Role</td>
-          <td class="wri-body" data-i18n="p3.role">사업 가정 설정부터 DCF 밸류에이션까지 단독 수행. 법인 설립 이사회 승인 자료 재무 파트 작성.</td>
-        </tr>
-        <tr>
-          <td class="wri-label">Impact</td>
-          <td class="wri-body" data-i18n="p3.impact">이사회 승인 획득. 실제 설립 후 1년 실적이 모델 예측 대비 ±8% 오차 내 달성.</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="project-card">
-      <div class="project-header">
-        <div class="project-title" data-i18n="p4.title">IT 중장기 전략 · 재무계획 연계</div>
-        <span class="project-period">2023 – 2024</span>
-      </div>
-      <div class="project-org" data-i18n="p4.org">AIA생명 · 테크기획팀</div>
-      <table class="wri-table">
-        <tr>
-          <td class="wri-label">Work</td>
-          <td class="wri-body" data-i18n="p4.work">3개년 IT 중장기 전략 수립 시 전사 재무계획과 직접 연계. IT 투자 포트폴리오 ROI 프레임워크 설계.</td>
-        </tr>
-        <tr>
-          <td class="wri-label">Role</td>
-          <td class="wri-body" data-i18n="p4.role">기술 투자 항목별 재무 효과(비용 절감 / 매출 기여) 수치화. 예산 배분 우선순위 논리 구성 및 경영진 보고.</td>
-        </tr>
-        <tr>
-          <td class="wri-label">Impact</td>
-          <td class="wri-body" data-i18n="p4.impact">IT 예산 20% 재배분 의사결정 지원. ROI 프레임워크 이후 투자 평가 기준으로 정착.</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="project-card">
-      <div class="project-header">
-        <div class="project-title" data-i18n="p5.title">재무 분석 프로세스 Python 자동화</div>
-        <span class="project-period">2024 – 현재</span>
-      </div>
-      <div class="project-org" data-i18n="p5.org">AIA생명 · 테크기획팀</div>
-      <table class="wri-table">
-        <tr>
-          <td class="wri-label">Work</td>
-          <td class="wri-body" data-i18n="p5.work">주간 Market Intelligence 보고 데이터 수집·집계 프로세스 Python 자동화. pandas 기반 데이터 파이프라인 + Jinja2 리포트 자동 생성.</td>
-        </tr>
-        <tr>
-          <td class="wri-label">Role</td>
-          <td class="wri-body" data-i18n="p5.role">보험 전문 언론 RSS 자동 수집 → 키워드 필터링 → HTML 보고서 자동 생성 파이프라인 단독 개발.</td>
-        </tr>
-        <tr>
-          <td class="wri-label">Impact</td>
-          <td class="wri-body" data-i18n="p5.impact">주간 보고 준비 시간 기존 대비 70% 단축. 데이터 정합성 오류 제거. 자동화 로직 팀 내 표준 프로세스로 채택.</td>
-        </tr>
-      </table>
-    </div>
   </section>
 
   <!-- HOW I THINK -->
   <section id="think">
-    <div class="section-label" data-i18n="label.think">How I Think</div>
-    <div class="section-title" data-i18n="title.think">FP&A로서의 문제 해결 방식</div>
+    <div class="sec-label" data-i18n="lab.think">How I Think</div>
+    <div class="sec-title" data-i18n="tit.think">FP&A로서 문제를 다루는 방식</div>
     <div class="think-grid">
       <div class="think-card">
-        <div class="think-card-num">01</div>
-        <div class="think-card-title" data-i18n="think.1.title">숫자 뒤의 사업 구조</div>
-        <div class="think-card-body" data-i18n="think.1.body">P&L의 숫자를 그대로 보고하지 않습니다. 매출·비용을 사업 드라이버로 분해해 "왜 이 숫자인가"를 설명할 수 있어야 의사결정에 쓰입니다.</div>
+        <div class="think-num">01</div>
+        <div class="think-card-title" data-i18n="th1.t">숫자 밑에 있는 구조</div>
+        <div class="think-card-body" data-i18n="th1.b">P&L의 숫자가 바뀐 이유를 설명하려면 계정 단위 아래까지 내려가야 합니다. 드라이버를 재정의하지 않으면 같은 보고를 반복하게 됩니다.</div>
       </div>
       <div class="think-card">
-        <div class="think-card-num">02</div>
-        <div class="think-card-title" data-i18n="think.2.title">속도 × 정확도 균형</div>
-        <div class="think-card-body" data-i18n="think.2.body">반복 작업은 자동화하고, 판단이 필요한 영역에 집중합니다. Python 자동화로 확보한 시간을 드라이버 분석과 시나리오 설계에 씁니다.</div>
+        <div class="think-num">02</div>
+        <div class="think-card-title" data-i18n="th2.t">가정을 명시한 시나리오</div>
+        <div class="think-card-body" data-i18n="th2.b">정답이 없을 때 가장 중요한 건 가정을 투명하게 만드는 것입니다. 민감도 분석으로 어느 변수가 결정적인지 먼저 드러냅니다.</div>
       </div>
       <div class="think-card">
-        <div class="think-card-num">03</div>
-        <div class="think-card-title" data-i18n="think.3.title">경영진 언어로 번역</div>
-        <div class="think-card-body" data-i18n="think.3.body">재무 분석의 최종 목적은 경영진의 의사결정입니다. 복잡한 모델도 한 장의 논리로 압축해 "so what"을 먼저 제시합니다.</div>
+        <div class="think-num">03</div>
+        <div class="think-card-title" data-i18n="th3.t">자동화는 도구, 분석이 목적</div>
+        <div class="think-card-body" data-i18n="th3.b">반복 작업을 구조화하는 것은 시간을 확보하기 위해서입니다. 확보한 시간은 드라이버 분석과 시나리오 설계에 씁니다.</div>
       </div>
     </div>
-    <div class="think-block" data-i18n="think.statement">
-      문제를 마주하면 사업 구조를 해체하고, 깊이 파고들어 집요하게 가진 스킬과 툴을 최대한 활용하여 최대한 많은 정보를 프로세싱한 뒤 일목요연하게 정리하여 가장 단순한 논리로 답을 제시합니다.
+    <div class="think-stmt" data-i18n="th.stmt">
+      문제를 마주하면 사업 구조부터 해체합니다. 숫자의 움직임을 설명하는 드라이버를 찾고, 각 레버를 당겼을 때 무슨 일이 일어나는지 시나리오로 만듭니다. 경영진에게 전달할 때는 복잡한 모델을 하나의 판단 논리로 압축합니다.
     </div>
   </section>
 
   <!-- CAREER -->
   <section id="career">
-    <div class="section-label" data-i18n="label.career">Career</div>
-    <div class="section-title" data-i18n="title.career">경력 타임라인</div>
+    <div class="sec-label" data-i18n="lab.career">Career</div>
+    <div class="sec-title" data-i18n="tit.career">경력</div>
     <div class="timeline">
-      <div class="timeline-item active">
-        <div class="timeline-dot"></div>
-        <div class="timeline-period">2023.03 – 현재</div>
-        <div class="timeline-company">AIA생명 (AIA Korea)</div>
-        <div class="timeline-role">테크기획팀 대리 · Market Intelligence Lead</div>
-        <div class="timeline-desc" data-i18n="career.aia">계열사 연결 P&L 관리 · IT 중장기 전략-재무계획 연계 · CTO/개발부문장 주간 보고 · Python 자동화 파이프라인 구축</div>
+
+      <div class="tl-item current">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2025.04 – 현재</div>
+        <div class="tl-co">AIA생명 (AIA Korea)</div>
+        <div class="tl-role">테크기획팀 대리</div>
+        <div class="tl-desc" data-i18n="ca.aia">자회사 설립 E2E 재무 모델·이사회 보고 / IT 중장기계획 수립 (4 pillars) / 계열사 P&L 관리 / 홍콩 본사 영문 월간 보고 / Python 자동화 (Azure 비용·PPT 변환)</div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-period">2019.07 – 2023.02</div>
-        <div class="timeline-company">NHN</div>
-        <div class="timeline-role">전략기획팀 · M&A · 중장기계획</div>
-        <div class="timeline-desc" data-i18n="career.nhn">중장기 3개년 사업계획 재무 모델링 · 신규 자회사 설립 E2E 재무 모델 · M&A 스크리닝 · Python 자동화</div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2021.12 – 2025.03 (3년 4개월)</div>
+        <div class="tl-co">NHN</div>
+        <div class="tl-role">전략기획팀 전임</div>
+        <div class="tl-desc" data-i18n="ca.nhn">5개 계열사 연결 P&L 관리·드라이버 분석 / 페이코·두레이 중장기 경영계획 / M&A 스크리닝 10개+ 산업 / Python DART 자동화 (3일→30분)</div>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-period">2018 – 2019</div>
-        <div class="timeline-company">롯데이노베이트 (구 롯데정보통신)</div>
-        <div class="timeline-role">ERP · PI 컨설팅</div>
-        <div class="timeline-desc" data-i18n="career.lotte">유통 대기업 ERP 구현 · 프로세스 혁신(PI) 컨설팅 · 재무·회계 프로세스 설계</div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">2020.08 – 2021.12 (1년 4개월)</div>
+        <div class="tl-co">롯데이노베이트</div>
+        <div class="tl-role">ERP컨설팅팀 PI담당 선임</div>
+        <div class="tl-desc" data-i18n="ca.lotte">롯데면세점 차세대 IT PI / 롯데제과 S&OP DT 마스터플랜 / 롯데마트·슈퍼 물류 통합 — 현장 As-Is → To-Be → 임원 보고 3사이클</div>
       </div>
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-period">학력</div>
+        <div class="tl-co">서강대학교</div>
+        <div class="tl-role">경영학·미국문화학 복수전공 (2020 졸업)</div>
+        <div class="tl-desc">EM Business School, 스트라스부르 교환학생 2016–2017 / 캐나다 유학 2년</div>
+      </div>
+
     </div>
   </section>
 
   <!-- SKILLS -->
   <section id="skills">
-    <div class="section-label" data-i18n="label.skills">Skills</div>
-    <div class="section-title" data-i18n="title.skills">역량 & 자격</div>
-    <table class="skills-table">
+    <div class="sec-label" data-i18n="lab.skills">Skills</div>
+    <div class="sec-title" data-i18n="tit.skills">역량 & 자격</div>
+    <table class="skills-tbl">
       <tr>
-        <td class="skill-cat">FP&A · Modeling</td>
+        <td class="sk-cat">FP&A Core</td>
         <td>
-          <div class="skill-tags">
-            <span class="skill-tag highlight">연결 P&L 관리</span>
-            <span class="skill-tag highlight">중장기 재무모델링</span>
-            <span class="skill-tag highlight">Business Driver 분석</span>
-            <span class="skill-tag">시나리오 분석</span>
-            <span class="skill-tag">DCF · Comps</span>
-            <span class="skill-tag">예실 분석</span>
+          <div class="tags">
+            <span class="tag hi">연결 P&L 관리</span>
+            <span class="tag hi">Business Driver 분석</span>
+            <span class="tag hi">시나리오 모델링</span>
+            <span class="tag hi">중장기 경영계획</span>
+            <span class="tag">NOI · IRR · BEP</span>
+            <span class="tag">예실 분산 분석</span>
+            <span class="tag">내부거래 제거</span>
+            <span class="tag">외화환산</span>
           </div>
         </td>
       </tr>
       <tr>
-        <td class="skill-cat">Automation · Data</td>
+        <td class="sk-cat">Automation</td>
         <td>
-          <div class="skill-tags">
-            <span class="skill-tag highlight">Python (pandas, requests)</span>
-            <span class="skill-tag highlight">자동화 파이프라인</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">Excel · Power Query</span>
-            <span class="skill-tag">Jinja2 리포트</span>
-            <span class="skill-tag">plotly · matplotlib</span>
+          <div class="tags">
+            <span class="tag hi">Python (pandas · DART API)</span>
+            <span class="tag hi">재무 데이터 파이프라인</span>
+            <span class="tag">Excel (Financial Modeling · VBA)</span>
+            <span class="tag">Power Query</span>
+            <span class="tag">SQL</span>
+            <span class="tag">python-pptx</span>
           </div>
         </td>
       </tr>
       <tr>
-        <td class="skill-cat">Strategy · Planning</td>
+        <td class="sk-cat">Strategy</td>
         <td>
-          <div class="skill-tags">
-            <span class="skill-tag highlight">M&A 스크리닝</span>
-            <span class="skill-tag">IT 투자 ROI 프레임워크</span>
-            <span class="skill-tag">신규 법인 설립 모델</span>
-            <span class="skill-tag">ERP · PI 컨설팅</span>
+          <div class="tags">
+            <span class="tag hi">M&A 스크리닝</span>
+            <span class="tag">IT 투자 ROI 모델링</span>
+            <span class="tag">Market Sizing (Bottom-up)</span>
+            <span class="tag">PI 컨설팅</span>
+            <span class="tag">이해관계자 조율</span>
           </div>
         </td>
       </tr>
       <tr>
-        <td class="skill-cat">Certification</td>
+        <td class="sk-cat">Certification</td>
         <td>
-          <div class="skill-tags">
-            <span class="skill-tag highlight">CFA Level 3 Candidate (2026.08)</span>
-            <span class="skill-tag">Private Markets Pathway</span>
-            <span class="skill-tag">PE · VC · Real Assets</span>
+          <div class="tags">
+            <span class="tag hi">CFA Level 3 Candidate (2026.08)</span>
+            <span class="tag">Private Markets Pathway</span>
+            <span class="tag">SQLD · ADsP</span>
           </div>
         </td>
       </tr>
       <tr>
-        <td class="skill-cat">Communication</td>
+        <td class="sk-cat">Language</td>
         <td>
-          <div class="skill-tags">
-            <span class="skill-tag">C-Level 경영진 보고</span>
-            <span class="skill-tag">영어 비즈니스 커뮤니케이션</span>
-            <span class="skill-tag">python-pptx · HTML 리포트</span>
+          <div class="tags">
+            <span class="tag hi">영어 OPIc AL · TOEIC 990</span>
+            <span class="tag">홍콩 본사 영문 보고</span>
+            <span class="tag">C레벨 실시간 대응</span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td class="sk-cat">Awards</td>
+        <td>
+          <div class="tags">
+            <span class="tag">2025 AIA 테크본부 해커톤 금상(2위)</span>
+            <span class="tag">2023·2024 NHN 우수사원 포상</span>
           </div>
         </td>
       </tr>
@@ -846,177 +752,138 @@
 </div><!-- /.main -->
 
 <script>
+/* ── i18n ── */
 const T = {
   ko: {
-    'nav.fit': 'JD Fit',
-    'nav.projects': 'Selected Projects',
-    'nav.think': 'How I Think',
-    'nav.career': 'Career',
-    'nav.skills': 'Skills',
-    'hero.eyebrow': 'Strategy × Finance × Automation',
-    'hero.name': '왕지인',
-    'hero.sub': '5년 9개월 · 전략기획 → 재무분석 → FP&A',
-    'hero.statement': '숫자 뒤의 사업 구조를 읽고, 전사 재무계획을 사업 드라이버로 분해해 경영진이 의사결정할 수 있는 언어로 번역합니다. AIA생명에서 계열사 간 연결 P&L을 직접 관리하고, NHN에서 중장기 사업계획과 재무 모델링을 설계한 경험 위에, 데이터 자동화 역량까지 더해 토스의 Central FP&A에서 새로운 임팩트를 만들고자 합니다.',
-    'strip.aia': 'AIA생명', 'strip.aia.role': '테크기획 · 재무기획 연계',
-    'strip.nhn.role': '전략기획 · M&A · 중장기계획',
-    'strip.lotte': '롯데이노베이트', 'strip.lotte.role': 'ERP · PI 컨설팅',
-    'label.fit': 'Position Fit', 'title.fit': '토스가 찾는 인재 · 제가 가진 역량',
-    'label.projects': 'Selected Projects', 'title.projects': 'FP&A 핵심 업무 경험',
-    'label.think': 'How I Think', 'title.think': 'FP&A로서의 문제 해결 방식',
-    'label.career': 'Career', 'title.career': '경력 타임라인',
-    'label.skills': 'Skills', 'title.skills': '역량 & 자격',
-    'fit.bp.title': '전사 P&L · Business Driver 분석',
-    'fit.bp.body': 'AIA생명 계열사(AIA생명·AIA손보·AIA투자증권) 연결 P&L 직접 관리. 사업 단위별 드라이버 분해 → 경영진 보고 경험.',
-    'fit.fm.title': '재무 모델링 · 중장기 사업계획',
-    'fit.fm.body': 'NHN 중장기 3개년 사업계획 모델 설계. 신규 자회사 설립 시 End-to-End 재무 모델 독립 구축. DCF · Comps 밸류에이션 실무 적용.',
-    'fit.auto.title': 'Python 자동화 · 보고 효율화',
-    'fit.auto.body': '반복 데이터 수집·집계 프로세스 Python 자동화로 주간 리포트 준비 시간 단축. pandas · requests 기반 파이프라인 구축.',
-    'fit.consol.title': '연결 재무 · 계열사 관리',
-    'fit.consol.body': '복수 법인 간 내부거래 제거 · 연결 조정 실무. 토스의 멀티-엔티티 구조(토스뱅크·토스증권·토스페이먼츠 등) 대응 가능.',
-    'fit.sf.title': '전략기획 × 재무 통합 시각',
-    'fit.sf.body': 'NHN M&A 스크리닝 3.5년 + CFA L3 Private Markets. 사업 전략의 재무적 타당성을 동시에 검토하는 복합 역량 보유.',
-    'fit.exec.title': 'C-Level 보고 · 의사결정 지원',
-    'fit.exec.body': '매주 CTO·개발부문장·BRM 대상 Market Intelligence 보고. 복잡한 데이터를 경영진 의사결정 언어로 압축 번역.',
-    'fit.it.title': 'IT 투자 · 재무계획 연계',
-    'fit.it.body': 'IT 중장기 전략 수립 시 재무계획과 직접 연계. 기술 투자 ROI 모델링 및 예산 배분 논리 구성 경험.',
-    'fit.data.title': '데이터 기반 의사결정',
-    'fit.data.body': '단순 집계를 넘어 사업 드라이버 관점으로 데이터를 해석. Python + SQL + 시각화로 셀프서비스 분석 환경 구축.',
-    'p1.title': '계열사 연결 P&L · Business Driver 분석',
-    'p1.org': 'AIA생명 · 테크기획팀',
-    'p1.work': 'AIA생명·AIA손보·AIA투자증권 3개 법인 연결 P&L 월별 집계 및 분석. 계열사별 내부거래 제거·연결 조정 포함.',
-    'p1.role': '사업 드라이버(채널별 신계약 APE, 유지율, 투자수익률) 분해 → CTO·개발부문장 주간 보고 자료 작성 주도.',
-    'p1.impact': '경영진 보고 사이클 기존 대비 30% 단축. 드라이버 기반 분석으로 예실 차이 원인 즉시 설명 가능한 체계 구축.',
-    'p2.title': '중장기 재무 모델링 · 3개년 사업계획',
-    'p2.org': 'NHN · 전략기획팀',
-    'p2.work': '그룹 3개년 중장기 사업계획 재무 모델 설계. 사업부별 매출·비용 드라이버 가정 설정 → 통합 P&L·B/S·C/F 연동 모델.',
-    'p2.role': '각 사업부 플래너와 협업하여 가정치 검증. 시나리오 분석(Base/Bull/Bear) 및 임원진 Pre-review 자료 독립 작성.',
-    'p2.impact': '연간 계획 수립 리드타임 단축. 시나리오별 민감도 분석 자동화로 임원 질의 대응 시간 50% 절감.',
-    'p3.title': '신규 자회사 설립 End-to-End 재무 모델',
-    'p3.org': 'NHN · 전략기획팀',
-    'p3.work': '신규 법인 설립을 위한 5개년 재무 모델 독립 구축. 초기 자본 소요량·운전자본·BEP 분석 포함.',
-    'p3.role': '사업 가정 설정부터 DCF 밸류에이션까지 단독 수행. 법인 설립 이사회 승인 자료 재무 파트 작성.',
-    'p3.impact': '이사회 승인 획득. 실제 설립 후 1년 실적이 모델 예측 대비 ±8% 오차 내 달성.',
-    'p4.title': 'IT 중장기 전략 · 재무계획 연계',
-    'p4.org': 'AIA생명 · 테크기획팀',
-    'p4.work': '3개년 IT 중장기 전략 수립 시 전사 재무계획과 직접 연계. IT 투자 포트폴리오 ROI 프레임워크 설계.',
-    'p4.role': '기술 투자 항목별 재무 효과(비용 절감 / 매출 기여) 수치화. 예산 배분 우선순위 논리 구성 및 경영진 보고.',
-    'p4.impact': 'IT 예산 20% 재배분 의사결정 지원. ROI 프레임워크 이후 투자 평가 기준으로 정착.',
-    'p5.title': '재무 분석 프로세스 Python 자동화',
-    'p5.org': 'AIA생명 · 테크기획팀',
-    'p5.work': '주간 Market Intelligence 보고 데이터 수집·집계 프로세스 Python 자동화. pandas 기반 데이터 파이프라인 + Jinja2 리포트 자동 생성.',
-    'p5.role': '보험 전문 언론 RSS 자동 수집 → 키워드 필터링 → HTML 보고서 자동 생성 파이프라인 단독 개발.',
-    'p5.impact': '주간 보고 준비 시간 기존 대비 70% 단축. 데이터 정합성 오류 제거. 자동화 로직 팀 내 표준 프로세스로 채택.',
-    'think.1.title': '숫자 뒤의 사업 구조',
-    'think.1.body': 'P&L의 숫자를 그대로 보고하지 않습니다. 매출·비용을 사업 드라이버로 분해해 "왜 이 숫자인가"를 설명할 수 있어야 의사결정에 쓰입니다.',
-    'think.2.title': '속도 × 정확도 균형',
-    'think.2.body': '반복 작업은 자동화하고, 판단이 필요한 영역에 집중합니다. Python 자동화로 확보한 시간을 드라이버 분석과 시나리오 설계에 씁니다.',
-    'think.3.title': '경영진 언어로 번역',
-    'think.3.body': '재무 분석의 최종 목적은 경영진의 의사결정입니다. 복잡한 모델도 한 장의 논리로 압축해 "so what"을 먼저 제시합니다.',
-    'think.statement': '문제를 마주하면 사업 구조를 해체하고, 깊이 파고들어 집요하게 가진 스킬과 툴을 최대한 활용하여 최대한 많은 정보를 프로세싱한 뒤 일목요연하게 정리하여 가장 단순한 논리로 답을 제시합니다.',
-    'career.aia': '계열사 연결 P&L 관리 · IT 중장기 전략-재무계획 연계 · CTO/개발부문장 주간 보고 · Python 자동화 파이프라인 구축',
-    'career.nhn': '중장기 3개년 사업계획 재무 모델링 · 신규 자회사 설립 E2E 재무 모델 · M&A 스크리닝 · Python 자동화',
-    'career.lotte': '유통 대기업 ERP 구현 · 프로세스 혁신(PI) 컨설팅 · 재무·회계 프로세스 설계',
+    'nav.fit':'JD Fit','nav.work':'Selected Work','nav.think':'How I Think','nav.career':'Career','nav.skills':'Skills',
+    'hero.eye':'Finance × Strategy × Automation','hero.name':'왕지인',
+    'hero.sub':'5년 9개월 · NHN 전략기획 → AIA생명 테크기획 · CFA L3',
+    'hero.stmt':'결제·PG·SaaS·보험·증권까지, 토스가 영위하는 사업 대부분에 실무 접점이 있습니다. NHN에서는 5개 계열사 연결 P&L을 계정 단위까지 분해해 드라이버를 찾았고, AIA에서는 자회사 설립 재무 모델을 처음부터 끝까지 혼자 만들었습니다. 숫자가 왜 틀어졌는지 설명하고, 그 다음 선택지를 시나리오로 제시하는 것 — 토스 Central FP&A에서 계속하고 싶은 일입니다.',
+    'cs.aia':'AIA생명','cs.aia.r':'테크기획 · 자회사설립 · IT중장기계획',
+    'cs.nhn.r':'전략기획 · 연결P&L · M&A',
+    'cs.lotte':'롯데이노베이트','cs.lotte.r':'PI 컨설팅',
+    'lab.fit':'JD Fit','tit.fit':'여섯 가지 교차점',
+    'f1.t':'숫자 차이의 원인까지 내려가기','f1.b':'NHN에서 두레이 인프라비 과다, 코미코 원가 구조 이상, 여행박사 광고 ROI 저하 — 각각 계정·원장 단위로 파고들어 실질 드라이버를 재정의했습니다. 단순 집계가 아니라 원인 규명까지.',
+    'f2.t':'가정이 없을 때 모델 만들기','f2.b':'페이코 3개년·두레이 5개년 경영계획에서 손익·B/S·현금흐름을 연결한 통합 모델을 직접 설계했습니다. 정답이 없는 상황에서 가정과 한계를 명시하고 시나리오를 구성하는 방식입니다.',
+    'f3.t':'계열사 연결 실무','f3.b':'내부거래 제거, 외화환산(B/S 기말·P&L 평균환율 분리), 외부투자자 풋옵션이 자본에 미치는 영향까지. NHN 5개 계열사, AIA 계열사 P&L 관리로 연결 실무를 반복했습니다.',
+    'f4.t':'HQ 차원 중장기계획 수립','f4.b':'AIA에서 IT 중장기계획을 시스템·조직·운영효율·예산 4개 축으로 구조화하고 핵심과제별 이행방안을 설계했습니다. 전략 문서가 실행으로 이어지는 구조를 만드는 일.',
+    'f5.t':'반복 작업을 구조로 바꾸기','f5.b':'Python DART 크롤링으로 8개사 10년치 재무 데이터 처리를 3일에서 30분으로 줄였습니다. Azure 비용 분류, PPT 자동 변환까지 — 절약한 시간을 분석에 씁니다.',
+    'f6.t':'다자간 조율과 영어 실무','f6.b':'자회사 설립 프로젝트에서 재무·법무·테크·준법·외부 컨설팅사 6개 조직의 이견을 하나의 이사회 자료로 수렴시켰습니다. 홍콩 본사 영문 월간 보고·C레벨 즉답 대응 (OPIc AL).',
+    'lab.work':'Selected Work','tit.work':'직접 만든 다섯 가지',
+    'p1.t':'5개 계열사 P&L — 드라이버를 찾아서',
+    'p1.s':'두레이·코미코·여행박사·에듀·패션고 5개 계열사의 월별 P&L을 단순 집계하는 것이 전부였습니다. 숫자가 왜 나빠지는지 설명할 수 없었고, 경영진 보고는 결과 보고에 그쳤습니다.',
+    'p1.a':'계정·원장 단위까지 내려가 고정/변동비 구조를 재분류했습니다. 두레이는 인프라비 항목을 재정의해 비용률을 30%p 낮췄고, 코미코 일본 법인은 원가 구조 재설계 후 YoY 적자폭이 절반 이상 줄었습니다. 여행박사는 광고 ROI 추적 체계를 새로 만들어 -50%에서 +10%대로 돌아왔습니다.',
+    'p1.r':'드라이버 기반 보고 체계가 팀 표준이 됐습니다. 경영진 질의에 즉답이 가능해졌고, 내부거래 제거·외화환산 처리·풋옵션 자본 영향까지 연결 실무를 하나의 사이클로 반복했습니다.',
+    'p2.t':'페이코·두레이 중장기 경영계획 — 통합 재무 모델',
+    'p2.s':'페이코 3개년·두레이 5개년 경영계획을 매년 새로 만들어야 했습니다. 각 사업의 매출 구조와 비용 드라이버가 다르고, 경영진은 "시나리오별로 어디까지 버틸 수 있냐"는 질문을 던졌습니다.',
+    'p2.a':'손익·재무상태표·현금흐름을 하나의 엑셀 모델에서 자동 연동했습니다. 사업 레버(결제량, 구독 ARR, 마케팅 투자 강도)별 민감도 분석을 기본 포함시켜, 경영진이 숫자 하나를 바꾸면 전체 그림이 바뀌는 구조를 만들었습니다.',
+    'p2.r':'이사회·경영진 Pre-review에서 즉답 가능. M&A 스크리닝 국면에서도 같은 모델 구조를 NHN Cloud·PG사·조각투자 등 10개+ 산업에 적용했습니다.',
+    'p3.t':'자회사 설립 — 선례 없는 딜의 재무 모델',
+    'p3.s':'국내에 선례가 없는 구조의 자회사를 설립하는 프로젝트. 재무·법무·세무·테크·준법·그룹사·외부 컨설팅사가 각각 다른 숫자와 가정을 들고 있었습니다.',
+    'p3.a':'매출 예측, 운영비 추정, 세후 NOI 프로젝션, IRR, 그룹 배당 시나리오를 하나의 모델로 통합했습니다. 현지 세무 리스크·배당 구조 이슈는 법무·세무 의견을 재무 수치로 번역해 모델에 반영했습니다. 이해관계자 간 이견이 생길 때마다 모델 위에서 수렴시켰습니다.',
+    'p3.r':'이사회 의결 자료 재무 섹션 단독 완결. 투자 회수기간·IRR·자본 소요 종합 분석이 경영진 최종 판단의 근거가 됐습니다.',
+    'p4.t':'DART 자동화 — 3일이 30분이 되기까지',
+    'p4.s':'VAN·PG사 결제 시장 분석을 위해 8개 기업의 10년치 공시 재무 데이터가 필요했습니다. 매번 DART에서 수작업으로 수집하면 3일이 걸렸습니다.',
+    'p4.a':'Python으로 DART Open API 크롤러를 구축했습니다. 기업·기간·계정 항목을 파라미터로 받아 재무제표를 자동 수집·정제·적재하는 파이프라인을 만들었습니다. AIA에서는 Azure 청구서 기반 VM별 비용 자동 분류 스크립트, PPT 자동 변환 파이프라인으로 이어졌습니다.',
+    'p4.r':'처리 시간 3일 → 30분 (10배 단축). 결제 시장 월별 모니터링 체계의 기반이 됐고, 이후 M&A 스크리닝 속도가 크게 빨라졌습니다.',
+    'p5.t':'IT 중장기계획 — 전략을 실행으로 연결하기',
+    'p5.s':'3~5개년 IT 중장기 전략이 필요했지만, 기존 방식은 전략 방향 나열에 그쳤습니다. 재무계획과 연결되지 않아 예산 배분 근거가 약했습니다.',
+    'p5.a':'시스템·조직·운영효율·예산 4개 축으로 구조를 재편하고 핵심과제를 도출했습니다. 각 과제별 현황 분석과 이행방안을 설계했고, 경쟁사 IT 예산·인력 벤치마킹으로 투자 효율성 논리를 보강했습니다. 월별 Budget vs. Actual 분산 분석을 계획 수립 단계부터 설계에 포함시켰습니다.',
+    'p5.r':'CTO·개발부문장 경영진 보고 완결. CapEx/OpEx 배분 개선 방향이 실제 예산 운영에 반영됐습니다.',
+    'lab.think':'How I Think','tit.think':'FP&A로서 문제를 다루는 방식',
+    'th1.t':'숫자 밑에 있는 구조','th1.b':'P&L의 숫자가 바뀐 이유를 설명하려면 계정 단위 아래까지 내려가야 합니다. 드라이버를 재정의하지 않으면 같은 보고를 반복하게 됩니다.',
+    'th2.t':'가정을 명시한 시나리오','th2.b':'정답이 없을 때 가장 중요한 건 가정을 투명하게 만드는 것입니다. 민감도 분석으로 어느 변수가 결정적인지 먼저 드러냅니다.',
+    'th3.t':'자동화는 도구, 분석이 목적','th3.b':'반복 작업을 구조화하는 것은 시간을 확보하기 위해서입니다. 확보한 시간은 드라이버 분석과 시나리오 설계에 씁니다.',
+    'th.stmt':'문제를 마주하면 사업 구조부터 해체합니다. 숫자의 움직임을 설명하는 드라이버를 찾고, 각 레버를 당겼을 때 무슨 일이 일어나는지 시나리오로 만듭니다. 경영진에게 전달할 때는 복잡한 모델을 하나의 판단 논리로 압축합니다.',
+    'lab.career':'Career','tit.career':'경력',
+    'ca.aia':'자회사 설립 E2E 재무 모델·이사회 보고 / IT 중장기계획 수립 (4 pillars) / 계열사 P&L 관리 / 홍콩 본사 영문 월간 보고 / Python 자동화 (Azure 비용·PPT 변환)',
+    'ca.nhn':'5개 계열사 연결 P&L 관리·드라이버 분석 / 페이코·두레이 중장기 경영계획 / M&A 스크리닝 10개+ 산업 / Python DART 자동화 (3일→30분)',
+    'ca.lotte':'롯데면세점 차세대 IT PI / 롯데제과 S&OP DT 마스터플랜 / 롯데마트·슈퍼 물류 통합 — 현장 As-Is → To-Be → 임원 보고 3사이클',
+    'lab.skills':'Skills','tit.skills':'역량 & 자격',
   },
   en: {
-    'nav.fit': 'JD Fit',
-    'nav.projects': 'Selected Projects',
-    'nav.think': 'How I Think',
-    'nav.career': 'Career',
-    'nav.skills': 'Skills',
-    'hero.eyebrow': 'Strategy × Finance × Automation',
-    'hero.name': 'Jeein Wang',
-    'hero.sub': '5Y 9M · Strategic Planning → Finance → FP&A',
-    'hero.statement': 'I read the business structure behind the numbers and translate the company-wide financial plan into business drivers that executives can act on. Built on direct experience managing consolidated P&L across AIA group entities and designing long-range financial models at NHN — now bringing data automation on top — I aim to create new impact at Toss Central FP&A.',
-    'strip.aia': 'AIA Life', 'strip.aia.role': 'Tech Planning · Finance Liaison',
-    'strip.nhn.role': 'Strategic Planning · M&A · LRP',
-    'strip.lotte': 'Lotte Innovate', 'strip.lotte.role': 'ERP · PI Consulting',
-    'label.fit': 'Position Fit', 'title.fit': 'What Toss Needs · What I Bring',
-    'label.projects': 'Selected Projects', 'title.projects': 'Core FP&A Work Experience',
-    'label.think': 'How I Think', 'title.think': 'Problem-Solving as FP&A',
-    'label.career': 'Career', 'title.career': 'Career Timeline',
-    'label.skills': 'Skills', 'title.skills': 'Skills & Credentials',
-    'fit.bp.title': 'Company-wide P&L · Business Driver Analysis',
-    'fit.bp.body': 'Direct management of consolidated P&L across AIA group entities (AIA Life · AIA General · AIA Securities). Driver decomposition by business unit → executive reporting.',
-    'fit.fm.title': 'Financial Modeling · Long-Range Planning',
-    'fit.fm.body': 'Designed 3-year LRP financial model at NHN group. Built End-to-End financial model for new subsidiary independently. Applied DCF & Comps valuation in practice.',
-    'fit.auto.title': 'Python Automation · Reporting Efficiency',
-    'fit.auto.body': 'Automated repetitive data collection & aggregation with Python, cutting weekly report prep time significantly. Built pandas · requests pipeline.',
-    'fit.consol.title': 'Consolidated Finance · Multi-entity Management',
-    'fit.consol.body': 'Intercompany elimination & consolidation adjustments across multiple legal entities. Ready for Toss\'s multi-entity structure (Toss Bank · Toss Securities · Toss Payments etc.).',
-    'fit.sf.title': 'Strategy × Finance Integration',
-    'fit.sf.body': '3.5 years of M&A screening at NHN + CFA L3 Private Markets. Dual capability: assess strategic rationale and financial viability simultaneously.',
-    'fit.exec.title': 'C-Level Reporting · Decision Support',
-    'fit.exec.body': 'Weekly Market Intelligence reporting to CTO, Head of Engineering, BRM. Compresses complex data into executive decision-making language.',
-    'fit.it.title': 'IT Investment · Finance Plan Linkage',
-    'fit.it.body': 'Directly linked IT long-range strategy with company financial plan. Designed ROI framework for tech investment portfolio and budget allocation logic.',
-    'fit.data.title': 'Data-Driven Decision Making',
-    'fit.data.body': 'Interprets data through business driver lens, beyond simple aggregation. Built self-service analytics with Python + SQL + visualization.',
-    'p1.title': 'Consolidated P&L · Business Driver Analysis',
-    'p1.org': 'AIA Life · Tech Planning Team',
-    'p1.work': 'Monthly consolidation and analysis of P&L across 3 entities (AIA Life, AIA General Insurance, AIA Securities). Includes intercompany elimination and consolidation adjustments.',
-    'p1.role': 'Decomposed business drivers (new APE by channel, persistency, investment yield) → led weekly C-level reporting materials.',
-    'p1.impact': 'Cut management reporting cycle by 30%. Built driver-based framework enabling immediate explanation of budget vs. actual variance.',
-    'p2.title': 'Long-Range Financial Modeling · 3-Year Business Plan',
-    'p2.org': 'NHN · Strategic Planning Team',
-    'p2.work': 'Designed group-level 3-year LRP financial model. Set revenue/cost driver assumptions by business unit → integrated P&L · B/S · C/F linked model.',
-    'p2.role': 'Collaborated with BU planners to validate assumptions. Independently prepared scenario analysis (Base/Bull/Bear) and executive pre-review materials.',
-    'p2.impact': 'Reduced annual planning lead time. Automated scenario sensitivity analysis, cutting executive Q&A prep time by 50%.',
-    'p3.title': 'New Subsidiary End-to-End Financial Model',
-    'p3.org': 'NHN · Strategic Planning Team',
-    'p3.work': 'Built 5-year financial model for new legal entity establishment independently. Included initial capex, working capital, and BEP analysis.',
-    'p3.role': 'Performed solo from assumption-setting through DCF valuation. Authored finance section of board approval package.',
-    'p3.impact': 'Board approval secured. Actual Year 1 performance within ±8% of model projections.',
-    'p4.title': 'IT Long-Range Strategy · Finance Plan Integration',
-    'p4.org': 'AIA Life · Tech Planning Team',
-    'p4.work': 'Directly linked 3-year IT LRP with enterprise financial plan. Designed ROI framework for IT investment portfolio.',
-    'p4.role': 'Quantified financial impact (cost savings / revenue contribution) per tech investment item. Built budget allocation prioritization logic and executive reporting.',
-    'p4.impact': 'Supported decision to reallocate 20% of IT budget. ROI framework adopted as standard investment evaluation criteria.',
-    'p5.title': 'Financial Analysis Process Automation with Python',
-    'p5.org': 'AIA Life · Tech Planning Team',
-    'p5.work': 'Automated weekly Market Intelligence data collection & aggregation with Python. pandas pipeline + Jinja2 auto-generated HTML reports.',
-    'p5.role': 'Independently developed pipeline: insurance news RSS collection → keyword filtering → HTML report generation.',
-    'p5.impact': 'Cut weekly report prep time by 70%. Eliminated data integrity errors. Automation logic adopted as team standard process.',
-    'think.1.title': 'Business Structure Behind the Numbers',
-    'think.1.body': 'I don\'t just report P&L numbers. Revenue and costs must be decomposed into business drivers — only then can finance explain "why" and actually drive decisions.',
-    'think.2.title': 'Speed × Accuracy Balance',
-    'think.2.body': 'Automate the repetitive, concentrate on judgment. Time saved through Python automation goes directly into driver analysis and scenario design.',
-    'think.3.title': 'Translate into Executive Language',
-    'think.3.body': 'The ultimate purpose of financial analysis is executive decision-making. Even complex models must compress into single-page logic with the "so what" first.',
-    'think.statement': 'When facing a problem, I decompose the business structure, dig deep with tenacity, and leverage every skill and tool at hand to process as much information as possible — then organize it with clarity to deliver the answer in the simplest, most defensible logic.',
-    'career.aia': 'Consolidated P&L management · IT strategy-finance linkage · Weekly C-level reporting · Python automation pipeline',
-    'career.nhn': '3-year LRP financial modeling · New subsidiary E2E financial model · M&A screening · Python automation',
-    'career.lotte': 'ERP implementation for large retailer · Process innovation (PI) consulting · Finance & accounting process design',
+    'nav.fit':'JD Fit','nav.work':'Selected Work','nav.think':'How I Think','nav.career':'Career','nav.skills':'Skills',
+    'hero.eye':'Finance × Strategy × Automation','hero.name':'Jeein Wang',
+    'hero.sub':'5Y 9M · NHN Strategic Planning → AIA Life Tech Planning · CFA L3',
+    'hero.stmt':'I have direct exposure to payments, PG, SaaS, insurance, and securities — most of what Toss operates. At NHN, I drilled into account-level detail across 5 subsidiaries\' consolidated P&L to find the actual drivers. At AIA, I built a subsidiary incorporation financial model end-to-end on my own. Explaining why numbers diverged and laying out the next set of choices as scenarios — that\'s what I want to keep doing at Toss Central FP&A.',
+    'cs.aia':'AIA Life','cs.aia.r':'Tech Planning · Subsidiary Setup · IT LRP',
+    'cs.nhn.r':'Strategic Planning · Consol P&L · M&A',
+    'cs.lotte':'Lotte Innovate','cs.lotte.r':'PI Consulting',
+    'lab.fit':'JD Fit','tit.fit':'Six Intersections',
+    'f1.t':'Drilling Down to the Root Cause','f1.b':'At NHN: Dooray infrastructure cost overrun, Comico margin anomaly, Yanolja ad ROI decay — each required going below the account level to redefine the actual cost driver. Reporting the result, not the cause, wasn\'t enough.',
+    'f2.t':'Building the Model When There\'s No Playbook','f2.b':'Designed integrated P&L · B/S · cash flow models for Payco\'s 3-year and Dooray\'s 5-year business plans. When there\'s no right answer, the discipline is stating assumptions transparently and structuring scenarios.',
+    'f3.t':'Multi-entity Consolidation in Practice','f3.b':'Intercompany elimination, FX translation (period-end for B/S, average for P&L), put option capital impact analysis. Repeated across NHN\'s 5 subsidiaries and AIA group entities.',
+    'f4.t':'HQ-level Long-range Planning','f4.b':'At AIA, restructured the IT LRP around 4 axes — systems, organization, operational efficiency, and budget — and designed implementation plans per initiative. Making strategy documents executable.',
+    'f5.t':'Turning Repetition into Structure','f5.b':'Built a Python DART API crawler that cut financial data collection for 8 companies × 10 years from 3 days to 30 minutes. Followed by Azure cost classification and PPT auto-generation at AIA.',
+    'f6.t':'Multi-stakeholder Alignment & English','f6.b':'Converged Finance, Legal, Tax, Tech, Compliance, and external consultants into a single board-ready document for a subsidiary incorporation project. Monthly English reporting to HK HQ; real-time C-level response (OPIc AL).',
+    'lab.work':'Selected Work','tit.work':'Five Things I Built',
+    'p1.t':'5-entity P&L — Finding the Drivers',
+    'p1.s':'Monthly P&L for Dooray, Comico, Yanolja, Edu, and FashionGo was being aggregated, nothing more. We couldn\'t explain why numbers were deteriorating, and management reporting was purely results-oriented.',
+    'p1.a':'Went below account level to reclassify fixed/variable cost structures. Redefined Dooray\'s infrastructure cost categories — cut the cost ratio by 30pp. Redesigned Comico Japan\'s cost structure — YoY loss narrowed by more than half. Built an ad ROI tracking system for Yanolja — turned from -50% to +10%.',
+    'p1.r':'Driver-based reporting became team standard. Immediate answers to executive questions. Intercompany elimination, FX translation, and put option capital impact — all handled as one recurring cycle.',
+    'p2.t':'Payco & Dooray LRP — Integrated Financial Model',
+    'p2.s':'Payco 3-year and Dooray 5-year business plans needed to be rebuilt annually. Revenue structures and cost drivers differed per business; management kept asking "how far can we stretch in each scenario?"',
+    'p2.a':'Linked P&L, balance sheet, and cash flow into a single Excel model with automatic propagation. Built sensitivity analysis by business lever (payment volume, subscription ARR, marketing intensity) as a default feature.',
+    'p2.r':'Immediate response capability in board and management pre-reviews. Applied the same model architecture to 10+ industries in M&A screening — NHN Cloud, PG companies, fractional investment platforms.',
+    'p3.t':'Subsidiary Incorporation — Financial Model for an Unprecedented Deal',
+    'p3.s':'Incorporating a subsidiary with no domestic precedent. Finance, Legal, Tax, Tech, Compliance, group HQ, and external consultants each brought different numbers and assumptions.',
+    'p3.a':'Integrated revenue projection, opex estimation, after-tax NOI projection, IRR, and group dividend scenarios into a single model. Translated legal and tax opinions into financial figures and embedded them in the model. Every time stakeholders disagreed, the model became the convergence point.',
+    'p3.r':'Solo completion of the finance section of the board approval package. Payback period, IRR, and capital requirement analysis became the basis for final executive decision.',
+    'p4.t':'DART Automation — From 3 Days to 30 Minutes',
+    'p4.s':'Analyzing the payment market required 10 years of financial data from 8 VAN/PG companies. Manual collection from DART took 3 days each time.',
+    'p4.a':'Built a Python DART Open API crawler. Pipeline accepts company, period, and account items as parameters — auto-collects, cleans, and loads financial statements. Extended to Azure cost classification and PPT auto-generation at AIA.',
+    'p4.r':'Processing time: 3 days → 30 minutes (10x faster). Became the foundation for a monthly payment market monitoring system; accelerated subsequent M&A screening cycles.',
+    'p5.t':'IT Long-range Plan — Connecting Strategy to Execution',
+    'p5.s':'A 3–5 year IT strategy was needed, but the existing approach was a list of directional priorities. Budget allocation lacked a financial rationale because the plan wasn\'t linked to the financial model.',
+    'p5.a':'Restructured around 4 axes: systems, organization, operational efficiency, and budget. Designed current-state analysis and implementation plans per initiative. Peer benchmarking of competitor IT budgets and headcount to build investment efficiency arguments. Embedded monthly Budget vs. Actual variance analysis into the plan design from day one.',
+    'p5.r':'Management reporting to CTO and Head of Engineering completed. CapEx/OpEx reallocation direction was reflected in actual budget operations.',
+    'lab.think':'How I Think','tit.think':'How I Approach Problems as FP&A',
+    'th1.t':'The Structure Beneath the Numbers','th1.b':'Explaining why P&L numbers changed requires going below the account line. Without redefining the driver, you end up delivering the same report indefinitely.',
+    'th2.t':'Scenarios with Explicit Assumptions','th2.b':'When there\'s no right answer, making assumptions transparent is the most important discipline. Sensitivity analysis reveals which variables are actually decisive.',
+    'th3.t':'Automation as Means, Analysis as Purpose','th3.b':'Structuring repetitive work is about reclaiming time. That time goes to driver analysis and scenario design.',
+    'th.stmt':'When I encounter a problem, I start by decomposing the business structure. I find the drivers that explain the movement in numbers, then build scenarios around what happens when each lever is pulled. When presenting to leadership, I compress the complex model into a single decision logic.',
+    'lab.career':'Career','tit.career':'Career',
+    'ca.aia':'Subsidiary incorporation E2E financial model · board reporting / IT LRP (4 pillars) / Group P&L management / HK HQ English monthly reporting / Python automation (Azure cost · PPT conversion)',
+    'ca.nhn':'5-entity consolidated P&L · driver analysis / Payco · Dooray LRP / M&A screening 10+ industries / Python DART automation (3 days → 30 min)',
+    'ca.lotte':'Lotte Duty Free next-gen IT PI / Lotte Confectionery S&OP DT masterplan / Lotte Mart & Super logistics integration — 3 cycles of As-Is → To-Be → executive presentation',
+    'lab.skills':'Skills','tit.skills':'Skills & Credentials',
   }
 };
 
-let currentLang = 'ko';
-
-function applyLang(lang) {
-  currentLang = lang;
+let lang = 'ko';
+function applyLang(l) {
+  lang = l;
   document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.getAttribute('data-i18n');
-    if (T[lang][key] !== undefined) el.textContent = T[lang][key];
+    const v = T[l][el.dataset.i18n];
+    if (v !== undefined) el.textContent = v;
   });
-  document.querySelectorAll('.lang-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.trim().toLowerCase() === lang);
-  });
+  document.querySelectorAll('.lang-btn').forEach(b =>
+    b.classList.toggle('active', b.textContent.trim().toLowerCase() === l)
+  );
 }
+function setLang(l) { applyLang(l); }
 
-function setLang(lang) { applyLang(lang); }
+/* lightbox */
+function openLb(src) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb').classList.add('open');
+}
+function closeLb() { document.getElementById('lb').classList.remove('open'); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
-// IntersectionObserver for active nav
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('nav a');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      navLinks.forEach(a => a.classList.remove('active'));
-      const active = document.querySelector(`nav a[href="#${entry.target.id}"]`);
-      if (active) active.classList.add('active');
+/* IntersectionObserver nav */
+const secs = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('nav a');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (en.isIntersecting) {
+      navAs.forEach(a => a.classList.remove('active'));
+      const a = document.querySelector(`nav a[href="#${en.target.id}"]`);
+      if (a) a.classList.add('active');
     }
   });
-}, { rootMargin: '-40% 0px -55% 0px' });
-sections.forEach(s => observer.observe(s));
+}, { rootMargin: '-38% 0px -56% 0px' });
+secs.forEach(s => obs.observe(s));
 </script>
 </body>
 </html>
