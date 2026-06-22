@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>왕지인 — 토스뱅크 Strategy Development</title>
+<title>왕지인 — 미래에셋증권 ESG&amp;IR</title>
 <link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
 <style>
 :root{
-  --y:#0064FF;--y-deep:#0050D6;--y-light:#E8F0FF;--y-mid:#B3CFFF;
+  --ma:#E94826;--ma-deep:#C43D1E;--ma-light:#FEF0EC;--ma-mid:#F4B09E;
   --dark:#1A1F2A;--gray-800:#2C3344;--gray-600:#4E5968;--gray-400:#8B95A1;
   --gray-200:#E5E8EB;--gray-100:#F2F4F6;--bg:#F7F8FA;--surface:#FFFFFF;
-  --sb-bg:#17202E;
+  --sb-bg:#1C1411;
   --sd-low:0 1px 3px rgba(0,0,0,.04),0 4px 16px rgba(0,0,0,.07);
   --sd-mid:0 2px 8px rgba(0,0,0,.05),0 8px 28px rgba(0,0,0,.10);
   --r-md:16px;--r-lg:20px;
@@ -20,7 +20,7 @@
 html{scroll-behavior:smooth}
 body{font-family:'Pretendard',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--gray-800);font-size:14px;line-height:1.7;-webkit-font-smoothing:antialiased}
 .sidebar{position:fixed;top:0;left:0;width:256px;height:100vh;background:var(--sb-bg);display:flex;flex-direction:column;padding:32px 22px 26px;overflow-y:auto;z-index:100}
-.sb-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--y);background:rgba(0,100,255,.12);border-radius:5px;padding:3px 8px;margin-bottom:22px;border:1px solid rgba(0,100,255,.25)}
+.sb-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ma);background:rgba(233,72,38,.12);border-radius:5px;padding:3px 8px;margin-bottom:22px;border:1px solid rgba(233,72,38,.25)}
 .av-wrap{width:68px;height:68px;border-radius:10px;overflow:hidden;margin-bottom:14px;border:2px solid rgba(255,255,255,.1)}
 .av-wrap img{width:100%;height:100%;object-fit:cover}
 .sb-name{font-size:17px;font-weight:700;color:#fff;letter-spacing:-.02em;line-height:1.25}
@@ -31,34 +31,34 @@ nav ul{list-style:none}
 nav li{margin-bottom:1px}
 nav a{display:block;padding:7px 10px;border-radius:8px;color:rgba(255,255,255,.4);text-decoration:none;font-size:12.5px;font-weight:500;transition:all .14s;border-left:2px solid transparent}
 nav a:hover{color:rgba(255,255,255,.8);background:rgba(255,255,255,.06)}
-nav a.active{color:#fff;background:rgba(0,100,255,.14);border-left-color:var(--y)}
+nav a.active{color:#fff;background:rgba(233,72,38,.14);border-left-color:var(--ma)}
 .sb-cfa{margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.07)}
 .sb-cfa-lbl{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.25);margin-bottom:5px}
-.sb-cfa-val{display:inline-block;font-size:11px;font-weight:600;color:var(--y);background:rgba(0,100,255,.12);padding:2px 8px;border-radius:4px}
+.sb-cfa-val{display:inline-block;font-size:11px;font-weight:600;color:var(--ma);background:rgba(233,72,38,.12);padding:2px 8px;border-radius:4px}
 .sb-contact{margin-top:14px;font-size:10.5px;color:rgba(255,255,255,.28);line-height:1.9}
-.sb-contact a{color:var(--y);text-decoration:none}
+.sb-contact a{color:var(--ma);text-decoration:none}
 .main{margin-left:256px}
 .hero{background:var(--surface);padding:52px 48px 38px;border-bottom:1px solid rgba(0,0,0,.06);max-width:860px}
-.hero-eye{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--y-deep);margin-bottom:14px}
+.hero-eye{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ma-deep);margin-bottom:14px}
 .hero-name{font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--dark);line-height:1.1;margin-bottom:6px}
 .hero-sub{font-size:13.5px;font-weight:500;color:var(--gray-400);margin-bottom:22px}
-.hero-stmt{font-size:14.5px;line-height:1.85;color:var(--gray-600);max-width:680px;padding-left:18px;border-left:3px solid var(--y)}
+.hero-stmt{font-size:14.5px;line-height:1.85;color:var(--gray-600);max-width:680px;padding-left:18px;border-left:3px solid var(--ma)}
 .career-strip{background:var(--surface);max-width:860px;padding:13px 48px 15px;border-bottom:1px solid rgba(0,0,0,.06);display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;font-size:11.5px}
 .cs-item{display:flex;align-items:center;gap:4px}
 .cs-co{color:var(--gray-400);font-weight:600}
 .cs-ro{color:var(--gray-200);font-weight:400}
 .cs-ro::before{content:'·';margin-right:4px;color:var(--gray-200)}
 .cs-sep{color:var(--gray-200)}
-.cs-hi .cs-co{color:var(--y-deep)}
-.cs-hi .cs-ro{color:var(--y-deep);opacity:.7}
+.cs-hi .cs-co{color:var(--ma-deep)}
+.cs-hi .cs-ro{color:var(--ma-deep);opacity:.7}
 section{max-width:860px;padding:48px 48px 44px;border-bottom:1px solid rgba(0,0,0,.06);background:var(--bg)}
 section:last-child{border-bottom:none}
-.sec-label{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--y-deep);margin-bottom:5px}
+.sec-label{font-size:9.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ma-deep);margin-bottom:5px}
 .sec-title{font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--dark);margin-bottom:28px;line-height:1.25}
 .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .fit-card{background:var(--surface);border-radius:var(--r-md);padding:20px 22px;box-shadow:var(--sd-low);transition:box-shadow .2s,transform .2s}
 .fit-card:hover{box-shadow:var(--sd-mid);transform:translateY(-2px)}
-.fit-card-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--y-deep);margin-bottom:7px}
+.fit-card-tag{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ma-deep);margin-bottom:7px}
 .fit-card-title{font-size:13px;font-weight:700;color:var(--dark);margin-bottom:6px;line-height:1.4}
 .fit-card-body{font-size:12px;color:var(--gray-600);line-height:1.68}
 .project{background:var(--surface);border-radius:var(--r-lg);padding:28px 30px 24px;margin-bottom:16px;box-shadow:var(--sd-low);transition:box-shadow .2s}
@@ -67,12 +67,12 @@ section:last-child{border-bottom:none}
 .proj-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:4px}
 .proj-title{font-size:15px;font-weight:700;color:var(--dark);letter-spacing:-.01em;line-height:1.3}
 .proj-period{font-size:11px;color:var(--gray-400);white-space:nowrap;font-weight:500;background:var(--gray-100);padding:2px 9px;border-radius:5px}
-.proj-org{font-size:11.5px;font-weight:600;color:var(--y-deep);margin-bottom:14px}
+.proj-org{font-size:11.5px;font-weight:600;color:var(--ma-deep);margin-bottom:14px}
 .wri{width:100%;border-collapse:collapse;font-size:12.5px}
 .wri tr{border-top:1px solid var(--gray-200)}
 .wri tr:first-child{border-top:none}
 .wri td{padding:8px 8px;vertical-align:top;line-height:1.65}
-.wri-l{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--y-deep);white-space:nowrap;width:52px;padding-right:14px}
+.wri-l{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ma-deep);white-space:nowrap;width:52px;padding-right:14px}
 .wri-r{color:var(--gray-600)}
 .proj-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
 .proj-gallery img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer;transition:transform .18s,box-shadow .18s}
@@ -83,42 +83,42 @@ section:last-child{border-bottom:none}
 .lb-close{position:absolute;top:20px;right:24px;font-size:28px;color:#fff;cursor:pointer;line-height:1;opacity:.7}
 .lb-close:hover{opacity:1}
 .think-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:20px}
-.think-card{background:var(--y-light);border-radius:var(--r-md);padding:20px 18px;box-shadow:0 1px 4px rgba(0,100,255,.1)}
-.think-num{font-size:26px;font-weight:800;color:var(--y-deep);opacity:.35;line-height:1;margin-bottom:8px}
+.think-card{background:var(--ma-light);border-radius:var(--r-md);padding:20px 18px;box-shadow:0 1px 4px rgba(233,72,38,.1)}
+.think-num{font-size:26px;font-weight:800;color:var(--ma-deep);opacity:.35;line-height:1;margin-bottom:8px}
 .think-card-title{font-size:12.5px;font-weight:700;color:var(--dark);margin-bottom:6px}
 .think-card-body{font-size:12px;color:var(--gray-600);line-height:1.7}
-.think-stmt{background:var(--surface);border-radius:0 var(--r-md) var(--r-md) 0;padding:18px 22px;box-shadow:var(--sd-low);font-size:13.5px;color:var(--gray-600);line-height:1.85;border-left:3px solid var(--y)}
+.think-stmt{background:var(--surface);border-radius:0 var(--r-md) var(--r-md) 0;padding:18px 22px;box-shadow:var(--sd-low);font-size:13.5px;color:var(--gray-600);line-height:1.85;border-left:3px solid var(--ma)}
 .timeline{position:relative}
 .timeline::before{content:'';position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--gray-200)}
 .tl-item{position:relative;padding-left:30px;margin-bottom:30px}
 .tl-item:last-child{margin-bottom:0}
 .tl-dot{position:absolute;left:0;top:5px;width:16px;height:16px;border-radius:50%;background:var(--surface);border:2px solid var(--gray-200)}
-.tl-item.current .tl-dot{border-color:var(--y);background:var(--y)}
+.tl-item.current .tl-dot{border-color:var(--ma);background:var(--ma)}
 .tl-period{font-size:10.5px;font-weight:600;color:var(--gray-400);margin-bottom:2px}
 .tl-co{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:2px}
-.tl-role{font-size:12px;color:var(--y-deep);font-weight:600;margin-bottom:5px}
+.tl-role{font-size:12px;color:var(--ma-deep);font-weight:600;margin-bottom:5px}
 .tl-desc{font-size:12.5px;color:var(--gray-600);line-height:1.65}
 .skills-tbl{width:100%;border-collapse:collapse}
 .skills-tbl tr{border-top:1px solid var(--gray-200)}
 .skills-tbl tr:first-child{border-top:none}
 .skills-tbl td{padding:13px 8px;vertical-align:top}
-.sk-cat{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--y-deep);width:130px;white-space:nowrap}
+.sk-cat{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--ma-deep);width:130px;white-space:nowrap}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tag{background:var(--gray-100);color:var(--gray-600);font-size:11.5px;font-weight:500;padding:3px 11px;border-radius:20px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
-.tag.hi{background:var(--y);color:#fff;font-weight:700;box-shadow:0 2px 8px rgba(0,100,255,.3)}
+.tag.hi{background:var(--ma);color:#fff;font-weight:700;box-shadow:0 2px 8px rgba(233,72,38,.3)}
 .lang-toggle{position:fixed;top:14px;right:18px;z-index:200;display:flex;gap:3px;background:rgba(255,255,255,.95);border-radius:10px;padding:3px;box-shadow:0 2px 12px rgba(0,0,0,.1);backdrop-filter:blur(8px)}
 .lang-btn{background:none;border:none;cursor:pointer;font-size:11px;font-weight:600;padding:4px 11px;border-radius:7px;color:var(--gray-400);font-family:inherit;transition:all .15s}
-.lang-btn.active{background:var(--y);color:#fff}
+.lang-btn.active{background:var(--ma);color:#fff}
 @media(max-width:768px){.sidebar{display:none}.main{margin-left:0}.hero,section{padding:32px 20px}.fit-grid,.think-grid{grid-template-columns:1fr}.proj-gallery{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
 
 <aside class="sidebar">
-  <div class="sb-tag">Toss Bank Application 2026</div>
+  <div class="sb-tag">Mirae Asset Securities 2026</div>
   <div class="av-wrap"><img src="images/profile.jpg" alt="왕지인"></div>
   <div class="sb-name">왕지인</div>
-  <div class="sb-role">Strategy Development Team<br>Strategy Development Manager</div>
+  <div class="sb-role">ESG&amp;IR팀<br>ESG·IR 담당</div>
   <div class="sb-div"></div>
   <div class="sb-lbl">Navigation</div>
   <nav><ul>
@@ -148,16 +148,16 @@ section:last-child{border-bottom:none}
 <div class="main">
 
   <div class="hero">
-    <div class="hero-eye" data-i18n="hero.eye">Strategy × Finance × Execution</div>
+    <div class="hero-eye" data-i18n="hero.eye">Reporting × IR × ESG</div>
     <div class="hero-name" data-i18n="hero.name">왕지인</div>
     <div class="hero-sub" data-i18n="hero.sub">5년 10개월 · NHN 전략기획 → AIA생명 테크기획 · CFA L3</div>
-    <div class="hero-stmt" data-i18n="hero.stmt">다양한 산업 도메인을 사업 전략 관점에서 분석하며, 수익 구조를 해체해 핵심 드라이버를 찾고 그걸 의사결정으로 연결하는 일을 반복했습니다. NHN에서는 10개 이상 산업의 M&A·투자 검토를 독립적으로 수행하며 경영진의 Go/No-Go를 수치로 뒷받침했고, 매 산업을 거칠수록 분석의 정확도와 속도가 누적적으로 쌓였습니다. AIA에서는 IT 중장기 전략을 현황 진단부터 실행 추적까지 풀 사이클로 설계하며, 한 번의 전략 과제가 다음 과제의 기준이 되는 구조를 만들었습니다. 금융업의 규제와 제약은 전략의 한계가 아니라 전략이 시작되는 지점이라는 것을 AIA에서 체감했고, 그 위에서 토스 앱과 시너지를 극대화하는 뱅킹 서비스를 만드는 전략적 의사결정을 다방면으로 지원하고 싶습니다.</div>
+    <div class="hero-stmt" data-i18n="hero.stmt">숫자로 검증하고, 경영진과 투자자가 판단할 수 있는 언어로 전달하는 보고를 반복해왔습니다. NHN에서는 그룹 계열사 실적을 드라이버 단위까지 해체해, 경영진이 원인과 개선 레버를 즉시 파악할 수 있는 보고 체계를 만들었습니다. AIA에서는 이사회 의결 자료의 재무 섹션을 단독으로 완결했고, 홍콩 본사 대상 영문 거버넌스 보고를 정기 수행했습니다. CFA L3 과정에서 체득한 투자자 관점은 기업 실적과 자본 구조를 외부 시각으로 설명하는 언어와 연결됩니다. 미래에셋증권 ESG&amp;IR팀에서 기업 스토리를 투자자에게 정확하고 설득력 있게 전달하는 일을 하고 싶습니다.</div>
   </div>
 
   <div class="career-strip">
-    <div class="cs-item"><span class="cs-co" data-i18n="cs.aia">AIA생명</span><span class="cs-ro" data-i18n="cs.aia.r">테크기획 · IT전략 · 시장분석</span></div>
+    <div class="cs-item"><span class="cs-co" data-i18n="cs.aia">AIA생명</span><span class="cs-ro" data-i18n="cs.aia.r">테크기획 · 이사회 보고 · 영문 거버넌스</span></div>
     <span class="cs-sep">·</span>
-    <div class="cs-item"><span class="cs-co">NHN</span><span class="cs-ro" data-i18n="cs.nhn.r">전략기획 · M&A · 중장기계획</span></div>
+    <div class="cs-item"><span class="cs-co">NHN</span><span class="cs-ro" data-i18n="cs.nhn.r">경영진 보고 · 그룹 실적 분석 · 공시 자동화</span></div>
     <span class="cs-sep">·</span>
     <div class="cs-item"><span class="cs-co" data-i18n="cs.lotte">롯데이노베이트</span><span class="cs-ro" data-i18n="cs.lotte.r">PI 컨설팅</span></div>
     <span class="cs-sep">·</span>
@@ -170,39 +170,39 @@ section:last-child{border-bottom:none}
     <div class="fit-grid">
 
       <div class="fit-card">
-        <div class="fit-card-tag">Strategy → Options</div>
-        <div class="fit-card-title" data-i18n="f1.t">전략을 선택지와 근거로 구조화</div>
-        <div class="fit-card-body" data-i18n="f1.b">NHN에서 PG·VAN·조각투자·SaaS 등 10개+ 산업의 M&A·투자 검토를 독립 수행했습니다. 산업 구조 해체 → 수익/비용 드라이버 분석 → BEP·시너지 산출 → C레벨 보고. 방향이 아닌 선택지와 논거를 만드는 방식입니다.</div>
+        <div class="fit-card-tag">Executive Reporting</div>
+        <div class="fit-card-title" data-i18n="f1.t">경영진·이사회 보고 자료를 수치로 완결</div>
+        <div class="fit-card-body" data-i18n="f1.b">AIA에서 자회사 설립 이사회 의결 자료의 재무 섹션을 단독으로 완결했습니다. 6개 조직의 이견을 단일 판단 기준으로 수렴해 이사회 보고로 연결했고, NHN에서는 5개 계열사 실적 보고를 드라이버 기반 구조로 전환해 경영진이 원인과 레버를 즉시 파악하는 체계를 만들었습니다.</div>
       </div>
 
       <div class="fit-card">
-        <div class="fit-card-tag">Hypothesis & Validation</div>
-        <div class="fit-card-title" data-i18n="f2.t">불완전한 정보에서 가설을 검증</div>
-        <div class="fit-card-body" data-i18n="f2.b">페이히어(POS) 투자 검토에서 선례 없이 VAN 수수료·무료 모델 수익 구조를 해체해 공헌이익 BEP를 산출, 고평가 리스크를 사전 식별해 No-Go 의사결정을 지원했습니다. 가설 → 모델 → 검증의 반복입니다.</div>
+        <div class="fit-card-tag">Investor Perspective</div>
+        <div class="fit-card-title" data-i18n="f2.t">투자자 관점의 기업가치 분석</div>
+        <div class="fit-card-body" data-i18n="f2.b">CFA L3 + 10개 이상 기업·사업 분석 경험을 기반으로, 수익/비용 드라이버를 투자자가 묻는 방식으로 구조화합니다. 기업 실적을 단순 나열이 아닌 '왜, 어떤 레버가 움직였는가'의 서사로 재구성하는 방식입니다.</div>
       </div>
 
       <div class="fit-card">
-        <div class="fit-card-tag">Full Strategy Cycle</div>
-        <div class="fit-card-title" data-i18n="f3.t">수립에서 실행 추적까지</div>
-        <div class="fit-card-body" data-i18n="f3.b">AIA에서 IT 중장기 전략을 현황 진단 → 핵심과제 도출 → 이행방안 설계 → 월별 실적 추적 구조로 설계했습니다. 전략 문서가 아니라 조직의 다음 행동을 바꾸는 것을 목표로 합니다.</div>
+        <div class="fit-card-tag">ESG &amp; Governance</div>
+        <div class="fit-card-title" data-i18n="f3.t">거버넌스 설계와 영문 글로벌 보고</div>
+        <div class="fit-card-body" data-i18n="f3.b">AIA에서 자회사 이사회 구성·KPI·예산 보고체계를 포함한 거버넌스 구조를 설계하고, 홍콩 본사 대상 영문 거버넌스 보고를 정기 수행했습니다. 다국적 이해관계자를 대상으로 한 공식 보고 경험이 있습니다.</div>
       </div>
 
       <div class="fit-card">
-        <div class="fit-card-tag">Alignment & Coordination</div>
-        <div class="fit-card-title" data-i18n="f4.t">다조직 의견 충돌을 수렴하기</div>
-        <div class="fit-card-body" data-i18n="f4.b">자회사 설립 프로젝트에서 재무·법무·세무·테크·준법·외부 자문사가 각기 다른 기준을 들고 왔습니다. '그룹 자본 효율성' 지표를 공통 기준으로 이견을 수렴해 이사회 자료로 완결했습니다.</div>
+        <div class="fit-card-tag">Reporting System</div>
+        <div class="fit-card-title" data-i18n="f4.t">지속 운영 가능한 정기 보고 체계 설계</div>
+        <div class="fit-card-body" data-i18n="f4.b">AIA에서 생보사 11개사 경쟁력 분석을 바탕으로 CTO·경영진 대상 Executive Report를 주간 단독 발행했습니다. 월별 예실 추적 구조를 계획 수립 단계부터 내장해, 일회성 보고가 아닌 조직의 정보 흐름이 되는 체계를 만드는 방식입니다.</div>
       </div>
 
       <div class="fit-card">
-        <div class="fit-card-tag">Domain Breadth</div>
-        <div class="fit-card-title" data-i18n="f5.t">도메인별 사업 구조 빠르게 파악</div>
-        <div class="fit-card-body" data-i18n="f5.b">결제·PG·SaaS·여행·커머스·보험·증권 — 토스뱅크와 연결된 산업 대부분에 분석 접점이 있습니다. 낯선 도메인의 수익 구조와 비용 드라이버를 처음부터 빠르게 해체하는 방식을 체득했습니다.</div>
+        <div class="fit-card-tag">Disclosure &amp; Automation</div>
+        <div class="fit-card-title" data-i18n="f5.t">공시 데이터 수집·처리 자동화</div>
+        <div class="fit-card-body" data-i18n="f5.b">DART API를 활용해 공시 데이터 수집·처리·보고 생성 파이프라인을 Python으로 구축했습니다. 수작업 대비 93% 효율화. IR 업무에서 반복되는 공시 데이터 수집·가공을 자동화로 연결하는 경험입니다.</div>
       </div>
 
       <div class="fit-card">
-        <div class="fit-card-tag">Market & Competitive Intel</div>
-        <div class="fit-card-title" data-i18n="f6.t">경쟁·규제 변화를 전략 인풋으로</div>
-        <div class="fit-card-body" data-i18n="f6.b">AIA에서 생보사 11개사 AI·IT Maturity Matrix를 직접 설계하고 규제·테크 트렌드를 주간 모니터링해 CTO·경영진 대상 Executive Report를 발행했습니다. 시장 신호를 전략 판단으로 연결하는 루틴입니다.</div>
+        <div class="fit-card-tag">Multi-industry Literacy</div>
+        <div class="fit-card-title" data-i18n="f6.t">다산업 재무구조 독해와 비교 분석</div>
+        <div class="fit-card-body" data-i18n="f6.b">결제·보험·SaaS·여행·커머스·증권 등 다양한 산업의 재무구조를 분석했습니다. Peer 벤치마킹 경험과 CFA 기반 재무제표 독해 역량으로, 산업이 달라도 투자자 관점에서 기업 간 비교 분석이 가능합니다.</div>
       </div>
 
     </div>
@@ -214,14 +214,14 @@ section:last-child{border-bottom:none}
 
     <div class="project">
       <div class="proj-header">
-        <div class="proj-title" data-i18n="p1.t">계열사 전략-실적 연동 · Business Driver 분석</div>
+        <div class="proj-title" data-i18n="p1.t">그룹 계열사 실적 보고 · 드라이버 기반 경영진 커뮤니케이션 체계 구축</div>
         <span class="proj-period">2021 – 2025 · NHN</span>
       </div>
       <div class="proj-org">NHN 전략기획팀</div>
       <table class="wri">
-        <tr><td class="wri-l">상황</td><td class="wri-r" data-i18n="p1.s">두레이·코미코·여행박사·에듀 5개 계열사의 실적이 악화되고 있었지만, 경영진 보고는 숫자 결과를 나열하는 수준에 그쳤습니다. 왜 나빠지는지, 어떤 레버를 당겨야 하는지 설명이 없었습니다.</td></tr>
-        <tr><td class="wri-l">접근</td><td class="wri-r" data-i18n="p1.a">계정·원장 단위까지 내려가 비용 구조를 재분류하고 실질 드라이버를 새로 정의했습니다. 두레이는 인프라 고정비 배부 구조를 유닛 단위로 해체해 비용률 30%p를 절감했고, 코미코 일본은 고정/변동비 구조 재진단으로 YoY 적자폭을 57% 축소했습니다. 여행박사는 광고채널별 ROI를 유닛 단위로 측정해 비효율 채널을 차단, ROI를 -50%에서 +10%대로 전환했습니다. 외부 투자자 Put Option 만기 시 계열사별 자본 부담과 연결 현금흐름 시나리오도 직접 모델링했습니다.</td></tr>
-        <tr><td class="wri-l">결과</td><td class="wri-r" data-i18n="p1.r">실적 보고가 드라이버 기반 구조로 전환됐습니다. 경영진이 "왜"를 묻기 전에 원인과 개선 레버를 제시하는 체계가 됐고, 이 프레임이 이후 투자·제휴 검토의 기본 포맷이 됐습니다.</td></tr>
+        <tr><td class="wri-l">상황</td><td class="wri-r" data-i18n="p1.s">두레이·코미코·여행박사·에듀 등 5개 계열사 실적이 악화되고 있었지만, 경영진 보고는 숫자 결과를 나열하는 수준에 그쳤습니다. 왜 나빠지는지, 어떤 레버가 움직여야 하는지 서사가 없었습니다.</td></tr>
+        <tr><td class="wri-l">접근</td><td class="wri-r" data-i18n="p1.a">계정·원장 단위까지 내려가 비용 구조를 재분류하고 실질 드라이버를 새로 정의했습니다. 두레이는 인프라 고정비 배부 구조를 유닛 단위로 해체해 비용률 30%p를 절감했고, 코미코 일본은 고정/변동비 재진단으로 YoY 적자폭을 57% 축소했습니다. 여행박사는 광고채널별 ROI를 유닛 단위로 측정해 ROI를 -50%에서 +10%대로 전환했습니다. 외부 투자자 Put Option 만기 시 계열사별 자본 부담과 연결 현금흐름 시나리오도 직접 모델링했습니다.</td></tr>
+        <tr><td class="wri-l">결과</td><td class="wri-r" data-i18n="p1.r">경영진 보고가 드라이버 기반 구조로 전환됐습니다. 숫자 결과를 나열하는 방식에서, 원인과 개선 레버를 함께 제시하는 보고 체계가 됐고 이 프레임이 이후 그룹 내 표준 포맷이 됐습니다.</td></tr>
       </table>
       <div class="proj-gallery">
         <img src="images/aia_p2p_01_institutions_blurred.png" alt="분석 예시" onclick="openLb(this.src)">
@@ -232,68 +232,68 @@ section:last-child{border-bottom:none}
 
     <div class="project">
       <div class="proj-header">
-        <div class="proj-title" data-i18n="p2.t">M&A · 투자 · 전략적 제휴 검토</div>
+        <div class="proj-title" data-i18n="p2.t">기업가치 분석 · 투자자 관점 의사결정 지원</div>
         <span class="proj-period">2022 – 2025 · NHN</span>
       </div>
       <div class="proj-org">NHN 전략기획팀</div>
       <table class="wri">
-        <tr><td class="wri-l">상황</td><td class="wri-r" data-i18n="p2.s">PG·VAN·조각투자·SaaS·여행·커머스 등 10개 이상 산업에서 인수·투자·제휴 대상 검토가 수시로 필요했습니다. 산업마다 수익 구조가 달랐고, 정형화된 가이드라인 없이 독립적으로 수행해야 했습니다.</td></tr>
-        <tr><td class="wri-l">접근</td><td class="wri-r" data-i18n="p2.a">산업 구조 해체 → 수익/비용 드라이버 분석 → BEP·시너지 산출 → C레벨 보고의 프레임을 반복 적용했습니다. 페이히어(POS) 투자 검토에서는 VAN 수수료·무료 모델 수익 구조를 해체해 공헌이익 기반 BEP를 산출, 고평가 리스크를 사전 식별해 No-Go 의사결정을 지원했습니다. 솔트룩스·NHN다이퀘스트 매각 지원 시에는 플랫폼 시너지 가치를 수치화했고, NHN Cloud 스토리지 make vs buy 검토에서는 시나리오별 비용·수익 시뮬레이션으로 판단 근거를 제공했습니다.</td></tr>
-        <tr><td class="wri-l">결과</td><td class="wri-r" data-i18n="p2.r">산업이 달라도 같은 구조로 경영진 Pre-review 즉답이 가능해졌습니다. 페이코·두레이 중장기 경영계획에서도 동일 프레임을 적용해 사업 레버별 민감도를 경영진과 공유했습니다.</td></tr>
+        <tr><td class="wri-l">상황</td><td class="wri-r" data-i18n="p2.s">PG·VAN·조각투자·SaaS·여행·커머스 등 10개 이상 산업에서 기업 인수·투자·매각 검토가 수시로 필요했습니다. 산업마다 수익 구조가 달랐고, 정형화된 비교 기준 없이 독립적으로 수행해야 했습니다.</td></tr>
+        <tr><td class="wri-l">접근</td><td class="wri-r" data-i18n="p2.a">사업 구조 해체 → 수익/비용 드라이버 분석 → 기업가치·시너지 산출 → 경영진 보고의 프레임을 반복 적용했습니다. 페이히어(POS) 투자 검토에서는 VAN 수수료·무료 모델 수익 구조를 해체해 공헌이익 기반 손익분기를 산출, 고평가 리스크를 사전 식별해 경영진 No-Go 판단을 뒷받침했습니다. 솔트룩스·NHN다이퀘스트 매각 시에는 플랫폼 시너지 가치를 수치화해 협상 논거를 제공했고, NHN Cloud 내재화 vs. 외주 검토에서는 시나리오별 비용·수익 시뮬레이션으로 판단 근거를 구조화했습니다.</td></tr>
+        <tr><td class="wri-l">결과</td><td class="wri-r" data-i18n="p2.r">산업이 달라도 같은 분석 구조로 경영진 Pre-review 즉답이 가능해졌습니다. 페이코·두레이 중장기 경영계획에서도 동일 프레임으로 사업 레버별 민감도를 경영진에게 공유했습니다.</td></tr>
       </table>
       <div class="proj-gallery">
-        <img src="images/pl-02-payco-1.png" alt="전략 검토 예시" onclick="openLb(this.src)">
-        <img src="images/pl-02-payco-2.png" alt="전략 검토 예시" onclick="openLb(this.src)">
-        <img src="images/pl-02-payco-3.png" alt="전략 검토 예시" onclick="openLb(this.src)">
+        <img src="images/pl-02-payco-1.png" alt="기업가치 분석 예시" onclick="openLb(this.src)">
+        <img src="images/pl-02-payco-2.png" alt="기업가치 분석 예시" onclick="openLb(this.src)">
+        <img src="images/pl-02-payco-3.png" alt="기업가치 분석 예시" onclick="openLb(this.src)">
       </div>
     </div>
 
     <div class="project">
       <div class="proj-header">
-        <div class="proj-title" data-i18n="p3.t">IT 중장기 전략 수립 · 전략-실행 풀 사이클</div>
-        <span class="proj-period">2025 · AIA생명</span>
-      </div>
-      <div class="proj-org">AIA생명 테크기획팀</div>
-      <table class="wri">
-        <tr><td class="wri-l">상황</td><td class="wri-r" data-i18n="p3.s">3~5개년 IT 중장기 전략이 필요했지만 기존 방식은 방향성 나열에 그쳤고, 재무계획과 연동되지 않아 예산 배분 근거가 약했습니다. 전략이 실행으로 이어지는 구조가 없었습니다.</td></tr>
-        <tr><td class="wri-l">접근</td><td class="wri-r" data-i18n="p3.a">시스템·조직·운영효율·예산 4개 축으로 현황을 진단하고, 축별 핵심과제를 도출한 뒤 이행방안을 설계했습니다. 경쟁사 IT 예산·인력 Peer 벤치마킹으로 투자 효율성 논리를 보강했고, 월별 Budget vs. Actual 분산 분석을 계획 수립 단계부터 포함시켜 추적 가능한 구조를 만들었습니다.</td></tr>
-        <tr><td class="wri-l">결과</td><td class="wri-r" data-i18n="p3.r">CTO·개발부문장 경영진 보고 완결. CapEx/OpEx 배분 개선 방향이 실제 예산 운영에 반영됐고, 전략이 월간 실적 추적 체계와 연결되는 구조가 됐습니다.</td></tr>
-      </table>
-      <div class="proj-gallery">
-        <img src="images/it-01-strategy-1.png" alt="IT 전략 예시" onclick="openLb(this.src)">
-        <img src="images/it-01-strategy-2.png" alt="IT 전략 예시" onclick="openLb(this.src)">
-        <img src="images/it-01-strategy-3.png" alt="IT 전략 예시" onclick="openLb(this.src)">
-      </div>
-    </div>
-
-    <div class="project">
-      <div class="proj-header">
-        <div class="proj-title" data-i18n="p4.t">자회사 설립 타당성 검토 · 다자간 Alignment</div>
+        <div class="proj-title" data-i18n="p3.t">자회사 설립 이사회 보고 · 다자간 거버넌스 조율</div>
         <span class="proj-period">2025 – 현재 · AIA생명</span>
       </div>
       <div class="proj-org">AIA생명 테크기획팀</div>
       <table class="wri">
-        <tr><td class="wri-l">상황</td><td class="wri-r" data-i18n="p4.s">그룹 자회사 신규 설립 프로젝트. 재무·법무·세무·테크·준법·외부 자문사 등 다학제적 조직이 각자의 기준으로 상충하는 의견을 냈고, 단일 판단 기준이 없었습니다.</td></tr>
-        <tr><td class="wri-l">접근</td><td class="wri-r" data-i18n="p4.a">중장기 추정 손익, 자금 흐름, 세후 NOI·IRR을 통합 모델로 연동했습니다. 조직 간 이견은 '그룹 자본 효율성' 지표를 공통 기준으로 삼아 수렴시켰고, 현지 세무 리스크·배당 구조·거버넌스 설계(이사회 구성·KPI·예산 보고체계)까지 재무 관점으로 통합 정리했습니다.</td></tr>
-        <tr><td class="wri-l">결과</td><td class="wri-r" data-i18n="p4.r">이사회 의결 자료 재무 섹션 단독 완결. 6개 조직의 이견이 단일 프레임으로 수렴됐고, 투자 회수기간·IRR·자본 소요 분석이 경영진 최종 의사결정의 근거가 됐습니다.</td></tr>
+        <tr><td class="wri-l">상황</td><td class="wri-r" data-i18n="p3.s">그룹 자회사 신규 설립 프로젝트. 재무·법무·세무·테크·준법·외부 자문사 등 다학제적 조직이 각자의 기준으로 상충하는 의견을 냈고, 이사회 보고를 위한 단일 판단 기준이 없었습니다.</td></tr>
+        <tr><td class="wri-l">접근</td><td class="wri-r" data-i18n="p3.a">중장기 추정 손익, 자금 흐름, 세후 NOI·IRR을 통합 모델로 연동했습니다. 조직 간 이견은 '그룹 자본 효율성' 지표를 공통 기준으로 삼아 수렴시켰고, 현지 세무 리스크·배당 구조·거버넌스 설계(이사회 구성·KPI·예산 보고체계)까지 재무 관점으로 통합 정리했습니다. 이사회 의결에 필요한 재무 섹션 전체를 단독으로 작성했습니다.</td></tr>
+        <tr><td class="wri-l">결과</td><td class="wri-r" data-i18n="p3.r">이사회 의결 자료 재무 섹션 단독 완결. 6개 조직의 이견이 단일 프레임으로 수렴됐고, 투자 회수기간·자본 소요·리스크 분석이 경영진 최종 의사결정의 근거가 됐습니다.</td></tr>
       </table>
     </div>
 
     <div class="project">
       <div class="proj-header">
-        <div class="proj-title" data-i18n="p5.t">경쟁사 분석 · Market Intelligence 체계 구축</div>
+        <div class="proj-title" data-i18n="p4.t">경쟁사 분석 · ESG·IT 성숙도 평가 · Executive Report 체계화</div>
         <span class="proj-period">2025 – 현재 · AIA생명</span>
       </div>
       <div class="proj-org">AIA생명 테크기획팀</div>
       <table class="wri">
-        <tr><td class="wri-l">상황</td><td class="wri-r" data-i18n="p5.s">AI·디지털 전환·규제 변화가 빠르게 움직이는 환경에서 경쟁 구도를 진단하고 전략 방향에 인사이트를 공급하는 체계가 없었습니다.</td></tr>
-        <tr><td class="wri-l">접근</td><td class="wri-r" data-i18n="p5.a">생보사 11개사 AI·IT Maturity Matrix를 직접 설계해 기술 성숙도와 경쟁 격차를 진단했습니다. AI·테크핀 규제·디지털 전환 트렌드를 주간 모니터링해 CTO·개발부문장·BRM 대상 Executive Report를 단독 발행했고, Python으로 데이터 수집·보고 생성 파이프라인을 자동화했습니다.</td></tr>
-        <tr><td class="wri-l">결과</td><td class="wri-r" data-i18n="p5.r">경영진 Ad-hoc 요청에 즉답 가능한 분석 체계가 됐습니다. 규제·경쟁 변화를 전략 인풋으로 연결하는 루틴이 조직 내 정착됐습니다.</td></tr>
+        <tr><td class="wri-l">상황</td><td class="wri-r" data-i18n="p4.s">AI·디지털 전환·규제 변화가 빠르게 움직이는 환경에서, 경쟁 구도를 진단하고 경영진 의사결정에 인사이트를 정기 공급하는 체계가 없었습니다.</td></tr>
+        <tr><td class="wri-l">접근</td><td class="wri-r" data-i18n="p4.a">생보사 11개사 AI·IT Maturity Matrix를 직접 설계해 기술 성숙도와 경쟁 격차를 정량 진단했습니다. AI·테크핀 규제·디지털 전환 트렌드를 주간 모니터링해 CTO·개발부문장·BRM 대상 Executive Report를 단독 발행했습니다. 홍콩 본사(AIAHK)에는 동일 분석을 영문 거버넌스 보고 형식으로 정기 제출했습니다. Python으로 데이터 수집·보고 생성 파이프라인을 자동화해 보고 주기를 유지했습니다.</td></tr>
+        <tr><td class="wri-l">결과</td><td class="wri-r" data-i18n="p4.r">경영진 Ad-hoc 요청에 즉답 가능한 분석 체계가 됐습니다. 규제·경쟁 변화를 정기 보고로 연결하는 루틴이 조직 내 정착됐고, 글로벌 본사에도 동일한 인사이트를 영문으로 전달하는 보고 구조가 갖춰졌습니다.</td></tr>
       </table>
       <div class="proj-gallery">
         <img src="images/mi-01-ai-maturity.png" alt="경쟁사 분석 예시" onclick="openLb(this.src)">
-        <img src="images/mi-02-ai-roleplay-1.png" alt="Market Intelligence 예시" onclick="openLb(this.src)">
-        <img src="images/mi-02-ai-roleplay-2.png" alt="Market Intelligence 예시" onclick="openLb(this.src)">
+        <img src="images/mi-02-ai-roleplay-1.png" alt="Executive Report 예시" onclick="openLb(this.src)">
+        <img src="images/mi-02-ai-roleplay-2.png" alt="Executive Report 예시" onclick="openLb(this.src)">
+      </div>
+    </div>
+
+    <div class="project">
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p5.t">공시 데이터 파이프라인 · 보고 자동화</div>
+        <span class="proj-period">2023 – 2025 · NHN</span>
+      </div>
+      <div class="proj-org">NHN 전략기획팀</div>
+      <table class="wri">
+        <tr><td class="wri-l">상황</td><td class="wri-r" data-i18n="p5.s">경쟁사·유사기업 공시 데이터를 매번 수작업으로 수집·가공해 보고서를 작성하는 방식이었습니다. 분석 시간의 대부분이 데이터 정리에 소모됐습니다.</td></tr>
+        <tr><td class="wri-l">접근</td><td class="wri-r" data-i18n="p5.a">DART Open API를 활용해 공시 데이터(재무제표·주요 공시)를 자동 수집하고, pandas로 정제·가공한 뒤 보고 형식으로 출력하는 파이프라인을 Python으로 구축했습니다. 기존 수작업 3일 걸리던 작업을 30분 이내로 단축했습니다.</td></tr>
+        <tr><td class="wri-l">결과</td><td class="wri-r" data-i18n="p5.r">공시 데이터 처리 시간 93% 단축. 절약된 시간이 분석과 인사이트 도출에 집중될 수 있었고, 동일 방식을 IR 자료 작성에서의 공시 데이터 활용에 바로 연결할 수 있는 경험입니다.</td></tr>
+      </table>
+      <div class="proj-gallery">
+        <img src="images/ma-06-comps-1.png" alt="공시 데이터 분석 예시" onclick="openLb(this.src)">
+        <img src="images/ma-06-comps-2.png" alt="공시 데이터 분석 예시" onclick="openLb(this.src)">
+        <img src="images/ma-06-comps-3.png" alt="공시 데이터 분석 예시" onclick="openLb(this.src)">
       </div>
     </div>
 
@@ -301,25 +301,25 @@ section:last-child{border-bottom:none}
 
   <section id="think">
     <div class="sec-label" data-i18n="lab.think">How I Think</div>
-    <div class="sec-title" data-i18n="tit.think">전략가로서 문제를 다루는 방식</div>
+    <div class="sec-title" data-i18n="tit.think">보고를 대하는 방식</div>
     <div class="think-grid">
       <div class="think-card">
         <div class="think-num">01</div>
-        <div class="think-card-title" data-i18n="th1.t">방향이 아닌 선택지</div>
-        <div class="think-card-body" data-i18n="th1.b">전략의 결과물은 방향성 문서가 아니라 의사결정 가능한 선택지여야 합니다. 각 선택지에 근거와 리스크가 붙어있어야 경영진이 실제로 결정을 내릴 수 있습니다.</div>
+        <div class="think-card-title" data-i18n="th1.t">투자자 언어로 번역</div>
+        <div class="think-card-body" data-i18n="th1.b">내부 실적 데이터를 외부 투자자가 묻는 방식으로 재구성합니다. 숫자를 나열하는 것이 아니라, 무엇이 움직였고 왜 움직였는지 서사로 연결해야 보고가 설득력을 갖습니다.</div>
       </div>
       <div class="think-card">
         <div class="think-num">02</div>
-        <div class="think-card-title" data-i18n="th2.t">가설을 숫자로 검증</div>
-        <div class="think-card-body" data-i18n="th2.b">불완전한 정보 속에서도 가설을 세우고 모델로 검증하는 과정을 반복합니다. 가정을 명시하면 틀린 지점이 드러나고, 그게 다음 판단의 기반이 됩니다.</div>
+        <div class="think-card-title" data-i18n="th2.t">숫자로 검증, 서사로 전달</div>
+        <div class="think-card-body" data-i18n="th2.b">분석은 철저히 수치 기반으로 합니다. 가정을 명시하면 틀린 지점이 드러나고, 그게 다음 판단의 기반이 됩니다. 검증된 숫자 위에서만 설득력 있는 스토리가 성립합니다.</div>
       </div>
       <div class="think-card">
         <div class="think-num">03</div>
-        <div class="think-card-title" data-i18n="th3.t">전략과 실행의 연결</div>
-        <div class="think-card-body" data-i18n="th3.b">전략이 실행으로 이어지려면 과제 단위로 쪼개지고, 추적 가능한 지표가 붙어야 합니다. 좋은 전략은 문서가 아니라 조직의 다음 행동을 바꾸는 것입니다.</div>
+        <div class="think-card-title" data-i18n="th3.t">일회성이 아닌 체계</div>
+        <div class="think-card-body" data-i18n="th3.b">좋은 보고는 한 번으로 끝나지 않습니다. 정기적으로 추적 가능하고, 다음 보고의 기준이 되는 구조를 처음부터 설계합니다. 보고 체계가 조직의 정보 흐름이 되어야 합니다.</div>
       </div>
     </div>
-    <div class="think-stmt" data-i18n="th.stmt">문제를 마주하면 사업 구조부터 해체합니다. 무엇이 실제 드라이버인지 찾고, 가능한 선택지를 정의하고, 각 선택지의 재무적·전략적 함의를 시나리오로 만듭니다. 경영진에게 전달할 때는 복잡한 분석을 하나의 판단 논리로 압축합니다.</div>
+    <div class="think-stmt" data-i18n="th.stmt">보고서를 쓸 때 먼저 독자를 정의합니다. 경영진인지, 이사회인지, 외부 투자자인지에 따라 같은 사실도 다른 언어로 번역됩니다. 복잡한 분석을 가장 핵심적인 판단 논리 하나로 압축하는 과정이 보고의 본질이라고 생각합니다.</div>
   </section>
 
   <section id="career">
@@ -331,21 +331,21 @@ section:last-child{border-bottom:none}
         <div class="tl-period">2025.04 – 현재</div>
         <div class="tl-co">AIA생명 (AIA Korea)</div>
         <div class="tl-role">테크기획팀 대리</div>
-        <div class="tl-desc" data-i18n="ca.aia">IT 중장기 전략 수립 (4 pillars, 풀 사이클) / 자회사 설립 E2E 재무 모델·이사회 보고 / 경쟁사 AI·IT Maturity Matrix 설계 / 생보사 11개사 Market Intelligence 주간 보고 / 홍콩 본사 영문 거버넌스 보고 / Python 자동화</div>
+        <div class="tl-desc" data-i18n="ca.aia">자회사 설립 이사회 보고 (재무 섹션 단독 완결) / 거버넌스 설계 (이사회 구성·KPI·예산 보고체계) / 생보사 11개사 경쟁력 분석 · Executive Report 주간 발행 / 홍콩 본사 영문 거버넌스 보고 / Python 보고 자동화</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-period">2021.12 – 2025.03 (3년 4개월)</div>
         <div class="tl-co">NHN</div>
         <div class="tl-role">전략기획팀 전임</div>
-        <div class="tl-desc" data-i18n="ca.nhn">5개 계열사 전략-실적 연동 · 드라이버 분석 / M&A·투자 검토 10개+ 산업 (페이히어 No-Go, 솔트룩스 매각 지원 등) / 페이코·두레이 중장기 경영계획 / Put Option 자본 영향 모델링 / DART 자동화 (93% 효율화)</div>
+        <div class="tl-desc" data-i18n="ca.nhn">5개 계열사 실적 보고 체계 · 드라이버 분석 / 기업가치 분석 10개+ 산업 (인수·투자·매각 지원) / 페이코·두레이 경영계획 / DART 공시 데이터 자동화 (93% 효율화)</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
         <div class="tl-period">2020.08 – 2021.12 (1년 4개월)</div>
         <div class="tl-co">롯데이노베이트</div>
         <div class="tl-role">ERP컨설팅팀 PI담당 선임</div>
-        <div class="tl-desc" data-i18n="ca.lotte">롯데면세점 차세대 IT PI / 롯데제과 S&OP DT 마스터플랜 / 롯데마트·슈퍼 물류 통합 — 현장 As-Is → To-Be → 임원 보고 3사이클</div>
+        <div class="tl-desc" data-i18n="ca.lotte">롯데면세점 차세대 IT PI / 롯데제과 S&amp;OP DT 마스터플랜 / 롯데마트·슈퍼 물류 통합 — 현장 As-Is → To-Be → 임원 보고 3사이클</div>
       </div>
       <div class="tl-item">
         <div class="tl-dot"></div>
@@ -359,43 +359,44 @@ section:last-child{border-bottom:none}
 
   <section id="skills">
     <div class="sec-label" data-i18n="lab.skills">Skills</div>
-    <div class="sec-title" data-i18n="tit.skills">역량 & 자격</div>
+    <div class="sec-title" data-i18n="tit.skills">역량 &amp; 자격</div>
     <table class="skills-tbl">
-      <tr><td class="sk-cat">Strategy</td><td><div class="tags">
-        <span class="tag hi">M&A·투자 스크리닝</span>
-        <span class="tag hi">중장기 전략 수립</span>
-        <span class="tag hi">전략-실행 연계</span>
-        <span class="tag">선택지 구조화</span>
-        <span class="tag">시나리오 분석</span>
-        <span class="tag">OKR 설계·추적</span>
-        <span class="tag">경쟁·시장 분석</span>
+      <tr><td class="sk-cat">IR / Reporting</td><td><div class="tags">
+        <span class="tag hi">경영진·이사회 보고서 작성</span>
+        <span class="tag hi">실적 드라이버 분석·서사화</span>
+        <span class="tag">그룹 실적 보고 체계</span>
+        <span class="tag">Peer 벤치마킹</span>
+        <span class="tag">Executive Report</span>
+      </div></td></tr>
+      <tr><td class="sk-cat">ESG / Governance</td><td><div class="tags">
+        <span class="tag hi">영문 거버넌스 보고 (글로벌 HQ)</span>
+        <span class="tag hi">이사회 자료 작성</span>
+        <span class="tag">거버넌스 구조 설계</span>
+        <span class="tag">ESG 성숙도 평가</span>
+        <span class="tag">다자간 이해관계자 조율</span>
       </div></td></tr>
       <tr><td class="sk-cat">Finance</td><td><div class="tags">
-        <span class="tag hi">재무 모델링 (P&L·B/S·CF 연동)</span>
-        <span class="tag hi">Business Driver 분석</span>
-        <span class="tag">NOI·IRR·BEP</span>
-        <span class="tag">연결 P&L 관리</span>
+        <span class="tag hi">CFA Level 3 Candidate (2026.08)</span>
+        <span class="tag hi">기업가치 분석 (Comps·DCF)</span>
+        <span class="tag">재무제표 분석</span>
+        <span class="tag">NOI·IRR 모델링</span>
         <span class="tag">예실 분산 분석</span>
       </div></td></tr>
       <tr><td class="sk-cat">Automation</td><td><div class="tags">
         <span class="tag hi">Python (pandas · DART API)</span>
-        <span class="tag">SQL</span>
         <span class="tag">Excel (VBA · Power Query)</span>
-        <span class="tag">분석 파이프라인 구축</span>
-      </div></td></tr>
-      <tr><td class="sk-cat">Certification</td><td><div class="tags">
-        <span class="tag hi">CFA Level 3 Candidate (2026.08)</span>
-        <span class="tag">Private Markets Pathway</span>
-        <span class="tag">SQLD · ADsP</span>
+        <span class="tag">SQL</span>
+        <span class="tag">보고 파이프라인 자동화</span>
       </div></td></tr>
       <tr><td class="sk-cat">Language</td><td><div class="tags">
         <span class="tag hi">OPIc AL · TOEIC 990</span>
-        <span class="tag">홍콩 본사 영문 거버넌스 보고</span>
-        <span class="tag">C레벨 즉답 대응</span>
+        <span class="tag">영문 거버넌스 보고 (홍콩 본사)</span>
+        <span class="tag">글로벌 투자자 대응 가능</span>
       </div></td></tr>
       <tr><td class="sk-cat">Awards</td><td><div class="tags">
         <span class="tag">2025 AIA 테크본부 해커톤 금상(2위)</span>
         <span class="tag">2023·2024 NHN 우수사원 포상</span>
+        <span class="tag">SQLD · ADsP</span>
       </div></td></tr>
     </table>
   </section>
@@ -404,8 +405,116 @@ section:last-child{border-bottom:none}
 
 <script>
 const T={
-ko:{'nav.fit':'JD Fit','nav.work':'Selected Work','nav.think':'How I Think','nav.career':'Career','nav.skills':'Skills','hero.eye':'Strategy × Finance × Execution','hero.name':'왕지인','hero.sub':'5년 10개월 · NHN 전략기획 → AIA생명 테크기획 · CFA L3','hero.stmt':'산업은 계속 바뀌었지만, 매번 수익 구조를 해체해 핵심 드라이버를 찾고 그걸 의사결정으로 연결하는 일을 반복했습니다. NHN에서는 10개 이상 산업의 M&A·투자 검토를 독립적으로 수행하며 경영진의 Go/No-Go를 수치로 뒷받침했고, 매 산업을 거칠수록 분석의 정확도와 속도가 누적적으로 쌓였습니다. AIA에서는 IT 중장기 전략을 현황 진단부터 실행 추적까지 풀 사이클로 설계하며, 한 번의 전략 과제가 다음 과제의 기준이 되는 구조를 만들었습니다. 금융업의 규제와 제약은 전략의 한계가 아니라 전략이 시작되는 지점이라는 것을 AIA에서 체감했고, 그 위에서 토스 앱과 시너지를 극대화하는 뱅킹 서비스를 만드는 전략적 의사결정을 다방면으로 지원하고 싶습니다.','cs.aia':'AIA생명','cs.aia.r':'테크기획 · IT전략 · 시장분석','cs.nhn.r':'전략기획 · M&A · 중장기계획','cs.lotte':'롯데이노베이트','cs.lotte.r':'PI 컨설팅','lab.fit':'JD Fit','tit.fit':'여섯 가지 강점','f1.t':'전략을 선택지와 근거로 구조화','f1.b':'NHN에서 PG·VAN·조각투자·SaaS 등 10개+ 산업의 M&A·투자 검토를 독립 수행했습니다. 산업 구조 해체 → 수익/비용 드라이버 분석 → BEP·시너지 산출 → C레벨 보고. 방향이 아닌 선택지와 논거를 만드는 방식입니다.','f2.t':'불완전한 정보에서 가설을 검증','f2.b':'페이히어(POS) 투자 검토에서 선례 없이 VAN 수수료·무료 모델 수익 구조를 해체해 공헌이익 BEP를 산출, 고평가 리스크를 사전 식별해 No-Go 의사결정을 지원했습니다. 가설 → 모델 → 검증의 반복입니다.','f3.t':'수립에서 실행 추적까지','f3.b':'AIA에서 IT 중장기 전략을 현황 진단 → 핵심과제 도출 → 이행방안 설계 → 월별 실적 추적 구조로 설계했습니다. 전략 문서가 아니라 조직의 다음 행동을 바꾸는 것을 목표로 합니다.','f4.t':'다조직 의견 충돌을 수렴하기','f4.b':'자회사 설립 프로젝트에서 재무·법무·세무·테크·준법·외부 자문사가 각기 다른 기준을 들고 왔습니다. \'그룹 자본 효율성\' 지표를 공통 기준으로 이견을 수렴해 이사회 자료로 완결했습니다.','f5.t':'도메인별 사업 구조 빠르게 파악','f5.b':'결제·PG·SaaS·여행·커머스·보험·증권 — 토스뱅크와 연결된 산업 대부분에 분석 접점이 있습니다. 낯선 도메인의 수익 구조와 비용 드라이버를 처음부터 빠르게 해체하는 방식을 체득했습니다.','f6.t':'경쟁·규제 변화를 전략 인풋으로','f6.b':'AIA에서 생보사 11개사 AI·IT Maturity Matrix를 직접 설계하고 규제·테크 트렌드를 주간 모니터링해 CTO·경영진 대상 Executive Report를 발행했습니다. 시장 신호를 전략 판단으로 연결하는 루틴입니다.','lab.work':'Selected Work','tit.work':'핵심 업무 경험','p1.t':'계열사 전략-실적 연동 · Business Driver 분석','p1.s':'두레이·코미코·여행박사·에듀 5개 계열사의 실적이 악화되고 있었지만, 경영진 보고는 숫자 결과를 나열하는 수준에 그쳤습니다. 왜 나빠지는지, 어떤 레버를 당겨야 하는지 설명이 없었습니다.','p1.a':'계정·원장 단위까지 내려가 비용 구조를 재분류하고 실질 드라이버를 새로 정의했습니다. 두레이는 인프라 고정비 배부 구조를 유닛 단위로 해체해 비용률 30%p를 절감했고, 코미코 일본은 YoY 적자폭을 57% 축소했습니다. 여행박사는 광고채널별 ROI를 유닛 단위로 측정해 ROI를 -50%에서 +10%대로 전환했습니다. 외부 투자자 Put Option 만기 시 계열사별 자본 부담과 연결 현금흐름 시나리오도 직접 모델링했습니다.','p1.r':'실적 보고가 드라이버 기반 구조로 전환됐습니다. 경영진이 "왜"를 묻기 전에 원인과 개선 레버를 제시하는 체계가 됐고, 이 프레임이 이후 투자·제휴 검토의 기본 포맷이 됐습니다.','p2.t':'M&A · 투자 · 전략적 제휴 검토','p2.s':'PG·VAN·조각투자·SaaS·여행·커머스 등 10개 이상 산업에서 인수·투자·제휴 대상 검토가 수시로 필요했습니다. 산업마다 수익 구조가 달랐고, 정형화된 가이드라인 없이 독립적으로 수행해야 했습니다.','p2.a':'산업 구조 해체 → 수익/비용 드라이버 분석 → BEP·시너지 산출 → C레벨 보고의 프레임을 반복 적용했습니다. 페이히어(POS) 투자 검토에서는 공헌이익 기반 BEP로 고평가 리스크를 사전 식별해 No-Go를 지원했습니다. 솔트룩스·NHN다이퀘스트 매각 지원 시에는 플랫폼 시너지 가치를 수치화했고, NHN Cloud 스토리지 make vs buy 검토에서는 시나리오별 비용·수익 시뮬레이션으로 판단 근거를 제공했습니다.','p2.r':'산업이 달라도 같은 구조로 경영진 Pre-review 즉답이 가능해졌습니다. 페이코·두레이 중장기 경영계획에서도 동일 프레임을 적용해 사업 레버별 민감도를 경영진과 공유했습니다.','p3.t':'IT 중장기 전략 수립 · 전략-실행 풀 사이클','p3.s':'3~5개년 IT 중장기 전략이 필요했지만 기존 방식은 방향성 나열에 그쳤고, 재무계획과 연동되지 않아 예산 배분 근거가 약했습니다. 전략이 실행으로 이어지는 구조가 없었습니다.','p3.a':'시스템·조직·운영효율·예산 4개 축으로 현황을 진단하고, 축별 핵심과제를 도출한 뒤 이행방안을 설계했습니다. 경쟁사 IT 예산·인력 Peer 벤치마킹으로 투자 효율성 논리를 보강했고, 월별 Budget vs. Actual 분산 분석을 계획 수립 단계부터 포함시켜 추적 가능한 구조를 만들었습니다.','p3.r':'CTO·개발부문장 경영진 보고 완결. CapEx/OpEx 배분 개선 방향이 실제 예산 운영에 반영됐고, 전략이 월간 실적 추적 체계와 연결되는 구조가 됐습니다.','p4.t':'자회사 설립 타당성 검토 · 다자간 Alignment','p4.s':'그룹 자회사 신규 설립 프로젝트. 재무·법무·세무·테크·준법·외부 자문사 등 다학제적 조직이 각자의 기준으로 상충하는 의견을 냈고, 단일 판단 기준이 없었습니다.','p4.a':'중장기 추정 손익, 자금 흐름, 세후 NOI·IRR을 통합 모델로 연동했습니다. 조직 간 이견은 \'그룹 자본 효율성\' 지표를 공통 기준으로 삼아 수렴시켰고, 현지 세무 리스크·배당 구조·거버넌스 설계(이사회 구성·KPI·예산 보고체계)까지 재무 관점으로 통합 정리했습니다.','p4.r':'이사회 의결 자료 재무 섹션 단독 완결. 6개 조직의 이견이 단일 프레임으로 수렴됐고, 투자 회수기간·IRR·자본 소요 분석이 경영진 최종 의사결정의 근거가 됐습니다.','p5.t':'경쟁사 분석 · Market Intelligence 체계 구축','p5.s':'AI·디지털 전환·규제 변화가 빠르게 움직이는 환경에서 경쟁 구도를 진단하고 전략 방향에 인사이트를 공급하는 체계가 없었습니다.','p5.a':'생보사 11개사 AI·IT Maturity Matrix를 직접 설계해 기술 성숙도와 경쟁 격차를 진단했습니다. AI·테크핀 규제·디지털 전환 트렌드를 주간 모니터링해 CTO·개발부문장·BRM 대상 Executive Report를 단독 발행했고, Python으로 데이터 수집·보고 생성 파이프라인을 자동화했습니다.','p5.r':'경영진 Ad-hoc 요청에 즉답 가능한 분석 체계가 됐습니다. 규제·경쟁 변화를 전략 인풋으로 연결하는 루틴이 조직 내 정착됐습니다.','lab.think':'How I Think','tit.think':'전략가로서 문제를 다루는 방식','th1.t':'방향이 아닌 선택지','th1.b':'전략의 결과물은 방향성 문서가 아니라 의사결정 가능한 선택지여야 합니다. 각 선택지에 근거와 리스크가 붙어있어야 경영진이 실제로 결정을 내릴 수 있습니다.','th2.t':'가설을 숫자로 검증','th2.b':'불완전한 정보 속에서도 가설을 세우고 모델로 검증하는 과정을 반복합니다. 가정을 명시하면 틀린 지점이 드러나고, 그게 다음 판단의 기반이 됩니다.','th3.t':'전략과 실행의 연결','th3.b':'전략이 실행으로 이어지려면 과제 단위로 쪼개지고, 추적 가능한 지표가 붙어야 합니다. 좋은 전략은 문서가 아니라 조직의 다음 행동을 바꾸는 것입니다.','th.stmt':'문제를 마주하면 사업 구조부터 해체합니다. 무엇이 실제 드라이버인지 찾고, 가능한 선택지를 정의하고, 각 선택지의 재무적·전략적 함의를 시나리오로 만듭니다. 경영진에게 전달할 때는 복잡한 분석을 하나의 판단 논리로 압축합니다.','lab.career':'Career','tit.career':'경력','ca.aia':'IT 중장기 전략 수립 (4 pillars, 풀 사이클) / 자회사 설립 E2E 재무 모델·이사회 보고 / 경쟁사 AI·IT Maturity Matrix 설계 / 생보사 11개사 Market Intelligence 주간 보고 / 홍콩 본사 영문 거버넌스 보고 / Python 자동화','ca.nhn':'5개 계열사 전략-실적 연동 · 드라이버 분석 / M&A·투자 검토 10개+ 산업 (페이히어 No-Go, 솔트룩스 매각 지원 등) / 페이코·두레이 중장기 경영계획 / Put Option 자본 영향 모델링 / DART 자동화 (93% 효율화)','ca.lotte':'롯데면세점 차세대 IT PI / 롯데제과 S&OP DT 마스터플랜 / 롯데마트·슈퍼 물류 통합 — 현장 As-Is → To-Be → 임원 보고 3사이클','lab.skills':'Skills','tit.skills':'역량 & 자격'},
-en:{'nav.fit':'JD Fit','nav.work':'Selected Work','nav.think':'How I Think','nav.career':'Career','nav.skills':'Skills','hero.eye':'Strategy × Finance × Execution','hero.name':'Jeein Wang','hero.sub':'5Y 10M · NHN Strategic Planning → AIA Life Tech Planning · CFA L3','hero.stmt':'Industries kept changing, but the work stayed the same — deconstruct the revenue structure, find the real driver, connect it to a decision. At NHN, I independently led M&A and investment reviews across 10+ industries, quantifying Go/No-Go for executives, and each new industry sharpened the speed and precision of the next. At AIA, I built the IT long-range strategy as a full cycle — diagnosis to execution tracking — where each strategic initiative became the baseline for the next. At AIA, I came to see regulatory and structural constraints in financial services not as limits on strategy, but as where strategy begins — and I want to apply that across the decisions that maximize the synergy between a banking service and the Toss app.','cs.aia':'AIA Life','cs.aia.r':'Tech Planning · IT Strategy · Market Intel','cs.nhn.r':'Strategic Planning · M&A · LRP','cs.lotte':'Lotte Innovate','cs.lotte.r':'PI Consulting','lab.fit':'JD Fit','tit.fit':'Six Strengths','f1.t':'Structuring Strategy as Options','f1.b':'Independently conducted M&A and investment reviews across 10+ industries at NHN — PG, VAN, fractional investment, SaaS, and more. Business model deconstruction → driver analysis → BEP & synergy → C-level reporting. Options with rationale, not just direction.','f2.t':'Validating Hypotheses with Incomplete Data','f2.b':'For PayHere (POS) investment, deconstructed VAN fee and freemium revenue models without a template to build a contribution-margin BEP — identified overvaluation risk and supported a No-Go. Hypothesis → model → validation, repeated.','f3.t':'Strategy Through Full Execution Cycle','f3.b':'Designed AIA\'s IT LRP as: current-state diagnosis → initiative identification → implementation planning → monthly performance tracking. Strategy documents that drive organizational action, not just describe direction.','f4.t':'Converging Multi-stakeholder Conflicts','f4.b':'In the subsidiary incorporation project, Finance, Legal, Tax, Tech, Compliance, and external advisors each brought conflicting criteria. Used "group capital efficiency" as the common metric to converge diverging views into a single board-ready document.','f5.t':'Quickly Parsing Domain Business Structures','f5.b':'Payments, PG, SaaS, travel, commerce, insurance, securities — most industries Toss Bank touches. Developed a method to quickly deconstruct revenue structures and cost drivers in unfamiliar domains from scratch.','f6.t':'Market & Regulatory Changes as Strategy Input','f6.b':'Designed an AI/IT Maturity Matrix for 11 life insurers at AIA and published weekly Executive Reports on regulatory and tech trends for senior leadership. A routine for converting market signals into strategic judgment.','lab.work':'Selected Work','tit.work':'Key Work Experience','p1.t':'Subsidiary Strategy-Performance Linkage · Business Driver Analysis','p1.s':'Dooray, Comico, Yanolja, and Edu (5 subsidiaries) were showing performance deterioration, but management reporting only listed numbers. No explanation of why or which levers to pull.','p1.a':'Drilled below account level to reclassify cost structures and redefine actual drivers. Dooray: deconstructed fixed-cost allocation to unit level — cut infrastructure cost ratio 30pp. Comico Japan: rediagnosed cost structure — YoY loss narrowed 57%. Yanolja: measured ad ROI by channel unit — turned from -50% to +10%. Also directly modeled capital burden and cash flow scenarios for external investor Put Option maturities.','p1.r':'Reporting shifted from results to driver-based framing. Executives received root-cause analysis and improvement levers before asking. This framework became the default format for investment and partnership evaluations.','p2.t':'M&A · Investment · Strategic Partnership Review','p2.s':'Investment and partnership evaluations were needed across 10+ industries — PG, VAN, fractional investment, SaaS, travel, commerce. Revenue structures differed per industry; independent work without standardized guidelines.','p2.a':'Repeated the same framework: business model deconstruction → revenue/cost driver analysis → BEP & synergy → C-level reporting. PayHere (POS): contribution-margin BEP from VAN fee deconstruction — identified overvaluation, supported No-Go. Salttlux & NHN DataQuest divestitures: quantified platform synergy value. NHN Cloud storage make vs buy: scenario-based cost/revenue simulations.','p2.r':'Immediate executive Pre-review response regardless of industry. Applied the same framework to Payco and Dooray LRP, sharing business lever sensitivity with leadership.','p3.t':'IT Long-range Strategy Development · Full Execution Cycle','p3.s':'A 3–5 year IT strategy was needed, but the existing approach was directional without financial linkage or execution structure.','p3.a':'Diagnosed current state across 4 axes: systems, organization, operational efficiency, and budget. Derived key initiatives per axis and designed implementation plans. Peer-benchmarked competitor IT budgets and headcount to strengthen investment efficiency logic. Embedded monthly Budget vs. Actual variance tracking from the planning stage.','p3.r':'Management reporting to CTO and Head of Engineering completed. CapEx/OpEx reallocation direction reflected in actual budget operations. Strategy structurally connected to monthly performance tracking.','p4.t':'Subsidiary Incorporation Feasibility · Multi-stakeholder Alignment','p4.s':'New group subsidiary incorporation. Multidisciplinary organizations — Finance, Legal, Tax, Tech, Compliance, external advisors — each brought conflicting assumptions with no single evaluation standard.','p4.a':'Linked long-range estimated P&L, cash flows, after-tax NOI, and IRR into a single model. Used "group capital efficiency" as the common metric to converge diverging stakeholder views. Consolidated local tax risk, dividend structure, and governance design into a single financial framework.','p4.r':'Solo completion of the finance section of the board approval package. Six organizations\' views converged into one framework. Payback period, IRR, and capital requirement analysis became the basis for final executive decision.','p5.t':'Competitive Analysis · Market Intelligence System','p5.s':'In a fast-moving AI, digital transformation, and regulatory landscape, there was no systematic approach to diagnosing the competitive environment and supplying strategic insights.','p5.a':'Designed an AI/IT Maturity Matrix for 11 life insurers to diagnose tech maturity and competitive gaps. Published weekly Executive Reports on AI, TechFin regulation, and digital transformation for CTO and senior leadership. Built a Python pipeline for automated data collection and report generation.','p5.r':'Built an analysis infrastructure enabling immediate response to executive Ad-hoc requests. Established a routine for converting regulatory and competitive changes into strategic inputs.','lab.think':'How I Think','tit.think':'How I Approach Problems as a Strategist','th1.t':'Options, Not Direction','th1.b':'Strategy\'s output should be decision-ready options, not directional documents. Each option needs rationale and risk attached before an executive can actually decide.','th2.t':'Validating Hypotheses with Numbers','th2.b':'Even with incomplete information, I set hypotheses and validate through models repeatedly. Explicit assumptions make failure points visible, and that becomes the foundation for the next judgment.','th3.t':'Connecting Strategy to Execution','th3.b':'For strategy to reach execution, it needs to be broken into initiative units with trackable metrics. A good strategy changes what the organization does next, not just what it says.','th.stmt':'When I encounter a problem, I start by decomposing the business structure. I identify the actual drivers, define the possible options, and model the financial and strategic implications of each. When presenting to leadership, I compress the analysis into a single decision logic.','lab.career':'Career','tit.career':'Career','ca.aia':'IT LRP (4 pillars, full cycle) / Subsidiary E2E financial model · board reporting / Competitor AI·IT Maturity Matrix / Market Intelligence weekly reporting (11 life insurers) / HK HQ English governance reporting / Python automation','ca.nhn':'5-entity strategy-performance linkage · driver analysis / M&A·investment review 10+ industries (PayHere No-Go, Salttlux divestiture support) / Payco·Dooray LRP / Put Option capital impact modeling / DART automation (93% efficiency)','ca.lotte':'Lotte Duty Free next-gen IT PI / Lotte Confectionery S&OP DT masterplan / Lotte Mart·Super logistics integration — 3 cycles of As-Is → To-Be → executive presentation','lab.skills':'Skills','tit.skills':'Skills & Credentials'}
+ko:{'nav.fit':'JD Fit','nav.work':'Selected Work','nav.think':'How I Think','nav.career':'Career','nav.skills':'Skills',
+'hero.eye':'Reporting × IR × ESG',
+'hero.name':'왕지인',
+'hero.sub':'5년 10개월 · NHN 전략기획 → AIA생명 테크기획 · CFA L3',
+'hero.stmt':'숫자로 검증하고, 경영진과 투자자가 판단할 수 있는 언어로 전달하는 보고를 반복해왔습니다. NHN에서는 그룹 계열사 실적을 드라이버 단위까지 해체해, 경영진이 원인과 개선 레버를 즉시 파악할 수 있는 보고 체계를 만들었습니다. AIA에서는 이사회 의결 자료의 재무 섹션을 단독으로 완결했고, 홍콩 본사 대상 영문 거버넌스 보고를 정기 수행했습니다. CFA L3 과정에서 체득한 투자자 관점은 기업 실적과 자본 구조를 외부 시각으로 설명하는 언어와 연결됩니다. 미래에셋증권 ESG&IR팀에서 기업 스토리를 투자자에게 정확하고 설득력 있게 전달하는 일을 하고 싶습니다.',
+'cs.aia':'AIA생명','cs.aia.r':'테크기획 · 이사회 보고 · 영문 거버넌스',
+'cs.nhn.r':'경영진 보고 · 그룹 실적 분석 · 공시 자동화',
+'cs.lotte':'롯데이노베이트','cs.lotte.r':'PI 컨설팅',
+'lab.fit':'JD Fit','tit.fit':'여섯 가지 강점',
+'f1.t':'경영진·이사회 보고 자료를 수치로 완결',
+'f1.b':'AIA에서 자회사 설립 이사회 의결 자료의 재무 섹션을 단독으로 완결했습니다. 6개 조직의 이견을 단일 판단 기준으로 수렴해 이사회 보고로 연결했고, NHN에서는 5개 계열사 실적 보고를 드라이버 기반 구조로 전환해 경영진이 원인과 레버를 즉시 파악하는 체계를 만들었습니다.',
+'f2.t':'투자자 관점의 기업가치 분석',
+'f2.b':'CFA L3 + 10개 이상 기업·사업 분석 경험을 기반으로, 수익/비용 드라이버를 투자자가 묻는 방식으로 구조화합니다. 기업 실적을 단순 나열이 아닌 \'왜, 어떤 레버가 움직였는가\'의 서사로 재구성하는 방식입니다.',
+'f3.t':'거버넌스 설계와 영문 글로벌 보고',
+'f3.b':'AIA에서 자회사 이사회 구성·KPI·예산 보고체계를 포함한 거버넌스 구조를 설계하고, 홍콩 본사 대상 영문 거버넌스 보고를 정기 수행했습니다. 다국적 이해관계자를 대상으로 한 공식 보고 경험이 있습니다.',
+'f4.t':'지속 운영 가능한 정기 보고 체계 설계',
+'f4.b':'AIA에서 생보사 11개사 경쟁력 분석을 바탕으로 CTO·경영진 대상 Executive Report를 주간 단독 발행했습니다. 월별 예실 추적 구조를 계획 수립 단계부터 내장해, 일회성 보고가 아닌 조직의 정보 흐름이 되는 체계를 만드는 방식입니다.',
+'f5.t':'공시 데이터 수집·처리 자동화',
+'f5.b':'DART API를 활용해 공시 데이터 수집·처리·보고 생성 파이프라인을 Python으로 구축했습니다. 수작업 대비 93% 효율화. IR 업무에서 반복되는 공시 데이터 수집·가공을 자동화로 연결하는 경험입니다.',
+'f6.t':'다산업 재무구조 독해와 비교 분석',
+'f6.b':'결제·보험·SaaS·여행·커머스·증권 등 다양한 산업의 재무구조를 분석했습니다. Peer 벤치마킹 경험과 CFA 기반 재무제표 독해 역량으로, 산업이 달라도 투자자 관점에서 기업 간 비교 분석이 가능합니다.',
+'lab.work':'Selected Work','tit.work':'핵심 업무 경험',
+'p1.t':'그룹 계열사 실적 보고 · 드라이버 기반 경영진 커뮤니케이션 체계 구축',
+'p1.s':'두레이·코미코·여행박사·에듀 등 5개 계열사 실적이 악화되고 있었지만, 경영진 보고는 숫자 결과를 나열하는 수준에 그쳤습니다. 왜 나빠지는지, 어떤 레버가 움직여야 하는지 서사가 없었습니다.',
+'p1.a':'계정·원장 단위까지 내려가 비용 구조를 재분류하고 실질 드라이버를 새로 정의했습니다. 두레이는 인프라 고정비 배부 구조를 유닛 단위로 해체해 비용률 30%p를 절감했고, 코미코 일본은 고정/변동비 재진단으로 YoY 적자폭을 57% 축소했습니다. 여행박사는 광고채널별 ROI를 유닛 단위로 측정해 ROI를 -50%에서 +10%대로 전환했습니다. 외부 투자자 Put Option 만기 시 계열사별 자본 부담과 연결 현금흐름 시나리오도 직접 모델링했습니다.',
+'p1.r':'경영진 보고가 드라이버 기반 구조로 전환됐습니다. 숫자 결과를 나열하는 방식에서, 원인과 개선 레버를 함께 제시하는 보고 체계가 됐고 이 프레임이 이후 그룹 내 표준 포맷이 됐습니다.',
+'p2.t':'기업가치 분석 · 투자자 관점 의사결정 지원',
+'p2.s':'PG·VAN·조각투자·SaaS·여행·커머스 등 10개 이상 산업에서 기업 인수·투자·매각 검토가 수시로 필요했습니다. 산업마다 수익 구조가 달랐고, 정형화된 비교 기준 없이 독립적으로 수행해야 했습니다.',
+'p2.a':'사업 구조 해체 → 수익/비용 드라이버 분석 → 기업가치·시너지 산출 → 경영진 보고의 프레임을 반복 적용했습니다. 페이히어(POS) 투자 검토에서는 VAN 수수료·무료 모델 수익 구조를 해체해 공헌이익 기반 손익분기를 산출, 고평가 리스크를 사전 식별해 경영진 No-Go 판단을 뒷받침했습니다. 솔트룩스·NHN다이퀘스트 매각 시에는 플랫폼 시너지 가치를 수치화했고, NHN Cloud 내재화 vs. 외주 검토에서는 시나리오별 비용·수익 시뮬레이션으로 판단 근거를 구조화했습니다.',
+'p2.r':'산업이 달라도 같은 분석 구조로 경영진 Pre-review 즉답이 가능해졌습니다. 페이코·두레이 중장기 경영계획에서도 동일 프레임으로 사업 레버별 민감도를 경영진에게 공유했습니다.',
+'p3.t':'자회사 설립 이사회 보고 · 다자간 거버넌스 조율',
+'p3.s':'그룹 자회사 신규 설립 프로젝트. 재무·법무·세무·테크·준법·외부 자문사 등 다학제적 조직이 각자의 기준으로 상충하는 의견을 냈고, 이사회 보고를 위한 단일 판단 기준이 없었습니다.',
+'p3.a':'중장기 추정 손익, 자금 흐름, 세후 NOI·IRR을 통합 모델로 연동했습니다. 조직 간 이견은 \'그룹 자본 효율성\' 지표를 공통 기준으로 삼아 수렴시켰고, 현지 세무 리스크·배당 구조·거버넌스 설계(이사회 구성·KPI·예산 보고체계)까지 재무 관점으로 통합 정리했습니다. 이사회 의결에 필요한 재무 섹션 전체를 단독으로 작성했습니다.',
+'p3.r':'이사회 의결 자료 재무 섹션 단독 완결. 6개 조직의 이견이 단일 프레임으로 수렴됐고, 투자 회수기간·자본 소요·리스크 분석이 경영진 최종 의사결정의 근거가 됐습니다.',
+'p4.t':'경쟁사 분석 · ESG·IT 성숙도 평가 · Executive Report 체계화',
+'p4.s':'AI·디지털 전환·규제 변화가 빠르게 움직이는 환경에서, 경쟁 구도를 진단하고 경영진 의사결정에 인사이트를 정기 공급하는 체계가 없었습니다.',
+'p4.a':'생보사 11개사 AI·IT Maturity Matrix를 직접 설계해 기술 성숙도와 경쟁 격차를 정량 진단했습니다. AI·테크핀 규제·디지털 전환 트렌드를 주간 모니터링해 CTO·개발부문장·BRM 대상 Executive Report를 단독 발행했습니다. 홍콩 본사(AIAHK)에는 동일 분석을 영문 거버넌스 보고 형식으로 정기 제출했습니다. Python으로 데이터 수집·보고 생성 파이프라인을 자동화해 보고 주기를 유지했습니다.',
+'p4.r':'경영진 Ad-hoc 요청에 즉답 가능한 분석 체계가 됐습니다. 규제·경쟁 변화를 정기 보고로 연결하는 루틴이 조직 내 정착됐고, 글로벌 본사에도 동일한 인사이트를 영문으로 전달하는 보고 구조가 갖춰졌습니다.',
+'p5.t':'공시 데이터 파이프라인 · 보고 자동화',
+'p5.s':'경쟁사·유사기업 공시 데이터를 매번 수작업으로 수집·가공해 보고서를 작성하는 방식이었습니다. 분석 시간의 대부분이 데이터 정리에 소모됐습니다.',
+'p5.a':'DART Open API를 활용해 공시 데이터(재무제표·주요 공시)를 자동 수집하고, pandas로 정제·가공한 뒤 보고 형식으로 출력하는 파이프라인을 Python으로 구축했습니다. 기존 수작업 3일 걸리던 작업을 30분 이내로 단축했습니다.',
+'p5.r':'공시 데이터 처리 시간 93% 단축. 절약된 시간이 분석과 인사이트 도출에 집중될 수 있었고, 동일 방식을 IR 자료 작성에서의 공시 데이터 활용에 바로 연결할 수 있는 경험입니다.',
+'lab.think':'How I Think','tit.think':'보고를 대하는 방식',
+'th1.t':'투자자 언어로 번역',
+'th1.b':'내부 실적 데이터를 외부 투자자가 묻는 방식으로 재구성합니다. 숫자를 나열하는 것이 아니라, 무엇이 움직였고 왜 움직였는지 서사로 연결해야 보고가 설득력을 갖습니다.',
+'th2.t':'숫자로 검증, 서사로 전달',
+'th2.b':'분석은 철저히 수치 기반으로 합니다. 가정을 명시하면 틀린 지점이 드러나고, 그게 다음 판단의 기반이 됩니다. 검증된 숫자 위에서만 설득력 있는 스토리가 성립합니다.',
+'th3.t':'일회성이 아닌 체계',
+'th3.b':'좋은 보고는 한 번으로 끝나지 않습니다. 정기적으로 추적 가능하고, 다음 보고의 기준이 되는 구조를 처음부터 설계합니다. 보고 체계가 조직의 정보 흐름이 되어야 합니다.',
+'th.stmt':'보고서를 쓸 때 먼저 독자를 정의합니다. 경영진인지, 이사회인지, 외부 투자자인지에 따라 같은 사실도 다른 언어로 번역됩니다. 복잡한 분석을 가장 핵심적인 판단 논리 하나로 압축하는 과정이 보고의 본질이라고 생각합니다.',
+'lab.career':'Career','tit.career':'경력',
+'ca.aia':'자회사 설립 이사회 보고 (재무 섹션 단독 완결) / 거버넌스 설계 (이사회 구성·KPI·예산 보고체계) / 생보사 11개사 경쟁력 분석 · Executive Report 주간 발행 / 홍콩 본사 영문 거버넌스 보고 / Python 보고 자동화',
+'ca.nhn':'5개 계열사 실적 보고 체계 · 드라이버 분석 / 기업가치 분석 10개+ 산업 (인수·투자·매각 지원) / 페이코·두레이 경영계획 / DART 공시 데이터 자동화 (93% 효율화)',
+'ca.lotte':'롯데면세점 차세대 IT PI / 롯데제과 S&OP DT 마스터플랜 / 롯데마트·슈퍼 물류 통합 — 현장 As-Is → To-Be → 임원 보고 3사이클',
+'lab.skills':'Skills','tit.skills':'역량 & 자격'},
+en:{'nav.fit':'JD Fit','nav.work':'Selected Work','nav.think':'How I Think','nav.career':'Career','nav.skills':'Skills',
+'hero.eye':'Reporting × IR × ESG',
+'hero.name':'Jeein Wang',
+'hero.sub':'5Y 10M · NHN Strategic Planning → AIA Life Tech Planning · CFA L3',
+'hero.stmt':'I have spent my career validating with numbers and translating into language that executives and investors can act on. At NHN, I built a management reporting system that deconstructed subsidiary performance to the driver level, so leadership always received root causes and levers alongside results. At AIA, I completed the finance section of the board approval document for a subsidiary incorporation single-handedly, and delivered regular English governance reports to Hong Kong headquarters. CFA Level 3 connects to a genuine investor vocabulary — understanding how capital structure, earnings quality, and valuation interact. I want to bring that experience to Mirae Asset Securities ESG&IR team, delivering corporate stories to investors with precision and conviction.',
+'cs.aia':'AIA Life','cs.aia.r':'Tech Planning · Board Reporting · English Governance',
+'cs.nhn.r':'Mgmt Reporting · Group Performance · Disclosure Automation',
+'cs.lotte':'Lotte Innovate','cs.lotte.r':'PI Consulting',
+'lab.fit':'JD Fit','tit.fit':'Six Strengths',
+'f1.t':'Board & Executive Reporting, End-to-End',
+'f1.b':'Completed the finance section of AIA\'s board approval document for a new subsidiary incorporation — solo. Converged six organizations\' conflicting views into one framework for board reporting. At NHN, transformed subsidiary performance reporting from number-listing to driver-based narrative so leadership always had root cause and levers in hand.',
+'f2.t':'Enterprise Value Analysis, Investor Perspective',
+'f2.b':'CFA L3 + hands-on analysis across 10+ businesses. Structure revenue and cost drivers the way investors ask about them. Translate internal performance data into an external narrative: what moved, why it moved, and what it implies for value.',
+'f3.t':'Governance Design & English Global Reporting',
+'f3.b':'Designed subsidiary governance structures at AIA — board composition, KPIs, and budget reporting frameworks. Delivered regular English governance reports to Hong Kong headquarters. Experienced in formal reporting to multinational stakeholders.',
+'f4.t':'Building Reporting Systems That Keep Running',
+'f4.b':'Published weekly Executive Reports to CTO and senior leadership at AIA — 11 life insurer competitive analysis, regulatory and tech trend monitoring. Built monthly budget-vs-actual tracking into the planning cycle from day one. Reports that become the organization\'s information flow, not one-off deliverables.',
+'f5.t':'Disclosure Data Collection & Automation',
+'f5.b':'Built a Python pipeline using the DART Open API to automatically collect, process, and output disclosure data for analysis. Cut manual processing time by 93%. Direct experience applying disclosure data infrastructure to analytical work — directly transferable to IR.',
+'f6.t':'Multi-industry Financial Literacy & Peer Benchmarking',
+'f6.b':'Analyzed financial structures across payments, insurance, SaaS, travel, commerce, and securities. Peer-benchmarked competitors on IT budgets, headcount, and cost structures. CFA-backed ability to read and compare financial statements across industries from an investor perspective.',
+'lab.work':'Selected Work','tit.work':'Key Work Experience',
+'p1.t':'Group Subsidiary Performance Reporting · Driver-based Management Communication',
+'p1.s':'Five subsidiaries (Dooray, Comico, Yanolja, Edu) were deteriorating, but management reports only listed results. No explanation of root causes, no identification of which levers to pull.',
+'p1.a':'Reclassified cost structures from account to ledger level and redefined actual drivers. Dooray: deconstructed fixed-cost allocation to unit level — cut infrastructure cost ratio 30pp. Comico Japan: rediagnosed cost structure — YoY loss narrowed 57%. Yanolja: measured ad ROI by channel unit — turned from -50% to +10%. Also modeled capital burden and cash flow scenarios for external investor Put Option maturities.',
+'p1.r':'Management reporting shifted from results-listing to driver-based narrative. Leadership received root-cause analysis and improvement levers before asking. This framework became the group\'s default reporting format.',
+'p2.t':'Enterprise Value Analysis · Investment Decision Support',
+'p2.s':'Investment, acquisition, and divestiture reviews were needed across 10+ industries — PG, VAN, fractional investment, SaaS, travel, commerce. Revenue structures differed per industry; independent execution without standardized templates.',
+'p2.a':'Repeated the same framework: business model deconstruction → revenue/cost driver analysis → enterprise value & synergy → executive reporting. PayHere (POS): deconstructed VAN fee and freemium structures to derive contribution-margin breakeven — identified overvaluation risk, supported No-Go. Salttlux & NHN DataQuest divestitures: quantified platform synergy value for negotiation. NHN Cloud insource vs. outsource: scenario-based cost/revenue simulation.',
+'p2.r':'Immediate executive Pre-review response regardless of industry. Applied the same framework to Payco and Dooray long-range plans, sharing business lever sensitivity with leadership.',
+'p3.t':'Subsidiary Incorporation Board Report · Multi-stakeholder Governance Alignment',
+'p3.s':'New group subsidiary incorporation. Finance, Legal, Tax, Tech, Compliance, and external advisors each held conflicting assumptions. No unified evaluation standard for board reporting.',
+'p3.a':'Linked long-range estimated P&L, cash flows, after-tax NOI, and IRR into a single model. Converged diverging stakeholder views using "group capital efficiency" as the common metric. Consolidated local tax risk, dividend structure, and governance design (board composition, KPIs, budget reporting) into a unified financial framework. Wrote the entire finance section of the board approval package solo.',
+'p3.r':'Finance section of the board approval document completed solo. Six organizations\' views converged into one framework. Payback period, capital requirements, and risk analysis became the basis for the final executive decision.',
+'p4.t':'Competitive Analysis · ESG & IT Maturity Assessment · Executive Report System',
+'p4.s':'In a rapidly shifting AI, digital transformation, and regulatory environment, there was no systematic approach to diagnosing competitive positioning and regularly supplying strategic intelligence to leadership.',
+'p4.a':'Designed an AI/IT Maturity Matrix for 11 life insurers to quantitatively diagnose technology maturity and competitive gaps. Published weekly Executive Reports on AI, TechFin regulation, and digital transformation trends for CTO and senior leadership. Delivered the same analysis in English governance report format to Hong Kong headquarters (AIAHK). Built a Python data collection and report generation pipeline to sustain the reporting cadence.',
+'p4.r':'Built an analysis infrastructure enabling immediate response to leadership Ad-hoc requests. Established a routine for converting regulatory and competitive changes into periodic reporting. Structured English reporting to global headquarters in place.',
+'p5.t':'Disclosure Data Pipeline · Reporting Automation',
+'p5.s':'Collecting and processing disclosure data for competitors and comparable companies was entirely manual. Most analysis time was consumed by data preparation rather than insight generation.',
+'p5.a':'Built a Python pipeline using the DART Open API to automatically collect financial statements and key disclosures, process them with pandas, and output analysis-ready reports. Reduced a 3-day manual process to under 30 minutes.',
+'p5.r':'93% reduction in disclosure data processing time. Recaptured time for analysis and insight generation. The same automation approach is directly applicable to IR disclosure data workflows.',
+'lab.think':'How I Think','tit.think':'How I Approach Reporting',
+'th1.t':'Translate Into Investor Language',
+'th1.b':'I reconstruct internal performance data in the way external investors ask about it. Listing numbers isn\'t reporting — connecting what moved, why it moved, and what it implies for value is what gives a report conviction.',
+'th2.t':'Validate with Numbers, Deliver as Narrative',
+'th2.b':'Analysis is strictly data-driven. Explicit assumptions make failure points visible, and that becomes the foundation for the next judgment. A convincing story is only possible on a foundation of verified numbers.',
+'th3.t':'Systems, Not One-offs',
+'th3.b':'Good reporting doesn\'t end with one deliverable. I design structures that are trackable over time and become the baseline for the next report. Reporting systems should become the organization\'s information flow.',
+'th.stmt':'When writing a report, I start by defining the audience. The same facts translate into different language for executives, board members, and external investors. Compressing complex analysis into a single, clear decision logic is the core of what reporting is.',
+'lab.career':'Career','tit.career':'Career',
+'ca.aia':'Subsidiary incorporation board report (finance section solo) / Governance design (board composition, KPIs, budget reporting) / 11-insurer competitive analysis · weekly Executive Reports / English governance reporting to HK HQ / Python report automation',
+'ca.nhn':'5-subsidiary performance reporting system · driver analysis / Enterprise value analysis across 10+ industries (acquisition, investment, divestiture) / Payco & Dooray long-range plans / DART disclosure data automation (93% efficiency)',
+'ca.lotte':'Lotte Duty Free next-gen IT PI / Lotte Confectionery S&OP DT masterplan / Lotte Mart & Super logistics integration — 3 cycles of As-Is → To-Be → executive presentation',
+'lab.skills':'Skills','tit.skills':'Skills & Credentials'}
 };
 let lang='ko';
 function applyLang(l){lang=l;document.querySelectorAll('[data-i18n]').forEach(el=>{const v=T[l][el.dataset.i18n];if(v!==undefined)el.textContent=v});document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim().toLowerCase()===l))}
