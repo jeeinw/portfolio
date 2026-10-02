@@ -1,0 +1,1659 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>이직 준비 작업대</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F5F8; --surface:#FFFFFF; --surface-2:#EFF1F5; --line:#E1E5EB; --line-2:#CDD3DC;
+  --text:#0E1A2B; --muted:#566173; --faint:#8A93A3;
+  --blue:#1F4FD8; --blue-ink:#1A43B8; --blue-soft:#E8EEFC;
+  --red:#D23A3A; --red-soft:#FCEBEB;
+  --yellow:#C98F00; --yellow-bright:#F2B705; --yellow-soft:#FDF4D8;
+  --green:#1D8A57; --green-soft:#E3F3EA;
+  --navy:#0B1B33; --side-text:rgba(255,255,255,.62);
+  --sd:0 1px 2px rgba(14,26,43,.05),0 4px 14px rgba(14,26,43,.06);
+  --r:12px; --r-sm:8px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1117; --surface:#151A22; --surface-2:#1B222D; --line:#273040; --line-2:#344055;
+    --text:#E6EAF0; --muted:#A4AEBE; --faint:#6F7A8C;
+    --blue:#7393FF; --blue-ink:#9AB0FF; --blue-soft:rgba(115,147,255,.14);
+    --red:#FF7070; --red-soft:rgba(255,112,112,.13);
+    --yellow:#F5C451; --yellow-bright:#F5C451; --yellow-soft:rgba(245,196,81,.13);
+    --green:#4CC38A; --green-soft:rgba(76,195,138,.13);
+    --navy:#080C12; --sd:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1117; --surface:#151A22; --surface-2:#1B222D; --line:#273040; --line-2:#344055;
+  --text:#E6EAF0; --muted:#A4AEBE; --faint:#6F7A8C;
+  --blue:#7393FF; --blue-ink:#9AB0FF; --blue-soft:rgba(115,147,255,.14);
+  --red:#FF7070; --red-soft:rgba(255,112,112,.13);
+  --yellow:#F5C451; --yellow-bright:#F5C451; --yellow-soft:rgba(245,196,81,.13);
+  --green:#4CC38A; --green-soft:rgba(76,195,138,.13);
+  --navy:#080C12; --sd:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit;color:inherit}
+a{color:var(--blue)}
+
+/* layout */
+.app{display:flex;min-height:100vh}
+.side{width:232px;flex-shrink:0;background:var(--navy);color:#fff;padding:22px 14px 16px;display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.brand{padding:0 8px 18px}
+.brand-mark{display:flex;gap:4px;margin-bottom:10px}
+.brand-mark i{width:10px;height:10px;border-radius:2px;display:block}
+.brand-mark i:nth-child(1){background:#2F5BEA}.brand-mark i:nth-child(2){background:#E04848}.brand-mark i:nth-child(3){background:#F2B705}
+.brand-title{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.brand-sub{font-size:11px;color:var(--side-text);margin-top:2px}
+.nav{list-style:none;display:flex;flex-direction:column;gap:2px}
+.nav button{width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:8px 10px;color:var(--side-text);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;gap:10px}
+.nav button:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav button.on{background:rgba(47,91,234,.28);color:#fff}
+.nav .k{font-size:10px;font-weight:700;width:18px;height:18px;border-radius:5px;display:grid;place-items:center;background:rgba(255,255,255,.08);color:rgba(255,255,255,.7)}
+.nav button.on .k{background:#2F5BEA;color:#fff}
+.side-foot{margin-top:auto;padding:12px 8px 0;border-top:1px solid rgba(255,255,255,.08);font-size:11px;color:var(--side-text);display:flex;flex-direction:column;gap:6px}
+.side-foot select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:4px 6px;color:#fff;font-size:11px}
+.side-foot select option{color:#000}
+.save-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#4CC38A;margin-right:6px;vertical-align:1px}
+main{flex:1;min-width:0;padding:26px 30px 60px}
+.page-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.page-head h1{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.page-head p{color:var(--muted);font-size:13px;margin-top:2px}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.grow{flex:1}
+
+/* primitives */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sd)}
+.pad{padding:18px}
+.sec-t{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.02em;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.btn{border:1px solid var(--line-2);background:var(--surface);border-radius:8px;padding:7px 12px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--blue);color:var(--blue)}
+.btn.pri{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.pri:hover{filter:brightness(1.08);color:#fff}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn.ghost:hover{background:var(--surface-2)}
+.btn.danger:hover{border-color:var(--red);color:var(--red)}
+.btn.sm{padding:4px 9px;font-size:12px}
+.btn:disabled{opacity:.5;cursor:default}
+input[type=text],input[type=password],input[type=date],input[type=number],input[type=url],select,textarea{width:100%;background:var(--surface);border:1px solid var(--line-2);border-radius:8px;padding:8px 10px;font-size:13.5px;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+textarea{resize:vertical;line-height:1.7;min-height:90px}
+textarea.big{min-height:280px;font-size:14.5px;line-height:1.85}
+label.f{display:block;font-size:12px;font-weight:600;color:var(--muted);margin:12px 0 5px}
+label.f:first-child{margin-top:0}
+.hint{font-size:12px;color:var(--faint)}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--surface-2);color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.chip.blue{background:var(--blue-soft);color:var(--blue-ink);border-color:transparent}
+.chip.red{background:var(--red-soft);color:var(--red);border-color:transparent}
+.chip.yellow{background:var(--yellow-soft);color:var(--yellow);border-color:transparent}
+.chip.green{background:var(--green-soft);color:var(--green);border-color:transparent}
+button.chip{cursor:pointer}
+.empty{color:var(--faint);font-size:13px;padding:24px;text-align:center}
+.muted{color:var(--muted)}
+.mono{font-variant-numeric:tabular-nums}
+hr.sep{border:0;border-top:1px solid var(--line);margin:14px 0}
+
+/* grids */
+.kpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:16px}
+.kpi{padding:14px 16px}
+.kpi .l{font-size:11.5px;color:var(--muted);font-weight:600}
+.kpi .v{font-size:24px;font-weight:700;letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.kpi .s{font-size:11.5px;color:var(--faint);margin-top:2px}
+.kpi.blue{border-top:3px solid var(--blue)}.kpi.red{border-top:3px solid var(--red)}.kpi.yellow{border-top:3px solid var(--yellow-bright)}
+.g2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.split{display:grid;grid-template-columns:270px minmax(0,1fr);gap:16px;align-items:start}
+.split3{display:grid;grid-template-columns:220px minmax(0,1fr) 320px;gap:16px;align-items:start}
+
+/* lists */
+.list{display:flex;flex-direction:column;max-height:calc(100vh - 210px);overflow:auto}
+.li{text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:11px 14px;cursor:pointer;display:block;width:100%}
+.li:last-child{border-bottom:0}
+.li:hover{background:var(--surface-2)}
+.li.on{background:var(--blue-soft)}
+.li .t{font-size:13.5px;font-weight:600;line-height:1.4}
+.li .m{font-size:11.5px;color:var(--faint);margin-top:3px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.list-head{padding:12px 12px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+
+/* todo/quick */
+.todo{display:flex;flex-direction:column;gap:8px}
+.todo button{display:flex;gap:12px;align-items:center;text-align:left;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:var(--surface);cursor:pointer;width:100%}
+.todo button:hover{border-color:var(--blue)}
+.todo .ic{width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:700;font-size:12px;flex-shrink:0}
+.todo .tt{font-size:13px;font-weight:600}
+.todo .ts{font-size:12px;color:var(--faint)}
+
+/* heatmap */
+.heat{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,11px);gap:3px;overflow-x:auto;padding-bottom:4px}
+.heat i{width:11px;height:11px;border-radius:2px;background:var(--surface-2);display:block}
+.heat i.l1{background:color-mix(in srgb,var(--blue) 25%,var(--surface-2))}
+.heat i.l2{background:color-mix(in srgb,var(--blue) 50%,var(--surface-2))}
+.heat i.l3{background:color-mix(in srgb,var(--blue) 75%,var(--surface-2))}
+.heat i.l4{background:var(--blue)}
+.heat i.today{outline:1.5px solid var(--yellow-bright);outline-offset:1px}
+
+/* checker */
+.chk-sec{margin-bottom:14px}
+.chk-sec:last-child{margin-bottom:0}
+.chk-t{font-size:12px;font-weight:700;margin-bottom:6px;display:flex;gap:6px;align-items:center}
+.chk-item{font-size:12.5px;padding:6px 9px;border-radius:7px;margin-bottom:4px;line-height:1.5}
+.chk-item.red{background:var(--red-soft);color:var(--red)}
+.chk-item.yellow{background:var(--yellow-soft);color:var(--yellow)}
+.ok-line{font-size:12.5px;color:var(--green)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}
+.stat{background:var(--surface-2);border-radius:8px;padding:7px 10px}
+.stat .l{font-size:11px;color:var(--faint)}
+.stat .v{font-size:15px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat .v.over{color:var(--red)}
+.meter{height:8px;border-radius:99px;background:var(--surface-2);overflow:hidden;display:flex;margin:6px 0 4px}
+.meter b{display:block;height:100%}
+.meter b.m{background:var(--blue)}.meter b.i{background:var(--red)}
+.hl{white-space:pre-wrap;word-break:break-word;font-size:14px;line-height:1.85;background:var(--surface-2);border-radius:8px;padding:12px 14px;max-height:340px;overflow:auto}
+mark{background:none;color:inherit;border-radius:3px;padding:0 1px}
+mark.h{background:var(--red-soft);color:var(--red);font-weight:600;text-decoration:underline wavy var(--red) 1px;text-underline-offset:3px}
+mark.s{background:var(--yellow-soft);color:var(--yellow);font-weight:600}
+mark.n{border-bottom:2px dotted #E07A12}
+mark.ok{border-bottom:2px solid var(--green)}
+.diff{white-space:pre-wrap;word-break:break-word;font-size:13.5px;line-height:1.85;background:var(--surface-2);border-radius:8px;padding:12px 14px;max-height:380px;overflow:auto}
+.diff del{background:var(--red-soft);color:var(--red);text-decoration:line-through}
+.diff ins{background:var(--green-soft);color:var(--green);text-decoration:none}
+.ver{border:1px solid var(--line);border-radius:8px;padding:8px 10px;margin-bottom:6px;font-size:12.5px}
+.ver .vh{display:flex;justify-content:space-between;gap:6px;align-items:center}
+.ver .vn{color:var(--muted);margin-top:2px}
+
+/* tabs */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-bottom:16px;overflow-x:auto}
+.tabs button{background:none;border:0;padding:9px 12px;font-size:13.5px;font-weight:600;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tabs button.on{color:var(--blue);border-bottom-color:var(--blue)}
+.seg{display:inline-flex;background:var(--surface-2);border-radius:8px;padding:3px;gap:2px}
+.seg button{border:0;background:none;padding:5px 10px;border-radius:6px;font-size:12.5px;font-weight:600;color:var(--muted);cursor:pointer}
+.seg button.on{background:var(--surface);color:var(--text);box-shadow:var(--sd)}
+
+/* kanban */
+.kanban{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(220px,1fr);gap:12px;overflow-x:auto;padding-bottom:8px;align-items:start}
+.col{background:var(--surface-2);border-radius:var(--r);padding:10px;min-height:200px}
+.col.over{outline:2px dashed var(--blue);outline-offset:-2px}
+.col-h{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;font-weight:700;padding:2px 4px 10px}
+.col-h .n{font-size:11px;color:var(--faint);font-weight:600}
+.kc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin-bottom:8px;cursor:pointer;box-shadow:var(--sd)}
+.kc:hover{border-color:var(--blue)}
+.kc .co{font-weight:700;font-size:13.5px}
+.kc .ro{font-size:12px;color:var(--muted);margin-top:1px}
+.kc .ft{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.dl-soon{color:var(--red)!important;font-weight:700}
+
+/* timer */
+.timer{font-size:44px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;line-height:1}
+.bar{height:6px;border-radius:99px;background:var(--surface-2);overflow:hidden;margin:10px 0}
+.bar b{display:block;height:100%;background:var(--blue);transition:width .2s linear}
+.bar b.over{background:var(--red)}
+.q-big{font-size:18px;font-weight:700;letter-spacing:-.01em;line-height:1.45}
+.score{display:inline-flex;gap:4px}
+.score button{width:30px;height:30px;border-radius:8px;border:1px solid var(--line-2);background:var(--surface);cursor:pointer;font-weight:700}
+.score button.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.checks label{display:flex;gap:8px;align-items:center;font-size:13px;padding:3px 0;cursor:pointer}
+
+/* modal & toast */
+.modal{position:fixed;inset:0;background:rgba(8,12,20,.5);display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;z-index:50;overflow:auto}
+.modal[hidden]{display:none}
+.modal-box{background:var(--surface);border-radius:14px;width:min(860px,100%);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.modal-h{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid var(--line)}
+.modal-h h3{font-size:16px}
+.modal-b{padding:18px 20px 22px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:9px 16px;border-radius:10px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:60;max-width:90vw}
+#toast.on{opacity:1}
+.ai-out{white-space:pre-wrap;font-size:13.5px;line-height:1.8}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid var(--line-2);border-top-color:var(--blue);border-radius:50%;animation:sp .8s linear infinite;vertical-align:-2px}
+@keyframes sp{to{transform:rotate(360deg)}}
+table.t{width:100%;border-collapse:collapse;font-size:13px}
+table.t th{text-align:left;font-size:11.5px;color:var(--faint);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--line)}
+table.t td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+.kw{display:flex;flex-wrap:wrap;gap:5px}
+.mobile-only{display:none}
+
+@media (max-width:1180px){
+  .split3{grid-template-columns:230px minmax(0,1fr)}
+  .split3 > .side-panel{grid-column:1 / -1}
+  .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:820px){
+  .app{flex-direction:column}
+  .side{width:100%;height:auto;position:sticky;top:0;z-index:20;flex-direction:row;align-items:center;padding:10px 12px;gap:10px}
+  .brand{padding:0}
+  .brand-sub,.brand-mark,.side-foot{display:none}
+  .brand-title{font-size:13px;white-space:nowrap}
+  .nav{flex-direction:row;overflow-x:auto;gap:2px;flex:1}
+  .nav button{padding:6px 9px;font-size:12.5px;white-space:nowrap}
+  .nav .k{display:none}
+  main{padding:18px 16px 60px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .g2,.g3,.split,.split3{grid-template-columns:minmax(0,1fr)}
+  .list{max-height:260px}
+  .mobile-only{display:block}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand">
+      <div class="brand-mark"><i></i><i></i><i></i></div>
+      <div class="brand-title">이직 준비 작업대</div>
+      <div class="brand-sub" id="brandSub"></div>
+    </div>
+    <ul class="nav" id="nav"></ul>
+    <div class="side-foot">
+      <div><span class="save-dot"></span><span id="saveState">로컬 저장</span></div>
+      <div class="hint" style="color:var(--side-text)" id="syncState"></div>
+      <label class="row" style="gap:6px">테마
+        <select id="themeSel"><option value="auto">시스템</option><option value="light">라이트</option><option value="dark">다크</option></select>
+      </label>
+    </div>
+  </aside>
+  <main id="view"></main>
+</div>
+<div id="modal" class="modal" hidden></div>
+<div id="toast"></div>
+
+<script>
+'use strict';
+/* =========================================================
+   Storage & seed
+   ========================================================= */
+const KEY = 'jw-workbench-v1';
+const UIKEY = 'jw-workbench-ui';
+const uid = () => Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-4);
+const now = () => new Date().toISOString();
+const ymd = d => { const x = d || new Date(); return x.getFullYear() + '-' + String(x.getMonth() + 1).padStart(2, '0') + '-' + String(x.getDate()).padStart(2, '0'); };
+const today = () => ymd();
+
+const STAGES = ['관심', '준비중', '지원완료', '서류합격', '면접', '최종합격', '종료'];
+const TRACKS = ['MBB/컨설팅', 'IB/PE/대체투자', 'Corp Dev/전략', 'FP&A/재무'];
+const ORGS = ['NHN', 'AIA생명', '롯데이노베이트', 'CFA', '기타'];
+const DKINDS = ['자기소개', '경력기술서', '이력서 문장', '지원동기', '커버레터', '면접 답변', '포지셔닝 문장', '영문'];
+const TONES = ['공통', 'MBB', 'IB/PE'];
+const LOGCATS = ['경험 정리', '첨삭', '면접 연습', '지원서', '포트폴리오', 'CFA', '네트워킹'];
+
+/* ---- 개인 데이터는 소스에 넣지 않는다: JSON 가져오기 또는 구글시트 불러오기로 채움 ---- */
+const mkQ = r => ({ id: uid(), cat: r[0], q: r[1], draft: r[2] || '', basis: r[3] || '', trap: r[4] || '', attempts: [] });
+const CFA_PLAY = [
+  { k: 'pre1', when: '10/17~10/19', sc: 'pre', t: '이력서 파일 2종 저장 (합격 표기 / 응시 표기)' },
+  { k: 'pre2', when: '10/17~10/19', sc: 'pre', t: '리멤버·링크드인 CFA 문구 2종 준비' },
+  { k: 'pre3', when: '10/17~10/19', sc: 'pre', t: '헤드헌터 업데이트 메시지 2종 확인' },
+  { k: 'p1', when: '10/20', sc: 'pass', t: '이력서·리멤버·링크드인 CFA 문구 교체' },
+  { k: 'p2', when: '10/20', sc: 'pass', t: '헤드헌터에 결과 공유 (아래 메시지)' },
+  { k: 'p3', when: '10/20', sc: 'pass', t: '트래커에서 결과 대기 중이던 지원 건 진행' },
+  { k: 'f1', when: '10/20', sc: 'fail', t: "이력서 문구는 사실 그대로 유지: 'CFA Level 2 합격 / Level 3 응시 (Private Markets Pathway)'" },
+  { k: 'f2', when: '10/20', sc: 'fail', t: '차기 응시 회차 확인 후 학습 계획 결정' },
+  { k: 'f3', when: '10/20', sc: 'fail', t: '지원은 계속 진행. 확인한 JD에서 CFA가 필수인지 우대인지 다시 확인' },
+  { k: 'c1', when: '10/21~10/27', sc: 'all', t: '결과와 무관하게 지원 2건 실행' },
+  { k: 'c2', when: '10/21~10/27', sc: 'all', t: '커피챗 1건 이상 실행' },
+  { k: 'c3', when: '10/21~10/27', sc: 'all', t: '발표 후 3일간은 퇴사·큰 방향 변경 같은 결정을 하지 않고 트래커 기준으로만 움직이기' }
+];
+const CFA_LINES = {
+  wait: { ko: 'CFA Level 2 합격 (2025) / Level 3 응시 (2026.08, Private Markets Pathway)', en: 'Passed Level II of the CFA Program (2025); Level III candidate, Private Markets Pathway (results due Oct 2026)', msg: '' },
+  pass: { ko: 'CFA Level 3 합격 (Private Markets Pathway, 2026)', en: 'Passed Level III of the CFA Program, Private Markets Pathway (2026)', msg: '안녕하세요. 왕지인입니다. CFA Level 3 결과가 나와 공유드립니다. Private Markets Pathway 합격했습니다. 대체투자 심사·투자기획·전략투자 계열 포지션을 다시 검토 부탁드립니다. 진행 중인 건 현황도 알려 주세요.' },
+  fail: { ko: 'CFA Level 2 합격 (2025) / Level 3 응시 (2026.08)', en: 'Passed Level II of the CFA Program (2025)', msg: '안녕하세요. 왕지인입니다. CFA Level 3는 이번 회차에 통과하지 못했고 차기 회차를 준비합니다. 지원 가능한 포지션 검토는 계속 부탁드립니다.' }
+};
+const seedCfa = () => ({ status: 'wait', checks: {}, sent: {}, retro: '', share: {}, headhunters: [] });
+
+function seed() {
+  const t = now();
+  return {
+    v: 4,
+    meta: { created: t, updated: t },
+    experiences: [],
+    drafts: [],
+    apps: [],
+    qa: [],
+    pitches: [],
+    interviews: [],
+    cfa: seedCfa(),
+    log: [],
+    activity: {},
+    rules: {
+      hard: ['딜 클로징', '딜클로징', '클로징', '협상', '계약 체결', '계약을 체결', 'FDD', 're:재무\\s?실사.{0,8}(주도|단독|리드)', 're:(단독|혼자).{0,12}(실사|의사결정|결정|마무리)', 're:이사회.{0,20}(혼자|단독|주도|의결권)', '투자 집행', '투자를 집행', '운용 권한', '투자 결정권', '집행 권한'],
+      style: ['—', '―', '하는 방식입니다', '들어갑니다', '전문가', '탁월한', '탁월', '뛰어난', '최고의', '열정', '성실', '시너지를 창출', '역량을 바탕으로', '기여하고 싶습니다', '특기입니다'],
+      verified: [],
+      principles: '',
+      facts: ''
+    },
+    settings: { apiKey: '', model: 'claude-opus-5-5', cfaResult: '2026-10-20', theme: 'auto', positioning: '', sheetUrl: '', sheetToken: '', sheetAuto: false, lastSync: '' }
+  };
+}
+
+function load() {
+  try {
+    const raw = localStorage.getItem(KEY);
+    if (raw) {
+      const d = JSON.parse(raw);
+      const base = seed();
+      for (const k of Object.keys(base)) if (d[k] === undefined) d[k] = base[k];
+      for (const k of Object.keys(base.rules)) if (d.rules[k] === undefined) d.rules[k] = base.rules[k];
+      for (const k of Object.keys(base.settings)) if (d.settings[k] === undefined) d.settings[k] = base.settings[k];
+      d.v = Math.max(d.v || 1, 4);
+      return d;
+    }
+  } catch (e) { console.warn(e); }
+  return seed();
+}
+let S = load();
+let U = (() => { try { return JSON.parse(localStorage.getItem(UIKEY)) || {}; } catch (e) { return {}; } })();
+U = Object.assign({ ivId: null, view: 'dash', expId: null, draftId: null, practiceTab: 'qa', qaId: null, pitchSecs: 60, expFilter: '', expOrg: '', appView: 'board' }, U);
+
+let saveTimer = null;
+function persist() {
+  S.meta.updated = now();
+  try {
+    localStorage.setItem(KEY, JSON.stringify(S));
+    setSaveState('저장됨 ' + new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }));
+    scheduleSync();
+  } catch (e) {
+    setSaveState('저장 실패');
+    toast('브라우저 저장에 실패했습니다. 설정에서 백업을 내보내 주세요.');
+  }
+}
+function save(delay) {
+  clearTimeout(saveTimer);
+  setSaveState('저장 중…');
+  saveTimer = setTimeout(persist, delay == null ? 400 : delay);
+}
+function saveUI() { try { localStorage.setItem(UIKEY, JSON.stringify(U)); } catch (e) {} }
+function setSaveState(s) { const el = document.getElementById('saveState'); if (el) el.textContent = s; }
+function touch(n) { const d = today(); S.activity[d] = (S.activity[d] || 0) + (n || 1); }
+
+/* =========================================================
+   Helpers
+   ========================================================= */
+const $ = s => document.querySelector(s);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const fmtDT = iso => { if (!iso) return ''; const d = new Date(iso); return (d.getMonth() + 1) + '/' + d.getDate() + ' ' + String(d.getHours()).padStart(2, '0') + ':' + String(d.getMinutes()).padStart(2, '0'); };
+const fmtD = iso => { if (!iso) return ''; const d = new Date(iso); return d.getFullYear() + '.' + String(d.getMonth() + 1).padStart(2, '0') + '.' + String(d.getDate()).padStart(2, '0'); };
+const daysUntil = ds => { if (!ds) return null; const a = new Date(today() + 'T00:00:00'), b = new Date(ds + 'T00:00:00'); return Math.round((b - a) / 864e5); };
+const opt = (arr, v) => arr.map(x => `<option ${x === v ? 'selected' : ''}>${esc(x)}</option>`).join('');
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toast._t); toast._t = setTimeout(() => t.classList.remove('on'), 2200); }
+function copy(text) { navigator.clipboard.writeText(text).then(() => toast('복사했습니다'), () => toast('복사 실패: 직접 선택해 복사해 주세요')); }
+const byId = (arr, id) => arr.find(x => x.id === id);
+const expText = e => [e.situation, e.action, e.result].filter(Boolean).join('\n');
+
+/* =========================================================
+   Checker
+   ========================================================= */
+const MBB_KW = ['구조', '분해', '축으로', '프레임', '매트릭스', '우선순위', '가설', '이슈', '진단', 'As-Is', 'To-Be', '로드맵', '이해관계자', '조율', '정리', '설계', '벤치마킹', '비교', '기준'];
+const IB_KW = ['IRR', 'NOI', 'NPV', '밸류에이션', '재무제표', '현금흐름', 'BEP', '민감도', '공헌이익', '멀티플', '수익률', '시너지', '손익', 'P&L', '프로젝션', '재무', 'M/S', '매출', '비용', '마진', 'Go/No-Go', '스크리닝', '실사', '투자'];
+const NUM_RE = /(\d+(?:[.,]\d+)*)\s?(%p|%|배|개사|개월|개국|개|년치|년|억원|억|조원|조|만원|만|원|일|분|시간|명|건|위|bp)/g;
+const normNum = s => s.replace(/\s/g, '').replace(/년치$/, '년');
+
+function patToRe(p) {
+  p = (p || '').trim();
+  if (!p) return null;
+  if (p.startsWith('re:')) { try { return new RegExp(p.slice(3), 'gi'); } catch (e) { return null; } }
+  return new RegExp(p.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+}
+function findAll(text, p, kind) {
+  const re = patToRe(p); if (!re) return [];
+  const out = []; let m;
+  while ((m = re.exec(text))) {
+    if (!m[0].length) { re.lastIndex++; continue; }
+    out.push({ s: m.index, e: m.index + m[0].length, t: m[0], rule: p, kind });
+  }
+  return out;
+}
+function check(text) {
+  text = text || '';
+  const hard = [], style = [], nums = [];
+  S.rules.hard.forEach(p => hard.push(...findAll(text, p, 'h')));
+  S.rules.style.forEach(p => style.push(...findAll(text, p, 's')));
+  const dedupe = arr => { arr.sort((a, b) => a.s - b.s || (b.e - b.s) - (a.e - a.s)); const out = []; let end = -1; for (const x of arr) if (x.s >= end) { out.push(x); end = x.e; } return out; };
+  const hardD = dedupe(hard), styleD = dedupe(style);
+  hard.length = 0; hard.push(...hardD); style.length = 0; style.push(...styleD);
+  const ver = new Set(S.rules.verified.map(normNum));
+  let m; NUM_RE.lastIndex = 0;
+  while ((m = NUM_RE.exec(text))) {
+    if (m[2] === '년' && m[1].length === 4) continue; // year
+    const n = normNum(m[1] + m[2]);
+    nums.push({ s: m.index, e: m.index + m[0].length, t: m[0], n, ok: ver.has(n), kind: ver.has(n) ? 'ok' : 'n' });
+  }
+  const cnt = kws => kws.map(k => [k, (text.match(new RegExp(k.replace(/[.*+?^${}()|[\]\\/]/g, '\\$&'), 'gi')) || []).length]).filter(x => x[1]);
+  const mbb = cnt(MBB_KW), ib = cnt(IB_KW);
+  const sents = text.split(/(?<=[.!?。])\s+|\n+/).map(s => s.trim()).filter(s => s.length > 1);
+  const noSp = text.replace(/\s/g, '').length;
+  return {
+    hard, style, nums,
+    tone: { mbb: mbb.reduce((a, b) => a + b[1], 0), ib: ib.reduce((a, b) => a + b[1], 0), mbbHits: mbb, ibHits: ib },
+    stats: {
+      chars: text.length, noSp, bytes: new Blob([text]).size, sents: sents.length,
+      avg: sents.length ? Math.round(noSp / sents.length) : 0,
+      longest: sents.reduce((a, s) => Math.max(a, s.length), 0),
+      numDensity: noSp ? +(nums.length / noSp * 100).toFixed(1) : 0
+    }
+  };
+}
+function highlight(text, r) {
+  const spans = [...r.hard, ...r.style, ...r.nums].sort((a, b) => a.s - b.s || (b.e - b.s) - (a.e - a.s));
+  let out = '', pos = 0;
+  for (const sp of spans) {
+    if (sp.s < pos) continue;
+    out += esc(text.slice(pos, sp.s));
+    const cls = sp.kind === 'h' ? 'h' : sp.kind === 's' ? 's' : sp.kind === 'ok' ? 'ok' : 'n';
+    const title = sp.kind === 'h' ? '포지셔닝 규칙 위반' : sp.kind === 's' ? '문체 경고' : sp.kind === 'ok' ? '검증된 수치' : '검증 목록에 없는 수치';
+    out += `<mark class="${cls}" title="${title}">${esc(text.slice(sp.s, sp.e))}</mark>`;
+    pos = sp.e;
+  }
+  return out + esc(text.slice(pos));
+}
+function checkPanel(text, limit) {
+  const r = check(text);
+  const uniq = arr => { const m = new Map(); arr.forEach(x => { const k = x.t.toLowerCase(); m.set(k, (m.get(k) || 0) + 1); }); return [...m.entries()]; };
+  const badNums = [...new Map(r.nums.filter(x => !x.ok).map(x => [x.n, x])).values()];
+  const okNums = [...new Set(r.nums.filter(x => x.ok).map(x => x.n))];
+  const tot = r.tone.mbb + r.tone.ib;
+  const mp = tot ? Math.round(r.tone.mbb / tot * 100) : 50;
+  const lean = !tot ? '신호 없음' : mp >= 60 ? 'MBB 쪽 (구조화)' : mp <= 40 ? 'IB/PE 쪽 (재무·숫자)' : '균형';
+  const over = limit && r.stats.chars > limit;
+  return `
+  <div class="chk-sec">
+    <div class="stats">
+      <div class="stat"><div class="l">공백 포함${limit ? ' / ' + limit : ''}</div><div class="v ${over ? 'over' : ''}">${r.stats.chars.toLocaleString()}</div></div>
+      <div class="stat"><div class="l">공백 제외</div><div class="v">${r.stats.noSp.toLocaleString()}</div></div>
+      <div class="stat"><div class="l">문장 수 · 평균 길이</div><div class="v">${r.stats.sents} · ${r.stats.avg}자</div></div>
+      <div class="stat"><div class="l">숫자 밀도 (100자당)</div><div class="v">${r.stats.numDensity}</div></div>
+    </div>
+  </div>
+  <div class="chk-sec">
+    <div class="chk-t"><span class="chip ${r.hard.length ? 'red' : 'green'}">${r.hard.length}</span>포지셔닝 규칙 위반</div>
+    ${r.hard.length ? uniq(r.hard).map(([t, n]) => `<div class="chk-item red">"${esc(t)}" ${n > 1 ? '×' + n : ''} · 해본 적 없는 일로 읽힐 수 있음</div>`).join('') : '<div class="ok-line">과장 위험 표현 없음</div>'}
+  </div>
+  <div class="chk-sec">
+    <div class="chk-t"><span class="chip ${badNums.length ? 'yellow' : 'green'}">${badNums.length}</span>검증 목록에 없는 수치</div>
+    ${badNums.length ? `<div class="kw">${badNums.map(x => `<button class="chip yellow" data-act="verifyNum" data-n="${esc(x.n)}" title="클릭하면 검증된 수치로 등록">${esc(x.n)} +검증</button>`).join('')}</div><div class="hint" style="margin-top:6px">이력서 원본에서 확인된 수치만 '+검증'으로 등록하세요.</div>` : '<div class="ok-line">모든 수치가 검증 목록에 있음</div>'}
+    ${okNums.length ? `<div class="kw" style="margin-top:6px">${okNums.map(n => `<span class="chip green">${esc(n)}</span>`).join('')}</div>` : ''}
+  </div>
+  <div class="chk-sec">
+    <div class="chk-t"><span class="chip ${r.style.length ? 'yellow' : 'green'}">${r.style.length}</span>문체 경고</div>
+    ${r.style.length ? uniq(r.style).map(([t, n]) => `<div class="chk-item yellow">"${esc(t)}" ${n > 1 ? '×' + n : ''}</div>`).join('') : '<div class="ok-line">상투 어미·자기평가 표현 없음</div>'}
+    ${r.stats.longest > 120 ? `<div class="chk-item yellow">가장 긴 문장 ${r.stats.longest}자 · 나눌 수 있는지 확인</div>` : ''}
+  </div>
+  <div class="chk-sec">
+    <div class="chk-t">톤 기울기 · ${lean}</div>
+    <div class="meter"><b class="m" style="width:${mp}%"></b><b class="i" style="width:${100 - mp}%"></b></div>
+    <div class="row" style="justify-content:space-between;font-size:11.5px"><span style="color:var(--blue)">MBB ${r.tone.mbb}</span><span style="color:var(--red)">IB/PE ${r.tone.ib}</span></div>
+    <div class="hint" style="margin-top:4px">${[...r.tone.mbbHits, ...r.tone.ibHits].map(([k, n]) => esc(k) + (n > 1 ? '×' + n : '')).join(' · ') || '키워드 없음'}</div>
+  </div>`;
+}
+
+/* =========================================================
+   Diff (token LCS)
+   ========================================================= */
+function diffHTML(a, b) {
+  const A = (a || '').split(/(\s+)/).filter(x => x !== ''), B = (b || '').split(/(\s+)/).filter(x => x !== '');
+  const n = A.length, m = B.length;
+  if (n * m > 6e6) return `<del>${esc(a)}</del><ins>${esc(b)}</ins>`;
+  const dp = new Uint16Array((n + 1) * (m + 1));
+  for (let i = n - 1; i >= 0; i--) for (let j = m - 1; j >= 0; j--)
+    dp[i * (m + 1) + j] = A[i] === B[j] ? dp[(i + 1) * (m + 1) + j + 1] + 1 : Math.max(dp[(i + 1) * (m + 1) + j], dp[i * (m + 1) + j + 1]);
+  let i = 0, j = 0, out = '';
+  while (i < n && j < m) {
+    if (A[i] === B[j]) { out += esc(A[i]); i++; j++; }
+    else if (dp[(i + 1) * (m + 1) + j] >= dp[i * (m + 1) + j + 1]) { out += `<del>${esc(A[i])}</del>`; i++; }
+    else { out += `<ins>${esc(B[j])}</ins>`; j++; }
+  }
+  while (i < n) out += `<del>${esc(A[i++])}</del>`;
+  while (j < m) out += `<ins>${esc(B[j++])}</ins>`;
+  return out.replace(/<\/del><del>/g, '').replace(/<\/ins><ins>/g, '');
+}
+
+/* =========================================================
+   JD keyword analysis
+   ========================================================= */
+const STOP = new Set('및 등 the and or for with to of in a an on as is are be by at we you our your will 있는 있습니다 합니다 위한 관련 업무 경험 이상 우대 자격 요건 수 통해 대한 능력 보유 가능 담당 지원 기타 경우 해당 이해 대한 년 이상의 또는 함께 기반 활용 사항 주요 우대사항 자격요건 담당업무 모집 채용 근무 회사 직무 전형 서류 면접 포지션 분야 내용 업무를 경험이 있는 분 하는 및 등의 주요업무 담당업무 가능자 자료 작성 우대'.split(/\s+/));
+const DOMAIN = ['m&a', '실사', 'dd', '밸류에이션', 'valuation', 'irr', 'npv', 'noi', '재무모델', '모델링', 'modeling', '투자', '심사', '대체투자', 'pe', 'vc', '펀드', '포트폴리오', '사업계획', '전략', 'fp&a', '예산', '손익', 'p&l', 'ir', '시장조사', '산업분석', 'python', 'sql', 'excel', 'cfa', '영어', 'english', '보고', 'pmi', '시너지', '타당성', '신사업', '스크리닝', '재무제표', '현금흐름', '프로젝션', '컨설팅', '구조화', '이해관계자', '자동화', '데이터', '보험', '결제', 'pg', 'corporate', 'development'];
+function stripJosa(w) { return w.length > 2 ? w.replace(/(으로|에서|에게|과의|와의|이며|이고|입니다|하는|하여|해서|을|를|이|가|은|는|의|에|로|과|와|도|만)$/, '') : w; }
+function jdKeywords(text) {
+  const toks = (text || '').toLowerCase().match(/[a-z][a-z0-9&\/+.\-]{1,}|[가-힣]{2,}/g) || [];
+  const c = new Map();
+  toks.forEach(t => { t = stripJosa(t.replace(/[.\-]+$/, '')); if (t.length < 2 || STOP.has(t)) return; c.set(t, (c.get(t) || 0) + (DOMAIN.includes(t) ? 3 : 1)); });
+  DOMAIN.forEach(d => { if (d.includes('&') || d.includes(' ')) { if ((text || '').toLowerCase().includes(d)) c.set(d, (c.get(d) || 0) + 3); } });
+  return [...c.entries()].sort((a, b) => b[1] - a[1]).slice(0, 30).map(x => x[0]);
+}
+function matchExperiences(kws) {
+  return S.experiences.map(e => {
+    const hay = (e.title + ' ' + e.tags.join(' ') + ' ' + expText(e)).toLowerCase();
+    const hits = kws.filter(k => /^[a-z0-9&\/+.\-]+$/.test(k) ? new RegExp('(^|[^a-z])' + k.replace(/[.*+?^${}()|[\]\\\/]/g, '\\$&') + '([^a-z]|$)').test(hay) : hay.includes(k));
+    return { e, hits };
+  }).filter(x => x.hits.length).sort((a, b) => b.hits.length - a.hits.length);
+}
+
+/* =========================================================
+   Claude API (browser direct, user-provided key)
+   ========================================================= */
+function sysPrompt() {
+  return `너는 왕지인의 이력서·경력기술서·자기소개서·면접 답변 첨삭 코치다. 아래 규칙을 반드시 지킨다.
+
+[포지셔닝] ${S.settings.positioning || '미정 (사실 프로필 범위에서 지원처 트랙에 맞춰 판단)'}
+
+[사실 프로필] 이 범위 밖의 경험, 성과, 수치는 절대 추가하지 않는다.
+${S.rules.facts}
+
+[금지 표현·주장] ${S.rules.hard.map(x => x.replace(/^re:/, '(패턴) ')).join(', ')}
+[검증된 수치] ${S.rules.verified.join(', ')}
+원문과 검증 목록 어디에도 없는 숫자를 새로 만들지 않는다. 원문에 있으나 검증 목록에 없는 숫자는 유지하되 변경 포인트에 '검증 필요'로 표시한다.
+
+[문체]
+- 상투적 어미(~하는 방식입니다, ~들어갑니다) 금지. 줄표(em-dash) 금지.
+- '전문가', '탁월한' 같은 자기평가형 형용사 금지. 너무 추상적인 두괄식 금지.
+- 구체적 과거형 동사와 실제 숫자 중심.
+- 자기소개는 서술형 흐름(~하며, ~고자)으로 쓰고 불릿 나열을 쓰지 않는다.
+- 딜 클로징 경험 부재는 숨기지 말고, 분석 범위와 학습 속도로 커버하는 프레이밍을 쓴다.
+
+[트랙별 톤]
+- MBB/컨설팅: 문제를 어떤 축으로 분해했는지, 우선순위, 이해관계자 정리, 구조화 역량을 앞세운다.
+- IB/PE/대체투자: 재무 논리, 핵심 가정, 숫자, 판단 근거(Go/No-Go)를 앞세운다.
+
+[출력 형식] 반드시 아래 두 블록으로만 답한다.
+[수정본]
+(본문)
+[변경 포인트]
+- (3~6개 불릿, 위반·검증 필요 수치·남은 갭 포함)`;
+}
+const AI_MODES = {
+  polish: { label: '문체 다듬기', ask: '문체 규칙에 맞춰 다듬어줘. 의미와 사실은 그대로 둔다.' },
+  mbb: { label: 'MBB 톤', ask: 'MBB/컨설팅 지원용 톤으로 다시 써줘. 구조화 역량이 드러나게.' },
+  ib: { label: 'IB/PE 톤', ask: 'IB/PE/대체투자 지원용 톤으로 다시 써줘. 재무 논리와 숫자가 드러나게.' },
+  star: { label: '상황·접근·결과 재구성', ask: '상황, 접근, 결과 흐름이 드러나게 재구성해줘.' },
+  shorten: { label: '글자수 맞추기', ask: '글자수 제한(공백 포함) 이내로 줄여줘. 숫자와 핵심 동사는 남긴다.' },
+  risk: { label: '과장 리스크 점검', ask: '과장되거나 사실 프로필과 어긋나는 표현을 찾아 변경 포인트에 지적하고, 수정본에는 리스크를 제거한 안전한 버전을 써줘.' },
+  jd: { label: 'JD 맞춤', ask: '연결된 JD에 맞춰 강조점을 조정해줘. JD에 있지만 사실 프로필에 없는 역량은 만들지 말고 변경 포인트에 갭으로 적어줘.' },
+  en: { label: '영문 변환', ask: '영문 이력서 bullet 스타일로 번역해줘. 과거형 action verb로 시작하고 수치는 그대로 유지한다.' }
+};
+async function callClaude(userMsg) {
+  const key = S.settings.apiKey;
+  if (!key) throw new Error('설정 탭에서 Anthropic API 키를 먼저 입력해 주세요.');
+  const model = S.settings.model || 'claude-opus-5-5';
+  const body = { model, max_tokens: 16000, system: sysPrompt(), messages: [{ role: 'user', content: userMsg }] };
+  const headers = { 'content-type': 'application/json', 'x-api-key': key, 'anthropic-version': '2023-06-01', 'anthropic-dangerous-direct-browser-access': 'true' };
+  const fallbackOK = model === 'claude-opus-5-5' || model === 'claude-sonnet-5-5';
+  if (model !== 'claude-haiku-4-5') body.output_config = { effort: 'medium' };
+  const send = async withFallback => {
+    const h = Object.assign({}, headers), b = Object.assign({}, body);
+    if (withFallback) { h['anthropic-beta'] = 'server-side-fallback-2026-07-01'; b.fallbacks = 'default'; }
+    return fetch('https://api.anthropic.com/v1/messages', { method: 'POST', headers: h, body: JSON.stringify(b) });
+  };
+  let res = await send(fallbackOK);
+  if (res.status === 400 && fallbackOK) res = await send(false);
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error((data.error && data.error.message) || ('HTTP ' + res.status));
+  if (data.stop_reason === 'refusal') throw new Error('모델이 이 요청을 처리하지 않았습니다. 문장을 조정해 다시 시도해 주세요.');
+  const text = (data.content || []).filter(c => c.type === 'text').map(c => c.text).join('\n').trim();
+  if (data.stop_reason === 'max_tokens') return text + '\n\n(출력이 길이 제한에서 잘렸습니다)';
+  return text;
+}
+function parseAI(out) {
+  const i = out.indexOf('[변경 포인트]');
+  const body = (i >= 0 ? out.slice(0, i) : out).replace(/^\s*\[수정본\]\s*/, '').trim();
+  const notes = i >= 0 ? out.slice(i + 7).trim() : '';
+  return { body, notes };
+}
+
+/* =========================================================
+   Navigation
+   ========================================================= */
+const VIEWS = [
+  ['dash', '대시보드', 'D'], ['exp', '경험 뱅크', 'E'], ['draft', '문장 다듬기', 'W'],
+  ['apps', '지원 트래커', 'A'], ['review', '면접 복기', 'R'], ['practice', '포지셔닝 연습', 'P'], ['cfa', 'CFA 결과', 'C'], ['log', '연습 기록', 'L'], ['settings', '규칙 · 설정', 'S']
+];
+function renderNav() {
+  $('#nav').innerHTML = VIEWS.map(([k, l, c]) => `<li><button class="${U.view === k ? 'on' : ''}" data-act="go" data-v="${k}"><span class="k">${c}</span>${l}</button></li>`).join('');
+}
+function go(v) { U.view = v; saveUI(); render(); window.scrollTo(0, 0); }
+function render() {
+  renderNav();
+  $('#brandSub').textContent = S.settings.positioning || '포지셔닝 미정';
+  const fn = { dash: vDash, exp: vExp, draft: vDraft, apps: vApps, practice: vPractice, log: vLog, settings: vSettings, cfa: vCfa, review: vReview }[U.view] || vDash;
+  $('#view').innerHTML = fn();
+  if (AFTER[U.view]) AFTER[U.view]();
+}
+const AFTER = {};
+const head = (t, p, actions) => `<div class="page-head"><div><h1>${t}</h1>${p ? `<p>${p}</p>` : ''}</div><div class="row">${actions || ''}</div></div>`;
+
+/* =========================================================
+   View: Dashboard
+   ========================================================= */
+function streak() {
+  const active = d => (S.activity[d] || 0) > 0 || S.log.some(l => l.date === d);
+  let n = 0; const d = new Date();
+  if (!active(ymd(d))) d.setDate(d.getDate() - 1);
+  while (active(ymd(d))) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+}
+function heatmap(weeks) {
+  const end = new Date(); const start = new Date(); start.setDate(end.getDate() - (weeks * 7 - 1) - end.getDay());
+  const logMin = {}; S.log.forEach(l => { logMin[l.date] = (logMin[l.date] || 0) + (+l.minutes || 0); });
+  let cells = '';
+  for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
+    const k = ymd(d); const v = (S.activity[k] || 0) + Math.round((logMin[k] || 0) / 15);
+    const lv = v === 0 ? '' : v < 3 ? 'l1' : v < 8 ? 'l2' : v < 16 ? 'l3' : 'l4';
+    cells += `<i class="${lv} ${k === today() ? 'today' : ''}" title="${k} · ${v}"></i>`;
+  }
+  return `<div class="heat">${cells}</div>`;
+}
+function allViolations() {
+  const out = [];
+  S.drafts.forEach(d => { const r = check(d.text); if (r.hard.length) out.push({ kind: 'draft', id: d.id, title: d.title, n: r.hard.length, ex: r.hard[0].t }); });
+  S.experiences.forEach(e => { const r = check(expText(e)); if (r.hard.length) out.push({ kind: 'exp', id: e.id, title: e.title, n: r.hard.length, ex: r.hard[0].t }); });
+  return out;
+}
+function vDash() {
+  const dd = daysUntil(S.settings.cfaResult);
+  const active = S.apps.filter(a => !['관심', '종료', '최종합격'].includes(a.stage));
+  const weekDays = (() => { let n = 0; for (let i = 0; i < 7; i++) { const d = new Date(); d.setDate(d.getDate() - i); const k = ymd(d); if ((S.activity[k] || 0) > 0 || S.log.some(l => l.date === k)) n++; } return n; })();
+  const ver = S.experiences.filter(e => e.verified).length;
+  const vcount = S.drafts.reduce((a, d) => a + d.versions.length, 0) + S.experiences.reduce((a, e) => a + e.versions.length, 0);
+  const deadlines = S.apps.filter(a => a.deadline && !['종료', '최종합격'].includes(a.stage)).sort((a, b) => a.deadline.localeCompare(b.deadline)).slice(0, 6);
+  const stale = [...S.experiences].sort((a, b) => a.updated.localeCompare(b.updated))[0];
+  const qaLeast = [...S.qa].sort((a, b) => a.attempts.length - b.attempts.length)[0];
+  const viol = allViolations();
+  const pending = S.experiences.filter(e => /\[[^\]]*보완[^\]]*\]/.test(expText(e) + e.role)).length;
+  const empty = !S.experiences.length && !S.drafts.length && !S.interviews.length && !S.apps.length;
+  return head('대시보드', `${esc(S.settings.positioning || '포지셔닝 미정')} · 오늘 ${fmtD(now())}`, `<button class="btn" data-act="quickLog">+ 오늘 연습 기록</button>`) + (empty ? `
+  <div class="card pad" style="margin-bottom:16px;border-left:3px solid var(--blue)">
+    <div class="sec-t">처음 열었다면 데이터부터 불러오세요</div>
+    <p style="font-size:13.5px;line-height:1.7;margin-bottom:10px">이 페이지는 공개 주소라 개인 기록을 소스에 담지 않습니다. 보관 중인 백업 JSON을 불러오거나, 설정에서 구글시트를 연결해 불러오면 경험·면접 복기·트래커가 이 브라우저에만 저장됩니다.</p>
+    <div class="row"><label class="btn pri">백업 JSON 불러오기<input type="file" accept=".json,application/json" id="importFirst" style="display:none"></label><button class="btn" data-act="go" data-v="settings">구글시트 연결</button></div>
+  </div>` : '') + `
+  <div class="kpis">
+    <div class="card kpi blue" style="cursor:pointer" data-act="go" data-v="cfa"><div class="l">CFA L3 결과 발표 · ${{ wait: '대기', pass: '합격', fail: '미합격' }[S.cfa.status]}</div><div class="v">${dd == null ? '-' : dd > 0 ? 'D-' + dd : dd === 0 ? 'D-DAY' : '발표 완료'}</div><div class="s">${esc(S.settings.cfaResult)}</div></div>
+    <div class="card kpi red"><div class="l">진행 중 지원</div><div class="v">${active.length}</div><div class="s">전체 ${S.apps.length}곳 · 관심 ${S.apps.filter(a => a.stage === '관심').length}</div></div>
+    <div class="card kpi yellow"><div class="l">연속 연습</div><div class="v">${streak()}일</div><div class="s">최근 7일 중 ${weekDays}일</div></div>
+    <div class="card kpi"><div class="l">경험 카드</div><div class="v">${ver}/${S.experiences.length}</div><div class="s">수치 검증 완료 / 전체</div></div>
+    <div class="card kpi"><div class="l">저장된 버전</div><div class="v">${vcount}</div><div class="s">드래프트 ${S.drafts.length}개</div></div>
+  </div>
+  <div class="g2">
+    <div class="card pad">
+      <div class="sec-t">오늘의 연습</div>
+      <div class="todo">
+        <button data-act="drillRandom"><span class="ic" style="background:var(--blue-soft);color:var(--blue)">Q</span><span><div class="tt">면접 질문 1개 답해보기</div><div class="ts">${qaLeast ? esc(qaLeast.q) : ''}</div></span></button>
+        <button data-act="goPitch"><span class="ic" style="background:var(--red-soft);color:var(--red)">60</span><span><div class="tt">1분 포지셔닝 피치</div><div class="ts">스크립트 읽고 시간 재기 · 기록 ${S.pitches.length}회</div></span></button>
+        ${stale ? `<button data-act="openExp" data-id="${stale.id}"><span class="ic" style="background:var(--yellow-soft);color:var(--yellow)">E</span><span><div class="tt">경험 하나 다시 쓰기</div><div class="ts">가장 오래 손 안 댄 카드: ${esc(stale.title)}</div></span></button>` : ''}
+        ${pending ? `<button data-act="go" data-v="exp"><span class="ic" style="background:var(--surface-2);color:var(--muted)">${pending}</span><span><div class="tt">[보완] 표시가 남은 경험 카드</div><div class="ts">검증된 사실로만 채우기</div></span></button>` : ''}
+      </div>
+    </div>
+    <div class="card pad">
+      <div class="sec-t">마감 임박 <button class="btn sm ghost" data-act="go" data-v="apps">트래커 열기</button></div>
+      ${deadlines.length ? `<table class="t"><tbody>${deadlines.map(a => { const d = daysUntil(a.deadline); return `<tr style="cursor:pointer" data-act="openApp" data-id="${a.id}"><td><b>${esc(a.company)}</b><div class="hint">${esc(a.role || a.track)}</div></td><td><span class="chip">${esc(a.stage)}</span></td><td class="mono ${d != null && d <= 3 ? 'dl-soon' : ''}" style="text-align:right">${esc(a.deadline)}<div class="hint">${d < 0 ? '지남' : 'D-' + d}</div></td></tr>`; }).join('')}</tbody></table>` : '<div class="empty">마감일이 등록된 지원이 없습니다</div>'}
+    </div>
+  </div>
+  <div class="g2" style="margin-top:16px">
+    <div class="card pad">
+      <div class="sec-t">포지셔닝 점검 <span class="chip ${viol.length ? 'red' : 'green'}">${viol.length ? viol.length + '건 위반' : '이상 없음'}</span></div>
+      ${viol.length ? viol.map(v => `<div class="chk-item red" style="cursor:pointer" data-act="${v.kind === 'draft' ? 'openDraft' : 'openExp'}" data-id="${v.id}"><b>${esc(v.title)}</b> · "${esc(v.ex)}"${v.n > 1 ? ' 외 ' + (v.n - 1) + '건' : ''}</div>`).join('') : '<div class="ok-line">드래프트와 경험 카드 전체에서 금지 표현이 발견되지 않았습니다.</div>'}
+      <div class="hint" style="margin-top:8px">금지 규칙: 딜 클로징·협상·계약 체결 / FDD 단독 주도 / 이사회 단독 의사결정 / 투자 집행·운용 권한</div>
+    </div>
+    <div class="card pad">
+      <div class="sec-t">최근 16주 활동</div>
+      ${heatmap(16)}
+      <div class="hint" style="margin-top:8px">편집·버전 저장·연습 시도·기록 시간이 합산됩니다.</div>
+    </div>
+  </div>`;
+}
+
+/* =========================================================
+   View: Experience bank
+   ========================================================= */
+function vExp() {
+  const f = (U.expFilter || '').toLowerCase();
+  const list = S.experiences.filter(e => (!U.expOrg || e.org === U.expOrg) && (!f || (e.title + e.tags.join(' ') + expText(e)).toLowerCase().includes(f)));
+  if (!U.expId || !byId(S.experiences, U.expId)) U.expId = (list[0] || S.experiences[0] || {}).id;
+  const e = byId(S.experiences, U.expId);
+  return head('경험 뱅크', '경험 하나를 상황 · 접근 · 결과로 쪼개 두고, 지원처마다 다시 꺼내 씁니다.', `<button class="btn pri" data-act="newExp">+ 새 경험</button>`) + `
+  <div class="split">
+    <div class="card">
+      <div class="list-head">
+        <input type="text" placeholder="검색 (제목·태그·본문)" value="${esc(U.expFilter)}" data-ui="expFilter">
+        <div class="seg">${['', ...ORGS.slice(0, 3)].map(o => `<button class="${U.expOrg === o ? 'on' : ''}" data-act="expOrg" data-o="${o}">${o || '전체'}</button>`).join('')}</div>
+      </div>
+      <div class="list" id="expList">${list.map(x => expLi(x)).join('') || '<div class="empty">결과 없음</div>'}</div>
+    </div>
+    ${e ? expEditor(e) : '<div class="card empty">경험을 추가해 주세요</div>'}
+  </div>`;
+}
+function expLi(x) {
+  const r = check(expText(x));
+  return `<button class="li ${x.id === U.expId ? 'on' : ''}" data-act="selExp" data-id="${x.id}">
+    <div class="t">${esc(x.title || '(제목 없음)')}</div>
+    <div class="m"><span>${esc(x.org)}</span>${x.verified ? '<span class="chip green">검증</span>' : ''}${r.hard.length ? '<span class="chip red">위반 ' + r.hard.length + '</span>' : ''}${x.versions.length ? '<span>v' + x.versions.length + '</span>' : ''}</div>
+  </button>`;
+}
+function expEditor(e) {
+  const b = f => `data-bind="exp:${e.id}:${f}"`;
+  return `<div style="display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start" class="exp-ed">
+    <div class="card pad">
+      <div class="row" style="margin-bottom:4px">
+        <input type="text" ${b('title')} value="${esc(e.title)}" style="font-size:16px;font-weight:700" class="grow" placeholder="경험 제목">
+      </div>
+      <div class="g3" style="gap:10px">
+        <div><label class="f">조직</label><select ${b('org')}>${opt(ORGS, e.org)}</select></div>
+        <div><label class="f">기간</label><input type="text" ${b('period')} value="${esc(e.period)}"></div>
+        <div><label class="f">역량 태그 (쉼표 구분)</label><input type="text" ${b('tags')} value="${esc(e.tags.join(', '))}"></div>
+      </div>
+      <label class="f">트랙 적합도</label>
+      <div class="row">${['MBB', 'IB/PE'].map(t => `<label class="chip ${e.tracks.includes(t) ? (t === 'MBB' ? 'blue' : 'red') : ''}" style="cursor:pointer"><input type="checkbox" data-act="expTrack" data-id="${e.id}" data-t="${t}" ${e.tracks.includes(t) ? 'checked' : ''} style="display:none">${t}</label>`).join('')}
+        <label class="row" style="gap:6px;margin-left:auto;font-size:12.5px;cursor:pointer"><input type="checkbox" data-act="expVerified" data-id="${e.id}" ${e.verified ? 'checked' : ''}> 수치·사실 검증 완료</label>
+      </div>
+      <label class="f">상황 (Situation)</label><textarea ${b('situation')} rows="3">${esc(e.situation)}</textarea>
+      <label class="f">접근 (Action) · 구체적 과거형 동사</label><textarea ${b('action')} rows="4">${esc(e.action)}</textarea>
+      <label class="f">결과 (Result) · 검증된 숫자만</label><textarea ${b('result')} rows="3">${esc(e.result)}</textarea>
+      <label class="f">내 역할 범위 · 한 일과 안 한 일 구분</label><textarea ${b('role')} rows="2" placeholder="예: 분석·권고안 작성. 투자 결정·협상은 관여 범위 밖.">${esc(e.role)}</textarea>
+      <label class="f">근거 자료 · 메모 (출처, 원본 문서 위치)</label><textarea ${b('evidence')} rows="2">${esc(e.evidence)}</textarea>
+      <hr class="sep">
+      <div class="row">
+        <button class="btn pri" data-act="snapExp" data-id="${e.id}">버전 저장</button>
+        <button class="btn" data-act="expToDraft" data-id="${e.id}">드래프트로 보내기</button>
+        <button class="btn" data-act="copyExp" data-id="${e.id}">복사</button>
+        <span class="grow"></span>
+        <button class="btn danger ghost" data-act="delExp" data-id="${e.id}">삭제</button>
+      </div>
+    </div>
+    <div class="side-panel" style="display:flex;flex-direction:column;gap:16px">
+      <div class="card pad"><div class="sec-t">실시간 점검</div><div id="expCheck">${checkPanel(expText(e))}</div></div>
+      <div class="card pad"><div class="sec-t">버전 히스토리 <span class="hint">${e.versions.length}개</span></div><div id="expVers">${expVersions(e)}</div></div>
+    </div>
+  </div>`;
+}
+function expVersions(e) {
+  if (!e.versions.length) return '<div class="hint">아직 저장한 버전이 없습니다. 다시 쓰기 전에 버전을 저장해 두면 비교할 수 있습니다.</div>';
+  return [...e.versions].reverse().map((v, i) => `<div class="ver"><div class="vh"><b>v${e.versions.length - i}</b><span class="hint">${fmtDT(v.ts)}</span></div>${v.note ? `<div class="vn">${esc(v.note)}</div>` : ''}
+    <div class="row" style="margin-top:6px"><button class="btn sm" data-act="diffExp" data-id="${e.id}" data-ts="${v.ts}">현재와 비교</button><button class="btn sm ghost" data-act="restoreExp" data-id="${e.id}" data-ts="${v.ts}">복원</button></div></div>`).join('');
+}
+AFTER.exp = () => {
+  const ed = document.querySelector('.exp-ed');
+  if (ed && window.innerWidth < 1180) ed.style.gridTemplateColumns = 'minmax(0,1fr)';
+};
+
+/* =========================================================
+   View: Draft studio
+   ========================================================= */
+function vDraft() {
+  if (!U.draftId || !byId(S.drafts, U.draftId)) U.draftId = (S.drafts[0] || {}).id;
+  const d = byId(S.drafts, U.draftId);
+  const groups = {};
+  S.drafts.forEach(x => { (groups[x.kind] = groups[x.kind] || []).push(x); });
+  return head('문장 다듬기', '자기소개·경력기술서·이력서 문장을 버전으로 쌓고, 규칙 점검과 AI 첨삭으로 다듬습니다.', `<button class="btn pri" data-act="newDraft">+ 새 드래프트</button>`) + `
+  <div class="split3">
+    <div class="card"><div class="list">${Object.keys(groups).map(k => `<div style="padding:10px 14px 4px;font-size:11px;font-weight:700;color:var(--faint)">${esc(k)}</div>` + groups[k].map(x => draftLi(x)).join('')).join('') || '<div class="empty">드래프트 없음</div>'}</div></div>
+    ${d ? draftEditor(d) : '<div class="card empty">드래프트를 추가해 주세요</div>'}
+    ${d ? draftSide(d) : ''}
+  </div>`;
+}
+function draftLi(x) {
+  const r = check(x.text); const a = byId(S.apps, x.appId);
+  return `<button class="li ${x.id === U.draftId ? 'on' : ''}" data-act="selDraft" data-id="${x.id}"><div class="t">${esc(x.title || '(제목 없음)')}</div>
+  <div class="m"><span class="chip ${x.tone === 'MBB' ? 'blue' : x.tone === 'IB/PE' ? 'red' : ''}">${esc(x.tone)}</span>${a ? '<span>' + esc(a.company) + '</span>' : ''}${r.hard.length ? '<span class="chip red">위반 ' + r.hard.length + '</span>' : ''}<span>v${x.versions.length}</span></div></button>`;
+}
+const TEMPLATES = {
+  MBB: '[문제] 어떤 의사결정 질문이었는가\n[분해] 어떤 축으로 나눴는가 (축 1 / 축 2 / 축 3)\n[우선순위] 무엇부터 봤고 왜\n[정리] 누구의 어떤 판단을 도왔는가\n',
+  'IB/PE': '[투자 질문] 무엇을 사거나 만들지 말지\n[숫자] 어떤 재무 데이터를 봤는가\n[가정] 결과를 가른 핵심 가정\n[판단] Go/No-Go 권고와 근거\n',
+  '공통': '[상황] \n[접근] \n[결과] \n'
+};
+function draftEditor(d) {
+  const b = f => `data-bind="draft:${d.id}:${f}"`;
+  const r = check(d.text);
+  return `<div class="card pad">
+    <input type="text" ${b('title')} value="${esc(d.title)}" style="font-size:16px;font-weight:700" placeholder="드래프트 제목">
+    <div style="display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px" class="draft-meta">
+      <div><label class="f">종류</label><select ${b('kind')}>${opt(DKINDS, d.kind)}</select></div>
+      <div><label class="f">톤</label><select ${b('tone')}>${opt(TONES, d.tone)}</select></div>
+      <div><label class="f">지원처 연결</label><select ${b('appId')}><option value="">없음</option>${S.apps.map(a => `<option value="${a.id}" ${a.id === d.appId ? 'selected' : ''}>${esc(a.company)}</option>`).join('')}</select></div>
+      <div><label class="f">글자수 제한</label><input type="number" min="0" step="50" ${b('limit')} value="${d.limit || ''}" placeholder="없음"></div>
+    </div>
+    <label class="f row" style="justify-content:space-between">본문 <span class="row" style="gap:4px"><span class="hint">골격 넣기</span>${Object.keys(TEMPLATES).map(k => `<button class="btn sm ghost" data-act="tpl" data-k="${k}">${k}</button>`).join('')}</span></label>
+    <textarea class="big" id="draftText" ${b('text')} placeholder="여기에 쓰고, 다듬고, 버전을 저장하세요.">${esc(d.text)}</textarea>
+    <div class="row" style="margin-top:10px">
+      <input type="text" id="verNote" placeholder="버전 메모 (예: IB 톤으로 숫자 앞세움)" style="flex:1 1 220px;width:auto">
+      <button class="btn pri" data-act="snapDraft">버전 저장</button>
+      <button class="btn" data-act="copyDraft">복사</button>
+      <span class="grow"></span>
+      <button class="btn ghost" data-act="dupDraft">복제</button>
+      <button class="btn danger ghost" data-act="delDraft">삭제</button>
+    </div>
+    <label class="f">하이라이트 보기 <span class="hint">빨강 위반 · 노랑 문체 · 점선 미검증 수치 · 초록 검증 수치</span></label>
+    <div class="hl" id="draftHL">${highlight(d.text, r) || '<span class="hint">본문을 입력하면 표시됩니다</span>'}</div>
+    <div id="cmpBox"></div>
+  </div>`;
+}
+function draftSide(d) {
+  return `<div class="side-panel" style="display:flex;flex-direction:column;gap:16px">
+    <div class="card pad"><div class="sec-t">실시간 점검</div><div id="draftCheck">${checkPanel(d.text, +d.limit || 0)}</div></div>
+    <div class="card pad">
+      <div class="sec-t">AI 첨삭 <span class="hint">${S.settings.apiKey ? esc(S.settings.model) : 'API 키 필요'}</span></div>
+      <select id="aiMode">${Object.entries(AI_MODES).map(([k, v]) => `<option value="${k}">${v.label}</option>`).join('')}</select>
+      <input type="text" id="aiExtra" placeholder="추가 요청 (선택)" style="margin-top:8px">
+      <button class="btn pri" style="margin-top:8px;width:100%;justify-content:center" data-act="runAI">첨삭 요청</button>
+      <div class="hint" style="margin-top:6px">사실 프로필 · 금지 규칙 · 검증 수치가 함께 전달됩니다. 결과는 새 버전으로만 적용됩니다.</div>
+      <div id="aiOut"></div>
+    </div>
+    <div class="card pad"><div class="sec-t">버전 히스토리 <span class="hint">${d.versions.length}개</span></div><div id="draftVers">${draftVersions(d)}</div></div>
+  </div>`;
+}
+function draftVersions(d) {
+  if (!d.versions.length) return '<div class="hint">저장된 버전이 없습니다.</div>';
+  return [...d.versions].reverse().map((v, i) => `<div class="ver"><div class="vh"><b>v${d.versions.length - i}</b><span class="hint">${fmtDT(v.ts)} · ${v.text.length}자</span></div>${v.note ? `<div class="vn">${esc(v.note)}</div>` : ''}
+  <div class="row" style="margin-top:6px"><button class="btn sm" data-act="diffDraft" data-ts="${v.ts}">현재와 비교</button><button class="btn sm ghost" data-act="restoreDraft" data-ts="${v.ts}">복원</button><button class="btn sm ghost" data-act="copyVer" data-ts="${v.ts}">복사</button></div></div>`).join('');
+}
+AFTER.draft = () => {
+  if (window.innerWidth < 1180) { const m = document.querySelector('.draft-meta'); if (m) m.style.gridTemplateColumns = 'repeat(2,minmax(0,1fr))'; }
+};
+function refreshDraftSide() {
+  const d = byId(S.drafts, U.draftId); if (!d) return;
+  const r = check(d.text);
+  const hl = $('#draftHL'); if (hl) hl.innerHTML = highlight(d.text, r) || '<span class="hint">본문을 입력하면 표시됩니다</span>';
+  const c = $('#draftCheck'); if (c) c.innerHTML = checkPanel(d.text, +d.limit || 0);
+}
+
+/* =========================================================
+   View: Applications
+   ========================================================= */
+function vApps() {
+  const cols = STAGES.map(st => {
+    const items = S.apps.filter(a => a.stage === st);
+    return `<div class="col" data-stage="${st}"><div class="col-h"><span>${st}</span><span class="n">${items.length}</span></div>${items.map(appCard).join('')}</div>`;
+  }).join('');
+  const table = `<div class="card" style="overflow-x:auto"><table class="t"><thead><tr><th>회사</th><th>포지션</th><th>트랙</th><th>단계</th><th>마감</th><th>서브도메인</th><th>드래프트</th></tr></thead><tbody>
+    ${S.apps.map(a => `<tr style="cursor:pointer" data-act="openApp" data-id="${a.id}"><td><b>${esc(a.company)}</b></td><td>${esc(a.role)}</td><td><span class="chip ${trackChip(a.track)}">${esc(a.track)}</span></td><td>${esc(a.stage)}</td><td class="mono">${esc(a.deadline)}</td><td class="hint">${esc(a.subdomain)}</td><td>${S.drafts.filter(d => d.appId === a.id).length}</td></tr>`).join('')}
+  </tbody></table></div>`;
+  return head('지원 트래커', '카드를 끌어 단계를 옮기고, 카드를 열어 JD 매칭과 회사별 메모를 관리합니다.', `<div class="seg"><button class="${U.appView === 'board' ? 'on' : ''}" data-act="appView" data-v="board">보드</button><button class="${U.appView === 'table' ? 'on' : ''}" data-act="appView" data-v="table">표</button></div><button class="btn pri" data-act="newApp">+ 지원처</button>`) +
+    (U.appView === 'table' ? table : `<div class="kanban">${cols}</div>`);
+}
+const trackChip = t => t === 'MBB/컨설팅' ? 'blue' : t === 'IB/PE/대체투자' ? 'red' : t === 'FP&A/재무' ? 'yellow' : '';
+function appCard(a) {
+  const d = daysUntil(a.deadline);
+  const nd = S.drafts.filter(x => x.appId === a.id).length;
+  return `<div class="kc" draggable="true" data-drag="${a.id}" data-act="openApp" data-id="${a.id}">
+    <div class="co">${esc(a.company)}</div><div class="ro">${esc(a.role || '포지션 미정')}</div>
+    <div class="ft"><span class="chip ${trackChip(a.track)}">${esc(a.track)}</span>${a.deadline ? `<span class="chip ${d != null && d <= 3 && d >= 0 ? 'red' : ''}">${d < 0 ? '마감 지남' : 'D-' + d}</span>` : ''}${nd ? `<span class="chip">드래프트 ${nd}</span>` : ''}</div>
+  </div>`;
+}
+AFTER.apps = () => {
+  document.querySelectorAll('[data-drag]').forEach(el => el.addEventListener('dragstart', e => { e.dataTransfer.setData('text/plain', el.dataset.drag); }));
+  document.querySelectorAll('.col').forEach(col => {
+    col.addEventListener('dragover', e => { e.preventDefault(); col.classList.add('over'); });
+    col.addEventListener('dragleave', () => col.classList.remove('over'));
+    col.addEventListener('drop', e => { e.preventDefault(); col.classList.remove('over'); setStage(e.dataTransfer.getData('text/plain'), col.dataset.stage); render(); });
+  });
+};
+function setStage(id, st) {
+  const a = byId(S.apps, id); if (!a || a.stage === st) return;
+  a.timeline.push({ ts: now(), text: `${a.stage} → ${st}` }); a.stage = st; a.updated = now(); touch(); save(0);
+}
+function openApp(id) {
+  const a = byId(S.apps, id); if (!a) return;
+  const b = f => `data-bind="app:${a.id}:${f}"`;
+  const drafts = S.drafts.filter(d => d.appId === a.id);
+  openModal(esc(a.company), `
+    <div class="g2" style="gap:12px">
+      <div><label class="f">회사</label><input type="text" ${b('company')} value="${esc(a.company)}"></div>
+      <div><label class="f">포지션</label><input type="text" ${b('role')} value="${esc(a.role)}"></div>
+      <div><label class="f">트랙 (톤 기준)</label><select ${b('track')}>${opt(TRACKS, a.track)}</select></div>
+      <div><label class="f">단계</label><select data-act-change="stage" data-id="${a.id}">${opt(STAGES, a.stage)}</select></div>
+      <div><label class="f">마감일</label><input type="date" ${b('deadline')} value="${esc(a.deadline)}"></div>
+      <div><label class="f">채용공고 URL</label><input type="url" ${b('url')} value="${esc(a.url)}" placeholder="https://"></div>
+      <div><label class="f">포트폴리오 서브도메인</label><input type="text" ${b('subdomain')} value="${esc(a.subdomain)}" placeholder="회사명.jeeinsportfolio.space"></div>
+      <div><label class="f">Git 브랜치</label><input type="text" ${b('branch')} value="${esc(a.branch)}"></div>
+    </div>
+    ${a.url ? `<div style="margin-top:8px" class="row"><a href="${esc(a.url)}" target="_blank" rel="noopener">공고 열기</a>${a.subdomain ? `<a href="https://${esc(a.subdomain.replace(/^https?:\/\//, ''))}" target="_blank" rel="noopener">포트폴리오 열기</a>` : ''}</div>` : (a.subdomain ? `<div style="margin-top:8px"><a href="https://${esc(a.subdomain.replace(/^https?:\/\//, ''))}" target="_blank" rel="noopener">포트폴리오 열기</a></div>` : '')}
+    <label class="f">JD 붙여넣기</label><textarea ${b('jd')} rows="6" id="jdText" placeholder="채용공고의 주요 업무·자격요건·우대사항을 붙여넣으면 키워드와 매칭 경험을 보여줍니다.">${esc(a.jd)}</textarea>
+    <div id="jdBox" style="margin-top:10px">${jdBox(a)}</div>
+    <label class="f">회사별 메모 (톤, 인재상, 네트워킹, 면접 후기)</label><textarea ${b('notes')} rows="4">${esc(a.notes)}</textarea>
+    <hr class="sep">
+    <div class="g2">
+      <div><div class="sec-t">연결된 드래프트 <button class="btn sm" data-act="newDraftFor" data-id="${a.id}">+ 이 회사용 드래프트</button></div>
+        ${drafts.length ? drafts.map(d => `<div class="ver" style="cursor:pointer" data-act="openDraft" data-id="${d.id}"><b>${esc(d.title)}</b><div class="vn">${esc(d.kind)} · ${esc(d.tone)} · v${d.versions.length}</div></div>`).join('') : '<div class="hint">없음</div>'}
+      </div>
+      <div><div class="sec-t">타임라인</div>
+        ${[...a.timeline].reverse().map(t => `<div style="font-size:12.5px;padding:3px 0"><span class="hint mono">${fmtDT(t.ts)}</span> ${esc(t.text)}</div>`).join('')}
+        <div class="row" style="margin-top:6px"><input type="text" id="tlText" placeholder="이벤트 추가 (예: 리크루터 통화)" class="grow"><button class="btn sm" data-act="addTL" data-id="${a.id}">추가</button></div>
+      </div>
+    </div>
+    <hr class="sep">
+    <div class="row"><span class="grow"></span><button class="btn danger ghost" data-act="delApp" data-id="${a.id}">지원처 삭제</button><button class="btn pri" data-act="closeModal">닫기</button></div>`);
+}
+function jdBox(a) {
+  if (!a.jd || a.jd.trim().length < 10) return '<div class="hint">JD를 붙여넣으면 분석합니다.</div>';
+  const kws = jdKeywords(a.jd);
+  const ms = matchExperiences(kws);
+  const covered = new Set(ms.flatMap(x => x.hits));
+  const gaps = kws.filter(k => !covered.has(k)).slice(0, 14);
+  return `<div class="g2">
+    <div><div class="sec-t">JD 핵심 키워드</div><div class="kw">${kws.slice(0, 22).map(k => `<span class="chip ${covered.has(k) ? 'green' : ''}">${esc(k)}</span>`).join('')}</div>
+      <div class="sec-t" style="margin-top:12px">경험으로 못 덮는 키워드 (갭)</div><div class="kw">${gaps.map(k => `<span class="chip yellow">${esc(k)}</span>`).join('') || '<span class="hint">없음</span>'}</div>
+      <div class="hint" style="margin-top:6px">갭은 없는 경험을 만들지 말고, 학습 계획이나 인접 경험으로 연결할 거리입니다.</div></div>
+    <div><div class="sec-t">매칭 경험 TOP 5</div>${ms.slice(0, 5).map(x => `<div class="ver" style="cursor:pointer" data-act="openExp" data-id="${x.e.id}"><div class="vh"><b>${esc(x.e.title)}</b><span class="chip blue">${x.hits.length}</span></div><div class="vn">${x.hits.slice(0, 6).map(esc).join(' · ')}</div></div>`).join('') || '<div class="hint">매칭되는 경험이 없습니다</div>'}</div>
+  </div>`;
+}
+
+/* =========================================================
+   View: Practice (Q&A drill, pitch)
+   ========================================================= */
+let timer = { id: null, start: 0, elapsed: 0, running: false, target: 0, mode: '' };
+function vPractice() {
+  const t = U.practiceTab;
+  return head('포지셔닝 연습', '면접 질문에 시간 재며 답하고, 1분 피치를 반복해서 다듬습니다.') + `
+  <div class="tabs"><button class="${t === 'qa' ? 'on' : ''}" data-act="ptab" data-t="qa">면접 Q&A 드릴</button><button class="${t === 'pitch' ? 'on' : ''}" data-act="ptab" data-t="pitch">피치 타이머</button><button class="${t === 'bank' ? 'on' : ''}" data-act="ptab" data-t="bank">질문 은행</button></div>
+  ${t === 'qa' ? vQA() : t === 'pitch' ? vPitch() : vBank()}`;
+}
+function vQA() {
+  if (!U.qaId || !byId(S.qa, U.qaId)) U.qaId = (S.qa[0] || {}).id;
+  const q = byId(S.qa, U.qaId);
+  if (!q) return '<div class="card empty">질문 은행에 질문을 추가해 주세요</div>';
+  const best = q.attempts.reduce((a, x) => Math.max(a, x.score || 0), 0);
+  return `<div class="g2">
+    <div class="card pad">
+      <div class="row" style="justify-content:space-between"><span class="chip">${esc(q.cat)}</span><span class="row"><button class="btn sm" data-act="qaPrev">이전</button><button class="btn sm" data-act="qaRandom">랜덤</button><button class="btn sm" data-act="qaNext">다음</button></span></div>
+      <div class="q-big" style="margin:14px 0 12px">${esc(q.q)}</div>
+      ${q.draft || q.trap || q.basis ? `<details style="margin-bottom:14px"><summary class="hint" style="cursor:pointer">답변 초안 · 근거 · 함정 보기 (먼저 혼자 답해 본 뒤 열기)</summary>
+        ${q.draft ? `<div class="hl" style="margin-top:8px;font-size:13px;max-height:none">${esc(q.draft)}</div>` : ''}
+        ${q.basis ? `<div class="hint" style="margin-top:6px"><b>근거</b> ${esc(q.basis)}</div>` : ''}
+        ${q.trap ? `<div class="chk-item yellow" style="margin-top:6px">함정: ${esc(q.trap)}</div>` : ''}
+        <div class="row" style="margin-top:6px"><button class="btn sm ghost" data-act="qaUseDraft">초안을 답변칸에 넣기</button></div></details>` : ''}
+      <div class="row" style="align-items:flex-end;gap:14px">
+        <div class="timer" id="tDisp">0:00</div>
+        <div class="seg">${[60, 90, 120].map(s => `<button class="${U.pitchSecs === s ? 'on' : ''}" data-act="tSecs" data-s="${s}">${s}초</button>`).join('')}</div>
+        <button class="btn pri" data-act="tToggle" data-mode="qa" id="tBtn">시작</button><button class="btn ghost" data-act="tReset">리셋</button>
+      </div>
+      <div class="bar"><b id="tBar" style="width:0"></b></div>
+      <label class="f">답변 (말하듯 쓰기 · 결론 먼저)</label>
+      <textarea id="qaAns" rows="8" placeholder="결론 → 근거(숫자) → 내 역할 → 배운 점"></textarea>
+      <div class="row" style="justify-content:space-between;margin-top:6px"><span class="hint" id="qaCount">0자 · 낭독 약 0초</span></div>
+      <div id="qaCheck" style="margin-top:8px"></div>
+      <label class="f">자기 점검</label>
+      <div class="checks" id="qaChecks">${['결론을 첫 문장에 말했다', '숫자 근거를 1개 이상 넣었다', '내 역할 범위를 분명히 했다', '과장 없이 사실만 말했다', '시간 안에 끝냈다'].map((c, i) => `<label><input type="checkbox" data-i="${i}"> ${c}</label>`).join('')}</div>
+      <label class="f">점수</label>
+      <div class="score" id="qaScore">${[1, 2, 3, 4, 5].map(n => `<button data-act="qaScore" data-n="${n}">${n}</button>`).join('')}</div>
+      <div class="row" style="margin-top:14px"><button class="btn pri" data-act="qaSave">시도 저장</button><button class="btn" data-act="qaAI">AI 피드백</button><button class="btn ghost" data-act="qaToDraft">드래프트로 보내기</button></div>
+      <div id="qaAIout"></div>
+    </div>
+    <div class="card pad">
+      <div class="sec-t">이 질문의 시도 기록 <span class="hint">${q.attempts.length}회 · 최고 ${best || '-'}점</span></div>
+      ${q.attempts.length ? [...q.attempts].reverse().map(x => `<div class="ver"><div class="vh"><span class="row" style="gap:6px"><span class="chip ${x.score >= 4 ? 'green' : x.score <= 2 ? 'red' : 'yellow'}">${x.score || '-'}점</span><span class="hint">${x.secs}초 · ${x.text.length}자</span></span><span class="hint">${fmtDT(x.ts)}</span></div><div style="font-size:13px;margin-top:6px;white-space:pre-wrap">${esc(x.text)}</div>${x.ai ? `<details style="margin-top:6px"><summary class="hint" style="cursor:pointer">AI 피드백</summary><div class="ai-out" style="font-size:12.5px">${esc(x.ai)}</div></details>` : ''}<div class="row" style="margin-top:6px"><button class="btn sm ghost" data-act="qaLoad" data-ts="${x.ts}">불러와서 고쳐 쓰기</button></div></div>`).join('') : '<div class="hint">아직 시도가 없습니다. 같은 질문을 여러 번 답할수록 기록이 쌓입니다.</div>'}
+      <hr class="sep">
+      <div class="sec-t">전체 진행</div>
+      <table class="t"><tbody>${S.qa.map(x => `<tr style="cursor:pointer" data-act="qaPick" data-id="${x.id}"><td style="${x.id === q.id ? 'font-weight:700;color:var(--blue)' : ''}">${esc(x.q)}</td><td class="mono hint" style="text-align:right;white-space:nowrap">${x.attempts.length}회 · ${x.attempts.reduce((a, y) => Math.max(a, y.score || 0), 0) || '-'}</td></tr>`).join('')}</tbody></table>
+    </div>
+  </div>`;
+}
+let qaScoreSel = 0, qaLastAI = '';
+AFTER.practice = () => {
+  qaScoreSel = 0; qaLastAI = '';
+  resetTimer();
+  const ans = $('#qaAns');
+  if (ans) ans.addEventListener('input', () => {
+    const n = ans.value.replace(/\s/g, '').length;
+    $('#qaCount').textContent = `${ans.value.length}자 · 낭독 약 ${Math.round(n / 5)}초`;
+    const r = check(ans.value);
+    $('#qaCheck').innerHTML = (r.hard.length ? r.hard.map(h => `<div class="chk-item red">"${esc(h.t)}" · 포지셔닝 규칙 위반</div>`).join('') : '') + (r.style.length ? `<div class="chk-item yellow">문체: ${[...new Set(r.style.map(s => s.t))].map(esc).join(', ')}</div>` : '');
+  });
+  const ps = $('#pitchText');
+  if (ps) {
+    const upd = () => { const n = ps.value.replace(/\s/g, '').length; $('#pitchEst').textContent = `${ps.value.length}자 · 낭독 예상 ${Math.round(n / 5)}초 (분당 약 300자 기준)`; };
+    ps.addEventListener('input', () => { S.settings.pitchDraft = ps.value; save(); upd(); });
+    upd();
+  }
+};
+function vPitch() {
+  return `<div class="g2">
+    <div class="card pad">
+      <div class="sec-t">피치 스크립트</div>
+      <div class="row" style="margin-bottom:8px"><select id="pitchLabel" style="max-width:220px">${['1분 자기소개', '30초 엘리베이터', '90초 지원동기', 'MBB 버전', 'IB/PE 버전'].map(x => `<option>${x}</option>`).join('')}</select><div class="seg">${[30, 60, 90].map(s => `<button class="${U.pitchSecs === s ? 'on' : ''}" data-act="tSecs" data-s="${s}">${s}초</button>`).join('')}</div></div>
+      <textarea id="pitchText" rows="9" placeholder="소리 내어 읽을 스크립트">${esc(S.settings.pitchDraft || '')}</textarea>
+      <div class="hint" id="pitchEst" style="margin-top:6px"></div>
+      <div class="row" style="align-items:flex-end;gap:14px;margin-top:14px">
+        <div class="timer" id="tDisp">0:00</div>
+        <button class="btn pri" data-act="tToggle" data-mode="pitch" id="tBtn">시작</button><button class="btn ghost" data-act="tReset">리셋</button>
+      </div>
+      <div class="bar"><b id="tBar" style="width:0"></b></div>
+      <label class="f">자기 평가</label>
+      <div class="score" id="qaScore">${[1, 2, 3, 4, 5].map(n => `<button data-act="qaScore" data-n="${n}">${n}</button>`).join('')}</div>
+      <input type="text" id="pitchMemo" placeholder="메모 (예: 두 번째 문장에서 막힘, 숫자 순서 바꾸기)" style="margin-top:10px">
+      <div class="row" style="margin-top:12px"><button class="btn pri" data-act="pitchSave">기록 저장</button><button class="btn" data-act="pitchToDraft">드래프트로 보내기</button></div>
+    </div>
+    <div class="card pad">
+      <div class="sec-t">피치 기록 <span class="hint">${S.pitches.length}회</span></div>
+      ${S.pitches.length ? [...S.pitches].reverse().slice(0, 30).map(p => `<div class="ver"><div class="vh"><span class="row" style="gap:6px"><b>${esc(p.label)}</b><span class="chip ${Math.abs(p.secs - p.target) <= 5 ? 'green' : 'yellow'}">${p.secs}초 / ${p.target}초</span>${p.score ? `<span class="chip">${p.score}점</span>` : ''}</span><span class="hint">${fmtDT(p.ts)}</span></div>${p.memo ? `<div class="vn">${esc(p.memo)}</div>` : ''}<details style="margin-top:4px"><summary class="hint" style="cursor:pointer">스크립트</summary><div style="font-size:12.5px;white-space:pre-wrap">${esc(p.text)}</div></details></div>`).join('') : '<div class="hint">기록이 없습니다.</div>'}
+    </div>
+  </div>`;
+}
+function vBank() {
+  return `<div class="card pad">
+    <div class="row" style="margin-bottom:12px"><input type="text" id="newQ" placeholder="새 질문" class="grow"><input type="text" id="newQcat" placeholder="분류" style="max-width:140px"><button class="btn pri" data-act="addQ">추가</button></div>
+    <table class="t"><thead><tr><th>질문</th><th>분류</th><th>시도</th><th></th></tr></thead><tbody>
+    ${S.qa.map(q => `<tr><td><input type="text" data-bind="qa:${q.id}:q" value="${esc(q.q)}"></td><td style="width:130px"><input type="text" data-bind="qa:${q.id}:cat" value="${esc(q.cat)}"></td><td class="mono" style="width:60px">${q.attempts.length}</td><td style="width:120px"><button class="btn sm" data-act="qaPick" data-id="${q.id}">연습</button> <button class="btn sm ghost danger" data-act="delQ" data-id="${q.id}">삭제</button></td></tr>`).join('')}
+    </tbody></table>
+  </div>`;
+}
+function fmtSec(s) { return Math.floor(s / 60) + ':' + String(Math.floor(s % 60)).padStart(2, '0'); }
+function tick() {
+  const el = (Date.now() - timer.start) / 1000 + timer.elapsed;
+  const d = $('#tDisp'), b = $('#tBar');
+  if (!d) { clearInterval(timer.id); timer.running = false; return; }
+  d.textContent = fmtSec(el);
+  const pct = Math.min(100, el / U.pitchSecs * 100);
+  b.style.width = pct + '%'; b.classList.toggle('over', el > U.pitchSecs);
+  d.style.color = el > U.pitchSecs ? 'var(--red)' : '';
+}
+function curElapsed() { return Math.round(timer.running ? (Date.now() - timer.start) / 1000 + timer.elapsed : timer.elapsed); }
+function resetTimer() { clearInterval(timer.id); timer = { id: null, start: 0, elapsed: 0, running: false }; const d = $('#tDisp'); if (d) { d.textContent = '0:00'; d.style.color = ''; } const b = $('#tBar'); if (b) b.style.width = '0'; const btn = $('#tBtn'); if (btn) btn.textContent = '시작'; }
+
+/* =========================================================
+   View: Log
+   ========================================================= */
+function vLog() {
+  const byCat = {}; const wk = new Date(); wk.setDate(wk.getDate() - 6); const wks = ymd(wk);
+  S.log.filter(l => l.date >= wks).forEach(l => { byCat[l.cat] = (byCat[l.cat] || 0) + (+l.minutes || 0); });
+  const tot = Object.values(byCat).reduce((a, b) => a + b, 0);
+  return head('연습 기록', '매일 무엇을 얼마나 했는지 남기면 대시보드 활동과 연속 기록에 반영됩니다.') + `
+  <div class="g2">
+    <div class="card pad">
+      <div class="sec-t">기록 추가</div>
+      <div class="g3" style="gap:10px">
+        <div><label class="f">날짜</label><input type="date" id="lgDate" value="${today()}"></div>
+        <div><label class="f">분</label><input type="number" id="lgMin" value="30" min="0" step="5"></div>
+        <div><label class="f">분류</label><select id="lgCat">${opt(LOGCATS, '첨삭')}</select></div>
+      </div>
+      <label class="f">무엇을 했고, 다음엔 무엇을 할지</label><textarea id="lgMemo" rows="3"></textarea>
+      <button class="btn pri" style="margin-top:10px" data-act="addLog">기록</button>
+      <hr class="sep">
+      <div class="sec-t">최근 7일 · ${tot}분</div>
+      ${Object.keys(byCat).length ? Object.entries(byCat).sort((a, b) => b[1] - a[1]).map(([c, m]) => `<div style="margin-bottom:8px"><div class="row" style="justify-content:space-between;font-size:12.5px"><span>${esc(c)}</span><span class="mono">${m}분</span></div><div class="bar" style="margin:4px 0"><b style="width:${tot ? m / tot * 100 : 0}%"></b></div></div>`).join('') : '<div class="hint">최근 7일 기록이 없습니다.</div>'}
+      <hr class="sep">
+      <div class="sec-t">최근 26주</div>${heatmap(26)}
+    </div>
+    <div class="card pad">
+      <div class="sec-t">기록 목록 <span class="hint">${S.log.length}개</span></div>
+      ${S.log.length ? [...S.log].sort((a, b) => b.date.localeCompare(a.date) || b.ts.localeCompare(a.ts)).slice(0, 80).map(l => `<div class="ver"><div class="vh"><span class="row" style="gap:6px"><b class="mono">${esc(l.date)}</b><span class="chip">${esc(l.cat)}</span><span class="hint">${l.minutes}분</span></span><button class="btn sm ghost danger" data-act="delLog" data-ts="${l.ts}">삭제</button></div>${l.memo ? `<div style="font-size:13px;margin-top:4px;white-space:pre-wrap">${esc(l.memo)}</div>` : ''}</div>`).join('') : '<div class="hint">아직 기록이 없습니다.</div>'}
+    </div>
+  </div>`;
+}
+
+/* =========================================================
+   View: CFA result
+   ========================================================= */
+function cfaPhase() {
+  const d = daysUntil(S.settings.cfaResult);
+  if (d == null) return { k: 'none', label: '-' };
+  if (d > 3) return { k: 'wait', label: '사전 준비 전' };
+  if (d > 0) return { k: 'pre', label: '사전 준비 기간' };
+  if (d === 0) return { k: 'day', label: '발표 당일' };
+  if (d >= -7) return { k: 'after', label: '발표 후 1주' };
+  return { k: 'done', label: '플레이북 종료' };
+}
+function vCfa() {
+  const c = S.cfa, st = c.status, L = CFA_LINES[st];
+  const d = daysUntil(S.settings.cfaResult), ph = cfaPhase();
+  const rd = new Date(S.settings.cfaResult + 'T00:00:00');
+  const wd = isNaN(rd) ? '' : '일월화수목금토'[rd.getDay()];
+  const items = CFA_PLAY.filter(p => p.sc === 'pre' || p.sc === 'all' || st === 'wait' || p.sc === st);
+  const doneN = items.filter(p => c.checks[p.k]).length;
+  const groups = [['pre', '사전 준비 · 10/17~10/19'], ['pass', '발표 당일 · 합격'], ['fail', '발표 당일 · 미합격'], ['all', '발표 후 1주 · 공통 · 10/21~10/27']];
+  const active = S.apps.filter(a => !['종료', '최종합격'].includes(a.stage));
+  const sentN = c.headhunters.filter((h, i) => c.sent[i]).length;
+  const pct = d == null ? 0 : Math.max(0, Math.min(100, (1 - d / 64) * 100)); // 2026-08-17 시험 ~ 결과 64일
+  return head('CFA 결과', 'Level 3 · Private Markets Pathway · 08_CFA_결과_플레이북 기준', `<div class="seg">${[['wait', '결과 대기'], ['pass', '합격'], ['fail', '미합격']].map(([k, l]) => `<button class="${st === k ? 'on' : ''}" data-act="cfaStatus" data-s="${k}">${l}</button>`).join('')}</div>`) + `
+  <div class="g3" style="grid-template-columns:1.2fr 1fr 1fr">
+    <div class="card pad" style="border-top:3px solid var(--blue)">
+      <div class="sec-t">결과 발표</div>
+      <div class="row" style="align-items:baseline;gap:12px"><div class="timer" style="color:var(--blue)">${d == null ? '-' : d > 0 ? 'D-' + d : d === 0 ? 'D-DAY' : 'D+' + (-d)}</div><div class="muted">${esc(S.settings.cfaResult)} (${wd})</div></div>
+      <div class="bar" title="시험(8/17) 이후 경과"><b style="width:${pct}%"></b></div>
+      <div class="row" style="justify-content:space-between;font-size:12px"><span class="hint">시험 8/17</span><span class="chip ${ph.k === 'day' ? 'red' : ph.k === 'pre' ? 'yellow' : 'blue'}">${ph.label}</span><span class="hint">발표 10/20</span></div>
+    </div>
+    <div class="card pad">
+      <div class="sec-t">플레이북 진행</div>
+      <div class="kpi" style="padding:0"><div class="v">${doneN}/${items.length}</div><div class="s">${st === 'wait' ? '두 시나리오 모두 표시 중' : st === 'pass' ? '합격 시나리오' : '미합격 시나리오'}</div></div>
+      <div class="bar"><b style="width:${items.length ? doneN / items.length * 100 : 0}%"></b></div>
+    </div>
+    <div class="card pad" style="border-top:3px solid var(--yellow-bright)">
+      <div class="sec-t">3일 룰</div>
+      <div style="font-size:13.5px;line-height:1.6">발표 후 3일간은 퇴사·큰 방향 변경 같은 결정을 하지 않고, 트래커 기준으로만 움직입니다.</div>
+      <div class="hint" style="margin-top:6px">헤드헌터 공유 ${sentN}/${c.headhunters.length}</div>
+    </div>
+  </div>
+  <div class="g2" style="margin-top:16px">
+    <div class="card pad">
+      <div class="sec-t">지금 써야 할 CFA 표기 <span class="chip ${st === 'pass' ? 'green' : st === 'fail' ? 'red' : 'blue'}">${st === 'wait' ? '결과 대기' : st === 'pass' ? '합격' : '미합격'}</span></div>
+      <label class="f">이력서 · 리멤버 (국문)</label>
+      <div class="row"><div class="hl grow" style="padding:8px 12px">${esc(L.ko)}</div><button class="btn sm" data-act="copyTxt" data-t="${esc(L.ko)}">복사</button></div>
+      <label class="f">링크드인 · 영문 이력서</label>
+      <div class="row"><div class="hl grow" style="padding:8px 12px">${esc(L.en)}</div><button class="btn sm" data-act="copyTxt" data-t="${esc(L.en)}">복사</button></div>
+      ${st === 'wait' ? `<label class="f">합격 시 바꿀 문구</label><div class="hint">${esc(CFA_LINES.pass.ko)} · ${esc(CFA_LINES.pass.en)}</div><label class="f">미합격 시 유지할 문구</label><div class="hint">${esc(CFA_LINES.fail.ko)}</div>` : ''}
+      <hr class="sep">
+      <div class="hint" style="line-height:1.7">'CFA charterholder'는 차터를 받은 뒤에만 쓸 수 있습니다. Level 3 합격 후에도 차터는 별도 신청이고, 관련 업무 경력·추천인·CFA Institute 회원 가입 요건이 붙습니다. 경력 시간 등 세부 요건은 CFA Institute 공식 페이지에서 최신 기준을 확인하세요.</div>
+    </div>
+    <div class="card pad">
+      <div class="sec-t">헤드헌터 공유 ${st === 'wait' ? '<span class="hint">결과 확정 후 활성화</span>' : ''}</div>
+      ${L.msg ? `<div class="hl" style="font-size:13px;max-height:none">${esc(L.msg)}</div><div class="row" style="margin-top:6px"><button class="btn sm" data-act="copyTxt" data-t="${esc(L.msg)}">메시지 복사</button></div>` : `<div class="hint" style="margin-bottom:8px">합격·미합격을 선택하면 보낼 메시지가 표시됩니다.</div>`}
+      <div style="margin-top:10px">${c.headhunters.map((h, i) => `<div class="row" style="padding:5px 0;border-bottom:1px solid var(--line)"><input type="checkbox" data-act="cfaSent" data-i="${i}" ${c.sent[i] ? 'checked' : ''} ${st === 'wait' ? 'disabled' : ''}><input type="text" data-bind="hh:${i}" value="${esc(h)}" class="grow" style="border:0;padding:4px 6px;background:transparent"></div>`).join('')}</div>
+      <button class="btn sm ghost" style="margin-top:6px" data-act="cfaAddHH">+ 헤드헌터 추가</button>
+    </div>
+  </div>
+  <div class="g2" style="margin-top:16px">
+    <div class="card pad">
+      <div class="sec-t">플레이북 체크리스트</div>
+      ${groups.filter(([g]) => items.some(p => p.sc === g)).map(([g, label]) => `<div style="margin-bottom:12px"><div class="chk-t">${label}</div>${items.filter(p => p.sc === g).map(p => `<label class="row" style="gap:8px;padding:5px 0;font-size:13px;cursor:pointer;align-items:flex-start"><input type="checkbox" data-act="cfaCheck" data-k="${p.k}" ${c.checks[p.k] ? 'checked' : ''} style="margin-top:4px"><span style="${c.checks[p.k] ? 'text-decoration:line-through;color:var(--faint)' : ''}">${esc(p.t)}</span></label>`).join('')}</div>`).join('')}
+    </div>
+    <div class="card pad">
+      <div class="sec-t">결과 공유가 필요한 진행 건</div>
+      ${active.length ? active.map(a => `<label class="row" style="gap:8px;padding:5px 0;border-bottom:1px solid var(--line);font-size:13px;cursor:pointer"><input type="checkbox" data-act="cfaShare" data-id="${a.id}" ${c.share[a.id] ? 'checked' : ''}><b>${esc(a.company)}</b><span class="hint">${esc(a.role || a.track)} · ${esc(a.stage)}</span></label>`).join('') : '<div class="hint">진행 중인 지원 건이 없습니다.</div>'}
+      <div class="hint" style="margin-top:6px">체크한 건은 발표일에 결과를 공유하고 다음 단계를 요청합니다.</div>
+      <label class="f">시험 회고 (강했던 토픽 · 약했던 토픽 · 재응시 시 바꿀 것)</label>
+      <textarea data-bind="cfa:retro" rows="6" placeholder="예: Private Markets 케이스는 시간 부족, Ethics는 안정적">${esc(c.retro)}</textarea>
+    </div>
+  </div>`;
+}
+
+/* =========================================================
+   View: Interview review
+   ========================================================= */
+const IV_STATUS = ['결과 대기', '결과 미기재', '진행 여부 검토', '합격', '불합격', '보류', '기록 필요'];
+function vReview() {
+  if (!U.ivId || !byId(S.interviews, U.ivId)) U.ivId = (S.interviews[0] || {}).id;
+  const iv = byId(S.interviews, U.ivId);
+  return head('면접 복기', '질문 · 내 답변 · 아쉬운 점 · 보완 답변을 남기고, 보완 답변은 질문 은행으로 보내 다시 연습합니다.', `<button class="btn pri" data-act="newIv">+ 새 복기</button>`) + `
+  <div class="card pad" style="margin-bottom:16px;border-left:3px solid var(--red)">
+    <div class="sec-t">면접 원칙 · 복기에서 나온 반복 패턴 <button class="btn sm ghost" data-act="toggleEditP">${U.editP ? '완료' : '편집'}</button></div>
+    ${U.editP ? `<textarea data-bind="rules:principles" rows="8">${esc(S.rules.principles)}</textarea>` : `<div style="white-space:pre-wrap;font-size:13.5px;line-height:1.8">${esc(S.rules.principles)}</div>`}
+  </div>
+  <div class="split">
+    <div class="card"><div class="list">${S.interviews.map(x => `<button class="li ${x.id === U.ivId ? 'on' : ''}" data-act="selIv" data-id="${x.id}"><div class="t">${esc(x.company)} · ${esc(x.round)}</div><div class="m"><span class="chip ${x.status === '합격' ? 'green' : x.status === '불합격' ? 'red' : x.status === '기록 필요' ? 'yellow' : 'blue'}">${esc(x.status)}</span><span>${esc(x.date || '날짜 미입력')}</span><span>질문 ${x.questions.length}</span></div></button>`).join('') || '<div class="empty">복기 없음</div>'}</div></div>
+    ${iv ? ivEditor(iv) : '<div class="card empty">복기를 추가해 주세요</div>'}
+  </div>`;
+}
+function ivEditor(iv) {
+  const b = f => `data-bind="iv:${iv.id}:${f}"`;
+  return `<div style="display:flex;flex-direction:column;gap:16px;min-width:0">
+    <div class="card pad">
+      <div class="g3" style="gap:10px">
+        <div><label class="f">회사</label><input type="text" ${b('company')} value="${esc(iv.company)}"></div>
+        <div><label class="f">라운드</label><input type="text" ${b('round')} value="${esc(iv.round)}"></div>
+        <div><label class="f">포지션</label><input type="text" ${b('role')} value="${esc(iv.role)}"></div>
+        <div><label class="f">날짜</label><input type="text" ${b('date')} value="${esc(iv.date)}" placeholder="2026-07 또는 2026-07-15"></div>
+        <div><label class="f">형식 · 면접관</label><input type="text" ${b('format')} value="${esc(iv.format)}"></div>
+        <div><label class="f">상태</label><select ${b('status')}>${opt(IV_STATUS, iv.status)}</select></div>
+      </div>
+      <div class="row" style="margin-top:10px"><span class="hint">체감</span><div class="score">${[1, 2, 3, 4, 5].map(n => `<button class="${iv.feeling === n ? 'on' : ''}" data-act="ivFeel" data-n="${n}">${n}</button>`).join('')}</div><span class="grow"></span>${iv.source ? `<span class="hint">출처: ${esc(iv.source)}</span>` : ''}</div>
+    </div>
+    ${iv.questions.map((q, i) => `<div class="card pad">
+      <div class="sec-t">Q${i + 1}<span class="row" style="gap:4px"><button class="btn sm" data-act="ivToBank" data-iv="${iv.id}" data-q="${q.id}">질문 은행으로</button><button class="btn sm ghost danger" data-act="ivDelQ" data-iv="${iv.id}" data-q="${q.id}">삭제</button></span></div>
+      <textarea data-bind="ivq:${iv.id}:${q.id}:q" rows="2" style="font-weight:600">${esc(q.q)}</textarea>
+      <div class="g2" style="gap:12px">
+        <div><label class="f">내 답변 (기억나는 대로)</label><textarea data-bind="ivq:${iv.id}:${q.id}:answer" rows="5">${esc(q.answer)}</textarea></div>
+        <div><label class="f">무엇이 아쉬웠나 · 면접관 의도</label><textarea data-bind="ivq:${iv.id}:${q.id}:issue" rows="5">${esc(q.issue)}</textarea></div>
+      </div>
+      <label class="f">보완 답변 · 결론 → 근거 → 내 역할 → 한계</label>
+      <textarea data-bind="ivq:${iv.id}:${q.id}:better" rows="6">${esc(q.better)}</textarea>
+    </div>`).join('')}
+    <button class="btn" data-act="ivAddQ" data-id="${iv.id}" style="align-self:flex-start">+ 질문 추가</button>
+    <div class="card pad">
+      <label class="f">냉정한 총평 (강점 · 약점 · 패턴)</label><textarea ${b('review')} rows="5">${esc(iv.review)}</textarea>
+      <div class="g2" style="gap:12px">
+        <div><label class="f">교훈 (다음 면접에서 바꿀 것)</label><textarea ${b('lessons')} rows="4">${esc(iv.lessons)}</textarea></div>
+        <div><label class="f">다음 액션</label><textarea ${b('next')} rows="4">${esc(iv.next)}</textarea></div>
+      </div>
+      <details style="margin-top:12px"${iv.external ? '' : ' open'}><summary class="hint" style="cursor:pointer">다른 채팅 피드백 원문 (참고용)</summary><textarea ${b('external')} rows="8" style="margin-top:6px" placeholder="다른 채팅방에서 받은 피드백을 붙여넣기">${esc(iv.external)}</textarea></details>
+      <div class="row" style="margin-top:12px"><button class="btn" data-act="ivAI" data-id="${iv.id}">AI 복기 분석</button><span class="grow"></span><button class="btn ghost danger" data-act="delIv" data-id="${iv.id}">복기 삭제</button></div>
+      <div id="ivAIout"></div>
+    </div>
+  </div>`;
+}
+
+/* =========================================================
+   Google Sheets sync (Apps Script web app)
+   ========================================================= */
+const GAS_CODE = `// 이직 준비 작업대 · 구글시트 동기화 (Apps Script)
+// 1) TOKEN을 아무 문자열로 바꾸고, 작업대 설정의 '동기화 토큰'에도 같은 값을 입력
+const TOKEN = 'CHANGE-ME';
+
+function doGet() { return ContentService.createTextOutput('workbench sync ok'); }
+
+function doPost(e) {
+  let res;
+  try {
+    const body = JSON.parse(e.postData.contents);
+    if (body.token !== TOKEN) throw new Error('토큰 불일치');
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    if (body.action === 'push') { saveRaw_(ss, body.data); writeTables_(ss, body.data); res = { ok: true, at: new Date().toISOString() }; }
+    else if (body.action === 'pull') { res = { ok: true, data: loadRaw_(ss) }; }
+    else if (body.action === 'ping') { const sh = ss.getSheetByName('_raw'); res = { ok: true, at: sh ? sh.getRange(1, 2).getValue() : null }; }
+    else throw new Error('unknown action');
+  } catch (err) { res = { ok: false, error: String(err && err.message || err) }; }
+  return ContentService.createTextOutput(JSON.stringify(res)).setMimeType(ContentService.MimeType.JSON);
+}
+
+function sheet_(ss, name) { return ss.getSheetByName(name) || ss.insertSheet(name); }
+function cell_(v) { v = v == null ? '' : String(v); if (v.length > 45000) v = v.slice(0, 45000) + '…'; return /^[=+\\-@]/.test(v) ? "'" + v : v; }
+
+function saveRaw_(ss, data) {
+  const sh = sheet_(ss, '_raw'); sh.clear();
+  const s = JSON.stringify(data), rows = [];
+  for (let i = 0; i < s.length; i += 40000) rows.push([s.substr(i, 40000)]);
+  sh.getRange(1, 1, rows.length, 1).setValues(rows);
+  sh.getRange(1, 2).setValue(new Date().toISOString());
+}
+function loadRaw_(ss) {
+  const sh = ss.getSheetByName('_raw'); if (!sh || sh.getLastRow() < 1) return null;
+  return JSON.parse(sh.getRange(1, 1, sh.getLastRow(), 1).getValues().map(r => r[0]).join(''));
+}
+function table_(ss, name, header, rows) {
+  const sh = sheet_(ss, name); sh.clearContents();
+  const all = [header].concat(rows.map(r => r.map(cell_)));
+  sh.getRange(1, 1, all.length, header.length).setValues(all);
+  sh.setFrozenRows(1); sh.getRange(1, 1, 1, header.length).setFontWeight('bold');
+}
+function writeTables_(ss, d) {
+  table_(ss, '지원', ['회사', '포지션', '트랙', '단계', '마감', '서브도메인', '메모'], (d.apps || []).map(a => [a.company, a.role, a.track, a.stage, a.deadline, a.subdomain, a.notes]));
+  const iv = []; (d.interviews || []).forEach(x => (x.questions.length ? x.questions : [{}]).forEach(q => iv.push([x.company, x.round, x.date, x.status, q.q, q.answer, q.issue, q.better, x.review, x.next])));
+  table_(ss, '면접복기', ['회사', '라운드', '날짜', '상태', '질문', '내 답변', '아쉬운 점', '보완 답변', '총평', '다음 액션'], iv);
+  table_(ss, '질문은행', ['분류', '질문', '답변 초안', '근거', '함정', '시도', '최고점'], (d.qa || []).map(q => [q.cat, q.q, q.draft, q.basis, q.trap, q.attempts.length, q.attempts.reduce((m, a) => Math.max(m, a.score || 0), 0)]));
+  table_(ss, '경험', ['제목', '조직', '기간', '태그', '상황', '접근', '결과', '역할 범위', '검증'], (d.experiences || []).map(e => [e.title, e.org, e.period, e.tags.join(', '), e.situation, e.action, e.result, e.role, e.verified ? 'O' : '']));
+  table_(ss, '드래프트', ['제목', '종류', '톤', '최신 본문', '버전 수', '수정'], (d.drafts || []).map(x => [x.title, x.kind, x.tone, x.text, x.versions.length, x.updated]));
+  table_(ss, '연습기록', ['날짜', '분', '분류', '메모'], (d.log || []).map(l => [l.date, l.minutes, l.cat, l.memo]));
+}
+`;
+function syncPayload() { const c = JSON.parse(JSON.stringify(S)); c.settings.apiKey = ''; c.settings.sheetToken = ''; return c; }
+async function sheetCall(action, data) {
+  const url = (S.settings.sheetUrl || '').trim();
+  if (!/^https:\/\/script\.google\.com\//.test(url)) throw new Error('설정에서 Apps Script 웹 앱 URL(https://script.google.com/...)을 입력해 주세요.');
+  const r = await fetch(url, { method: 'POST', body: JSON.stringify({ action, token: S.settings.sheetToken || '', data }) });
+  const j = await r.json().catch(() => { throw new Error('응답을 읽지 못했습니다. 배포 액세스 권한이 "모든 사용자"인지 확인해 주세요.'); });
+  if (!j.ok) throw new Error(j.error || '동기화 실패');
+  return j;
+}
+async function sheetPush(quiet) {
+  try {
+    const j = await sheetCall('push', syncPayload());
+    S.settings.lastSync = j.at; localStorage.setItem(KEY, JSON.stringify(S)); setSyncState();
+    if (!quiet) toast('구글시트로 보냈습니다');
+  } catch (e) { setSyncState('실패'); if (!quiet) toast('동기화 실패: ' + e.message); }
+}
+async function sheetPull() {
+  try {
+    const j = await sheetCall('pull');
+    if (!j.data) { toast('시트에 저장된 데이터가 없습니다. 먼저 보내기를 실행하세요.'); return; }
+    if (!confirm('시트에 저장된 데이터로 이 브라우저의 데이터를 바꿉니다. 계속할까요?')) return;
+    const keep = { apiKey: S.settings.apiKey, sheetUrl: S.settings.sheetUrl, sheetToken: S.settings.sheetToken, sheetAuto: S.settings.sheetAuto };
+    localStorage.setItem(KEY, JSON.stringify(j.data)); S = load(); Object.assign(S.settings, keep); persist(); render(); toast('시트에서 불러왔습니다');
+  } catch (e) { toast('불러오기 실패: ' + e.message); }
+}
+let syncTimer = null;
+function scheduleSync() {
+  if (!S.settings.sheetAuto || !S.settings.sheetUrl) return;
+  clearTimeout(syncTimer); setSyncState('대기');
+  syncTimer = setTimeout(() => sheetPush(true), 60000);
+}
+function setSyncState(s) {
+  const el = document.getElementById('syncState'); if (!el) return;
+  el.textContent = !S.settings.sheetUrl ? '시트 미연결' : s ? '시트 ' + s : S.settings.lastSync ? '시트 ' + fmtDT(S.settings.lastSync) : '시트 연결됨';
+}
+
+/* =========================================================
+   View: Settings
+   ========================================================= */
+function vSettings() {
+  return head('규칙 · 설정', '포지셔닝 규칙과 검증된 수치는 모든 점검과 AI 첨삭에 그대로 쓰입니다.') + `
+  <div class="g2">
+    <div class="card pad">
+      <div class="sec-t">포지셔닝</div>
+      <input type="text" data-bind="settings:positioning" value="${esc(S.settings.positioning)}">
+      <label class="f">사실 프로필 (AI 첨삭의 유일한 근거)</label>
+      <textarea data-bind="rules:facts" rows="14">${esc(S.rules.facts)}</textarea>
+      <label class="f">검증된 수치 (한 줄에 하나, 단위 포함: 1/10, 70%, 11개사)</label>
+      <textarea data-bind="rules:verified" rows="5">${esc(S.rules.verified.join('\n'))}</textarea>
+    </div>
+    <div class="card pad">
+      <div class="sec-t">금지 표현 (빨강)</div>
+      <textarea data-bind="rules:hard" rows="8">${esc(S.rules.hard.join('\n'))}</textarea>
+      <div class="hint">한 줄에 하나. <code>re:</code>로 시작하면 정규식 (예: <code>re:이사회.{0,20}(단독|주도)</code>)</div>
+      <label class="f">문체 경고 (노랑)</label>
+      <textarea data-bind="rules:style" rows="6">${esc(S.rules.style.join('\n'))}</textarea>
+    </div>
+  </div>
+  <div class="g2" style="margin-top:16px">
+    <div class="card pad">
+      <div class="sec-t">AI 첨삭 연결</div>
+      <label class="f">Anthropic API 키</label>
+      <input type="password" data-bind="settings:apiKey" value="${esc(S.settings.apiKey)}" placeholder="sk-ant-..." autocomplete="off">
+      <div class="hint" style="margin-top:4px">키는 이 브라우저의 localStorage에만 저장되고 api.anthropic.com으로만 전송됩니다. 공용 PC에서는 입력하지 마세요. 백업 내보내기에는 키가 빠집니다.</div>
+      <label class="f">모델</label>
+      <select data-bind="settings:model">${['claude-opus-5-5', 'claude-sonnet-5-5', 'claude-haiku-4-5'].map(m => `<option ${m === S.settings.model ? 'selected' : ''}>${m}</option>`).join('')}</select>
+      <button class="btn" style="margin-top:10px" data-act="testAI">연결 테스트</button> <span id="testOut" class="hint"></span>
+      <label class="f">CFA L3 결과 발표일</label>
+      <input type="date" data-bind="settings:cfaResult" value="${esc(S.settings.cfaResult)}">
+    </div>
+    <div class="card pad" style="grid-column:1 / -1">
+      <div class="sec-t">구글시트 동기화 <span class="hint" id="syncOut"></span></div>
+      <div class="g2" style="gap:16px">
+        <div>
+          <ol style="padding-left:18px;font-size:13px;line-height:1.9">
+            <li>구글 드라이브에서 새 스프레드시트 생성 (예: 이직 준비 작업대 DB)</li>
+            <li>메뉴 <b>확장 프로그램 → Apps Script</b> 열고 기존 코드를 지운 뒤 아래 코드 붙여넣기</li>
+            <li>코드 맨 위 <code>TOKEN</code>을 임의 문자열로 바꾸고 저장</li>
+            <li><b>배포 → 새 배포 → 유형: 웹 앱</b>, 실행 사용자: 나, 액세스: 모든 사용자 → 배포 후 권한 승인</li>
+            <li>발급된 웹 앱 URL과 TOKEN을 오른쪽에 입력 → 연결 테스트 → 보내기</li>
+          </ol>
+          <div class="row"><button class="btn" data-act="copyGAS">Apps Script 코드 복사</button></div>
+          <div class="hint" style="margin-top:8px;line-height:1.7">보내기를 하면 시트에 지원 · 면접복기 · 질문은행 · 경험 · 드래프트 · 연습기록 탭이 표로 만들어지고, 전체 원본은 _raw 탭에 저장됩니다. 시트의 표는 보기용이라 시트에서 고친 내용은 작업대로 돌아오지 않습니다. 불러오기는 _raw 기준으로 전체를 복원합니다. API 키와 토큰은 시트로 보내지 않습니다.</div>
+        </div>
+        <div>
+          <label class="f">Apps Script 웹 앱 URL</label>
+          <input type="url" data-bind="settings:sheetUrl" value="${esc(S.settings.sheetUrl)}" placeholder="https://script.google.com/macros/s/.../exec">
+          <label class="f">동기화 토큰 (Apps Script의 TOKEN과 동일)</label>
+          <input type="password" data-bind="settings:sheetToken" value="${esc(S.settings.sheetToken)}" autocomplete="off">
+          <label class="row" style="gap:8px;margin-top:10px;font-size:13px;cursor:pointer"><input type="checkbox" data-act="sheetAuto" ${S.settings.sheetAuto ? 'checked' : ''}> 수정 후 1분 지나면 자동으로 시트에 보내기</label>
+          <div class="row" style="margin-top:12px"><button class="btn" data-act="syncTest">연결 테스트</button><button class="btn pri" data-act="syncPush">시트로 보내기</button><button class="btn" data-act="syncPull">시트에서 불러오기</button></div>
+          <div class="hint" style="margin-top:6px">마지막 동기화: ${S.settings.lastSync ? fmtDT(S.settings.lastSync) : '없음'}</div>
+        </div>
+      </div>
+    </div>
+    <div class="card pad">
+      <div class="sec-t">백업 · 복원</div>
+      <p class="hint" style="margin-bottom:10px">데이터는 이 브라우저에만 저장됩니다. 기기를 바꾸거나 브라우저 데이터를 지우기 전에 JSON으로 내보내 두세요.</p>
+      <div class="row"><button class="btn pri" data-act="exportJSON">JSON 내보내기</button><label class="btn">JSON 가져오기<input type="file" accept=".json,application/json" id="importFile" style="display:none"></label><button class="btn" data-act="exportMD">전체 Markdown 내보내기</button></div>
+      <hr class="sep">
+      <div class="sec-t">초기화</div>
+      <button class="btn danger" data-act="resetAll">초기 데이터로 되돌리기</button>
+      <div class="hint" style="margin-top:6px">마지막 저장: ${fmtDT(S.meta.updated)} · 생성: ${fmtD(S.meta.created)}</div>
+    </div>
+  </div>`;
+}
+function importFile(file) {
+  if (!file) return;
+  const rd = new FileReader();
+  rd.onload = () => {
+    try {
+      const d = JSON.parse(rd.result);
+      if (!d.experiences || !d.drafts) throw new Error('형식 불일치');
+      const hasData = S.experiences.length || S.drafts.length || S.interviews.length;
+      if (hasData && !confirm('현재 데이터를 가져온 파일로 바꿉니다. 계속할까요?')) return;
+      const keep = { apiKey: S.settings.apiKey, sheetUrl: S.settings.sheetUrl, sheetToken: S.settings.sheetToken, sheetAuto: S.settings.sheetAuto };
+      localStorage.setItem(KEY, JSON.stringify(d)); S = load();
+      for (const k in keep) if (keep[k]) S.settings[k] = keep[k];
+      persist(); render(); toast('가져오기 완료');
+    } catch (e) { toast('가져오기 실패: ' + e.message); }
+  };
+  rd.readAsText(file);
+}
+AFTER.settings = () => { const f = $('#importFile'); if (f) f.addEventListener('change', () => importFile(f.files[0])); };
+AFTER.dash = () => { const f = $('#importFirst'); if (f) f.addEventListener('change', () => importFile(f.files[0])); };
+function download(name, text, type) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([text], { type: type || 'application/json' }));
+  a.download = name; document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+function exportMD() {
+  let md = `# 이직 준비 작업대 백업 (${today()})\n\n> ${S.settings.positioning}\n\n## 경험 뱅크\n`;
+  S.experiences.forEach(e => { md += `\n### ${e.title}\n${e.org} · ${e.period}${e.tags.length ? ' · ' + e.tags.join(', ') : ''}\n\n- 상황: ${e.situation}\n- 접근: ${e.action}\n- 결과: ${e.result}\n- 역할 범위: ${e.role}\n`; });
+  md += `\n## 드래프트\n`;
+  S.drafts.forEach(d => { md += `\n### ${d.title}\n${d.kind} · ${d.tone}\n\n${d.text}\n`; });
+  md += `\n## 지원 트래커\n\n| 회사 | 포지션 | 트랙 | 단계 | 마감 |\n|---|---|---|---|---|\n`;
+  S.apps.forEach(a => { md += `| ${a.company} | ${a.role} | ${a.track} | ${a.stage} | ${a.deadline} |\n`; });
+  download(`workbench-${today()}.md`, md, 'text/markdown');
+}
+
+/* =========================================================
+   Modal
+   ========================================================= */
+function openModal(title, body) {
+  const m = $('#modal');
+  m.innerHTML = `<div class="modal-box" role="dialog" aria-modal="true"><div class="modal-h"><h3>${title}</h3><button class="btn ghost sm" data-act="closeModal">닫기</button></div><div class="modal-b">${body}</div></div>`;
+  m.hidden = false;
+}
+function closeModal() { $('#modal').hidden = true; $('#modal').innerHTML = ''; if (U.view === 'apps' || U.view === 'dash') render(); }
+
+/* =========================================================
+   Binding (inputs)
+   ========================================================= */
+const LIST_FIELDS = { tags: 1 };
+document.addEventListener('input', e => {
+  const el = e.target;
+  if (el.dataset.ui) { U[el.dataset.ui] = el.value; saveUI(); if (el.dataset.ui === 'expFilter') { const pos = el.selectionStart; render(); const n = document.querySelector('[data-ui="expFilter"]'); n.focus(); n.setSelectionRange(pos, pos); } return; }
+  const b = el.dataset.bind; if (!b) return;
+  const parts = b.split(':');
+  const val = el.type === 'number' ? (el.value === '' ? 0 : +el.value) : el.value;
+  if (parts[0] === 'exp') {
+    const x = byId(S.experiences, parts[1]); if (!x) return;
+    x[parts[2]] = LIST_FIELDS[parts[2]] ? val.split(',').map(s => s.trim()).filter(Boolean) : val;
+    x.updated = now(); touch(0.2);
+    const c = $('#expCheck'); if (c) c.innerHTML = checkPanel(expText(x));
+    const li = document.querySelector(`.li[data-id="${x.id}"]`); if (li && (parts[2] === 'title' || parts[2] === 'org')) li.outerHTML = expLi(x);
+  } else if (parts[0] === 'draft') {
+    const x = byId(S.drafts, parts[1]); if (!x) return;
+    x[parts[2]] = val; x.updated = now(); touch(0.2);
+    if (['text', 'limit'].includes(parts[2])) refreshDraftSide();
+  } else if (parts[0] === 'app') {
+    const x = byId(S.apps, parts[1]); if (!x) return;
+    x[parts[2]] = val; x.updated = now();
+    if (parts[2] === 'jd') { const jb = $('#jdBox'); if (jb) jb.innerHTML = jdBox(x); }
+  } else if (parts[0] === 'iv') {
+    const x = byId(S.interviews, parts[1]); if (!x) return;
+    x[parts[2]] = val; x.updated = now(); touch(0.2);
+  } else if (parts[0] === 'ivq') {
+    const x = byId(S.interviews, parts[1]); const q = x && byId(x.questions, parts[2]); if (!q) return;
+    q[parts[3]] = val; x.updated = now(); touch(0.2);
+  } else if (parts[0] === 'hh') {
+    S.cfa.headhunters[+parts[1]] = val;
+  } else if (parts[0] === 'cfa') {
+    S.cfa[parts[1]] = val;
+  } else if (parts[0] === 'qa') {
+    const x = byId(S.qa, parts[1]); if (x) x[parts[2]] = val;
+  } else if (parts[0] === 'rules') {
+    S.rules[parts[1]] = (parts[1] === 'facts' || parts[1] === 'principles') ? val : val.split('\n').map(s => s.trim()).filter(Boolean);
+  } else if (parts[0] === 'settings') {
+    S.settings[parts[1]] = val;
+    if (parts[1] === 'theme') applyTheme();
+  }
+  save();
+});
+document.addEventListener('change', e => {
+  const el = e.target;
+  if (el.dataset.bind && el.tagName === 'SELECT') {
+    if (U.view === 'draft' && el.dataset.bind.startsWith('draft:')) render();
+    if (U.view === 'exp' && el.dataset.bind.endsWith(':org')) render();
+    if (U.view === 'review' && el.dataset.bind.endsWith(':status')) render();
+  }
+  if (el.dataset.actChange === 'stage') { setStage(el.dataset.id, el.value); openApp(el.dataset.id); }
+  const a = el.dataset.act;
+  if (a === 'expTrack') { const x = byId(S.experiences, el.dataset.id); const t = el.dataset.t; x.tracks = el.checked ? [...new Set([...x.tracks, t])] : x.tracks.filter(y => y !== t); x.updated = now(); save(0); render(); }
+  if (a === 'cfaCheck') { S.cfa.checks[el.dataset.k] = el.checked; touch(); save(0); render(); }
+  if (a === 'cfaSent') { S.cfa.sent[el.dataset.i] = el.checked; save(0); render(); }
+  if (a === 'cfaShare') { S.cfa.share[el.dataset.id] = el.checked; save(0); }
+  if (a === 'sheetAuto') { S.settings.sheetAuto = el.checked; save(0); }
+  if (a === 'expVerified') { const x = byId(S.experiences, el.dataset.id); x.verified = el.checked; x.updated = now(); save(0); render(); }
+});
+
+/* =========================================================
+   Actions
+   ========================================================= */
+const ACT = {
+  go: el => go(el.dataset.v),
+  closeModal: () => closeModal(),
+  quickLog: () => go('log'),
+  goPitch: () => { U.practiceTab = 'pitch'; U.pitchSecs = 60; go('practice'); },
+  drillRandom: () => { const q = [...S.qa].sort((a, b) => a.attempts.length - b.attempts.length)[0]; U.practiceTab = 'qa'; U.qaId = q && q.id; go('practice'); },
+  openExp: el => { closeModalSilently(); U.expId = el.dataset.id; U.expFilter = ''; U.expOrg = ''; go('exp'); },
+  openDraft: el => { closeModalSilently(); U.draftId = el.dataset.id; go('draft'); },
+  openApp: el => openApp(el.dataset.id),
+  verifyNum: el => { const n = el.dataset.n; if (!S.rules.verified.includes(n)) S.rules.verified.push(n); save(0); toast(`"${n}" 검증된 수치로 등록`); if (U.view === 'draft') refreshDraftSide(); else render(); },
+
+  // experiences
+  selExp: el => { U.expId = el.dataset.id; saveUI(); render(); },
+  expOrg: el => { U.expOrg = el.dataset.o; saveUI(); render(); },
+  newExp: () => { const e = { id: uid(), title: '새 경험', org: U.expOrg || 'AIA생명', period: '', tags: [], tracks: [], situation: '', action: '', result: '', role: '', evidence: '', verified: false, versions: [], created: now(), updated: now() }; S.experiences.unshift(e); U.expId = e.id; U.expFilter = ''; touch(); save(0); render(); },
+  snapExp: el => { const e = byId(S.experiences, el.dataset.id); const note = prompt('버전 메모 (선택)', '') ; if (note === null) return; e.versions.push({ ts: now(), note, title: e.title, situation: e.situation, action: e.action, result: e.result, role: e.role }); touch(2); save(0); render(); toast('버전 저장'); },
+  diffExp: el => { const e = byId(S.experiences, el.dataset.id); const v = e.versions.find(x => x.ts === el.dataset.ts); openModal('버전 비교 · ' + esc(e.title), `<div class="hint" style="margin-bottom:8px">${fmtDT(v.ts)} 버전 → 현재 · <del style="color:var(--red)">삭제</del> <ins style="color:var(--green);text-decoration:none">추가</ins></div>${['situation', 'action', 'result', 'role'].map(k => `<label class="f">${{ situation: '상황', action: '접근', result: '결과', role: '역할 범위' }[k]}</label><div class="diff">${diffHTML(v[k] || '', e[k] || '')}</div>`).join('')}`); },
+  restoreExp: el => { const e = byId(S.experiences, el.dataset.id); const v = e.versions.find(x => x.ts === el.dataset.ts); if (!confirm('이 버전으로 되돌릴까요? 현재 내용은 새 버전으로 먼저 저장됩니다.')) return; e.versions.push({ ts: now(), note: '복원 전 자동 저장', title: e.title, situation: e.situation, action: e.action, result: e.result, role: e.role }); Object.assign(e, { situation: v.situation, action: v.action, result: v.result, role: v.role || e.role }); e.updated = now(); save(0); render(); },
+  expToDraft: el => { const e = byId(S.experiences, el.dataset.id); const d = { id: uid(), title: e.title, kind: '경력기술서', tone: e.tracks.length === 1 ? (e.tracks[0] === 'MBB' ? 'MBB' : 'IB/PE') : '공통', appId: '', limit: 0, text: [e.situation, e.action, e.result].filter(Boolean).join(' '), versions: [], created: now(), updated: now() }; S.drafts.unshift(d); U.draftId = d.id; touch(); save(0); go('draft'); toast('드래프트로 보냈습니다'); },
+  copyExp: el => { const e = byId(S.experiences, el.dataset.id); copy(`${e.title} (${e.org}, ${e.period})\n상황: ${e.situation}\n접근: ${e.action}\n결과: ${e.result}`); },
+  delExp: el => { if (!confirm('이 경험 카드를 삭제할까요?')) return; S.experiences = S.experiences.filter(x => x.id !== el.dataset.id); U.expId = null; save(0); render(); },
+
+  // drafts
+  selDraft: el => { U.draftId = el.dataset.id; saveUI(); render(); },
+  newDraft: () => { const d = { id: uid(), title: '새 드래프트', kind: '자기소개', tone: '공통', appId: '', limit: 0, text: '', versions: [], created: now(), updated: now() }; S.drafts.unshift(d); U.draftId = d.id; touch(); save(0); render(); const t = $('#draftText'); if (t) t.focus(); },
+  newDraftFor: el => { const a = byId(S.apps, el.dataset.id); const tone = a.track === 'MBB/컨설팅' ? 'MBB' : a.track === 'IB/PE/대체투자' ? 'IB/PE' : '공통'; const d = { id: uid(), title: a.company + ' 지원동기', kind: '지원동기', tone, appId: a.id, limit: 0, text: '', versions: [], created: now(), updated: now() }; S.drafts.unshift(d); U.draftId = d.id; save(0); closeModalSilently(); go('draft'); },
+  dupDraft: () => { const d = byId(S.drafts, U.draftId); const c = Object.assign({}, d, { id: uid(), title: d.title + ' (복제)', versions: [], created: now(), updated: now() }); S.drafts.unshift(c); U.draftId = c.id; save(0); render(); },
+  delDraft: () => { if (!confirm('이 드래프트와 모든 버전을 삭제할까요?')) return; S.drafts = S.drafts.filter(x => x.id !== U.draftId); U.draftId = null; save(0); render(); },
+  snapDraft: () => { const d = byId(S.drafts, U.draftId); const last = d.versions[d.versions.length - 1]; if (last && last.text === d.text) { toast('직전 버전과 같습니다'); return; } d.versions.push({ ts: now(), text: d.text, note: ($('#verNote') || {}).value || '' }); touch(2); save(0); render(); toast('버전 저장'); },
+  copyDraft: () => copy(byId(S.drafts, U.draftId).text),
+  copyVer: el => copy(byId(S.drafts, U.draftId).versions.find(v => v.ts === el.dataset.ts).text),
+  diffDraft: el => { const d = byId(S.drafts, U.draftId); const v = d.versions.find(x => x.ts === el.dataset.ts); $('#cmpBox').innerHTML = `<label class="f row" style="justify-content:space-between">${fmtDT(v.ts)} 버전 → 현재 <button class="btn sm ghost" data-act="clearCmp">닫기</button></label><div class="diff">${diffHTML(v.text, d.text)}</div>`; $('#cmpBox').scrollIntoView({ behavior: 'smooth', block: 'nearest' }); },
+  clearCmp: () => { $('#cmpBox').innerHTML = ''; },
+  restoreDraft: el => { const d = byId(S.drafts, U.draftId); const v = d.versions.find(x => x.ts === el.dataset.ts); if (!confirm('이 버전으로 되돌릴까요? 현재 내용은 버전으로 먼저 저장됩니다.')) return; if (!d.versions.length || d.versions[d.versions.length - 1].text !== d.text) d.versions.push({ ts: now(), text: d.text, note: '복원 전 자동 저장' }); d.text = v.text; d.updated = now(); save(0); render(); },
+  tpl: el => { const t = $('#draftText'); const ins = TEMPLATES[el.dataset.k]; const p = t.selectionStart || t.value.length; t.value = t.value.slice(0, p) + ins + t.value.slice(p); t.dispatchEvent(new Event('input', { bubbles: true })); t.focus(); },
+  runAI: async el => {
+    const d = byId(S.drafts, U.draftId); if (!d.text.trim()) { toast('본문이 비어 있습니다'); return; }
+    const mode = $('#aiMode').value, extra = $('#aiExtra').value.trim();
+    const a = byId(S.apps, d.appId);
+    if (mode === 'jd' && !(a && a.jd)) { toast('지원처를 연결하고 JD를 붙여넣어 주세요'); return; }
+    const msg = `[요청] ${AI_MODES[mode].ask}${extra ? '\n[추가 요청] ' + extra : ''}\n[종류] ${d.kind}\n[톤] ${d.tone}${d.limit ? '\n[글자수 제한] 공백 포함 ' + d.limit + '자' : ''}${a ? `\n[지원처] ${a.company} / ${a.role || ''} / 트랙: ${a.track}` : ''}${a && a.jd && (mode === 'jd' || mode === 'mbb' || mode === 'ib') ? '\n[JD]\n' + a.jd : ''}\n\n[원문]\n${d.text}`;
+    const out = $('#aiOut'); el.disabled = true; out.innerHTML = `<div style="margin-top:12px" class="hint"><span class="spin"></span> 첨삭 중…</div>`;
+    try {
+      const res = await callClaude(msg); const p = parseAI(res);
+      ACT._ai = { draftId: d.id, body: p.body, mode };
+      const r = check(p.body);
+      out.innerHTML = `<hr class="sep"><div class="sec-t">수정본 <span class="row" style="gap:4px">${r.hard.length ? `<span class="chip red">위반 ${r.hard.length}</span>` : '<span class="chip green">위반 0</span>'}<span class="chip">${p.body.length}자</span></span></div>
+        <div class="diff" style="max-height:300px">${diffHTML(d.text, p.body)}</div>
+        ${p.notes ? `<div class="sec-t" style="margin-top:10px">변경 포인트</div><div class="ai-out" style="font-size:12.5px">${esc(p.notes)}</div>` : ''}
+        <div class="row" style="margin-top:10px"><button class="btn pri sm" data-act="applyAI">새 버전으로 적용</button><button class="btn sm" data-act="copyAI">수정본 복사</button></div>`;
+      touch(1); save();
+    } catch (err) { out.innerHTML = `<div class="chk-item red" style="margin-top:10px">${esc(err.message)}</div>`; }
+    el.disabled = false;
+  },
+  applyAI: () => { const ai = ACT._ai; const d = byId(S.drafts, ai.draftId); if (!d) return; if (!d.versions.length || d.versions[d.versions.length - 1].text !== d.text) d.versions.push({ ts: now(), text: d.text, note: 'AI 첨삭 전' }); d.text = ai.body; d.versions.push({ ts: now(), text: d.text, note: 'AI · ' + AI_MODES[ai.mode].label }); d.updated = now(); touch(2); save(0); render(); toast('새 버전으로 적용했습니다'); },
+  copyAI: () => copy(ACT._ai.body),
+
+  // apps
+  appView: el => { U.appView = el.dataset.v; saveUI(); render(); },
+  newApp: () => { const a = { id: uid(), company: '새 지원처', role: '', track: 'Corp Dev/전략', stage: '관심', deadline: '', url: '', subdomain: '', branch: '', jd: '', notes: '', timeline: [{ ts: now(), text: '추가됨' }], created: now(), updated: now() }; S.apps.push(a); touch(); save(0); render(); openApp(a.id); },
+  addTL: el => { const a = byId(S.apps, el.dataset.id); const t = $('#tlText').value.trim(); if (!t) return; a.timeline.push({ ts: now(), text: t }); touch(); save(0); openApp(a.id); },
+  delApp: el => { if (!confirm('이 지원처를 삭제할까요? 연결된 드래프트는 남습니다.')) return; S.apps = S.apps.filter(x => x.id !== el.dataset.id); S.drafts.forEach(d => { if (d.appId === el.dataset.id) d.appId = ''; }); save(0); closeModal(); },
+
+  // practice
+  ptab: el => { U.practiceTab = el.dataset.t; if (el.dataset.t === 'pitch' && ![30, 60, 90].includes(U.pitchSecs)) U.pitchSecs = 60; if (el.dataset.t === 'qa' && ![60, 90, 120].includes(U.pitchSecs)) U.pitchSecs = 90; saveUI(); render(); },
+  qaPick: el => { U.qaId = el.dataset.id; U.practiceTab = 'qa'; if (![60, 90, 120].includes(U.pitchSecs)) U.pitchSecs = 90; saveUI(); if (U.view !== 'practice') go('practice'); else render(); },
+  qaNext: () => { const i = S.qa.findIndex(x => x.id === U.qaId); U.qaId = S.qa[(i + 1) % S.qa.length].id; saveUI(); render(); },
+  qaPrev: () => { const i = S.qa.findIndex(x => x.id === U.qaId); U.qaId = S.qa[(i - 1 + S.qa.length) % S.qa.length].id; saveUI(); render(); },
+  qaRandom: () => { const others = S.qa.filter(x => x.id !== U.qaId); if (!others.length) return; U.qaId = others[Math.floor(Math.random() * others.length)].id; saveUI(); render(); },
+  tSecs: el => { U.pitchSecs = +el.dataset.s; saveUI(); document.querySelectorAll('[data-act="tSecs"]').forEach(b => b.classList.toggle('on', b === el)); if (timer.running) tick(); },
+  tToggle: el => {
+    if (timer.running) { timer.elapsed += (Date.now() - timer.start) / 1000; clearInterval(timer.id); timer.running = false; el.textContent = '계속'; }
+    else { timer.start = Date.now(); timer.running = true; timer.id = setInterval(tick, 200); el.textContent = '정지'; }
+  },
+  tReset: () => resetTimer(),
+  qaScore: el => { qaScoreSel = +el.dataset.n; document.querySelectorAll('#qaScore button').forEach(b => b.classList.toggle('on', +b.dataset.n === qaScoreSel)); },
+  qaSave: () => {
+    const q = byId(S.qa, U.qaId); const text = $('#qaAns').value.trim(); if (!text) { toast('답변을 입력해 주세요'); return; }
+    const checks = [...document.querySelectorAll('#qaChecks input')].map(c => c.checked);
+    q.attempts.push({ ts: now(), text, secs: curElapsed(), score: qaScoreSel, checks, ai: qaLastAI });
+    touch(3); save(0); render(); toast('시도 저장');
+  },
+  qaLoad: el => { const q = byId(S.qa, U.qaId); const x = q.attempts.find(a => a.ts === el.dataset.ts); const t = $('#qaAns'); t.value = x.text; t.dispatchEvent(new Event('input')); t.focus(); },
+  qaAI: async el => {
+    const q = byId(S.qa, U.qaId); const text = $('#qaAns').value.trim(); if (!text) { toast('답변을 먼저 써주세요'); return; }
+    const out = $('#qaAIout'); el.disabled = true; out.innerHTML = '<div class="hint" style="margin-top:10px"><span class="spin"></span> 피드백 생성 중…</div>';
+    try {
+      const res = await callClaude(`[요청] 아래는 면접 질문에 대한 내 답변이다. 면접관 관점에서 평가하고 다듬어줘. 수정본은 ${U.pitchSecs}초 안에 말할 수 있는 길이(분당 약 300자)로. 변경 포인트에는 (1) 결론이 먼저 나오는지 (2) 숫자 근거 (3) 역할 범위의 정확성 (4) 과장 리스크 (5) 예상 꼬리질문 2개를 포함해줘.\n[질문] ${q.q}\n\n[원문]\n${text}`);
+      const p = parseAI(res); qaLastAI = res;
+      out.innerHTML = `<hr class="sep"><div class="sec-t">AI 수정본</div><div class="diff">${diffHTML(text, p.body)}</div>${p.notes ? `<div class="sec-t" style="margin-top:10px">피드백</div><div class="ai-out" style="font-size:12.5px">${esc(p.notes)}</div>` : ''}<div class="row" style="margin-top:8px"><button class="btn sm" data-act="qaUseAI">수정본을 답변칸에 넣기</button></div>`;
+      ACT._qaAI = p.body;
+    } catch (err) { out.innerHTML = `<div class="chk-item red" style="margin-top:10px">${esc(err.message)}</div>`; }
+    el.disabled = false;
+  },
+  qaUseDraft: () => { const q = byId(S.qa, U.qaId); const t = $('#qaAns'); t.value = q.draft || ''; t.dispatchEvent(new Event('input')); },
+  qaUseAI: () => { const t = $('#qaAns'); t.value = ACT._qaAI; t.dispatchEvent(new Event('input')); },
+  qaToDraft: () => { const q = byId(S.qa, U.qaId); const text = $('#qaAns').value.trim(); const d = { id: uid(), title: q.q.slice(0, 40), kind: '면접 답변', tone: '공통', appId: '', limit: 0, text, versions: [], created: now(), updated: now() }; S.drafts.unshift(d); U.draftId = d.id; save(0); go('draft'); },
+  addQ: () => { const q = $('#newQ').value.trim(); if (!q) return; S.qa.push({ id: uid(), q, cat: $('#newQcat').value.trim() || '기타', attempts: [] }); save(0); render(); },
+  delQ: el => { if (!confirm('질문과 시도 기록을 삭제할까요?')) return; S.qa = S.qa.filter(x => x.id !== el.dataset.id); save(0); render(); },
+  pitchSave: () => { const text = $('#pitchText').value.trim(); if (!text) { toast('스크립트를 입력해 주세요'); return; } S.pitches.push({ ts: now(), label: $('#pitchLabel').value, text, secs: curElapsed(), target: U.pitchSecs, score: qaScoreSel, memo: $('#pitchMemo').value.trim() }); touch(3); save(0); render(); toast('피치 기록 저장'); },
+  pitchToDraft: () => { const text = $('#pitchText').value.trim(); const d = { id: uid(), title: $('#pitchLabel').value + ' 스크립트', kind: '포지셔닝 문장', tone: '공통', appId: '', limit: 0, text, versions: [], created: now(), updated: now() }; S.drafts.unshift(d); U.draftId = d.id; save(0); go('draft'); },
+
+  // cfa
+  cfaStatus: el => { S.cfa.status = el.dataset.s; save(0); render(); },
+  cfaAddHH: () => { S.cfa.headhunters.push('새 헤드헌터'); save(0); render(); },
+  copyTxt: el => copy(el.dataset.t),
+
+  // interviews
+  toggleEditP: () => { U.editP = !U.editP; saveUI(); render(); },
+  newIv: () => { const iv = { id: uid(), company: '새 면접', round: '1차', role: '', date: today(), format: '', status: '결과 대기', feeling: 0, questions: [{ id: uid(), q: '', answer: '', issue: '', better: '' }], external: '', review: '', lessons: '', next: '', source: '', created: now(), updated: now() }; S.interviews.unshift(iv); U.ivId = iv.id; touch(); save(0); render(); },
+  selIv: el => { U.ivId = el.dataset.id; saveUI(); render(); },
+  ivFeel: el => { const iv = byId(S.interviews, U.ivId); iv.feeling = +el.dataset.n; save(0); render(); },
+  ivAddQ: el => { const iv = byId(S.interviews, el.dataset.id); iv.questions.push({ id: uid(), q: '', answer: '', issue: '', better: '' }); save(0); render(); },
+  ivDelQ: el => { if (!confirm('이 질문을 삭제할까요?')) return; const iv = byId(S.interviews, el.dataset.iv); iv.questions = iv.questions.filter(q => q.id !== el.dataset.q); save(0); render(); },
+  ivToBank: el => { const iv = byId(S.interviews, el.dataset.iv); const q = byId(iv.questions, el.dataset.q); if (!q.q.trim()) { toast('질문을 먼저 입력해 주세요'); return; } const ex = S.qa.find(x => x.q === q.q); if (ex) { ex.draft = q.better || ex.draft; toast('질문 은행의 같은 질문에 보완 답변을 반영했습니다'); } else { S.qa.push({ id: uid(), cat: iv.company + ' 복기', q: q.q, draft: q.better, basis: '', trap: q.issue, attempts: [] }); toast('질문 은행에 추가했습니다'); } save(0); },
+  delIv: el => { if (!confirm('이 복기를 삭제할까요?')) return; S.interviews = S.interviews.filter(x => x.id !== el.dataset.id); U.ivId = null; save(0); render(); },
+  ivAI: async el => {
+    const iv = byId(S.interviews, el.dataset.id); const out = $('#ivAIout'); el.disabled = true;
+    out.innerHTML = '<div class="hint" style="margin-top:10px"><span class="spin"></span> 분석 중…</div>';
+    try {
+      const qs = iv.questions.map((q, i) => `Q${i + 1}. ${q.q}\n내 답변: ${q.answer}`).join('\n\n');
+      const res = await callClaude(`[요청] 면접 복기를 면접관 관점에서 냉정하게 분석해줘. 위로나 칭찬 위주로 쓰지 말고, 질문별 면접관 의도, 실제 약점, 사실 프로필 범위 안에서의 보완 답변을 써줘. 확인 안 된 사실·수치는 [확인 필요]로 표시.\n[회사] ${iv.company} / ${iv.round} / ${iv.role}\n\n[원문]\n${qs}`);
+      const p = parseAI(res);
+      out.innerHTML = `<hr class="sep"><div class="sec-t">AI 분석</div><div class="ai-out" style="font-size:13px">${esc(p.body)}</div>${p.notes ? `<div class="ai-out hint" style="margin-top:8px">${esc(p.notes)}</div>` : ''}<div class="row" style="margin-top:8px"><button class="btn sm" data-act="copyTxt" data-t="${esc(p.body)}">복사</button></div>`;
+    } catch (err) { out.innerHTML = `<div class="chk-item red" style="margin-top:10px">${esc(err.message)}</div>`; }
+    el.disabled = false;
+  },
+
+  // sheets
+  syncPush: () => sheetPush(false),
+  syncPull: () => sheetPull(),
+  syncTest: async () => { const o = $('#syncOut'); o.innerHTML = '<span class="spin"></span>'; try { const j = await sheetCall('ping'); o.textContent = '연결 성공 · 마지막 시트 저장: ' + (j.at ? fmtDT(j.at) : '없음'); } catch (e) { o.textContent = '실패: ' + e.message; } },
+  copyGAS: () => copy(GAS_CODE),
+
+  // log
+  addLog: () => { S.log.push({ ts: now(), date: $('#lgDate').value || today(), minutes: +$('#lgMin').value || 0, cat: $('#lgCat').value, memo: $('#lgMemo').value.trim() }); save(0); render(); toast('기록했습니다'); },
+  delLog: el => { S.log = S.log.filter(l => l.ts !== el.dataset.ts); save(0); render(); },
+
+  // settings
+  exportJSON: () => { const c = JSON.parse(JSON.stringify(S)); c.settings.apiKey = ''; c.settings.sheetToken = ''; download(`workbench-${today()}.json`, JSON.stringify(c, null, 2)); },
+  exportMD: () => exportMD(),
+  resetAll: () => { if (!confirm('모든 데이터를 초기 상태로 되돌립니다. 먼저 JSON 백업을 권장합니다. 계속할까요?')) return; const key = S.settings.apiKey; S = seed(); S.settings.apiKey = key; persist(); U.expId = U.draftId = U.qaId = null; render(); toast('초기화했습니다'); },
+  testAI: async () => { const o = $('#testOut'); o.innerHTML = '<span class="spin"></span>'; try { const r = await callClaude('[요청] 연결 테스트다. 수정본에 "연결됨"만 쓰고 변경 포인트는 "- 없음"으로 답해.\n\n[원문]\n테스트'); o.textContent = '연결 성공 · ' + parseAI(r).body.slice(0, 30); } catch (e) { o.textContent = '실패: ' + e.message; } }
+};
+function closeModalSilently() { const m = $('#modal'); m.hidden = true; m.innerHTML = ''; }
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-act]'); if (!el) return;
+  if (el.tagName === 'INPUT' && (el.type === 'checkbox')) return; // handled by change
+  const fn = ACT[el.dataset.act]; if (!fn) return;
+  e.preventDefault(); fn(el, e);
+});
+$('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && !$('#modal').hidden) closeModal();
+  if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); if (U.view === 'draft' && U.draftId) ACT.snapDraft(); else { persist(); toast('저장했습니다'); } }
+});
+
+/* theme */
+function applyTheme() {
+  const t = S.settings.theme || 'auto';
+  if (t === 'auto') document.documentElement.removeAttribute('data-theme'); else document.documentElement.setAttribute('data-theme', t);
+  $('#themeSel').value = t;
+}
+$('#themeSel').addEventListener('change', e => { S.settings.theme = e.target.value; applyTheme(); save(0); });
+window.addEventListener('beforeunload', () => { if (saveTimer) { clearTimeout(saveTimer); persist(); } });
+
+applyTheme();
+render();
+setSaveState('저장됨 ' + fmtDT(S.meta.updated));
+setSyncState();
+</script>
+</body>
+</html>
