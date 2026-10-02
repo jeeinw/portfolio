@@ -873,7 +873,7 @@ function vApps() {
   const table = `<div class="card" style="overflow-x:auto"><table class="t"><thead><tr><th>회사</th><th>포지션</th><th>트랙</th><th>단계</th><th>마감</th><th>서브도메인</th><th>드래프트</th></tr></thead><tbody>
     ${S.apps.map(a => `<tr style="cursor:pointer" data-act="openApp" data-id="${a.id}"><td><b>${esc(a.company)}</b></td><td>${esc(a.role)}</td><td><span class="chip ${trackChip(a.track)}">${esc(a.track)}</span></td><td>${esc(a.stage)}</td><td class="mono">${esc(a.deadline)}</td><td class="hint">${esc(a.subdomain)}</td><td>${S.drafts.filter(d => d.appId === a.id).length}</td></tr>`).join('')}
   </tbody></table></div>`;
-  return head('지원 트래커', '카드를 끌어 단계를 옮기고, 카드를 열어 JD 매칭과 회사별 메모를 관리합니다.', `<div class="seg"><button class="${U.appView === 'board' ? 'on' : ''}" data-act="appView" data-v="board">보드</button><button class="${U.appView === 'table' ? 'on' : ''}" data-act="appView" data-v="table">표</button></div><button class="btn pri" data-act="newApp">+ 지원처</button>`) +
+  return head('지원 트래커', '카드를 끌어 단계를 옮기고, 카드를 열어 JD 매칭과 회사별 메모를 관리합니다.', `<div class="seg"><button class="${U.appView === 'board' ? 'on' : ''}" data-act="appView" data-v="board">보드</button><button class="${U.appView === 'table' ? 'on' : ''}" data-act="appView" data-v="table">표</button></div><button class="btn" data-act="openBulk">일괄 가져오기</button><button class="btn pri" data-act="newApp">+ 지원처</button>`) +
     (U.appView === 'table' ? table : `<div class="kanban">${cols}</div>`);
 }
 const trackChip = t => t === 'MBB/컨설팅' ? 'blue' : t === 'IB/PE/대체투자' ? 'red' : t === 'FP&A/재무' ? 'yellow' : '';
@@ -928,6 +928,125 @@ function openApp(id) {
     </div>
     <hr class="sep">
     <div class="row"><span class="grow"></span><button class="btn danger ghost" data-act="delApp" data-id="${a.id}">지원처 삭제</button><button class="btn pri" data-act="closeModal">닫기</button></div>`);
+}
+/* =========================================================
+   Bulk import (paste from other Claude projects / sheets)
+   ========================================================= */
+const BULK_PROMPT = `지금까지 이 프로젝트에서 이야기한 회사·공고 중에서 내가 "지원하기로 결정한 것"만 골라 아래 형식의 마크다운 표 하나로 정리해줘. 확인 안 된 칸은 비워 두고, 추측해서 채우지 마.
+
+| 회사 | 포지션 | 트랙 | 단계 | 마감 | 공고URL | 메모 |
+|---|---|---|---|---|---|---|
+
+- 트랙: MBB/컨설팅, IB/PE/대체투자, Corp Dev/전략, FP&A/재무 중 하나
+- 단계: 관심, 준비중, 지원완료, 서류합격, 면접, 최종합격, 종료 중 하나
+- 마감: YYYY-MM-DD
+- 메모: 핵심 요건, 나의 매칭, 갭·리스크, 문의한 내용, 헤드헌터, 다음 액션을 한 칸에 요약`;
+const BULK_COLS = {
+  company: ['회사', '기관', 'company', '회사명'],
+  role: ['포지션', '직무', 'role', 'position', '직책'],
+  track: ['트랙', '분야', 'track', '유형'],
+  stage: ['단계', '상태', 'stage', 'status', '현재상태', '현재 상태'],
+  deadline: ['마감', '기한', 'deadline', '마감일'],
+  url: ['공고url', 'url', '공고', '링크', 'link', '출처'],
+  notes: ['메모', 'notes', '비고', '전략', '문의', '지원전략', '다음액션', '갭·리스크', '핵심요건']
+};
+function splitCSV(line, sep) {
+  if (sep === '\t') return line.split('\t');
+  const out = []; let cur = '', q = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (c === '"') { if (q && line[i + 1] === '"') { cur += '"'; i++; } else q = !q; }
+    else if (c === sep && !q) { out.push(cur); cur = ''; }
+    else cur += c;
+  }
+  out.push(cur); return out;
+}
+function bulkParse(text) {
+  text = (text || '').trim(); if (!text) return [];
+  let rows = [];
+  if (/^[\[{]/.test(text)) {
+    try { const j = JSON.parse(text); rows = (Array.isArray(j) ? j : j.apps || [j]).map(o => ({ cells: o, obj: true })); } catch (e) { return []; }
+  } else {
+    let lines = text.split(/\r?\n/).filter(l => l.trim());
+    const md = lines.filter(l => l.trim().startsWith('|'));
+    let table;
+    if (md.length >= 2) table = md.filter(l => !/^[\s|:\-]+$/.test(l)).map(l => l.trim().replace(/^\||\|$/g, '').split('|').map(c => c.trim()));
+    else { const sep = lines[0].includes('\t') ? '\t' : ','; table = lines.map(l => splitCSV(l, sep).map(c => c.trim())); }
+    const header = table[0].map(h => h.toLowerCase().replace(/\s|\*/g, ''));
+    rows = table.slice(1).map(r => { const o = {}; header.forEach((h, i) => { o[h] = r[i] || ''; }); return { cells: o }; });
+  }
+  const pick = (o, keys) => {
+    const found = [];
+    for (const [k, v] of Object.entries(o)) { const nk = String(k).toLowerCase().replace(/\s|\*/g, ''); if (keys.some(x => nk === x.toLowerCase().replace(/\s/g, ''))) found.push(String(v || '').trim()); }
+    return found.filter(Boolean).join(' / ');
+  };
+  return rows.map(({ cells }) => {
+    const r = {}; for (const f in BULK_COLS) r[f] = pick(cells, BULK_COLS[f]);
+    r.track = normTrack(r.track + ' ' + r.role); r.stage = normStage(r.stage); r.deadline = normDate(r.deadline);
+    r.url = (r.url.match(/https?:\/\/\S+/) || [''])[0];
+    return r;
+  }).filter(r => r.company);
+}
+function normTrack(s) {
+  if (/mbb|컨설/i.test(s)) return 'MBB/컨설팅';
+  if (/fp&a|재무기획|finance manager/i.test(s)) return 'FP&A/재무';
+  if (/ib|pe\b|대체|심사|운용|투자평가|vc|인프라/i.test(s)) return 'IB/PE/대체투자';
+  return 'Corp Dev/전략';
+}
+function normStage(s) {
+  if (!s) return '준비중';
+  if (STAGES.includes(s)) return s;
+  if (/불합|탈락|보류|종료|드랍|포기/.test(s)) return '종료';
+  if (/최종|합격(?!.*서류)/.test(s) && !/서류/.test(s)) return /면접/.test(s) ? '면접' : '최종합격';
+  if (/면접/.test(s)) return '면접';
+  if (/서류.*합격|서류통과/.test(s)) return '서류합격';
+  if (/지원|제출|접수/.test(s) && !/미지원|예정/.test(s)) return '지원완료';
+  if (/관심|검토|미검토/.test(s)) return '관심';
+  return '준비중';
+}
+function normDate(s) {
+  const m = (s || '').match(/(\d{4})[.\-/년\s]*(\d{1,2})[.\-/월\s]*(\d{1,2})/);
+  if (m) return `${m[1]}-${m[2].padStart(2, '0')}-${m[3].padStart(2, '0')}`;
+  const n = (s || '').match(/(\d{1,2})[./](\d{1,2})/);
+  return n ? `${new Date().getFullYear()}-${n[1].padStart(2, '0')}-${n[2].padStart(2, '0')}` : '';
+}
+const normCo = s => (s || '').toLowerCase().replace(/\s|\(.*?\)|주식회사|㈜/g, '');
+function bulkMatch(r) { return S.apps.find(a => normCo(a.company) === normCo(r.company) && (!r.role || !a.role || normCo(a.role).includes(normCo(r.role).slice(0, 6)) || normCo(r.role).includes(normCo(a.role).slice(0, 6)))); }
+function bulkPreview() {
+  const rows = bulkParse(($('#bulkText') || {}).value);
+  const box = $('#bulkPreview'); if (!box) return;
+  if (!rows.length) { box.innerHTML = '<div class="hint">표·CSV·탭 구분·JSON을 붙여넣으면 미리보기가 나옵니다. 첫 줄은 열 이름(회사, 포지션, 트랙, 단계, 마감, 공고URL, 메모)이어야 합니다.</div>'; return; }
+  box.innerHTML = `<table class="t"><thead><tr><th></th><th>회사</th><th>포지션</th><th>트랙</th><th>단계</th><th>마감</th><th>메모</th></tr></thead><tbody>${rows.map(r => { const m = bulkMatch(r); return `<tr><td><span class="chip ${m ? 'yellow' : 'green'}">${m ? '업데이트' : '신규'}</span></td><td><b>${esc(r.company)}</b></td><td>${esc(r.role)}</td><td>${esc(r.track)}</td><td>${esc(r.stage)}</td><td class="mono">${esc(r.deadline)}</td><td class="hint">${esc(r.notes.slice(0, 80))}${r.notes.length > 80 ? '…' : ''}</td></tr>`; }).join('')}</tbody></table>
+  <div class="row" style="margin-top:12px"><span class="hint">신규 ${rows.filter(r => !bulkMatch(r)).length}건 · 업데이트 ${rows.filter(r => bulkMatch(r)).length}건. 업데이트는 빈 칸을 채우고 메모를 덧붙이며, 단계는 붙여넣은 값으로 바꿉니다.</span><span class="grow"></span><button class="btn pri" data-act="bulkApply">트래커에 반영</button></div>`;
+}
+function openBulk() {
+  openModal('지원처 일괄 가져오기', `
+    <ol style="padding-left:18px;font-size:13px;line-height:1.8;margin-bottom:10px">
+      <li>아래 요청문을 복사해 claude.ai의 다른 프로젝트(예: Capital Market Career) 대화에 붙여넣기</li>
+      <li>Claude가 만든 표를 그대로 복사해 아래 칸에 붙여넣기 (구글시트에서 복사한 표, CSV, JSON도 됨)</li>
+      <li>미리보기를 확인하고 "트래커에 반영"</li>
+    </ol>
+    <div class="row" style="margin-bottom:10px"><button class="btn" data-act="copyBulkPrompt">요청문 복사</button><span class="hint">회사 이름이 같으면 기존 카드를 업데이트합니다.</span></div>
+    <textarea id="bulkText" rows="9" placeholder="| 회사 | 포지션 | 트랙 | 단계 | 마감 | 공고URL | 메모 |"></textarea>
+    <div id="bulkPreview" style="margin-top:12px;overflow-x:auto"></div>`);
+  $('#bulkText').addEventListener('input', bulkPreview); bulkPreview();
+}
+function bulkApply() {
+  const rows = bulkParse($('#bulkText').value); if (!rows.length) return;
+  const t = now(); let add = 0, upd = 0;
+  rows.forEach(r => {
+    const m = bulkMatch(r);
+    if (m) {
+      ['role', 'url', 'deadline'].forEach(f => { if (r[f] && !m[f]) m[f] = r[f]; });
+      if (r.deadline) m.deadline = r.deadline;
+      if (r.notes && !(m.notes || '').includes(r.notes)) m.notes = ((m.notes ? m.notes + '\n' : '') + '[' + today() + ' 가져옴] ' + r.notes);
+      if (r.stage && r.stage !== m.stage) { m.timeline.push({ ts: t, text: `${m.stage} → ${r.stage} (일괄 가져오기)` }); m.stage = r.stage; }
+      m.updated = t; upd++;
+    } else {
+      S.apps.push({ id: uid(), company: r.company, role: r.role, track: r.track, stage: r.stage, deadline: r.deadline, url: r.url, subdomain: '', branch: '', jd: '', notes: r.notes, timeline: [{ ts: t, text: '일괄 가져오기로 추가' }], created: t, updated: t }); add++;
+    }
+  });
+  touch(); save(0); closeModal(); toast(`신규 ${add}건, 업데이트 ${upd}건 반영했습니다`);
 }
 function jdBox(a) {
   if (!a.jd || a.jd.trim().length < 10) return '<div class="hint">JD를 붙여넣으면 분석합니다.</div>';
@@ -1543,6 +1662,9 @@ const ACT = {
 
   // apps
   appView: el => { U.appView = el.dataset.v; saveUI(); render(); },
+  openBulk: () => openBulk(),
+  bulkApply: () => bulkApply(),
+  copyBulkPrompt: () => copy(BULK_PROMPT),
   newApp: () => { const a = { id: uid(), company: '새 지원처', role: '', track: 'Corp Dev/전략', stage: '관심', deadline: '', url: '', subdomain: '', branch: '', jd: '', notes: '', timeline: [{ ts: now(), text: '추가됨' }], created: now(), updated: now() }; S.apps.push(a); touch(); save(0); render(); openApp(a.id); },
   addTL: el => { const a = byId(S.apps, el.dataset.id); const t = $('#tlText').value.trim(); if (!t) return; a.timeline.push({ ts: now(), text: t }); touch(); save(0); openApp(a.id); },
   delApp: el => { if (!confirm('이 지원처를 삭제할까요? 연결된 드래프트는 남습니다.')) return; S.apps = S.apps.filter(x => x.id !== el.dataset.id); S.drafts.forEach(d => { if (d.appId === el.dataset.id) d.appId = ''; }); save(0); closeModal(); },
