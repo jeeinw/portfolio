@@ -802,7 +802,7 @@ const T = {
     'nav.fit':'JD Fit','nav.work':'Selected Work','nav.think':'How I Think','nav.career':'Career','nav.skills':'Skills',
     'hero.eye':'Business Strategy × Investment Analysis × Financial Modeling','hero.name':'Jeein Wang',
     'hero.sub':'6Y+ · NHN Strategic Planning → AIA Life Tech Planning · CFA L3',
-    'hero.stmt':'Six years at the intersection of strategy and financial analysis — across payments, PG, SaaS, insurance, and securities. At NHN, screened M&A targets across 10+ industries from market sizing through valuation to Go/No-Go, and took consolidated P&L across five subsidiaries down to what actually moved the numbers. At AIA, ran the PMO for a subsidiary-incorporation feasibility study, interpreting the external advisor's NOI/IRR scenarios for the board, and now own the reporting line to the CTO and Hong Kong HQ — translating complex financials into a narrative that senior, often non-Korean, stakeholders can act on. The throughline: explain why the numbers moved, then frame the next set of choices as scenarios.',
+    'hero.stmt':'Six years at the intersection of strategy and financial analysis — across payments, PG, SaaS, insurance, and securities. At NHN, screened M&A targets across 10+ industries from market sizing through valuation to Go/No-Go, and took consolidated P&L across five subsidiaries down to what actually moved the numbers. At AIA, ran the PMO for a subsidiary-incorporation feasibility study, interpreting the external advisor\'s NOI/IRR scenarios for the board, and now own the reporting line to the CTO and Hong Kong HQ — translating complex financials into a narrative that senior, often non-Korean, stakeholders can act on. The throughline: explain why the numbers moved, then frame the next set of choices as scenarios.',
     'cs.aia':'AIA Life','cs.aia.r':'Tech Planning · Subsidiary Setup · IT LRP',
     'cs.nhn.r':'Strategic Planning · Consol P&L · M&A',
     'cs.lotte':'Lotte Innovate','cs.lotte.r':'PI Consulting',
@@ -824,7 +824,7 @@ const T = {
     'p2.r':'Covered Payco & Dooray LRP, ApartmentERP JV feasibility, and 10+ industry M&A screenings with the same framework. Built a structure enabling immediate executive response regardless of industry.',
     'p3.t':'Subsidiary Incorporation Feasibility · PMO & Scenario Analysis',
     'p3.s':'New group subsidiary incorporation project. Multidisciplinary organizations — Finance, Legal, Tax, Tech, Compliance, and external advisors — each brought conflicting assumptions with no single evaluation standard.',
-    'p3.a':'Applied and interpreted long-range P&L, cash flow, after-tax NOI, and IRR scenarios on the external advisor's financial model. Used "group capital efficiency" as the common metric to align diverging stakeholder views. Consolidated local tax risk, dividend structure issues, and governance design (board composition, KPIs, budget reporting) into a single financial framework.',
+    'p3.a':'Applied and interpreted long-range P&L, cash flow, after-tax NOI, and IRR scenarios on the external advisor\'s financial model. Used "group capital efficiency" as the common metric to align diverging stakeholder views. Consolidated local tax risk, dividend structure issues, and governance design (board composition, KPIs, budget reporting) into a single financial framework.',
     'p3.r':'As PMO, translated scenario outputs into decision logic and supported preparation of the board report. Payback period, IRR, and capital requirement analysis were included in the report.',
     'p4.t':'Payment Market Financial Data Pipeline',
     'p4.s':'Analyzing the payment market required 10 years of financial data from 8 VAN/PG companies. Data had to be collected manually from DART each time.',
@@ -857,8 +857,18 @@ function applyLang(l) {
   document.querySelectorAll('.lang-btn').forEach(b =>
     b.classList.toggle('active', b.textContent.trim().toLowerCase() === l)
   );
+  document.documentElement.lang = l;
+  document.title = l === 'en' ? 'Jeein Wang | Strategic Finance & Analysis' : '왕지인 | Strategic Finance & Analysis';
 }
-function setLang(l) { applyLang(l); }
+function setLang(l) {
+  applyLang(l);
+  /* keep the URL shareable: /en for English, / for Korean */
+  if (/^https?:$/.test(location.protocol)) {
+    const path = l === 'en' ? '/en' : '/';
+    if (location.pathname !== path) history.replaceState(null, '', path + location.search + location.hash);
+  }
+}
+if (/^\/en\/?$/.test(location.pathname) || new URLSearchParams(location.search).get('lang') === 'en') applyLang('en');
 
 /* lightbox */
 function openLb(src) {
