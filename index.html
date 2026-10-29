@@ -251,6 +251,9 @@ section:last-child { border-bottom: none; }
   transition: transform 0.18s, box-shadow 0.18s;
 }
 .proj-gallery img:hover { transform: scale(1.02); box-shadow: var(--sd-mid); }
+.proj-gallery figure { margin: 0; min-width: 0; }
+.proj-gallery figcaption { font-size: 11px; color: var(--gray-400); margin-top: 6px; line-height: 1.45; }
+.proj-gallery img.blur, .lb img.blur { filter: blur(2.5px); }
 
 /* lightbox */
 .lb { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.82); z-index:999; align-items:center; justify-content:center; }
@@ -361,9 +364,9 @@ section:last-child { border-bottom: none; }
 <aside class="sidebar">
   <div class="sidebar-tag">Strategy · Investment</div>
   <div class="avatar-wrap">
-    <img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/profile.jpg" alt="왕지인">
+    <img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/profile.jpg" alt="왕지인" data-en-alt="Jeein Wang">
   </div>
-  <div class="sb-name">왕지인</div>
+  <div class="sb-name" data-en="Jeein Wang">왕지인</div>
   <div class="sb-role">Strategic Finance &amp; Analysis<br>Business Strategy · Investment Screening</div>
   <div class="sb-div"></div>
   <div class="sb-label">Navigation</div>
@@ -479,21 +482,63 @@ section:last-child { border-bottom: none; }
         <div class="proj-title" data-i18n="p1.t">계열사 연결 P&L 관리 · Business Driver 분석</div>
         <span class="proj-period">2021 – 2025 · NHN</span>
       </div>
-      <div class="proj-org">NHN 전략기획팀</div>
+      <div class="proj-org" data-en="NHN · Corporate Strategy Team">NHN 전략기획팀</div>
       <table class="wri">
         <tr>
-          <td class="wri-l">상황</td>
+          <td class="wri-l" data-en="Situation">상황</td>
           <td class="wri-r" data-i18n="p1.s">두레이·코미코·여행박사·에듀 5개 계열사 월별 P&L을 그냥 합산하는 게 전부였습니다. 숫자가 왜 나빠지는지 설명하지 못했고, 경영진 보고도 결과만 나열하는 수준이었습니다.</td>
         </tr>
         <tr>
-          <td class="wri-l">접근</td>
+          <td class="wri-l" data-en="Approach">접근</td>
           <td class="wri-r" data-i18n="p1.a">계정·원장 단위까지 내려가 고정비·변동비를 다시 분류했습니다. 두레이는 인프라비 항목을 다시 잡아 비용률을 30%p 낮췄고, 코미코 일본 법인은 원가 구조를 다시 짜서 YoY 적자폭을 절반 넘게 줄였습니다. 여행박사는 광고 ROI 추적 체계를 새로 만들어 -50%에서 +10%대로 끌어올렸습니다.</td>
         </tr>
         <tr>
-          <td class="wri-l">결과</td>
+          <td class="wri-l" data-en="Result">결과</td>
           <td class="wri-r" data-i18n="p1.r">이 드라이버 기반 보고가 팀 표준이 됐습니다. 내부거래 제거와 외화환산에 더해, 외부 FI 투자자의 Put Option(수익률 보장 조건부 Buyback)이 만기에 걸릴 때 계열사별 자본 부담과 연결 현금흐름을 직접 시나리오로 돌려 경영진에 보고했습니다.</td>
         </tr>
       </table>
+      <div class="proj-gallery">
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/pl-01-travel-1.png" alt="여행박사 월간 실적 보고" data-en-alt="Tourbaksa: monthly performance report" loading="lazy" onclick="openLb(this)"><figcaption data-en="Tourbaksa: monthly performance report">여행박사 월간 실적 보고</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/pl-01-travel-2.png" alt="여행박사 실적 비교 분석" data-en-alt="Tourbaksa: performance comparison" loading="lazy" onclick="openLb(this)"><figcaption data-en="Tourbaksa: performance comparison">여행박사 실적 비교 분석</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/pl-01-travel-3.png" alt="여행박사 유통정책 분석" data-en-alt="Tourbaksa: distribution policy analysis" loading="lazy" onclick="openLb(this)"><figcaption data-en="Tourbaksa: distribution policy analysis">여행박사 유통정책 분석</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/pl-01-travel-4.png" alt="여행박사 운영사업 수입 구조" data-en-alt="Tourbaksa: operating revenue structure" loading="lazy" onclick="openLb(this)"><figcaption data-en="Tourbaksa: operating revenue structure">여행박사 운영사업 수입 구조</figcaption></figure>
+      </div>
+    </div>
+
+    <!-- P6: M&A Screening -->
+    <div class="project">
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p6.t">M&A·신사업 투자 스크리닝 · 시너지 검토</div>
+        <span class="proj-period" data-en="2021 – 2025 · NHN">2021 – 2025 · NHN</span>
+      </div>
+      <div class="proj-org" data-en="NHN · Corporate Strategy Team">NHN 전략기획팀</div>
+      <table class="wri">
+        <tr>
+          <td class="wri-l" data-en="Situation">상황</td>
+          <td class="wri-r" data-i18n="p6.s">경영진이 신사업·인수 후보를 수시로 검토하라고 요청했습니다. B2B SaaS(채널코퍼레이션), 주류 유통 ERP(보나캠프), 엔터프라이즈 AI(올거나이즈), 그룹웨어(핸디소프트)처럼 산업이 매번 달랐고, 짧은 시간 안에 볼 가치가 있는지부터 판단해야 했습니다.</td>
+        </tr>
+        <tr>
+          <td class="wri-l" data-en="Approach">접근</td>
+          <td class="wri-r" data-i18n="p6.a">기업 개요·연혁·주주 구성에서 시작해 BM과 매출 드라이버, SWOT을 정리했습니다. NHN 사업(PAYCO·두레이)과 붙였을 때의 시너지를 시나리오로 그렸고, 상장 비교기업의 EV/Sales·EV/EBITDA 멀티플로 가치 범위를 잡았습니다.</td>
+        </tr>
+        <tr>
+          <td class="wri-l" data-en="Result">결과</td>
+          <td class="wri-r" data-i18n="p6.r">대상별로 Go/No-Go 권고를 정리해 경영진에 보고했습니다. 보나캠프는 PAYCO B2B 대출 연계 구조를 직접 대출과 금융사 중개 두 시나리오로 비교해, 사업 수요 검토가 먼저 필요하다는 의견을 냈습니다. 검토 범위는 스크리닝과 권고까지였습니다.</td>
+        </tr>
+      </table>
+      <div class="proj-gallery">
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-02-channel-corp-1.png" alt="채널코퍼레이션 연혁 분석" data-en-alt="Channel Corp: company history" loading="lazy" onclick="openLb(this)"><figcaption data-en="Channel Corp: company history">채널코퍼레이션 연혁 분석</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-02-channel-corp-2.png" alt="채널코퍼레이션 주주 구성" data-en-alt="Channel Corp: shareholder structure" loading="lazy" onclick="openLb(this)"><figcaption data-en="Channel Corp: shareholder structure">채널코퍼레이션 주주 구성</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-02-channel-corp-3.png" alt="채널코퍼레이션 기업 개요·매출 추이" data-en-alt="Channel Corp: overview &amp; revenue trend" loading="lazy" onclick="openLb(this)"><figcaption data-en="Channel Corp: overview &amp; revenue trend">채널코퍼레이션 기업 개요·매출 추이</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-03-bona-camp-1.png" alt="보나캠프 개요·실적" data-en-alt="BonaCamp: overview &amp; financials" loading="lazy" onclick="openLb(this)"><figcaption data-en="BonaCamp: overview &amp; financials">보나캠프 개요·실적</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-03-bona-camp-2.png" alt="보나캠프 SWOT" data-en-alt="BonaCamp: SWOT" loading="lazy" onclick="openLb(this)"><figcaption data-en="BonaCamp: SWOT">보나캠프 SWOT</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-03-bona-camp-3.png" alt="보나캠프 결제 솔루션 시너지 검토" data-en-alt="BonaCamp: payment solution synergy review" loading="lazy" onclick="openLb(this)"><figcaption data-en="BonaCamp: payment solution synergy review">보나캠프 결제 솔루션 시너지 검토</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-04-bona-synergy.png" alt="PAYCO B2B 대출 연계 시나리오" data-en-alt="PAYCO B2B lending linkage scenarios" loading="lazy" onclick="openLb(this)"><figcaption data-en="PAYCO B2B lending linkage scenarios">PAYCO B2B 대출 연계 시나리오</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-05-alianize-profile.png" alt="올거나이즈 기업 개요" data-en-alt="Allganize: company profile" loading="lazy" class="blur" onclick="openLb(this)"><figcaption data-en="Allganize: company profile">올거나이즈 기업 개요</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-06-comps-1_blurred.png" alt="핸디소프트 밸류에이션 Comps 1" data-en-alt="HandySoft valuation comps 1" loading="lazy" onclick="openLb(this)"><figcaption data-en="HandySoft valuation comps 1">핸디소프트 밸류에이션 Comps 1</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-06-comps-2_blurred.png" alt="핸디소프트 밸류에이션 Comps 2" data-en-alt="HandySoft valuation comps 2" loading="lazy" onclick="openLb(this)"><figcaption data-en="HandySoft valuation comps 2">핸디소프트 밸류에이션 Comps 2</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-06-comps-3_blurred.png" alt="두레이 시너지 Comps 밸류에이션" data-en-alt="Dooray synergy comps valuation" loading="lazy" onclick="openLb(this)"><figcaption data-en="Dooray synergy comps valuation">두레이 시너지 Comps 밸류에이션</figcaption></figure>
+      </div>
     </div>
 
     <!-- P2: Scenario Modeling -->
@@ -502,25 +547,26 @@ section:last-child { border-bottom: none; }
         <div class="proj-title" data-i18n="p2.t">중장기 사업계획 수립 · 재무 모델링</div>
         <span class="proj-period">2022 – 2025 · NHN</span>
       </div>
-      <div class="proj-org">NHN 전략기획팀</div>
+      <div class="proj-org" data-en="NHN · Corporate Strategy Team">NHN 전략기획팀</div>
       <table class="wri">
         <tr>
-          <td class="wri-l">상황</td>
+          <td class="wri-l" data-en="Situation">상황</td>
           <td class="wri-r" data-i18n="p2.s">페이코 3개년·두레이 5개년 경영계획을 매년 다시 만들어야 했습니다. 사업마다 매출 구조와 비용 드라이버가 달랐고, 경영진은 "시나리오별로 어디까지 버티냐"를 물었습니다.</td>
         </tr>
         <tr>
-          <td class="wri-l">접근</td>
+          <td class="wri-l" data-en="Approach">접근</td>
           <td class="wri-r" data-i18n="p2.a">손익·재무상태표·현금흐름을 한 모델에서 자동으로 엮고, 사업 레버별 민감도 분석을 기본으로 넣었습니다. M&A 스크리닝에도 같은 틀을 그대로 썼습니다. 솔트룩스·NHN다이퀘스트 매각 지원에서는 플랫폼 관점의 시너지 가치를 숫자로 뽑았고, 페이히어(POS) 투자 검토에서는 VAN 수수료와 무료 모델의 수익·비용을 항목별로 뜯어 공헌이익 기반 BEP를 계산했습니다. 여기서 고평가 리스크를 미리 짚어 No-Go 판단을 뒷받침했습니다.</td>
         </tr>
         <tr>
-          <td class="wri-l">결과</td>
+          <td class="wri-l" data-en="Result">결과</td>
           <td class="wri-r" data-i18n="p2.r">페이코·두레이 경영계획, 아파트ERP JV 수익성 분석, 10개+ 산업 M&A 스크리닝을 같은 틀로 다뤘습니다. 덕분에 경영진 Pre-review에서 산업이 바뀌어도 바로 답할 수 있었습니다.</td>
         </tr>
       </table>
       <div class="proj-gallery">
-        <img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/pl-02-payco-1.png" alt="경영계획 모델 예시" onclick="openLb(this.src)">
-        <img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/pl-02-payco-2.png" alt="경영계획 모델 예시" onclick="openLb(this.src)">
-        <img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/pl-02-payco-3.png" alt="경영계획 모델 예시" onclick="openLb(this.src)">
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/pl-02-payco-1.png" alt="페이코 결제액과 경기 지표 분석" data-en-alt="PAYCO payment volume vs. macro indicators" loading="lazy" onclick="openLb(this)"><figcaption data-en="PAYCO payment volume vs. macro indicators">페이코 결제액과 경기 지표 분석</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/pl-02-payco-3.png" alt="페이코 주요 결제처 거래 구조" data-en-alt="PAYCO key merchant transaction structure" loading="lazy" onclick="openLb(this)"><figcaption data-en="PAYCO key merchant transaction structure">페이코 주요 결제처 거래 구조</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/pl-02-payco-4.png" alt="페이코 주요 결제처·가맹점 전략" data-en-alt="PAYCO key merchant strategy" loading="lazy" onclick="openLb(this)"><figcaption data-en="PAYCO key merchant strategy">페이코 주요 결제처·가맹점 전략</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-01-enmaster-jv.png" alt="아파트ERP JV(엔마스터) 매출 구조 수립" data-en-alt="Apartment ERP JV (EnMaster) revenue structure" loading="lazy" onclick="openLb(this)"><figcaption data-en="Apartment ERP JV (EnMaster) revenue structure">아파트ERP JV(엔마스터) 매출 구조 수립</figcaption></figure>
       </div>
     </div>
 
@@ -528,20 +574,20 @@ section:last-child { border-bottom: none; }
     <div class="project">
       <div class="proj-header">
         <div class="proj-title" data-i18n="p3.t">자회사 설립 타당성 검토 · PMO & 시나리오 분석</div>
-        <span class="proj-period">2025 – 현재 · AIA생명</span>
+        <span class="proj-period" data-en="2025 – Present · AIA Korea">2025 – 현재 · AIA생명</span>
       </div>
-      <div class="proj-org">AIA생명 테크기획팀</div>
+      <div class="proj-org" data-en="AIA Korea · Tech Planning Team">AIA생명 테크기획팀</div>
       <table class="wri">
         <tr>
-          <td class="wri-l">상황</td>
+          <td class="wri-l" data-en="Situation">상황</td>
           <td class="wri-r" data-i18n="p3.s">그룹 자회사 신규 설립 프로젝트였습니다. 재무·법무·세무·테크·준법·외부 자문사가 각자 기준으로 다른 의견을 냈고, 하나로 판단할 기준이 없었습니다.</td>
         </tr>
         <tr>
-          <td class="wri-l">접근</td>
+          <td class="wri-l" data-en="Approach">접근</td>
           <td class="wri-r" data-i18n="p3.a">외부 자문사가 구축한 재무모델을 기반으로 중장기 추정 손익, 자금 흐름, 세후 NOI·IRR 시나리오를 적용하고 해석했습니다. 조직 간 이견은 '그룹 자본 효율성'을 공통 기준으로 놓고 좁혔고, 현지 세무 리스크와 배당 구조, 거버넌스 설계(이사회 구성·KPI·예산 보고체계)까지 재무 관점에서 한데 정리했습니다.</td>
         </tr>
         <tr>
-          <td class="wri-l">결과</td>
+          <td class="wri-l" data-en="Result">결과</td>
           <td class="wri-r" data-i18n="p3.r">PMO로서 시나리오 결과를 판단 논리로 정리해 이사회 보고자료 작성을 지원했습니다. 투자 회수기간·IRR·자본 소요 분석을 보고자료에 담았습니다.</td>
         </tr>
       </table>
@@ -553,25 +599,26 @@ section:last-child { border-bottom: none; }
         <div class="proj-title" data-i18n="p4.t">결제 시장 재무 데이터 파이프라인 구축</div>
         <span class="proj-period">2022 – 2025 · NHN</span>
       </div>
-      <div class="proj-org">NHN 전략기획팀</div>
+      <div class="proj-org" data-en="NHN · Corporate Strategy Team">NHN 전략기획팀</div>
       <table class="wri">
         <tr>
-          <td class="wri-l">상황</td>
+          <td class="wri-l" data-en="Situation">상황</td>
           <td class="wri-r" data-i18n="p4.s">VAN·PG사 결제 시장을 분석하려면 8개 기업의 10년치 공시 재무 데이터가 필요했습니다. DART에서 매번 손으로 모아야 했습니다.</td>
         </tr>
         <tr>
-          <td class="wri-l">접근</td>
+          <td class="wri-l" data-en="Approach">접근</td>
           <td class="wri-r" data-i18n="p4.a">Python으로 DART Open API 크롤러를 만들었습니다. 기업·기간·계정을 파라미터로 넣으면 재무제표를 자동으로 모으고 정리해 쌓는 파이프라인입니다. AIA에서는 Azure 청구서 기반 VM별 비용 분류 스크립트와 PPT 자동 변환으로 이어졌습니다.</td>
         </tr>
         <tr>
-          <td class="wri-l">결과</td>
+          <td class="wri-l" data-en="Result">결과</td>
           <td class="wri-r" data-i18n="p4.r">처리 시간을 1/10로 줄였고 보고 공수를 70% 줄였습니다. 결제 시장 월별 모니터링의 기반이 됐고, M&A 스크리닝 속도도 같이 빨라졌습니다.</td>
         </tr>
       </table>
       <div class="proj-gallery">
-        <img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-06-comps-1_blurred.png" alt="경쟁사 재무 분석 예시" onclick="openLb(this.src)">
-        <img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-06-comps-2_blurred.png" alt="경쟁사 재무 분석 예시" onclick="openLb(this.src)">
-        <img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/ma-06-comps-3_blurred.png" alt="경쟁사 재무 분석 예시" onclick="openLb(this.src)">
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/mr-04-mobile-pg-perf.jpg" alt="휴대폰 결제 PG사 실적 추이 (DART)" data-en-alt="Mobile payment PG financials trend (DART)" loading="lazy" onclick="openLb(this)"><figcaption data-en="Mobile payment PG financials trend (DART)">휴대폰 결제 PG사 실적 추이 (DART)</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/mr-02-mobile-pg-1.png" alt="휴대폰 소액결제 서비스 구조 1" data-en-alt="Mobile micropayment service structure 1" loading="lazy" onclick="openLb(this)"><figcaption data-en="Mobile micropayment service structure 1">휴대폰 소액결제 서비스 구조 1</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/mr-02-mobile-pg-2.png" alt="휴대폰 소액결제 서비스 구조 2" data-en-alt="Mobile micropayment service structure 2" loading="lazy" onclick="openLb(this)"><figcaption data-en="Mobile micropayment service structure 2">휴대폰 소액결제 서비스 구조 2</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/mr-03-amex-offers.png" alt="AMEX 카드 혜택 구조 벤치마킹" data-en-alt="AMEX card benefit structure benchmark" loading="lazy" onclick="openLb(this)"><figcaption data-en="AMEX card benefit structure benchmark">AMEX 카드 혜택 구조 벤치마킹</figcaption></figure>
       </div>
     </div>
 
@@ -579,23 +626,61 @@ section:last-child { border-bottom: none; }
     <div class="project">
       <div class="proj-header">
         <div class="proj-title" data-i18n="p5.t">IT 중장기 전략 수립 · 재무계획 연계</div>
-        <span class="proj-period">2025 · AIA생명</span>
+        <span class="proj-period" data-en="2025 · AIA Korea">2025 · AIA생명</span>
       </div>
-      <div class="proj-org">AIA생명 테크기획팀</div>
+      <div class="proj-org" data-en="AIA Korea · Tech Planning Team">AIA생명 테크기획팀</div>
       <table class="wri">
         <tr>
-          <td class="wri-l">상황</td>
+          <td class="wri-l" data-en="Situation">상황</td>
           <td class="wri-r" data-i18n="p5.s">3~5개년 IT 중장기 전략이 필요했는데, 기존 문서는 방향만 나열하는 데 그쳤습니다. 재무계획과 연결이 안 돼 예산 배분 근거가 약했습니다.</td>
         </tr>
         <tr>
-          <td class="wri-l">접근</td>
+          <td class="wri-l" data-en="Approach">접근</td>
           <td class="wri-r" data-i18n="p5.a">시스템·조직·운영효율·예산 네 축으로 다시 짜고 핵심과제를 뽑았습니다. 과제별 현황과 이행방안을 정리했고, 경쟁사 IT 예산·인력을 벤치마킹해 투자 효율성 논리를 붙였습니다. 월별 Budget vs. Actual 분산 분석도 계획 단계부터 넣었습니다.</td>
         </tr>
         <tr>
-          <td class="wri-l">결과</td>
+          <td class="wri-l" data-en="Result">결과</td>
           <td class="wri-r" data-i18n="p5.r">CTO·개발부문장 보고까지 마쳤습니다. CapEx/OpEx 배분 개선안이 실제 예산 운영에 반영됐습니다.</td>
         </tr>
       </table>
+      <div class="proj-gallery">
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/it-01-strategy-1.png" alt="IT 중장기 계획 전체 구성 1" data-en-alt="IT long-range plan deck overview 1" loading="lazy" onclick="openLb(this)"><figcaption data-en="IT long-range plan deck overview 1">IT 중장기 계획 전체 구성 1</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/it-01-strategy-2.png" alt="IT 중장기 계획 전체 구성 2" data-en-alt="IT long-range plan deck overview 2" loading="lazy" onclick="openLb(this)"><figcaption data-en="IT long-range plan deck overview 2">IT 중장기 계획 전체 구성 2</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/it-01-strategy-3.png" alt="IT 중장기 계획 전체 구성 3" data-en-alt="IT long-range plan deck overview 3" loading="lazy" onclick="openLb(this)"><figcaption data-en="IT long-range plan deck overview 3">IT 중장기 계획 전체 구성 3</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/it-03-benchmark.png" alt="생보사 IT 예산 피어 벤치마크" data-en-alt="Peer benchmark: life insurers’ IT budgets" loading="lazy" onclick="openLb(this)"><figcaption data-en="Peer benchmark: life insurers’ IT budgets">생보사 IT 예산 피어 벤치마크</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/it-02-group-report.png" alt="IT 비용 구조·OPEX 최적화 (그룹 보고)" data-en-alt="IT cost structure &amp; OPEX optimization (group report)" loading="lazy" onclick="openLb(this)"><figcaption data-en="IT cost structure &amp; OPEX optimization (group report)">IT 비용 구조·OPEX 최적화 (그룹 보고)</figcaption></figure>
+      </div>
+    </div>
+
+    <!-- P7: Industry Research -->
+    <div class="project">
+      <div class="proj-header">
+        <div class="proj-title" data-i18n="p7.t">산업 리서치 · 경쟁사 벤치마킹</div>
+        <span class="proj-period" data-en="2022 – Present · NHN · AIA Korea">2022 – 현재 · NHN · AIA생명</span>
+      </div>
+      <div class="proj-org" data-en="NHN Corporate Strategy · AIA Korea Tech Planning">NHN 전략기획팀 · AIA생명 테크기획팀</div>
+      <table class="wri">
+        <tr>
+          <td class="wri-l" data-en="Situation">상황</td>
+          <td class="wri-r" data-i18n="p7.s">새 시장에 들어갈지, 새 기술을 도입할지 판단하려면 산업 구조와 경쟁 구도를 먼저 알아야 했습니다. 신규 금융업(온투업·조각투자)의 구조·규제·시장, 생명보험업계의 생성형 AI 도입 수준, AI 세일즈 트레이닝 솔루션 PoC 후보를 검토했습니다.</td>
+        </tr>
+        <tr>
+          <td class="wri-l" data-en="Approach">접근</td>
+          <td class="wri-r" data-i18n="p7.a">산업은 기관 구조·규제·시장 규모 세 축으로 나눠 정리했습니다. 생보 11개사의 Gen AI 적용 수준은 영역별 매트릭스로 비교했고, PoC 후보 솔루션은 구축 방식·기능·비용 기준표에 나란히 놓고 비교했습니다.</td>
+        </tr>
+        <tr>
+          <td class="wri-l" data-en="Result">결과</td>
+          <td class="wri-r" data-i18n="p7.r">각 리서치를 한 장의 판단 자료로 정리해 보고했습니다. AIA에서는 이 작업을 CTO·개발부문장 대상 주간 Market Intelligence 보고로 이어 가고 있습니다.</td>
+        </tr>
+      </table>
+      <div class="proj-gallery">
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/mi-01-ai-maturity.png" alt="생보 11개사 Gen AI 적용 수준 비교" data-en-alt="Gen AI adoption across 11 life insurers" loading="lazy" onclick="openLb(this)"><figcaption data-en="Gen AI adoption across 11 life insurers">생보 11개사 Gen AI 적용 수준 비교</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/mi-02-ai-roleplay-1.png" alt="AI 세일즈 트레이닝 PoC 후보 검토" data-en-alt="AI sales-training PoC vendor review" loading="lazy" onclick="openLb(this)"><figcaption data-en="AI sales-training PoC vendor review">AI 세일즈 트레이닝 PoC 후보 검토</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/mi-02-ai-roleplay-2.png" alt="PoC 후보 비교 요약" data-en-alt="PoC vendor comparison summary" loading="lazy" onclick="openLb(this)"><figcaption data-en="PoC vendor comparison summary">PoC 후보 비교 요약</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/aia_p2p_01_institutions_blurred.png" alt="온투업 기관 구조" data-en-alt="Online lending (P2P): institutional structure" loading="lazy" onclick="openLb(this)"><figcaption data-en="Online lending (P2P): institutional structure">온투업 기관 구조</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/aia_p2p_02_law_details_blurred.png" alt="온투법 세부 분석" data-en-alt="Online lending act: regulatory detail" loading="lazy" onclick="openLb(this)"><figcaption data-en="Online lending act: regulatory detail">온투법 세부 분석</figcaption></figure>
+        <figure><img src="https://raw.githubusercontent.com/jeeinw/portfolio/toss_fpa/images/aia_p2p_03_market_status_blurred.png" alt="온투업·조각투자 시장 현황" data-en-alt="P2P &amp; fractional investment market status" loading="lazy" onclick="openLb(this)"><figcaption data-en="P2P &amp; fractional investment market status">온투업·조각투자 시장 현황</figcaption></figure>
+      </div>
     </div>
 
   </section>
@@ -634,34 +719,34 @@ section:last-child { border-bottom: none; }
 
       <div class="tl-item current">
         <div class="tl-dot"></div>
-        <div class="tl-period">2025.04 – 현재</div>
-        <div class="tl-co">AIA생명 (AIA Korea)</div>
-        <div class="tl-role">테크기획팀 대리</div>
+        <div class="tl-period" data-en="2025.04 – Present">2025.04 – 현재</div>
+        <div class="tl-co" data-en="AIA Korea (AIA Life)">AIA생명 (AIA Korea)</div>
+        <div class="tl-role" data-en="Assistant Manager, Tech Planning Team">테크기획팀 대리</div>
         <div class="tl-desc" data-i18n="ca.aia">자회사 설립 타당성 검토 PMO·이사회 보고자료 작성 지원 / IT 중장기계획 수립 (4 pillars) / 계열사 P&L 관리 / 홍콩 본사 영문 월간 보고 / Python 자동화 (Azure 비용·PPT 변환)</div>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <div class="tl-period">2021.12 – 2025.03 (3년 4개월)</div>
+        <div class="tl-period" data-en="2021.12 – 2025.03 (3 yrs 4 mos)">2021.12 – 2025.03 (3년 4개월)</div>
         <div class="tl-co">NHN</div>
-        <div class="tl-role">전략기획팀 전임</div>
+        <div class="tl-role" data-en="Associate, Corporate Strategy Team">전략기획팀 전임</div>
         <div class="tl-desc" data-i18n="ca.nhn">5개 계열사 연결 P&L 관리·드라이버 분석 / 페이코·두레이 중장기 경영계획 / 외부투자자 Put Option 자본 영향 모델링 / 페이코 마케팅 ROI 증분 공헌이익 분석 / M&A 스크리닝 10개+ 산업 / DART 자동화 (처리 시간 1/10, 보고 공수 70%↓)</div>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <div class="tl-period">2020.08 – 2021.12 (1년 4개월)</div>
-        <div class="tl-co">롯데이노베이트</div>
-        <div class="tl-role">ERP컨설팅팀 PI담당 선임</div>
+        <div class="tl-period" data-en="2020.08 – 2021.12 (1 yr 4 mos)">2020.08 – 2021.12 (1년 4개월)</div>
+        <div class="tl-co" data-en="Lotte Innovate">롯데이노베이트</div>
+        <div class="tl-role" data-en="Senior Consultant, ERP Consulting Team (PI)">ERP컨설팅팀 PI담당 선임</div>
         <div class="tl-desc" data-i18n="ca.lotte">롯데면세점 차세대 IT PI / 롯데제과 S&OP DT 마스터플랜 / 롯데마트·슈퍼 물류 통합, 현장 As-Is → To-Be → 임원 보고 3사이클</div>
       </div>
 
       <div class="tl-item">
         <div class="tl-dot"></div>
-        <div class="tl-period">학력</div>
-        <div class="tl-co">서강대학교</div>
-        <div class="tl-role">경영학·미국문화학 복수전공 (2020 졸업)</div>
-        <div class="tl-desc">EM Business School, 스트라스부르 교환학생 2016–2017 / 캐나다 유학 2년</div>
+        <div class="tl-period" data-en="Education">학력</div>
+        <div class="tl-co" data-en="Sogang University">서강대학교</div>
+        <div class="tl-role" data-en="B.A., Business Administration & American Culture (double major), 2020">경영학·미국문화학 복수전공 (2020 졸업)</div>
+        <div class="tl-desc" data-en="Exchange student, EM Business School (Strasbourg) 2016–2017 / 2 years of study in Canada">EM Business School, 스트라스부르 교환학생 2016–2017 / 캐나다 유학 2년</div>
       </div>
 
     </div>
@@ -676,14 +761,14 @@ section:last-child { border-bottom: none; }
         <td class="sk-cat">Financial Analysis</td>
         <td>
           <div class="tags">
-            <span class="tag hi">연결 P&L 관리</span>
-            <span class="tag hi">Business Driver 분석</span>
-            <span class="tag hi">시나리오 모델링</span>
-            <span class="tag hi">중장기 경영계획</span>
+            <span class="tag hi" data-en="Consolidated P&amp;L Management">연결 P&L 관리</span>
+            <span class="tag hi" data-en="Business Driver Analysis">Business Driver 분석</span>
+            <span class="tag hi" data-en="Scenario Modeling">시나리오 모델링</span>
+            <span class="tag hi" data-en="Long-range Business Planning">중장기 경영계획</span>
             <span class="tag">NOI · IRR · BEP</span>
-            <span class="tag">예실 분산 분석</span>
-            <span class="tag">내부거래 제거</span>
-            <span class="tag">외화환산</span>
+            <span class="tag" data-en="Budget vs. Actual Variance Analysis">예실 분산 분석</span>
+            <span class="tag" data-en="Intercompany Elimination">내부거래 제거</span>
+            <span class="tag" data-en="FX Translation">외화환산</span>
           </div>
         </td>
       </tr>
@@ -692,7 +777,7 @@ section:last-child { border-bottom: none; }
         <td>
           <div class="tags">
             <span class="tag hi">Python (pandas · DART API)</span>
-            <span class="tag hi">재무 데이터 파이프라인</span>
+            <span class="tag hi" data-en="Financial Data Pipeline">재무 데이터 파이프라인</span>
             <span class="tag">Excel (Financial Modeling · VBA)</span>
             <span class="tag">Power Query</span>
             <span class="tag">SQL</span>
@@ -704,13 +789,13 @@ section:last-child { border-bottom: none; }
         <td class="sk-cat">Strategy & Investment</td>
         <td>
           <div class="tags">
-            <span class="tag hi">M&A 스크리닝 · 투자 심사</span>
+            <span class="tag hi" data-en="M&amp;A Screening · Investment Review">M&A 스크리닝 · 투자 심사</span>
             <span class="tag hi">Commercial Due Diligence</span>
-            <span class="tag">Valuation (상대가치)</span>
+            <span class="tag" data-en="Valuation (Relative / Comps)">Valuation (상대가치)</span>
             <span class="tag">Business Strategy · LRP</span>
             <span class="tag">Market Sizing (Bottom-up)</span>
-            <span class="tag">PI 컨설팅</span>
-            <span class="tag">이해관계자 조율</span>
+            <span class="tag" data-en="PI Consulting">PI 컨설팅</span>
+            <span class="tag" data-en="Stakeholder Alignment">이해관계자 조율</span>
           </div>
         </td>
       </tr>
@@ -728,9 +813,9 @@ section:last-child { border-bottom: none; }
         <td class="sk-cat">Language</td>
         <td>
           <div class="tags">
-            <span class="tag hi">영어 OPIc AL · TOEIC 990</span>
-            <span class="tag">홍콩 본사 영문 보고</span>
-            <span class="tag">C레벨 실시간 대응</span>
+            <span class="tag hi" data-en="English: OPIc AL · TOEIC 990">영어 OPIc AL · TOEIC 990</span>
+            <span class="tag" data-en="English Reporting to Hong Kong HQ">홍콩 본사 영문 보고</span>
+            <span class="tag" data-en="Real-time C-level Q&amp;A">C레벨 실시간 대응</span>
           </div>
         </td>
       </tr>
@@ -738,8 +823,8 @@ section:last-child { border-bottom: none; }
         <td class="sk-cat">Awards</td>
         <td>
           <div class="tags">
-            <span class="tag">2025 AIA 테크본부 해커톤 금상(2위)</span>
-            <span class="tag">2023·2024 NHN 우수사원 포상</span>
+            <span class="tag" data-en="2025 AIA Tech Division Hackathon, Gold Prize (2nd place)">2025 AIA 테크본부 해커톤 금상(2위)</span>
+            <span class="tag" data-en="NHN Outstanding Employee Award, 2023 &amp; 2024">2023·2024 NHN 우수사원 포상</span>
           </div>
         </td>
       </tr>
@@ -787,6 +872,14 @@ const T = {
     'p5.s':'3~5개년 IT 중장기 전략이 필요했는데, 기존 문서는 방향만 나열하는 데 그쳤습니다. 재무계획과 연결이 안 돼 예산 배분 근거가 약했습니다.',
     'p5.a':'시스템·조직·운영효율·예산 네 축으로 다시 짜고 핵심과제를 뽑았습니다. 과제별 현황과 이행방안을 정리했고, 경쟁사 IT 예산·인력을 벤치마킹해 투자 효율성 논리를 붙였습니다. 월별 Budget vs. Actual 분산 분석도 계획 단계부터 넣었습니다.',
     'p5.r':'CTO·개발부문장 보고까지 마쳤습니다. CapEx/OpEx 배분 개선안이 실제 예산 운영에 반영됐습니다.',
+    'p6.t':'M&A·신사업 투자 스크리닝 · 시너지 검토',
+    'p6.s':'경영진이 신사업·인수 후보를 수시로 검토하라고 요청했습니다. B2B SaaS(채널코퍼레이션), 주류 유통 ERP(보나캠프), 엔터프라이즈 AI(올거나이즈), 그룹웨어(핸디소프트)처럼 산업이 매번 달랐고, 짧은 시간 안에 볼 가치가 있는지부터 판단해야 했습니다.',
+    'p6.a':'기업 개요·연혁·주주 구성에서 시작해 BM과 매출 드라이버, SWOT을 정리했습니다. NHN 사업(PAYCO·두레이)과 붙였을 때의 시너지를 시나리오로 그렸고, 상장 비교기업의 EV/Sales·EV/EBITDA 멀티플로 가치 범위를 잡았습니다.',
+    'p6.r':'대상별로 Go/No-Go 권고를 정리해 경영진에 보고했습니다. 보나캠프는 PAYCO B2B 대출 연계 구조를 직접 대출과 금융사 중개 두 시나리오로 비교해, 사업 수요 검토가 먼저 필요하다는 의견을 냈습니다. 검토 범위는 스크리닝과 권고까지였습니다.',
+    'p7.t':'산업 리서치 · 경쟁사 벤치마킹',
+    'p7.s':'새 시장에 들어갈지, 새 기술을 도입할지 판단하려면 산업 구조와 경쟁 구도를 먼저 알아야 했습니다. 신규 금융업(온투업·조각투자)의 구조·규제·시장, 생명보험업계의 생성형 AI 도입 수준, AI 세일즈 트레이닝 솔루션 PoC 후보를 검토했습니다.',
+    'p7.a':'산업은 기관 구조·규제·시장 규모 세 축으로 나눠 정리했습니다. 생보 11개사의 Gen AI 적용 수준은 영역별 매트릭스로 비교했고, PoC 후보 솔루션은 구축 방식·기능·비용 기준표에 나란히 놓고 비교했습니다.',
+    'p7.r':'각 리서치를 한 장의 판단 자료로 정리해 보고했습니다. AIA에서는 이 작업을 CTO·개발부문장 대상 주간 Market Intelligence 보고로 이어 가고 있습니다.',
     'lab.think':'How I Think','tit.think':'문제를 다루는 방식',
     'th1.t':'숫자 밑에 있는 구조','th1.b':'P&L 숫자가 바뀐 이유를 설명하려면 계정 아래까지 내려가야 합니다. 드라이버를 다시 잡지 않으면 매번 같은 보고를 반복하게 됩니다.',
     'th2.t':'가정을 명시한 시나리오','th2.b':'정답이 없을 때는 가정을 최대한 드러내 놓고 갑니다. 민감도를 돌려보면 어떤 변수가 결과를 가르는지 보입니다.',
@@ -815,8 +908,8 @@ const T = {
     'f6.t':'Multi-stakeholder Alignment & English','f6.b':'Converged Finance, Legal, Tax, Tech, Compliance, and outside advisors by organizing them from a finance perspective to support the board report for a subsidiary build. Then own the reporting line to Hong Kong HQ — turning complex financials into a narrative senior, often non-Korean, stakeholders can act on, in real time (OPIc AL).',
     'lab.work':'Selected Work','tit.work':'Key Work Experience',
     'p1.t':'Multi-entity Consolidated P&L Management · Business Driver Analysis',
-    'p1.s':'Monthly P&L for Dooray, Comico, Yanolja, and Edu (5 subsidiaries) was being aggregated, nothing more. We couldn\'t explain why numbers were deteriorating, and management reporting was purely results-oriented.',
-    'p1.a':'Went below account level to reclassify fixed/variable cost structures. Redefined Dooray\'s infrastructure cost categories — cut the cost ratio by 30pp. Redesigned Comico Japan\'s cost structure — YoY loss narrowed by more than half. Built an ad ROI tracking system for Yanolja — turned from -50% to +10%.',
+    'p1.s':'Monthly P&L for Dooray, Comico, Tourbaksa, and Edu (5 subsidiaries) was being aggregated, nothing more. We couldn\'t explain why numbers were deteriorating, and management reporting was purely results-oriented.',
+    'p1.a':'Went below account level to reclassify fixed/variable cost structures. Redefined Dooray\'s infrastructure cost categories — cut the cost ratio by 30pp. Redesigned Comico Japan\'s cost structure — YoY loss narrowed by more than half. Built an ad ROI tracking system for Tourbaksa — turned from -50% to +10%.',
     'p1.r':'Driver-based reporting became team standard. Beyond intercompany elimination and FX translation, directly modeled the capital burden and consolidated cash flow scenarios for Put Option maturities (guaranteed-return buyback) held by external financial investors.',
     'p2.t':'Long-range Business Planning · Financial Modeling',
     'p2.s':'Payco 3-year and Dooray 5-year business plans needed to be rebuilt annually. Revenue structures and cost drivers differed per business; management kept asking "how far can we stretch in each scenario?"',
@@ -834,6 +927,14 @@ const T = {
     'p5.s':'A 3–5 year IT strategy was needed, but the existing approach was a list of directional priorities. Budget allocation lacked a financial rationale because the plan wasn\'t linked to the financial model.',
     'p5.a':'Restructured around 4 axes: systems, organization, operational efficiency, and budget. Designed current-state analysis and implementation plans per initiative. Peer benchmarking of competitor IT budgets and headcount to build investment efficiency arguments. Embedded monthly Budget vs. Actual variance analysis into the plan design from day one.',
     'p5.r':'Management reporting to CTO and Head of Engineering completed. CapEx/OpEx reallocation direction was reflected in actual budget operations.',
+    'p6.t':'M&A and New-Business Investment Screening · Synergy Review',
+    'p6.s':'Management regularly asked for quick reads on new-business and acquisition candidates. The industries changed every time: B2B SaaS (Channel Corp), liquor-distribution ERP (BonaCamp), enterprise AI (Allganize), groupware (HandySoft). The first question was always whether a target was worth a closer look.',
+    'p6.a':'Started from company profile, history, and cap table, then mapped the business model, revenue drivers, and SWOT. Built synergy scenarios against NHN businesses (PAYCO, Dooray) and framed a value range with listed-peer EV/Sales and EV/EBITDA multiples.',
+    'p6.r':'Delivered a Go/No-Go recommendation per target to management. For BonaCamp, compared two PAYCO B2B lending structures (direct lending vs. financial-institution brokerage) and advised validating business demand first. Scope covered screening and recommendation.',
+    'p7.t':'Industry Research · Competitor Benchmarking',
+    'p7.s':'Deciding whether to enter a market or adopt a technology required understanding the industry structure and competitive landscape first. Reviewed new financial sectors (online P2P lending, fractional investment) on structure, regulation, and market; Gen AI adoption across life insurers; and AI sales-training PoC candidates.',
+    'p7.a':'Broke each industry into three lenses: institutional structure, regulation, and market size. Compared Gen AI adoption across 11 life insurers in a domain-by-domain matrix, and laid PoC vendors side by side on build model, features, and cost.',
+    'p7.r':'Condensed each piece of research into a one-page decision brief. At AIA this continues as a weekly Market Intelligence report to the CTO and Head of Engineering.',
     'lab.think':'How I Think','tit.think':'How I Approach Problems',
     'th1.t':'The Structure Beneath the Numbers','th1.b':'Explaining why P&L numbers changed requires going below the account line. Without redefining the driver, you end up delivering the same report indefinitely.',
     'th2.t':'Scenarios with Explicit Assumptions','th2.b':'When there\'s no right answer, making assumptions transparent is the most important discipline. Sensitivity analysis reveals which variables are actually decisive.',
@@ -857,6 +958,14 @@ function applyLang(l) {
   document.querySelectorAll('.lang-btn').forEach(b =>
     b.classList.toggle('active', b.textContent.trim().toLowerCase() === l)
   );
+  document.querySelectorAll('[data-en]').forEach(el => {
+    if (el.dataset.ko === undefined) el.dataset.ko = el.textContent;
+    el.textContent = l === 'en' ? el.dataset.en : el.dataset.ko;
+  });
+  document.querySelectorAll('[data-en-alt]').forEach(el => {
+    if (el.dataset.koAlt === undefined) el.dataset.koAlt = el.alt;
+    el.alt = l === 'en' ? el.dataset.enAlt : el.dataset.koAlt;
+  });
   document.documentElement.lang = l;
   document.title = l === 'en' ? 'Jeein Wang | Strategic Finance & Analysis' : '왕지인 | Strategic Finance & Analysis';
 }
@@ -871,8 +980,11 @@ function setLang(l) {
 if (/^\/en\/?$/.test(location.pathname) || new URLSearchParams(location.search).get('lang') === 'en') applyLang('en');
 
 /* lightbox */
-function openLb(src) {
-  document.getElementById('lb-img').src = src;
+function openLb(el) {
+  const img = document.getElementById('lb-img');
+  img.src = typeof el === 'string' ? el : el.src;
+  img.alt = typeof el === 'string' ? '' : el.alt;
+  img.classList.toggle('blur', typeof el !== 'string' && el.classList.contains('blur'));
   document.getElementById('lb').classList.add('open');
 }
 function closeLb() { document.getElementById('lb').classList.remove('open'); }
